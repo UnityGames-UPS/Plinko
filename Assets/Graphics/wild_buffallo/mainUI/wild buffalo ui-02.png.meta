@@ -1,0 +1,1297 @@
+fileFormatVersion: 2
+guid: 3aed810bd6d0348b59daeddb9a9b42af
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild buffalo ui-02_0
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba93ecd735644e7fb3a3e1f601106d0
+      internalID: -1675798276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_1
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6395cca3da36f4614ac10b3af8719fe8
+      internalID: -1921068872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_2
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 3514
+        width: 544
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc64806f4a5ba41958a079f581dfec7d
+      internalID: 1985291748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_3
+      rect:
+        serializedVersion: 2
+        x: 2748
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ff1f08d5ee64d82802cdcdfdeddd18
+      internalID: 99178393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_4
+      rect:
+        serializedVersion: 2
+        x: 3602
+        y: 3514
+        width: 543
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d07a923e29b34856bebd09f35b1baa1
+      internalID: 1712929353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_5
+      rect:
+        serializedVersion: 2
+        x: 4477
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1dc1c62a1556454a8c66fb725844743
+      internalID: -999032483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_6
+      rect:
+        serializedVersion: 2
+        x: 5314
+        y: 3514
+        width: 544
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5760591f0031422b8f28aafa53fa0d6
+      internalID: 2001807393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_7
+      rect:
+        serializedVersion: 2
+        x: 6151
+        y: 3514
+        width: 539
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291082bad666c487b91ce52396861814
+      internalID: 1969283369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_8
+      rect:
+        serializedVersion: 2
+        x: 7027
+        y: 3514
+        width: 543
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17be22700c8ad4fcc860d85761e9242e
+      internalID: -1726376889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_9
+      rect:
+        serializedVersion: 2
+        x: 7886
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb01f44cbf4ff491f9c0ab2045206c02
+      internalID: 826847312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_10
+      rect:
+        serializedVersion: 2
+        x: 8739
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3d84d6f281942db8aafbf86093ba57
+      internalID: 1997457210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_11
+      rect:
+        serializedVersion: 2
+        x: 9598
+        y: 3514
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003e94e02915548abae21b9885e8bf54
+      internalID: -2141368555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_12
+      rect:
+        serializedVersion: 2
+        x: 10457
+        y: 3644
+        width: 538
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cff37539ff920448197bf75c0448cd49
+      internalID: -1087777906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_13
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 894ed9779c85d422a8be293937075656
+      internalID: 419698872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_14
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb0657f90cc14b92b61cc2146361b1d
+      internalID: -460926637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_15
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b00991c33d2d4475b09d7c5a928dcc7
+      internalID: 975083859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_16
+      rect:
+        serializedVersion: 2
+        x: 2748
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad60ebf2fae248e7a5646f4c43f73ac
+      internalID: -695719431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_17
+      rect:
+        serializedVersion: 2
+        x: 3602
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e774c3af8494ab2b36e90d39dd1109
+      internalID: 1561730616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_18
+      rect:
+        serializedVersion: 2
+        x: 4477
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 045a4be8adb5c48129cd46641100a083
+      internalID: 727325777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_19
+      rect:
+        serializedVersion: 2
+        x: 5314
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b81e56bc2cc41a09b9805192d2833e
+      internalID: 1769553074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_20
+      rect:
+        serializedVersion: 2
+        x: 6146
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69b75e985c544a139364a6e7fc85b24
+      internalID: 1682340054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_21
+      rect:
+        serializedVersion: 2
+        x: 7027
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac07b7d3410564837812887839265fac
+      internalID: 200736022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_22
+      rect:
+        serializedVersion: 2
+        x: 7880
+        y: 2519
+        width: 541
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3a34978e1c940cf83ef727c047122a
+      internalID: 479730640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_23
+      rect:
+        serializedVersion: 2
+        x: 8739
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a7e130220ce4e61a64e717a73df091
+      internalID: 1344968402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_24
+      rect:
+        serializedVersion: 2
+        x: 9593
+        y: 2519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e29fc650fb8e94e00ab3ccfab280ba55
+      internalID: -911842854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_25
+      rect:
+        serializedVersion: 2
+        x: 10457
+        y: 2652
+        width: 538
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515224f35a7754368b570cc8164651e5
+      internalID: -1768665587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_26
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f720e29e1ff4f70b7b0bc7c724c4e3
+      internalID: -1093405172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_27
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e32c7bb8646f94627bca49524c98faea
+      internalID: 636992303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_28
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb504cdd4e17b4823bd001232b196163
+      internalID: 578146279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_29
+      rect:
+        serializedVersion: 2
+        x: 2748
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f15753955acc40ebb6556c93a606234
+      internalID: -1878285836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_30
+      rect:
+        serializedVersion: 2
+        x: 3602
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85dec786993264721b92a2bcda8a92ac
+      internalID: 1430927617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_31
+      rect:
+        serializedVersion: 2
+        x: 4477
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40864787f4d304ff5a7ca14c440739a7
+      internalID: -1962368490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_32
+      rect:
+        serializedVersion: 2
+        x: 5314
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14e913800cd7411ab76d04a4d7b54d9
+      internalID: -462517712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_33
+      rect:
+        serializedVersion: 2
+        x: 6146
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6580031bf4940d7a1729e5233dc3c6
+      internalID: 1220276631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_34
+      rect:
+        serializedVersion: 2
+        x: 7027
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030aded6ca6124289992b6167485404a
+      internalID: 264198390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_35
+      rect:
+        serializedVersion: 2
+        x: 7880
+        y: 1519
+        width: 541
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde1e78d9c9a642abb941f932996d44d
+      internalID: -1248991801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_36
+      rect:
+        serializedVersion: 2
+        x: 8739
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f91b2081a8aa644fc9430046020d7a1e
+      internalID: 1879952677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_37
+      rect:
+        serializedVersion: 2
+        x: 9593
+        y: 1519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0750e3fa427a145c49340abfcd9d8e48
+      internalID: 40322060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_38
+      rect:
+        serializedVersion: 2
+        x: 10457
+        y: 1652
+        width: 538
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a7a3250a97e4ec896ba6872ebe0901
+      internalID: 333860184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_39
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7a68caa850b94b46ab958ba59cdc744
+      internalID: -860043423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_40
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47113c6ccc16b468e8bb04fd968fa114
+      internalID: -387680345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_41
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e7ab81ba2274a5bb030b33bf9ac696
+      internalID: -824624123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_42
+      rect:
+        serializedVersion: 2
+        x: 2748
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5a3a49ac7be4d78bc5e1eb982cc114
+      internalID: -1357280212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_43
+      rect:
+        serializedVersion: 2
+        x: 3602
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1b1e84b4c3a145feae42bcf5aa9bcca
+      internalID: -107036853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_44
+      rect:
+        serializedVersion: 2
+        x: 4477
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061342645a334470aa18fb33e462ea19
+      internalID: -1299776671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_45
+      rect:
+        serializedVersion: 2
+        x: 5314
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d3a9623e96d1439c9ef918a7af76489
+      internalID: -1633079232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_46
+      rect:
+        serializedVersion: 2
+        x: 6146
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d87cf8038434448b09e13582af2e4510
+      internalID: -2008803549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_47
+      rect:
+        serializedVersion: 2
+        x: 7027
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2eb514471bab40b0825513f335da676
+      internalID: 1113793447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_48
+      rect:
+        serializedVersion: 2
+        x: 7880
+        y: 519
+        width: 541
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec12d4d31a7524d5cbce75f516d969db
+      internalID: 467431434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_49
+      rect:
+        serializedVersion: 2
+        x: 8739
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ce536be71c1427393a0362d6062fa0
+      internalID: -1757338697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_50
+      rect:
+        serializedVersion: 2
+        x: 9593
+        y: 519
+        width: 538
+        height: 755
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e48ae5625525f425e818f53b9e5dd483
+      internalID: -1564493348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild buffalo ui-02_51
+      rect:
+        serializedVersion: 2
+        x: 10457
+        y: 652
+        width: 538
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a3058406bfc42aa8496465e9a1da01
+      internalID: -1109430795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      wild buffalo ui-02_0: -1675798276
+      wild buffalo ui-02_1: -1921068872
+      wild buffalo ui-02_10: 1997457210
+      wild buffalo ui-02_11: -2141368555
+      wild buffalo ui-02_12: -1087777906
+      wild buffalo ui-02_13: 419698872
+      wild buffalo ui-02_14: -460926637
+      wild buffalo ui-02_15: 975083859
+      wild buffalo ui-02_16: -695719431
+      wild buffalo ui-02_17: 1561730616
+      wild buffalo ui-02_18: 727325777
+      wild buffalo ui-02_19: 1769553074
+      wild buffalo ui-02_2: 1985291748
+      wild buffalo ui-02_20: 1682340054
+      wild buffalo ui-02_21: 200736022
+      wild buffalo ui-02_22: 479730640
+      wild buffalo ui-02_23: 1344968402
+      wild buffalo ui-02_24: -911842854
+      wild buffalo ui-02_25: -1768665587
+      wild buffalo ui-02_26: -1093405172
+      wild buffalo ui-02_27: 636992303
+      wild buffalo ui-02_28: 578146279
+      wild buffalo ui-02_29: -1878285836
+      wild buffalo ui-02_3: 99178393
+      wild buffalo ui-02_30: 1430927617
+      wild buffalo ui-02_31: -1962368490
+      wild buffalo ui-02_32: -462517712
+      wild buffalo ui-02_33: 1220276631
+      wild buffalo ui-02_34: 264198390
+      wild buffalo ui-02_35: -1248991801
+      wild buffalo ui-02_36: 1879952677
+      wild buffalo ui-02_37: 40322060
+      wild buffalo ui-02_38: 333860184
+      wild buffalo ui-02_39: -860043423
+      wild buffalo ui-02_4: 1712929353
+      wild buffalo ui-02_40: -387680345
+      wild buffalo ui-02_41: -824624123
+      wild buffalo ui-02_42: -1357280212
+      wild buffalo ui-02_43: -107036853
+      wild buffalo ui-02_44: -1299776671
+      wild buffalo ui-02_45: -1633079232
+      wild buffalo ui-02_46: -2008803549
+      wild buffalo ui-02_47: 1113793447
+      wild buffalo ui-02_48: 467431434
+      wild buffalo ui-02_49: -1757338697
+      wild buffalo ui-02_5: -999032483
+      wild buffalo ui-02_50: -1564493348
+      wild buffalo ui-02_51: -1109430795
+      wild buffalo ui-02_6: 2001807393
+      wild buffalo ui-02_7: 1969283369
+      wild buffalo ui-02_8: -1726376889
+      wild buffalo ui-02_9: 826847312
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
