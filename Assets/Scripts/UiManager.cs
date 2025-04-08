@@ -91,7 +91,8 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private Button CrossQuit_Button;
 
-   
+    [SerializeField]
+    internal GameObject touchDisable;
     [SerializeField]
     private Button Settings_Button;
     [SerializeField]
@@ -168,7 +169,7 @@ public class UiManager : MonoBehaviour
         });
 
         if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.RemoveAllListeners();
-        if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.AddListener(CallOnExitFunction);
+        if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.AddListener((delegate { CallOnExitFunction(); socketManager.ReactNativeCallOnFailedToConnect(); }));
 
         if (CloseAD_Button) CloseAD_Button.onClick.RemoveAllListeners();
         if (CloseAD_Button) CloseAD_Button.onClick.AddListener(CallOnExitFunction);

@@ -1,37 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
+using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using DG.Tweening;
+using System.Linq;
 using Newtonsoft.Json;
 using Best.SocketIO;
 using Best.SocketIO.Events;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization;
+using Best.HTTP.Shared;
 
 public class SocketIOManager : MonoBehaviour
 {
+    [SerializeField]
+    internal GameManager gameManager;
+
+    [SerializeField]
+    private UiManager uiManager;
 
     internal GameData initialData = null;
     internal GameData resultData = null;
     internal PlayerData playerdata = null;
-    [SerializeField] internal List<string> bonusdata = null;
+    [SerializeField]
+    internal List<string> bonusdata = null;
+    //WebSocket currentSocket = null;
     internal bool isResultdone = false;
-    internal List<List<int>> LineData = null;
     // protected string nameSpace="game"; //BackendChanges
     protected string nameSpace = ""; //BackendChanges
     private Socket gameSocket; //BackendChanges
 
     private SocketManager manager;
 
+
     protected string SocketURI = null;
     // protected string TestSocketURI = "https://game-crm-rtp-backend.onrender.com/";
     protected string TestSocketURI = "http://localhost:5001/";
-
+    [SerializeField] internal JSFunctCalls JSManager;
     [SerializeField]
     private string testToken;
-
-    protected string gameID = "pl-base";
-    // protected string gameID = "";
+    protected string gameID = "SL-WB";
+    //protected string gameID = "";
 
     internal bool isLoaded = false;
 
@@ -39,25 +51,18 @@ public class SocketIOManager : MonoBehaviour
 
     private const int maxReconnectionAttempts = 6;
     private readonly TimeSpan reconnectionDelay = TimeSpan.FromSeconds(10);
-    [SerializeField]
-    GameManager gameManager;
 
     private void Awake()
     {
         //Debug.unityLogger.logEnabled = false;
         isLoaded = false;
         SetInit = false;
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('This is the new version of the game 2');
-      }
-    ");
-#endif
+
     }
 
     private void Start()
     {
+        //OpenWebsocket();
         OpenSocket();
     }
 
@@ -67,13 +72,11 @@ public class SocketIOManager : MonoBehaviour
 
         // Parse the JSON data
         var data = JsonUtility.FromJson<AuthTokenData>(jsonData);
-
-        // Proceed with connecting to the server using myAuth and socketURL
         SocketURI = data.socketURL;
         myAuth = data.cookie;
-        nameSpace = data.nameSpace; //BackendChanges
+        nameSpace = data.nameSpace;
+        // Proceed with connecting to the server using myAuth and socketURL
     }
-
 
     string myAuth = null;
 
@@ -88,75 +91,10 @@ public class SocketIOManager : MonoBehaviour
 
         Application.ExternalCall("window.parent.postMessage", "authToken", "*");
 
-#if UNITY_WEBGL && !UNITY_EDITOR //BackendChanges Start
-        Application.ExternalEval(@" 
-        (function (){
-        
-          if(window.ReactNativeWebView){
-             try {
-            if (!window.ReactNativeWebView || typeof window.ReactNativeWebView.postMessage !== 'function') {
-                window.ReactNativeWebView.postMessage('ReactNativeWebView is not available.');
-                console.error('ReactNativeWebView is not available.');
-                return;
-            }
-
-            if (typeof window.ReactNativeWebView.injectedObjectJson !== 'function') {
-                window.ReactNativeWebView.postMessage('ReactNativeWebView.injectedObjectJson is not a function.');
-                console.error('ReactNativeWebView.injectedObjectJson is not a function.');
-                return;
-            }
-
-            var injectedObj = JSON.parse(window.ReactNativeWebView.injectedObjectJson())
-            window.ReactNativeWebView.postMessage('Injected obj : ' + injectedObj);
-
-            if (!injectedObj || typeof injectedObj !== 'object') {
-                window.ReactNativeWebView.postMessage('Injected object is invalid.');
-                console.error('Injected object is invalid.');
-                return;
-            }
-
-            // Expected properties: 'socketURL' and 'token'
-            if (typeof injectedObj.socketURL !== 'string' || typeof injectedObj.token !== 'string') {
-                window.ReactNativeWebView.postMessage('Injected object properties are invalid.');
-                console.error('Injected object properties are invalid.');
-                return;
-            }
-
-            var combinedData = JSON.stringify({
-                socketURL: injectedObj.socketURL.trim(),
-                cookie: injectedObj.token.trim(),
-                nameSpace: injectedObj.nameSpace?.trim()
-            });
-
-            window.ReactNativeWebView.postMessage('authToken');
-
-            // Send data to Unity, ensuring 'SendMessage' is available
-            if (typeof SendMessage === 'function') {
-                SendMessage('SocketManager', 'ReceiveAuthToken', combinedData);
-            } else {
-                window.ReactNativeWebView.postMessage('SendMessage function is not available.');
-                console.error('SendMessage function is not available.');
-            }
-        } catch (error) {
-            window.ReactNativeWebView.postMessage(JSON.stringify(error));
-            console.error('An error occurred:', error);
-        }
-          }else{
-              window.addEventListener('message', function(event) {
-                  if (event.data.type === 'authToken') {
-                      var combinedData = JSON.stringify({
-                          cookie: event.data.cookie,
-                          socketURL: event.data.socketURL,
-                          nameSpace: event.data?.nameSpace ? event.data.nameSpace : ''
-                      });
-                      // Send the combined data to Unity
-                      SendMessage('SocketManager', 'ReceiveAuthToken', combinedData);
-                  }});
-          }
-        })()
-                  "); 
-        StartCoroutine(WaitForAuthToken(options)); 
-#else //BackendChanges Finish
+#if UNITY_WEBGL && !UNITY_EDITOR
+        JSManager.SendCustomMessage("authToken");
+        StartCoroutine(WaitForAuthToken(options));
+#else
         Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
         {
             return new
@@ -170,7 +108,6 @@ public class SocketIOManager : MonoBehaviour
         SetupSocketManager(options);
 #endif
     }
-
 
     private IEnumerator WaitForAuthToken(SocketOptions options)
     {
@@ -186,7 +123,6 @@ public class SocketIOManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("My Auth is not null");
-
         // Once myAuth is set, configure the authFunction
         Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
         {
@@ -210,9 +146,8 @@ public class SocketIOManager : MonoBehaviour
 #if UNITY_EDITOR
         this.manager = new SocketManager(new Uri(TestSocketURI), options);
 #else
-    this.manager = new SocketManager(new Uri(SocketURI), options);
+        this.manager = new SocketManager(new Uri(SocketURI), options);
 #endif
-
         if (string.IsNullOrEmpty(nameSpace))
         {  //BackendChanges Start
             gameSocket = this.manager.Socket;
@@ -226,7 +161,7 @@ public class SocketIOManager : MonoBehaviour
         gameSocket.On<ConnectResponse>(SocketIOEventTypes.Connect, OnConnected);
         gameSocket.On<string>(SocketIOEventTypes.Disconnect, OnDisconnected);
         gameSocket.On<string>(SocketIOEventTypes.Error, OnError);
-        gameSocket.On<string>("Message", OnListenEvent);
+        gameSocket.On<string>("message", OnListenEvent);
         gameSocket.On<bool>("socketState", OnSocketState);
         gameSocket.On<string>("internalError", OnSocketError);
         gameSocket.On<string>("alert", OnSocketAlert);
@@ -239,93 +174,57 @@ public class SocketIOManager : MonoBehaviour
     {
         Debug.Log("Connected!");
         SendPing();
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket Connected');
-      }
-    ");
-#endif
     }
 
     private void OnDisconnected(string response)
     {
         Debug.Log("Disconnected from the server");
+        //if (maxReconnectionAttempts <= this.manager.ReconnectAttempts)
+        //{
         StopAllCoroutines();
-      
-#if UNITY_WEBGL && !UNITY_EDITOR
-        Application.ExternalEval(@"
-          if(window.ReactNativeWebView){
-            window.ReactNativeWebView.postMessage('Game Socket OnDisconnected');
-          }
-        ");
-#endif
+        uiManager.DisconnectionPopup(false);
+        //}
+        //else
+        //{
+        //    uiManager.DisconnectionPopup(false);
+        //}
     }
 
     private void OnError(string response)
     {
         Debug.LogError("Error: " + response);
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket OnError');
-      }
-    ");
-#endif
     }
 
     private void OnListenEvent(string data)
     {
+        // Debug.Log("Received some_event with data: " + data);
         ParseResponse(data);
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket OnListenEvent');
-      }
-    ");
-#endif
     }
 
     private void OnSocketState(bool state)
     {
-        Debug.Log("my state is " + state);
-    }
+        if (state)
+        {
+            Debug.Log("my state is " + state);
+        }
+        else
+        {
 
+        }
+    }
     private void OnSocketError(string data)
     {
         Debug.Log("Received error with data: " + data);
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket OnSocketError');
-      }
-    ");
-#endif
     }
-
     private void OnSocketAlert(string data)
     {
-        Debug.Log("Received alert with data: " + data);
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket Alert');
-      }
-    ");
-#endif
+        //        Debug.Log("Received alert with data: " + data);
     }
 
     private void OnSocketOtherDevice(string data)
     {
         Debug.Log("Received Device Error with data: " + data);
-       
-#if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('Game Socket OnSocketOtherDevice');
-      }
-    ");
-#endif
+        uiManager.ADfunction();
     }
 
     private void SendPing()
@@ -359,21 +258,16 @@ public class SocketIOManager : MonoBehaviour
         }
     }
 
-    internal void CloseSocket()
-    {
-        SendDataWithNamespace("EXIT");
-
-    }
-
     internal void ReactNativeCallOnFailedToConnect() //BackendChanges
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-    Application.ExternalEval(@"
-      if(window.ReactNativeWebView){
-        window.ReactNativeWebView.postMessage('onExit');
-      }
-    ");
+    JSManager.SendCustomMessage("onExit");
 #endif
+    }
+
+    internal void CloseSocket()
+    {
+        SendDataWithNamespace("EXIT");
     }
 
     private void ParseResponse(string jsonObject)
@@ -387,18 +281,15 @@ public class SocketIOManager : MonoBehaviour
         {
             case "InitData":
                 {
+                    gameManager.uiManager.touchDisable.SetActive(false);
                     initialData = myData.message.GameData;
                     playerdata = myData.message.PlayerData;
-                    if (!SetInit)
-                    {
-                        SetInit = true;
-                        
-                        setInitialData(initialData.Bets);
-                    }
-                    else
-                    {
-                        RefreshUI();
-                    }
+                    setInitialData(initialData.Bets);
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        JSManager.SendCustomMessage("OnEnter");
+#endif
+
                     break;
                 }
             case "ResultData":
@@ -429,14 +320,10 @@ public class SocketIOManager : MonoBehaviour
         }
     }
 
-    private void RefreshUI()
-    {
-       
-    }
 
     private void setInitialData(List<double> slotPop)
     {
-       
+
         isLoaded = true;
         gameManager.setInitialUI();
         Application.ExternalCall("window.parent.postMessage", "OnEnter", "*");
@@ -449,7 +336,9 @@ public class SocketIOManager : MonoBehaviour
 #endif
     }
 
-    internal void AccumulateResult(double currBet,int row,int risk)
+
+
+    internal void AccumulateResult(double currBet, int row, int risk)
     {
         isResultdone = false;
         MessageData message = new MessageData();
@@ -464,6 +353,7 @@ public class SocketIOManager : MonoBehaviour
         string json = JsonUtility.ToJson(message);
         SendDataWithNamespace("message", json);
     }
+
 
     private List<string> RemoveQuotes(List<string> stringList)
     {
@@ -582,5 +472,7 @@ public class AuthTokenData
     public string socketURL;
     public string nameSpace; //BackendChanges
 }
+
+
 
 
