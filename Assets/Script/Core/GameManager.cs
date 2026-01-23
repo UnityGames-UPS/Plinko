@@ -477,7 +477,7 @@ namespace PlinkoGame
             currentMappings.Clear();
             pendingResults.Clear();
 
-            StartCoroutine(socketManager.CloseSocket(false));
+            StartCoroutine(socketManager.CloseSocket());
         }
 
         private void OnDestroy()
