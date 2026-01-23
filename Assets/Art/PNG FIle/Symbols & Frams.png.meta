@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 60737b939accb99408d6eb051a4a5aec
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3138773978473008646
+    second: Symbols & Frams_0
+  - first:
+      213: 4652794164888727324
+    second: Symbols & Frams_1
+  - first:
+      213: 6171698377138703951
+    second: Symbols & Frams_2
+  - first:
+      213: 9045241243156905765
+    second: Symbols & Frams_3
+  - first:
+      213: 3082121948717269132
+    second: Symbols & Frams_4
+  - first:
+      213: 519564941195617711
+    second: Symbols & Frams_5
+  - first:
+      213: 239071615531047956
+    second: Symbols & Frams_6
+  - first:
+      213: 5759750411241392034
+    second: Symbols & Frams_7
+  - first:
+      213: 6677943016539007938
+    second: Symbols & Frams_8
+  - first:
+      213: 8501186104763596287
+    second: Symbols & Frams_9
+  - first:
+      213: -6808002690084973093
+    second: Symbols & Frams_10
+  - first:
+      213: 7068857915976053227
+    second: Symbols & Frams_11
+  - first:
+      213: 8628786646394559350
+    second: Symbols & Frams_12
+  - first:
+      213: 3059956545162206966
+    second: Symbols & Frams_13
+  - first:
+      213: -2791452661760061185
+    second: Symbols & Frams_14
+  - first:
+      213: -1724359354038336263
+    second: Symbols & Frams_15
+  - first:
+      213: 3851748195976845303
+    second: Symbols & Frams_16
+  - first:
+      213: -3982461416176292526
+    second: Symbols & Frams_17
+  - first:
+      213: 6066381155444592074
+    second: Symbols & Frams_18
+  - first:
+      213: 5941194686698250422
+    second: Symbols & Frams_19
+  - first:
+      213: -2237471990625159621
+    second: Symbols & Frams_20
+  - first:
+      213: 8692553556345374234
+    second: Symbols & Frams_21
+  - first:
+      213: -6396589847378288235
+    second: Symbols & Frams_22
+  - first:
+      213: -2096594812486833525
+    second: Symbols & Frams_23
+  - first:
+      213: -238819361849486456
+    second: Symbols & Frams_24
+  - first:
+      213: 8480363064351068598
+    second: Symbols & Frams_25
+  - first:
+      213: 7537066804800786423
+    second: Symbols & Frams_26
+  - first:
+      213: 2253545751158317384
+    second: Symbols & Frams_27
+  - first:
+      213: 7327362393846473685
+    second: Symbols & Frams_28
+  - first:
+      213: -5440637416516703432
+    second: Symbols & Frams_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Symbols & Frams_0
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 1123
+        width: 616
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e8f11bd4a2f8b20800000000000000
+      internalID: 3138773978473008646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_1
+      rect:
+        serializedVersion: 2
+        x: 1894
+        y: 1123
+        width: 615
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1fe33334ab029040800000000000000
+      internalID: 4652794164888727324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_2
+      rect:
+        serializedVersion: 2
+        x: 3581
+        y: 1123
+        width: 615
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4e053699f646a550800000000000000
+      internalID: 6171698377138703951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_3
+      rect:
+        serializedVersion: 2
+        x: 5211
+        y: 1478
+        width: 224
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52f7416acf6278d70800000000000000
+      internalID: 9045241243156905765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_4
+      rect:
+        serializedVersion: 2
+        x: 5249
+        y: 1392
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c804ab32595e5ca20800000000000000
+      internalID: 3082121948717269132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_5
+      rect:
+        serializedVersion: 2
+        x: 5547
+        y: 1478
+        width: 224
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa526bdaf8dd53700800000000000000
+      internalID: 519564941195617711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_6
+      rect:
+        serializedVersion: 2
+        x: 5585
+        y: 1392
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c5b9f1e5a515300800000000000000
+      internalID: 239071615531047956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_7
+      rect:
+        serializedVersion: 2
+        x: 5191
+        y: 1314
+        width: 224
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a704f88b7ebeef40800000000000000
+      internalID: 5759750411241392034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_8
+      rect:
+        serializedVersion: 2
+        x: 5527
+        y: 1314
+        width: 224
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbab13dac1dcac50800000000000000
+      internalID: 6677943016539007938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_9
+      rect:
+        serializedVersion: 2
+        x: 6581
+        y: 1344
+        width: 188
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffdbbe798b74af570800000000000000
+      internalID: 8501186104763596287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_10
+      rect:
+        serializedVersion: 2
+        x: 5153
+        y: 987
+        width: 247
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5d49baf9d1581a0800000000000000
+      internalID: -6808002690084973093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_11
+      rect:
+        serializedVersion: 2
+        x: 5562
+        y: 987
+        width: 247
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1f57972d0a91260800000000000000
+      internalID: 7068857915976053227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_12
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 1065
+        width: 181
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67b5bf4dcbb9fb770800000000000000
+      internalID: 8628786646394559350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_13
+      rect:
+        serializedVersion: 2
+        x: 6581
+        y: 1094
+        width: 188
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fe5686f346277a20800000000000000
+      internalID: 3059956545162206966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_14
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 627
+        width: 877
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff019780894c249d0800000000000000
+      internalID: -2791452661760061185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_15
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 627
+        width: 877
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f44c65bd48d118e0800000000000000
+      internalID: -1724359354038336263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_16
+      rect:
+        serializedVersion: 2
+        x: 3563
+        y: 627
+        width: 877
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f79379a398247530800000000000000
+      internalID: 3851748195976845303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_17
+      rect:
+        serializedVersion: 2
+        x: 5213
+        y: 648
+        width: 214
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25dec1521747bb8c0800000000000000
+      internalID: -3982461416176292526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_18
+      rect:
+        serializedVersion: 2
+        x: 5535
+        y: 648
+        width: 214
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd0662158d103450800000000000000
+      internalID: 6066381155444592074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_19
+      rect:
+        serializedVersion: 2
+        x: 6102
+        y: 709
+        width: 201
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b0661af61d537250800000000000000
+      internalID: 5941194686698250422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_20
+      rect:
+        serializedVersion: 2
+        x: 6450
+        y: 709
+        width: 200
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b36b6e34417e2f0e0800000000000000
+      internalID: -2237471990625159621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_21
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 131
+        width: 1269
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a164605876722a870800000000000000
+      internalID: 8692553556345374234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_22
+      rect:
+        serializedVersion: 2
+        x: 1873
+        y: 131
+        width: 1269
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 591a525ac6fba37a0800000000000000
+      internalID: -6396589847378288235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_23
+      rect:
+        serializedVersion: 2
+        x: 3560
+        y: 131
+        width: 1269
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8aabc3502667e2e0800000000000000
+      internalID: -2096594812486833525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_24
+      rect:
+        serializedVersion: 2
+        x: 6102
+        y: 510
+        width: 201
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883d9734e0b8facf0800000000000000
+      internalID: -238819361849486456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_25
+      rect:
+        serializedVersion: 2
+        x: 6450
+        y: 510
+        width: 200
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b11df0b64d40b570800000000000000
+      internalID: 8480363064351068598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_26
+      rect:
+        serializedVersion: 2
+        x: 5031
+        y: 193
+        width: 312
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ff0a8c635a099860800000000000000
+      internalID: 7537066804800786423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_27
+      rect:
+        serializedVersion: 2
+        x: 5119
+        y: 131
+        width: 312
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841e1eebbe3364f10800000000000000
+      internalID: 2253545751158317384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_28
+      rect:
+        serializedVersion: 2
+        x: 5531
+        y: 193
+        width: 312
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d366c1764500b560800000000000000
+      internalID: 7327362393846473685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbols & Frams_29
+      rect:
+        serializedVersion: 2
+        x: 5619
+        y: 131
+        width: 312
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ba2dc6819fe74b0800000000000000
+      internalID: -5440637416516703432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Symbols & Frams_0: 3138773978473008646
+      Symbols & Frams_1: 4652794164888727324
+      Symbols & Frams_10: -6808002690084973093
+      Symbols & Frams_11: 7068857915976053227
+      Symbols & Frams_12: 8628786646394559350
+      Symbols & Frams_13: 3059956545162206966
+      Symbols & Frams_14: -2791452661760061185
+      Symbols & Frams_15: -1724359354038336263
+      Symbols & Frams_16: 3851748195976845303
+      Symbols & Frams_17: -3982461416176292526
+      Symbols & Frams_18: 6066381155444592074
+      Symbols & Frams_19: 5941194686698250422
+      Symbols & Frams_2: 6171698377138703951
+      Symbols & Frams_20: -2237471990625159621
+      Symbols & Frams_21: 8692553556345374234
+      Symbols & Frams_22: -6396589847378288235
+      Symbols & Frams_23: -2096594812486833525
+      Symbols & Frams_24: -238819361849486456
+      Symbols & Frams_25: 8480363064351068598
+      Symbols & Frams_26: 7537066804800786423
+      Symbols & Frams_27: 2253545751158317384
+      Symbols & Frams_28: 7327362393846473685
+      Symbols & Frams_29: -5440637416516703432
+      Symbols & Frams_3: 9045241243156905765
+      Symbols & Frams_4: 3082121948717269132
+      Symbols & Frams_5: 519564941195617711
+      Symbols & Frams_6: 239071615531047956
+      Symbols & Frams_7: 5759750411241392034
+      Symbols & Frams_8: 6677943016539007938
+      Symbols & Frams_9: 8501186104763596287
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

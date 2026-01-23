@@ -1,0 +1,2808 @@
+fileFormatVersion: 2
+guid: c1a2ba7ed4de51d46aa9ffea0353fbc1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3500600738096660356
+    second: 12_row_white_balls_0
+  - first:
+      213: 249606285049448298
+    second: 12_row_white_balls_1
+  - first:
+      213: -6210836764391801162
+    second: 12_row_white_balls_2
+  - first:
+      213: 2743353195721982061
+    second: 12_row_white_balls_3
+  - first:
+      213: 3049968173874527057
+    second: 12_row_white_balls_4
+  - first:
+      213: -938971315084556806
+    second: 12_row_white_balls_5
+  - first:
+      213: 4942622043915077093
+    second: 12_row_white_balls_6
+  - first:
+      213: -639419659133780397
+    second: 12_row_white_balls_7
+  - first:
+      213: -7029301188675907221
+    second: 12_row_white_balls_8
+  - first:
+      213: -8999236831517310619
+    second: 12_row_white_balls_9
+  - first:
+      213: -8924648136776348189
+    second: 12_row_white_balls_10
+  - first:
+      213: -8819126250498043004
+    second: 12_row_white_balls_11
+  - first:
+      213: 917144795267036359
+    second: 12_row_white_balls_12
+  - first:
+      213: -2281566612551901966
+    second: 12_row_white_balls_13
+  - first:
+      213: 2892821711662222162
+    second: 12_row_white_balls_14
+  - first:
+      213: 7381165535307700064
+    second: 12_row_white_balls_15
+  - first:
+      213: -1156906744713053805
+    second: 12_row_white_balls_16
+  - first:
+      213: 5964236896366574371
+    second: 12_row_white_balls_17
+  - first:
+      213: 2030866725532107227
+    second: 12_row_white_balls_18
+  - first:
+      213: -6364233145682426732
+    second: 12_row_white_balls_19
+  - first:
+      213: 1623695548207347604
+    second: 12_row_white_balls_20
+  - first:
+      213: -1241309691746350176
+    second: 12_row_white_balls_21
+  - first:
+      213: -2181564353291002899
+    second: 12_row_white_balls_22
+  - first:
+      213: 524978001073071718
+    second: 12_row_white_balls_23
+  - first:
+      213: -1012427032569630464
+    second: 12_row_white_balls_24
+  - first:
+      213: -3710810022478567510
+    second: 12_row_white_balls_25
+  - first:
+      213: -611429448138553600
+    second: 12_row_white_balls_26
+  - first:
+      213: -283390024807731137
+    second: 12_row_white_balls_27
+  - first:
+      213: -756051607466445589
+    second: 12_row_white_balls_28
+  - first:
+      213: -7313384254060478363
+    second: 12_row_white_balls_29
+  - first:
+      213: 6572711838497131689
+    second: 12_row_white_balls_30
+  - first:
+      213: -3225918419490372917
+    second: 12_row_white_balls_31
+  - first:
+      213: -311869250359396960
+    second: 12_row_white_balls_32
+  - first:
+      213: -2028910458183587035
+    second: 12_row_white_balls_33
+  - first:
+      213: -7011963388049986052
+    second: 12_row_white_balls_34
+  - first:
+      213: 1660319832728519747
+    second: 12_row_white_balls_35
+  - first:
+      213: -7218320942686245174
+    second: 12_row_white_balls_36
+  - first:
+      213: 8228840758518546860
+    second: 12_row_white_balls_37
+  - first:
+      213: -8133066461391362301
+    second: 12_row_white_balls_38
+  - first:
+      213: -1626226426064172350
+    second: 12_row_white_balls_39
+  - first:
+      213: 738386006367096988
+    second: 12_row_white_balls_40
+  - first:
+      213: 545028309900265450
+    second: 12_row_white_balls_41
+  - first:
+      213: -8464585047766617515
+    second: 12_row_white_balls_42
+  - first:
+      213: 630181545301676611
+    second: 12_row_white_balls_43
+  - first:
+      213: -8630480876830419247
+    second: 12_row_white_balls_44
+  - first:
+      213: 7063890074859728868
+    second: 12_row_white_balls_45
+  - first:
+      213: -8264364792356502587
+    second: 12_row_white_balls_46
+  - first:
+      213: 148567409256458946
+    second: 12_row_white_balls_47
+  - first:
+      213: 806358527583222848
+    second: 12_row_white_balls_48
+  - first:
+      213: -1892430192393417088
+    second: 12_row_white_balls_49
+  - first:
+      213: 460772259398531841
+    second: 12_row_white_balls_50
+  - first:
+      213: 1591087189579754556
+    second: 12_row_white_balls_51
+  - first:
+      213: -1118639352652800920
+    second: 12_row_white_balls_52
+  - first:
+      213: -5754298135526318501
+    second: 12_row_white_balls_53
+  - first:
+      213: 8680455763945354598
+    second: 12_row_white_balls_54
+  - first:
+      213: 7860616916125747116
+    second: 12_row_white_balls_55
+  - first:
+      213: 8032931123717857971
+    second: 12_row_white_balls_56
+  - first:
+      213: 5189963147657575656
+    second: 12_row_white_balls_57
+  - first:
+      213: -1925688280864407171
+    second: 12_row_white_balls_58
+  - first:
+      213: -2267115801792708191
+    second: 12_row_white_balls_59
+  - first:
+      213: 8314364689950396542
+    second: 12_row_white_balls_60
+  - first:
+      213: -3799425729236680080
+    second: 12_row_white_balls_61
+  - first:
+      213: -3358728667820712631
+    second: 12_row_white_balls_62
+  - first:
+      213: -5017910036178534747
+    second: 12_row_white_balls_63
+  - first:
+      213: 4747010458518035197
+    second: 12_row_white_balls_64
+  - first:
+      213: -1144817388020590515
+    second: 12_row_white_balls_65
+  - first:
+      213: 3838780230945065749
+    second: 12_row_white_balls_66
+  - first:
+      213: 6099857253231434119
+    second: 12_row_white_balls_67
+  - first:
+      213: -7230096758189123773
+    second: 12_row_white_balls_68
+  - first:
+      213: 5513516909796570138
+    second: 12_row_white_balls_69
+  - first:
+      213: -3198866257115610250
+    second: 12_row_white_balls_70
+  - first:
+      213: -7390422155174862562
+    second: 12_row_white_balls_71
+  - first:
+      213: -5388566953651534044
+    second: 12_row_white_balls_72
+  - first:
+      213: 7769421168046398678
+    second: 12_row_white_balls_73
+  - first:
+      213: 820412569664083973
+    second: 12_row_white_balls_74
+  - first:
+      213: -6010233164903686542
+    second: 12_row_white_balls_75
+  - first:
+      213: 5603953787675546958
+    second: 12_row_white_balls_76
+  - first:
+      213: 6147302188673877956
+    second: 12_row_white_balls_77
+  - first:
+      213: -6617255560146327078
+    second: 12_row_white_balls_78
+  - first:
+      213: 6053330522063656745
+    second: 12_row_white_balls_79
+  - first:
+      213: -1237883053506308061
+    second: 12_row_white_balls_80
+  - first:
+      213: 7285152901362613161
+    second: 12_row_white_balls_81
+  - first:
+      213: -4043665211571640873
+    second: 12_row_white_balls_82
+  - first:
+      213: -4913665452900119066
+    second: 12_row_white_balls_83
+  - first:
+      213: 5060334411235643572
+    second: 12_row_white_balls_84
+  - first:
+      213: 3567406862053019483
+    second: 12_row_white_balls_85
+  - first:
+      213: 8777899392807288079
+    second: 12_row_white_balls_86
+  - first:
+      213: 427967651738797499
+    second: 12_row_white_balls_87
+  - first:
+      213: 2065240308910389558
+    second: 12_row_white_balls_88
+  - first:
+      213: 6303783295362790998
+    second: 12_row_white_balls_89
+  - first:
+      213: -3946749227620643651
+    second: 12_row_white_balls_90
+  - first:
+      213: -8303312488093242565
+    second: 12_row_white_balls_91
+  - first:
+      213: 5464199188761074465
+    second: 12_row_white_balls_92
+  - first:
+      213: 6845429461656369942
+    second: 12_row_white_balls_93
+  - first:
+      213: -2297673400382462160
+    second: 12_row_white_balls_94
+  - first:
+      213: 5014983678050602589
+    second: 12_row_white_balls_95
+  - first:
+      213: -1299029785125431369
+    second: 12_row_white_balls_96
+  - first:
+      213: -4747506576881317736
+    second: 12_row_white_balls_97
+  - first:
+      213: -2589362126278958234
+    second: 12_row_white_balls_98
+  - first:
+      213: 7032362762897865526
+    second: 12_row_white_balls_99
+  - first:
+      213: -4344677068522283156
+    second: 12_row_white_balls_100
+  - first:
+      213: 1147401085565402331
+    second: 12_row_white_balls_101
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 12_row_white_balls_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 4356
+        height: 3713
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c704749fc2e5b6fc0800000000000000
+      internalID: -3500600738096660356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_1
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 3433
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67c3120897c67300800000000000000
+      internalID: 249606285049448298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_2
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 3433
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be7d748edcaec9a0800000000000000
+      internalID: -6210836764391801162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_3
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 3130
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6001745239521620800000000000000
+      internalID: 2743353195721982061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_4
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 3130
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15bb90c05e9a35a20800000000000000
+      internalID: 3049968173874527057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_5
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 3130
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af58a16509a18f2f0800000000000000
+      internalID: -938971315084556806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_6
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 3130
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5c292df88b79440800000000000000
+      internalID: 4942622043915077093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_7
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 2827
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35efde235335027f0800000000000000
+      internalID: -639419659133780397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_8
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 2827
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61ddbdcfc7e27e90800000000000000
+      internalID: -7029301188675907221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_9
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 2827
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5618ccf18c94c1380800000000000000
+      internalID: -8999236831517310619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_10
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 2827
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ed081eedc7452480800000000000000
+      internalID: -8924648136776348189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_11
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 2827
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 483ddb1a66b2c9580800000000000000
+      internalID: -8819126250498043004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_12
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 2524
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c47d71055a5abc00800000000000000
+      internalID: 917144795267036359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_13
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 2524
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fcd37f014f3650e0800000000000000
+      internalID: -2281566612551901966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_14
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 2524
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b0a2a150e552820800000000000000
+      internalID: 2892821711662222162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_15
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 2524
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0671f5082fa2f6660800000000000000
+      internalID: 7381165535307700064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_16
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 2524
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 399ff1bf177d1ffe0800000000000000
+      internalID: -1156906744713053805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_17
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 2524
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b353c7bd935c250800000000000000
+      internalID: 5964236896366574371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_18
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd18081e6861f2c10800000000000000
+      internalID: 2030866725532107227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_19
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49405d35ca3bda7a0800000000000000
+      internalID: -6364233145682426732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_20
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49738469f76888610800000000000000
+      internalID: 1623695548207347604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_21
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab853f796bf5cee0800000000000000
+      internalID: -1241309691746350176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_22
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb5f6377c689b1e0800000000000000
+      internalID: -2181564353291002899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_23
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666ead4e5b8194700800000000000000
+      internalID: 524978001073071718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_24
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 2222
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0013faa5af223f1f0800000000000000
+      internalID: -1012427032569630464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_25
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7a43df1fd808cc0800000000000000
+      internalID: -3710810022478567510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_26
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0070d7a0824c387f0800000000000000
+      internalID: -611429448138553600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_27
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1919
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30327e1642311cf0800000000000000
+      internalID: -283390024807731137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_28
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be479199117f185f0800000000000000
+      internalID: -756051607466445589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_29
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5604ac6d4c3a18a90800000000000000
+      internalID: -7313384254060478363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_30
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac40a8e796f63b50800000000000000
+      internalID: 6572711838497131689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_31
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc203e30a4c3b33d0800000000000000
+      internalID: -3225918419490372917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_32
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 1919
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5f5f3b1940cabf0800000000000000
+      internalID: -311869250359396960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_33
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52b64ea10bcd7d3e0800000000000000
+      internalID: -2028910458183587035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_34
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfd6c35137080be90800000000000000
+      internalID: -7011963388049986052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_35
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 344c1535714aa0710800000000000000
+      internalID: 1660319832728519747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_36
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ace6c60d85f53db90800000000000000
+      internalID: -7218320942686245174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_37
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca101c45217b23270800000000000000
+      internalID: 8228840758518546860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_38
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307ef1ae42b812f80800000000000000
+      internalID: -8133066461391362301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_39
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca871e7eab7e69e0800000000000000
+      internalID: -1626226426064172350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_40
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9051a029264f3a00800000000000000
+      internalID: 738386006367096988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_41
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1617
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae703243c54509700800000000000000
+      internalID: 545028309900265450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_42
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 552b9c01fb0c78a80800000000000000
+      internalID: -8464585047766617515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_43
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34296bfc6cadeb800800000000000000
+      internalID: 630181545301676611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_44
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d698b76e5f5a3880800000000000000
+      internalID: -8630480876830419247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_45
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1314
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4efeb64d89af70260800000000000000
+      internalID: 7063890074859728868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_46
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3885102041f4d80800000000000000
+      internalID: -8264364792356502587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_47
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca6ee58541df0200800000000000000
+      internalID: 148567409256458946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_48
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c743efec2c03b00800000000000000
+      internalID: 806358527583222848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_49
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e8a2c34ccbcb5e0800000000000000
+      internalID: -1892430192393417088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_50
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10bbdcbbdedf46600800000000000000
+      internalID: 460772259398531841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_51
+      rect:
+        serializedVersion: 2
+        x: 3524
+        y: 1314
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c63957e5da41610800000000000000
+      internalID: 1591087189579754556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_52
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c5b518f6bc970f0800000000000000
+      internalID: -1118639352652800920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_53
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ed2445550a420b0800000000000000
+      internalID: -5754298135526318501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_54
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 665747ab68c277870800000000000000
+      internalID: 8680455763945354598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_55
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca70a191075861d60800000000000000
+      internalID: 7860616916125747116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_56
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2e166fb44ba7f60800000000000000
+      internalID: 8032931123717857971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_57
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ec7f753cf3760840800000000000000
+      internalID: 5189963147657575656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_58
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71c1f616b49645e0800000000000000
+      internalID: -1925688280864407171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_59
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a18871a0369980e0800000000000000
+      internalID: -2267115801792708191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_60
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e705b8552ae826370800000000000000
+      internalID: 8314364689950396542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_61
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0724e52fd6ab54bc0800000000000000
+      internalID: -3799425729236680080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_62
+      rect:
+        serializedVersion: 2
+        x: 3675
+        y: 1012
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d10a962166361d0800000000000000
+      internalID: -3358728667820712631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_63
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aef5ba786dcc5ab0800000000000000
+      internalID: -5017910036178534747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_64
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa180d7cd4c0e140800000000000000
+      internalID: 4747010458518035197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_65
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d48975ea6aacc10f0800000000000000
+      internalID: -1144817388020590515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_66
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51bc5440846164530800000000000000
+      internalID: 3838780230945065749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_67
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 709
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78913777adb07a450800000000000000
+      internalID: 6099857253231434119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_68
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3471f6c1e4989ab90800000000000000
+      internalID: -7230096758189123773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_69
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14b887ea62f38c40800000000000000
+      internalID: 5513516909796570138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_70
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67304a466185b93d0800000000000000
+      internalID: -3198866257115610250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_71
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1120acb432ff6990800000000000000
+      internalID: -7390422155174862562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_72
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427013fc7e6f735b0800000000000000
+      internalID: -5388566953651534044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_73
+      rect:
+        serializedVersion: 2
+        x: 3524
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc5ecf536782db60800000000000000
+      internalID: 7769421168046398678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_74
+      rect:
+        serializedVersion: 2
+        x: 3826
+        y: 709
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508d718a2e0b26b00800000000000000
+      internalID: 820412569664083973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_75
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ed4a4b7cc579ca0800000000000000
+      internalID: -6010233164903686542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_76
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e451b14674e35cd40800000000000000
+      internalID: 5603953787675546958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_77
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c743e255ca9f4550800000000000000
+      internalID: 6147302188673877956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_78
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad9ef75b029ca24a0800000000000000
+      internalID: -6617255560146327078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_79
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92752a3b900c10450800000000000000
+      internalID: 6053330522063656745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_80
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328d742ebe722dee0800000000000000
+      internalID: -1237883053506308061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_81
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9abff1427ff0a1560800000000000000
+      internalID: 7285152901362613161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_82
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5eaa11ae302e7c0800000000000000
+      internalID: -4043665211571640873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_83
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed87c6ed472fcbb0800000000000000
+      internalID: -4913665452900119066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_84
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b0d262165be93640800000000000000
+      internalID: 5060334411235643572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_85
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f06fdd3a9f18130800000000000000
+      internalID: 3567406862053019483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_86
+      rect:
+        serializedVersion: 2
+        x: 3675
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0d356e8dfc51d970800000000000000
+      internalID: 8777899392807288079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_87
+      rect:
+        serializedVersion: 2
+        x: 3977
+        y: 407
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb5cf31df4270f500800000000000000
+      internalID: 427967651738797499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_88
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639fb6c6e1539ac10800000000000000
+      internalID: 2065240308910389558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_89
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656f32d12898b7750800000000000000
+      internalID: 6303783295362790998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_90
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbccf1efc745a39c0800000000000000
+      internalID: -3946749227620643651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_91
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3b2320f845b4cc80800000000000000
+      internalID: -8303312488093242565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_92
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12bd41c263cb4db40800000000000000
+      internalID: 5464199188761074465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_93
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 104
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b7505a3d9dffe50800000000000000
+      internalID: 6845429461656369942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_94
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 037e65847360d10e0800000000000000
+      internalID: -2297673400382462160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_95
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e869ca51dc89540800000000000000
+      internalID: 5014983678050602589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_96
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b752f00b4be8fde0800000000000000
+      internalID: -1299029785125431369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_97
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8988824fbe77d1eb0800000000000000
+      internalID: -4747506576881317736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_98
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663ea4c7ddcb01cd0800000000000000
+      internalID: -2589362126278958234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_99
+      rect:
+        serializedVersion: 2
+        x: 3524
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b363e7ca8f79160800000000000000
+      internalID: 7032362762897865526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_100
+      rect:
+        serializedVersion: 2
+        x: 3826
+        y: 104
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6f91faa93b94b3c0800000000000000
+      internalID: -4344677068522283156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12_row_white_balls_101
+      rect:
+        serializedVersion: 2
+        x: 4129
+        y: 104
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdcf50845336cef00800000000000000
+      internalID: 1147401085565402331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b57eedf811e675c40b7a4fad61739d94
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      12_row_white_balls_0: -3500600738096660356
+      12_row_white_balls_1: 249606285049448298
+      12_row_white_balls_10: -8924648136776348189
+      12_row_white_balls_100: -4344677068522283156
+      12_row_white_balls_101: 1147401085565402331
+      12_row_white_balls_11: -8819126250498043004
+      12_row_white_balls_12: 917144795267036359
+      12_row_white_balls_13: -2281566612551901966
+      12_row_white_balls_14: 2892821711662222162
+      12_row_white_balls_15: 7381165535307700064
+      12_row_white_balls_16: -1156906744713053805
+      12_row_white_balls_17: 5964236896366574371
+      12_row_white_balls_18: 2030866725532107227
+      12_row_white_balls_19: -6364233145682426732
+      12_row_white_balls_2: -6210836764391801162
+      12_row_white_balls_20: 1623695548207347604
+      12_row_white_balls_21: -1241309691746350176
+      12_row_white_balls_22: -2181564353291002899
+      12_row_white_balls_23: 524978001073071718
+      12_row_white_balls_24: -1012427032569630464
+      12_row_white_balls_25: -3710810022478567510
+      12_row_white_balls_26: -611429448138553600
+      12_row_white_balls_27: -283390024807731137
+      12_row_white_balls_28: -756051607466445589
+      12_row_white_balls_29: -7313384254060478363
+      12_row_white_balls_3: 2743353195721982061
+      12_row_white_balls_30: 6572711838497131689
+      12_row_white_balls_31: -3225918419490372917
+      12_row_white_balls_32: -311869250359396960
+      12_row_white_balls_33: -2028910458183587035
+      12_row_white_balls_34: -7011963388049986052
+      12_row_white_balls_35: 1660319832728519747
+      12_row_white_balls_36: -7218320942686245174
+      12_row_white_balls_37: 8228840758518546860
+      12_row_white_balls_38: -8133066461391362301
+      12_row_white_balls_39: -1626226426064172350
+      12_row_white_balls_4: 3049968173874527057
+      12_row_white_balls_40: 738386006367096988
+      12_row_white_balls_41: 545028309900265450
+      12_row_white_balls_42: -8464585047766617515
+      12_row_white_balls_43: 630181545301676611
+      12_row_white_balls_44: -8630480876830419247
+      12_row_white_balls_45: 7063890074859728868
+      12_row_white_balls_46: -8264364792356502587
+      12_row_white_balls_47: 148567409256458946
+      12_row_white_balls_48: 806358527583222848
+      12_row_white_balls_49: -1892430192393417088
+      12_row_white_balls_5: -938971315084556806
+      12_row_white_balls_50: 460772259398531841
+      12_row_white_balls_51: 1591087189579754556
+      12_row_white_balls_52: -1118639352652800920
+      12_row_white_balls_53: -5754298135526318501
+      12_row_white_balls_54: 8680455763945354598
+      12_row_white_balls_55: 7860616916125747116
+      12_row_white_balls_56: 8032931123717857971
+      12_row_white_balls_57: 5189963147657575656
+      12_row_white_balls_58: -1925688280864407171
+      12_row_white_balls_59: -2267115801792708191
+      12_row_white_balls_6: 4942622043915077093
+      12_row_white_balls_60: 8314364689950396542
+      12_row_white_balls_61: -3799425729236680080
+      12_row_white_balls_62: -3358728667820712631
+      12_row_white_balls_63: -5017910036178534747
+      12_row_white_balls_64: 4747010458518035197
+      12_row_white_balls_65: -1144817388020590515
+      12_row_white_balls_66: 3838780230945065749
+      12_row_white_balls_67: 6099857253231434119
+      12_row_white_balls_68: -7230096758189123773
+      12_row_white_balls_69: 5513516909796570138
+      12_row_white_balls_7: -639419659133780397
+      12_row_white_balls_70: -3198866257115610250
+      12_row_white_balls_71: -7390422155174862562
+      12_row_white_balls_72: -5388566953651534044
+      12_row_white_balls_73: 7769421168046398678
+      12_row_white_balls_74: 820412569664083973
+      12_row_white_balls_75: -6010233164903686542
+      12_row_white_balls_76: 5603953787675546958
+      12_row_white_balls_77: 6147302188673877956
+      12_row_white_balls_78: -6617255560146327078
+      12_row_white_balls_79: 6053330522063656745
+      12_row_white_balls_8: -7029301188675907221
+      12_row_white_balls_80: -1237883053506308061
+      12_row_white_balls_81: 7285152901362613161
+      12_row_white_balls_82: -4043665211571640873
+      12_row_white_balls_83: -4913665452900119066
+      12_row_white_balls_84: 5060334411235643572
+      12_row_white_balls_85: 3567406862053019483
+      12_row_white_balls_86: 8777899392807288079
+      12_row_white_balls_87: 427967651738797499
+      12_row_white_balls_88: 2065240308910389558
+      12_row_white_balls_89: 6303783295362790998
+      12_row_white_balls_9: -8999236831517310619
+      12_row_white_balls_90: -3946749227620643651
+      12_row_white_balls_91: -8303312488093242565
+      12_row_white_balls_92: 5464199188761074465
+      12_row_white_balls_93: 6845429461656369942
+      12_row_white_balls_94: -2297673400382462160
+      12_row_white_balls_95: 5014983678050602589
+      12_row_white_balls_96: -1299029785125431369
+      12_row_white_balls_97: -4747506576881317736
+      12_row_white_balls_98: -2589362126278958234
+      12_row_white_balls_99: 7032362762897865526
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
