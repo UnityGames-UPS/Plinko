@@ -5,7 +5,7 @@ namespace PlinkoGame
     /// <summary>
     /// Centralized audio management system for Plinko game
     /// Handles background music and SFX separately with independent toggle controls
-    /// WebGL-optimized with proper focus handling
+    /// Works with Run in Background enabled/disabled
     /// </summary>
     public class AudioManager : MonoBehaviour
     {
@@ -42,11 +42,9 @@ namespace PlinkoGame
         // State tracking
         private bool isMusicEnabled;
         private bool isSFXEnabled;
-        private bool wasPlayingBeforeFocusLost;
-        private bool isInitialized;
-
-        // WebGL focus detection
-        private bool hadFocusLastFrame;
+        private bool wasMusicPlayingBeforePause;
+        private bool isApplicationFocused = true;
+        private bool isBeingDestroyed = false;
 
         private void Awake()
         {
@@ -61,27 +59,12 @@ namespace PlinkoGame
 
             InitializeAudioSources();
             LoadAudioSettings();
-
-            isInitialized = true;
-            hadFocusLastFrame = Application.isFocused;
         }
-
-        private bool hasPlayedInitialMusic = false;
 
         private void Start()
         {
-     
-                PlayBackgroundMusic();
-            
-
+            PlayBackgroundMusic();
             Debug.Log($"[AudioManager] Start - Music enabled: {isMusicEnabled}, Playing: {musicSource != null && musicSource.isPlaying}");
-        }
-
-
-
-        private void Update()
-        {
-            HandleWebGLFocus();
         }
 
         // ============================================
@@ -128,49 +111,84 @@ namespace PlinkoGame
             Debug.Log($"[AudioManager] Fresh start - Music: {isMusicEnabled}, SFX: {isSFXEnabled}");
         }
 
-       
-
         // ============================================
-        // WEBGL FOCUS HANDLING
+        // FOCUS HANDLING - Works with Run in Background
         // ============================================
 
-        private void HandleWebGLFocus()
+        private void OnApplicationFocus(bool hasFocus)
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            bool hasFocus = Application.isFocused;
+            if (isBeingDestroyed) return;
 
-            // Focus lost
-            if (hadFocusLastFrame && !hasFocus)
-            {
-                OnFocusLost();
-            }
-            // Focus regained
-            else if (!hadFocusLastFrame && hasFocus)
-            {
-                OnFocusRegained();
-            }
+            isApplicationFocused = hasFocus;
 
-            hadFocusLastFrame = hasFocus;
-#endif
+            if (hasFocus)
+            {
+                // Application gained focus
+                Debug.Log("[AudioManager] Application gained focus");
+
+                if (wasMusicPlayingBeforePause && isMusicEnabled)
+                {
+                    PlayBackgroundMusic();
+                }
+            }
+            else
+            {
+                // Application lost focus - STOP ALL AUDIO
+                Debug.Log("[AudioManager] Application lost focus - stopping audio");
+
+                if (musicSource != null && musicSource.isPlaying)
+                {
+                    wasMusicPlayingBeforePause = true;
+                    musicSource.Pause();
+                }
+                else
+                {
+                    wasMusicPlayingBeforePause = false;
+                }
+
+                StopAllSFX();
+            }
         }
 
-        private void OnFocusLost()
+        private void OnApplicationPause(bool pauseStatus)
         {
-            wasPlayingBeforeFocusLost = musicSource.isPlaying;
+            if (isBeingDestroyed) return;
 
-            if (musicSource.isPlaying)
+            if (pauseStatus)
             {
-                musicSource.Pause();
-                Debug.Log("[AudioManager] Music paused - focus lost");
+                // Application is pausing (mobile/background)
+                Debug.Log("[AudioManager] Application paused - stopping audio");
+
+                if (musicSource != null && musicSource.isPlaying)
+                {
+                    wasMusicPlayingBeforePause = true;
+                    musicSource.Pause();
+                }
+                else
+                {
+                    wasMusicPlayingBeforePause = false;
+                }
+
+                StopAllSFX();
+            }
+            else
+            {
+                // Application is resuming
+                Debug.Log("[AudioManager] Application resumed");
+
+                if (wasMusicPlayingBeforePause && isMusicEnabled)
+                {
+                    PlayBackgroundMusic();
+                }
             }
         }
 
-        private void OnFocusRegained()
+        private void StopAllSFX()
         {
-            if (wasPlayingBeforeFocusLost && isMusicEnabled && !musicSource.isPlaying)
+            // Stop the main SFX source
+            if (sfxSource != null && sfxSource.isPlaying)
             {
-                musicSource.UnPause();
-                Debug.Log("[AudioManager] Music resumed - focus regained");
+                sfxSource.Stop();
             }
         }
 
@@ -181,25 +199,34 @@ namespace PlinkoGame
         public void PlayBackgroundMusic()
         {
             if (backgroundMusic == null || musicSource == null) return;
-
+            // Only play if application is focused
+            if (!isApplicationFocused)
+            {
+                Debug.Log("[AudioManager] Skipping music play - application not focused");
+                return;
+            }
             musicSource.clip = backgroundMusic;
             musicSource.Play();
             Debug.Log("[AudioManager] Background music started");
         }
-
         public void StopBackgroundMusic()
         {
-            if (musicSource != null && musicSource.isPlaying)
+            if (isBeingDestroyed || musicSource == null) return;
+
+            try
             {
-                musicSource.Stop();
-                Debug.Log("[AudioManager] Background music stopped");
+                if (musicSource != null && musicSource.isPlaying)
+                {
+                    musicSource.Stop();
+                    Debug.Log("[AudioManager] Background music stopped");
+                }
             }
+            catch (MissingReferenceException) { }
         }
 
         public void ToggleMusic(bool enabled)
         {
             isMusicEnabled = enabled;
-           
 
             if (enabled)
             {
@@ -213,17 +240,11 @@ namespace PlinkoGame
             Debug.Log($"[AudioManager] Music toggled: {enabled}");
         }
 
-        /// <summary>
-        /// Get current music enabled state (for UI initialization)
-        /// </summary>
         public bool GetMusicEnabledState()
         {
             return isMusicEnabled;
         }
 
-        /// <summary>
-        /// Get current SFX enabled state (for UI initialization)
-        /// </summary>
         public bool GetSFXEnabledState()
         {
             return isSFXEnabled;
@@ -236,13 +257,18 @@ namespace PlinkoGame
         public void ToggleSFX(bool enabled)
         {
             isSFXEnabled = enabled;
-          
             Debug.Log($"[AudioManager] SFX toggled: {enabled}");
         }
 
         private void PlaySFX(AudioClip clip)
         {
-            if (!isSFXEnabled || clip == null || sfxSource == null) return;
+            if (isBeingDestroyed || !isSFXEnabled || clip == null || sfxSource == null) return;
+
+            // Only play SFX if application is focused
+            if (!isApplicationFocused)
+            {
+                return;
+            }
 
             sfxSource.PlayOneShot(clip);
         }
@@ -251,16 +277,16 @@ namespace PlinkoGame
         // BUTTON SOUNDS
         // ============================================
 
-
-
         public void PlayStartButtonClick()
         {
             PlaySFX(playbuttonClickSound);
         }
+
         public void PlayButtonClick()
         {
             PlaySFX(otherbtnSound);
         }
+
         public void PlayIncreaseBet()
         {
             PlaySFX(increaseBetSound ?? playbuttonClickSound);
@@ -280,7 +306,6 @@ namespace PlinkoGame
         {
             PlaySFX(hoverbtnSound ?? otherbtnSound);
         }
-
 
         // ============================================
         // BALL SOUNDS
@@ -328,15 +353,15 @@ namespace PlinkoGame
 
         private void OnDestroy()
         {
+            isBeingDestroyed = true;
+
             if (Instance == this)
             {
+                StopBackgroundMusic();
+                musicSource = null;
+                sfxSource = null;
                 Instance = null;
             }
-        }
-
-        private void OnApplicationQuit()
-        {
-            // No saving needed
         }
     }
 }

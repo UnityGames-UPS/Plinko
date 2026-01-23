@@ -24,6 +24,9 @@ namespace PlinkoGame.Network
         [Header("Blocker")]
         [SerializeField] private GameObject RaycastBlocker;
 
+        [Header("Disconnect Settings")]
+        [SerializeField] private float disconnectDelay = 60f;
+
         // Public data properties
         internal PlinkoGameData InitialData { get; private set; }
         internal PlinkoPlayer PlayerData { get; private set; }
@@ -53,6 +56,8 @@ namespace PlinkoGame.Network
         private Coroutine PingRoutine;
         private Coroutine connectionTimeoutRoutine;
         private Coroutine initDataTimeoutRoutine;
+        private Coroutine disconnectTimerCoroutine;
+
         private void Awake()
         {
             IsInitialized = false;
@@ -179,8 +184,8 @@ namespace PlinkoGame.Network
             this.manager = new Best.SocketIO.SocketManager(new Uri(TestSocketURI), options);
             Debug.Log($"[SOCKET] Using TEST URI: {TestSocketURI}");
 #else
-    this.manager = new Best.SocketIO.SocketManager(new Uri(SocketURI), options);
-    Debug.Log($"[SOCKET] Using PROD URI: {SocketURI}");
+            this.manager = new Best.SocketIO.SocketManager(new Uri(SocketURI), options);
+            Debug.Log($"[SOCKET] Using PROD URI: {SocketURI}");
 #endif
 
             if (string.IsNullOrEmpty(nameSpace))
@@ -218,11 +223,9 @@ namespace PlinkoGame.Network
             manager.Open();
             Debug.Log("[SOCKET] Socket manager setup complete - waiting for connection...");
 
-            // ✅ ADD CONNECTION TIMEOUT
             connectionTimeoutRoutine = StartCoroutine(ConnectionTimeoutCheck());
         }
 
-        // ✅ ADD THIS METHOD
         private IEnumerator ConnectionTimeoutCheck()
         {
             float timeout = 10f;
@@ -238,7 +241,7 @@ namespace PlinkoGame.Network
 
             if (!isConnected)
             {
-                Debug.LogError($"[SOCKET] ❌ Connection timeout after {elapsed:F1}s - OnConnected never called");
+                Debug.LogError($"[SOCKET] Connection timeout after {elapsed:F1}s - OnConnected never called");
                 uiManager?.ShowErrorPopup("Connection failed. Please check your network and try again.");
                 if (RaycastBlocker != null)
                 {
@@ -247,7 +250,7 @@ namespace PlinkoGame.Network
             }
             else
             {
-                Debug.Log($"[SOCKET] ✅ Connected successfully after {elapsed:F1}s");
+                Debug.Log($"[SOCKET] Connected successfully after {elapsed:F1}s");
             }
 
             connectionTimeoutRoutine = null;
@@ -259,7 +262,7 @@ namespace PlinkoGame.Network
 
         private void OnConnected(ConnectResponse resp)
         {
-            Debug.Log("[SOCKET] ✅ Connected to server - OnConnected callback triggered");
+            Debug.Log("[SOCKET] Connected to server - OnConnected callback triggered");
 
             // Stop connection timeout
             if (connectionTimeoutRoutine != null)
@@ -279,27 +282,12 @@ namespace PlinkoGame.Network
             missedPongs = 0;
             lastPongTime = Time.time;
 
-            // ✅ REQUEST INIT DATA EXPLICITLY
-            RequestInitData();
-
-            // ✅ START INIT DATA TIMEOUT
+            // Start init data timeout (server will send init automatically)
             initDataTimeoutRoutine = StartCoroutine(InitDataTimeoutCheck());
 
             SendPing();
         }
 
-        // ✅ ADD THIS METHOD
-        private void RequestInitData()
-        {
-            Debug.Log("[SOCKET] 📤 Requesting initialization data from server...");
-
-            // Try both possible event names (adjust based on your server)
-            SendDataWithNamespace("requestInit");
-            SendDataWithNamespace("getInit");
-            SendDataWithNamespace("init");
-        }
-
-        // ✅ ADD THIS METHOD
         private IEnumerator InitDataTimeoutCheck()
         {
             float timeout = 15f;
@@ -315,7 +303,7 @@ namespace PlinkoGame.Network
 
             if (!IsInitialized)
             {
-                Debug.LogError($"[SOCKET] ❌ Init data timeout after {elapsed:F1}s - server did not send game data");
+                Debug.LogError($"[SOCKET] Init data timeout after {elapsed:F1}s - server did not send game data");
                 uiManager?.ShowErrorPopup("Failed to load game data. Please refresh the page.");
                 if (RaycastBlocker != null)
                 {
@@ -324,7 +312,7 @@ namespace PlinkoGame.Network
             }
             else
             {
-                Debug.Log($"[SOCKET] ✅ Init data received successfully after {elapsed:F1}s");
+                Debug.Log($"[SOCKET] Init data received successfully after {elapsed:F1}s");
             }
 
             initDataTimeoutRoutine = null;
@@ -332,7 +320,7 @@ namespace PlinkoGame.Network
 
         private void OnDisconnected()
         {
-            Debug.LogWarning("[SOCKET] ⚠️ Disconnected from server");
+            Debug.LogWarning("[SOCKET] Disconnected from server");
 
             isConnected = false;
             ResetPingRoutine();
@@ -345,7 +333,7 @@ namespace PlinkoGame.Network
 
         private void OnPongReceived(string data)
         {
-            Debug.Log("[PING] ✅ Pong received");
+            Debug.Log("[PING] Pong received");
             waitingForPong = false;
             missedPongs = 0;
             lastPongTime = Time.time;
@@ -410,7 +398,7 @@ namespace PlinkoGame.Network
                 if (waitingForPong)
                 {
                     missedPongs++;
-                    Debug.LogWarning($"[PING] ⚠️ Pong missed #{missedPongs}/{MaxMissedPongs}");
+                    Debug.LogWarning($"[PING] Pong missed #{missedPongs}/{MaxMissedPongs}");
 
                     if (missedPongs == 2)
                     {
@@ -419,7 +407,7 @@ namespace PlinkoGame.Network
 
                     if (missedPongs >= MaxMissedPongs)
                     {
-                        Debug.LogError("[PING] ❌ Connection lost - max pongs missed");
+                        Debug.LogError("[PING] Connection lost - max pongs missed");
                         isConnected = false;
                         uiManager?.ShowDisconnectionPopup();
                         yield break;
@@ -429,9 +417,49 @@ namespace PlinkoGame.Network
                 waitingForPong = true;
                 lastPongTime = Time.time;
                 SendDataWithNamespace("ping");
-                Debug.Log("[PING] 📤 Ping sent");
+                Debug.Log("[PING] Ping sent");
 
                 yield return new WaitForSeconds(pingInterval);
+            }
+        }
+
+        // ============================================
+        // APPLICATION FOCUS - DISCONNECT TIMER
+        // ============================================
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus)
+            {
+                disconnectTimerCoroutine = StartCoroutine(DisconnectTimer());
+            }
+            else
+            {
+                if (disconnectTimerCoroutine != null)
+                {
+                    StopCoroutine(disconnectTimerCoroutine);
+                    disconnectTimerCoroutine = null;
+                    Debug.Log("[FOCUS] Disconnect timer cancelled. App regained focus.");
+                }
+            }
+        }
+
+        private IEnumerator DisconnectTimer()
+        {
+            Debug.Log($"[FOCUS] App lost focus. Disconnect timer started for {disconnectDelay} seconds.");
+            yield return new WaitForSeconds(disconnectDelay);
+            Debug.Log("[FOCUS] Disconnect timer finished. Disconnecting due to prolonged inactivity.");
+
+            // Disconnect the socket
+            gameSocket?.Disconnect();
+
+            // Show error popup to user
+            uiManager?.ShowErrorPopup("You have been away from the game for too long. Please refresh to reconnect.");
+
+            // Activate raycast blocker
+            if (RaycastBlocker != null)
+            {
+                RaycastBlocker.SetActive(true);
             }
         }
 
@@ -515,6 +543,13 @@ namespace PlinkoGame.Network
 
             InitialData = root.gameData;
             PlayerData = root.player;
+
+            // Stop init data timeout
+            if (initDataTimeoutRoutine != null)
+            {
+                StopCoroutine(initDataTimeoutRoutine);
+                initDataTimeoutRoutine = null;
+            }
 
             if (!IsInitialized)
             {
@@ -652,6 +687,13 @@ namespace PlinkoGame.Network
         private void OnDestroy()
         {
             ResetPingRoutine();
+
+            if (disconnectTimerCoroutine != null)
+            {
+                StopCoroutine(disconnectTimerCoroutine);
+                disconnectTimerCoroutine = null;
+            }
+
             manager?.Close();
         }
     }
