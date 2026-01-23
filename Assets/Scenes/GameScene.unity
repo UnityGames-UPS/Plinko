@@ -7451,7 +7451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPegCount: 3
   pegPrefab: {fileID: 7389839224522315174, guid: 132254ff0b0d0764ca89843b47029f45, type: 3}
-  basePegSize: 0.1
+  basePegSize: 1
   baseXSpacing: 1.2
   topPadding: 0.5
   topAnchor: {fileID: 1397697594}
@@ -7476,7 +7476,7 @@ MonoBehaviour:
   - {fileID: 1643472815}
   - {fileID: 1208787701}
   baseYOffsetAt8Rows: -0.69
-  yOffsetStepPerRow: 0.09
+  yOffsetStepPerRow: 0.04
   baseCatcherHeight: 1
   heightScaleFactor: 0.92
   mainCanvas: {fileID: 352649143}
