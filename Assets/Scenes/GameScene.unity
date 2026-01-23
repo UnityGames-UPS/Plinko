@@ -2987,8 +2987,8 @@ MonoBehaviour:
   baseGravityScale: 1.5
   ballScaleAt8Rows: 0.8
   ballScaleAt16Rows: 0.6
-  startOffsetAt8Rows: 0.5
-  startOffsetAt16Rows: 0.3
+  startOffsetAt8Rows: 40
+  startOffsetAt16Rows: 40
   maxActiveBalls: 10
   lowDifficultySprite: {fileID: 4840735777579599281, guid: c697528fe30e8d147933ef6423de2a00, type: 3}
   mediumDifficultySprite: {fileID: 3501689478382954987, guid: add904718f58dfd47bc920e24cf0399b, type: 3}
@@ -7457,7 +7457,7 @@ MonoBehaviour:
   pegPrefab: {fileID: 7389839224522315174, guid: 132254ff0b0d0764ca89843b47029f45, type: 3}
   basePegSize: 0.01
   baseXSpacing: 1.2
-  topPadding: 0.5
+  topPadding: 50
   topAnchor: {fileID: 1397697594}
   bottomAnchor: {fileID: 302284623}
   fitArea: {fileID: 1571835038}
@@ -11842,7 +11842,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: d9bb7bb44eaa45f3945cbbb8ab08c4e4
+  testToken: 3a47eca49bc9498782b04f665702c421
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
