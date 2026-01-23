@@ -6,8 +6,8 @@ using UnityEngine.UI;
 namespace PlinkoGame
 {
     /// <summary>
-    /// Manages ball launching and pool system
-    /// Updated with audio integration
+    /// Ball position calculated in LOCAL space, converted to WORLD for spawn
+    /// Works with any orientation/ratio
     /// </summary>
     public class BallLauncher : MonoBehaviour
     {
@@ -25,6 +25,10 @@ namespace PlinkoGame
         [SerializeField] private float ballScaleAt8Rows = 1.0f;
         [SerializeField] private float ballScaleAt16Rows = 0.6f;
 
+        [Header("Ball Start Position")]
+        [SerializeField] private float startOffsetAt8Rows = 0.5f;
+        [SerializeField] private float startOffsetAt16Rows = 0.3f;
+
         [Header("Multi-Ball Settings")]
         [SerializeField] private int maxActiveBalls = 10;
 
@@ -34,7 +38,7 @@ namespace PlinkoGame
         [SerializeField] private Sprite highDifficultySprite;
 
         private List<Transform> activeCatchers = new List<Transform>();
-        private Vector3 initialBallPosition;
+        private Vector3 initialBallWorldPosition;
         private int currentRows = 8;
         private int activeBallCount;
         private HashSet<GameObject> ballsInUse = new HashSet<GameObject>();
@@ -48,27 +52,24 @@ namespace PlinkoGame
             }
 
             ValidateAndInitializeBalls();
+            StartCoroutine(InitializeAfterFrame());
+        }
 
-            if (spawnTransform != null)
-            {
-                initialBallPosition = spawnTransform.position;
-            }
-            else
-            {
-                initialBallPosition = Vector3.zero;
-            }
+        private IEnumerator InitializeAfterFrame()
+        {
+            yield return new WaitForEndOfFrame();
 
             UpdateActiveCatchers();
             UpdateBallScale();
+            UpdateBallStartPosition();
             UpdateBallSprites(currentDifficulty);
+
+            Debug.Log($"[BallLauncher] ✅ Initialized | Ball World Pos: {initialBallWorldPosition}");
         }
 
         private void ValidateAndInitializeBalls()
         {
-            if (ballPool == null || ballPool.Count == 0)
-            {
-                return;
-            }
+            if (ballPool == null || ballPool.Count == 0) return;
 
             foreach (GameObject ball in ballPool)
             {
@@ -90,12 +91,14 @@ namespace PlinkoGame
 
             if (targetCatcherIndex < 0 || targetCatcherIndex >= activeCatchers.Count)
             {
+                Debug.LogWarning($"[BallLauncher] Invalid target index: {targetCatcherIndex}");
                 return;
             }
 
             GameObject availableBall = GetAvailableBall();
             if (availableBall == null)
             {
+                Debug.LogWarning("[BallLauncher] No available balls");
                 return;
             }
 
@@ -105,17 +108,17 @@ namespace PlinkoGame
 
         private void DropBallInternal(GameObject ball, Transform targetCatcher)
         {
-            // ✅ AUDIO: Play ball spawn sound
             AudioManager.Instance?.PlayBallSpawn();
 
             List<List<Vector2>> pegRows = pathCalculator.GetPegRowsFromBoard(boardController);
+
             List<Vector2> calculatedPath = pathCalculator.CalculatePath(
-                initialBallPosition,
+                initialBallWorldPosition,
                 targetCatcher,
                 pegRows
             );
 
-            ball.transform.position = initialBallPosition;
+            ball.transform.position = initialBallWorldPosition;
             ball.transform.rotation = Quaternion.identity;
             ball.SetActive(true);
 
@@ -182,7 +185,7 @@ namespace PlinkoGame
                     rb.angularVelocity = 0;
                 }
 
-                ball.transform.position = initialBallPosition;
+                ball.transform.position = initialBallWorldPosition;
                 ball.transform.rotation = Quaternion.identity;
 
                 if (ball.activeSelf)
@@ -250,6 +253,40 @@ namespace PlinkoGame
             }
         }
 
+        /// <summary>
+        /// ✅ Calculate in LOCAL space, convert to WORLD
+        /// Works with any orientation/rotation
+        /// </summary>
+        private void UpdateBallStartPosition()
+        {
+            if (boardController == null)
+            {
+                Debug.LogWarning("[BallLauncher] BoardController is null");
+                return;
+            }
+
+            currentRows = boardController.GetCurrentRows();
+
+            // Get first peg row LOCAL Y
+            float firstRowLocalY = boardController.GetFirstPegRowLocalY();
+
+            // Calculate offset based on rows
+            float t = Mathf.InverseLerp(8, 16, currentRows);
+            float offset = Mathf.Lerp(startOffsetAt8Rows, startOffsetAt16Rows, t);
+
+            // ✅ Position in LOCAL space (center X = 0)
+            Vector3 localPosition = new Vector3(
+                0,                      // Center in local space
+                firstRowLocalY + offset, // Above first peg row
+                0
+            );
+
+            // ✅ Convert to WORLD space using board transform
+            initialBallWorldPosition = boardController.transform.TransformPoint(localPosition);
+
+            Debug.Log($"[BallLauncher] ✅ Position updated | Local: {localPosition} → World: {initialBallWorldPosition} | Rows: {currentRows}");
+        }
+
         internal void UpdateBallSprites(string difficulty)
         {
             currentDifficulty = difficulty;
@@ -262,10 +299,7 @@ namespace PlinkoGame
                 _ => lowDifficultySprite
             };
 
-            if (selectedSprite == null)
-            {
-                return;
-            }
+            if (selectedSprite == null) return;
 
             foreach (GameObject ball in ballPool)
             {
@@ -280,10 +314,35 @@ namespace PlinkoGame
             }
         }
 
+        /// <summary>
+        /// ✅ Called on board rebuild (row change)
+        /// </summary>
         internal void OnBoardRebuilt()
         {
             UpdateActiveCatchers();
             UpdateBallScale();
+            UpdateBallStartPosition();
+            Debug.Log("[BallLauncher] ✅ Board rebuilt");
+        }
+
+        /// <summary>
+        /// ✅ Called on orientation change
+        /// </summary>
+        internal void OnOrientationChanged()
+        {
+            UpdateActiveCatchers();
+            UpdateBallScale();
+            UpdateBallStartPosition();
+            Debug.Log("[BallLauncher] ✅ Orientation changed");
+        }
+
+        /// <summary>
+        /// ✅ Called on risk change (sprites only)
+        /// </summary>
+        internal void OnRiskChanged(string riskName)
+        {
+            UpdateBallSprites(riskName);
+            Debug.Log($"[BallLauncher] ✅ Risk changed: {riskName}");
         }
 
         internal bool HasAvailableBalls()

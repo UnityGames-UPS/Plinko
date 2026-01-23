@@ -820,6 +820,8 @@ namespace PlinkoGame
         // HOVER POPUP
         // ============================================
 
+        // Replace ShowHoverPopup method in UIManager.cs
+
         internal void ShowHoverPopup(Vector3 catcherPosition, double profit, double probability)
         {
             if (hoverPopup == null) return;
@@ -833,7 +835,21 @@ namespace PlinkoGame
 
             if (hoverArrow != null)
             {
-                hoverArrow.position = new Vector3(catcherPosition.x, hoverArrow.position.y, hoverArrow.position.z);
+                // ✅ The catcherPosition passed is already in world space
+                // But if the catcher's position changes due to rotation, we need to handle it
+                // The hover arrow should align with the catcher in SCREEN space
+
+                // Get the RectTransform of the hover arrow
+                RectTransform arrowRect = hoverArrow.GetComponent<RectTransform>();
+
+                if (arrowRect != null)
+                {
+                    // Keep the same X position as the catcher (world space)
+                    // But maintain the arrow's Y position
+                    Vector3 arrowPos = hoverArrow.position;
+                    arrowPos.x = catcherPosition.x;
+                    hoverArrow.position = arrowPos;
+                }
             }
 
             isHoverPopupVisible = true;

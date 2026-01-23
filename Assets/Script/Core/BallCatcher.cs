@@ -144,21 +144,14 @@ namespace PlinkoGame
             PlayCatchAnimation();
         }
 
+        // Replace hover methods in BallCatcher.cs
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!IsMobilePlatform() && gameObject.activeSelf)
             {
-                // ✅ AUDIO: Play hover sound
                 AudioManager.Instance?.PlayHoverSound();
                 ShowHoverPopup();
-            }
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            if (!IsMobilePlatform())
-            {
-                HideHoverPopup();
             }
         }
 
@@ -168,6 +161,7 @@ namespace PlinkoGame
             {
                 if (uiManager != null)
                 {
+                    // ✅ Use world position for hover popup (it will be converted properly by UIManager)
                     uiManager.ToggleHoverPopup(transform.position, GetProfit(), GetProbability());
                 }
             }
@@ -183,8 +177,19 @@ namespace PlinkoGame
             double profit = GetProfit();
             double probability = GetProbability();
 
+            // ✅ Use world position - UIManager will handle the positioning correctly
             uiManager.ShowHoverPopup(transform.position, profit, probability);
         }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!IsMobilePlatform())
+            {
+                HideHoverPopup();
+            }
+        }
+
+       
 
         private void HideHoverPopup()
         {

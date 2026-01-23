@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
@@ -14,12 +14,16 @@ public class OrientationChange : MonoBehaviour
     [SerializeField] private float transitionDuration = 0.2f;
     [SerializeField] private float waitForRotation = 0.2f;
 
+    [Header("Game References (Optional)")]
+    [SerializeField] private PlinkoGame.BoardController boardController;
+    [SerializeField] private PlinkoGame.BallLauncher ballLauncher;
 
     private Vector2 ReferenceAspect;
     private Tween matchTween;
     private Tween rotationTween;
     private Coroutine rotationRoutine;
     private bool isLandscape;
+
     private void Awake()
     {
         ReferenceAspect = CanvasScaler.referenceResolution;
@@ -74,10 +78,37 @@ public class OrientationChange : MonoBehaviour
             matchTween = DOTween.To(() => CanvasScaler.matchWidthOrHeight, x => CanvasScaler.matchWidthOrHeight = x, targetMatch, transitionDuration).SetEase(Ease.InOutQuad);
 
             Debug.LogWarning($"matchWidthOrHeight set to: {targetMatch}");
+
+            // ✅ NEW: Wait for rotation animation to complete, then update game elements
+            yield return new WaitForSecondsRealtime(transitionDuration + 0.1f);
+
+            // ✅ Notify game components about orientation change
+            OnOrientationChangeComplete();
         }
         else
         {
             Debug.LogWarning("Unity: Invalid format received in SwitchDisplay");
+        }
+    }
+
+    /// <summary>
+    /// Called when orientation change animation completes
+    /// Notifies game components to recalculate positions
+    /// </summary>
+    private void OnOrientationChangeComplete()
+    {
+        Debug.Log("[OrientationChange] Orientation change complete - updating game elements");
+
+        // Update board controller (will rebuild pegs and catchers)
+        if (boardController != null)
+        {
+            boardController.OnOrientationChanged();
+        }
+
+        // Update ball launcher (will recalculate start position)
+        if (ballLauncher != null)
+        {
+            ballLauncher.OnOrientationChanged();
         }
     }
 
