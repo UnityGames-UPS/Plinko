@@ -5,11 +5,13 @@ using PlinkoGame.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening; // Added for proper cleanup
 
 namespace PlinkoGame
 {
     /// <summary>
     /// Main game controller
+    /// FIXED: Proper DOTween cleanup on destroy
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -18,7 +20,6 @@ namespace PlinkoGame
         [SerializeField] private UIManager uiManager;
         [SerializeField] private BoardController boardController;
         [SerializeField] private BallLauncher ballLauncher;
-
 
         [Header("Settings")]
         [SerializeField] private int maxParallelBalls = 10;
@@ -41,7 +42,6 @@ namespace PlinkoGame
         private bool isProcessingBet;
         private bool isWaitingForResult;
 
-        // Store pending result data until ball lands
         private class PendingResult
         {
             public double winAmount;
@@ -89,7 +89,6 @@ namespace PlinkoGame
 
         internal void OnDataRefreshed()
         {
-            // Only update balance if no pending results
             if (pendingResults.Count == 0)
             {
                 uiManager.UpdateBalance(socketManager.PlayerData.balance);
@@ -105,7 +104,6 @@ namespace PlinkoGame
             int targetCatcherIndex = ResolveTargetCatcher(result);
             Debug.Log($"[TARGET] Catcher {targetCatcherIndex}");
 
-            // Store result data to be shown when ball lands
             PendingResult pendingResult = new PendingResult
             {
                 winAmount = result.winAmount,
@@ -115,7 +113,6 @@ namespace PlinkoGame
             };
             pendingResults.Enqueue(pendingResult);
 
-            // Launch the ball
             ballLauncher.DropBallToTarget(targetCatcherIndex);
 
             activeBallCount++;
@@ -125,23 +122,18 @@ namespace PlinkoGame
             isProcessingBet = false;
             isWaitingForResult = false;
 
-            // Handle autoplay countdown
             if (isAutoplayActive)
             {
                 if (!isInfiniteAutoplay)
                 {
                     autoplayRoundsRemaining--;
-
-                    // Update display to show remaining rounds (including 0 on last round)
                     uiManager.UpdateAutoplayRounds(autoplayRoundsRemaining);
 
-                    // Stop autoplay only AFTER showing 0
                     if (autoplayRoundsRemaining <= 0)
                     {
                         StopAutoplay();
                     }
                 }
-                // If infinite autoplay, don't update counter (keeps showing infinity)
             }
         }
 
@@ -169,7 +161,6 @@ namespace PlinkoGame
             double currentBalance = socketManager.PlayerData.balance;
             double newBalance = currentBalance - betAmount;
 
-            // Update balance immediately when bet is placed (deduct bet amount)
             uiManager.UpdateBalance(newBalance);
 
             socketManager.SendBetRequest(currentBetIndex, currentRiskIndex, currentRowIndex);
@@ -193,15 +184,12 @@ namespace PlinkoGame
             isInfiniteAutoplay = (rounds == 0);
             autoplayRoundsRemaining = rounds;
 
-            // Notify UI that autoplay started
             uiManager.OnAutoplayStarted(isInfiniteAutoplay);
 
-            // Update counter display only for finite autoplay
             if (!isInfiniteAutoplay)
             {
                 uiManager.UpdateAutoplayRounds(autoplayRoundsRemaining);
             }
-            // For infinite (rounds == 0), OnAutoplayStarted already shows infinity icon
 
             autoplayCoroutine = StartCoroutine(AutoplayLoop());
         }
@@ -225,7 +213,6 @@ namespace PlinkoGame
         {
             while (isAutoplayActive)
             {
-                // Wait until we can place a bet
                 while (isProcessingBet || isWaitingForResult || activeBallCount >= maxParallelBalls)
                 {
                     yield return null;
@@ -246,7 +233,6 @@ namespace PlinkoGame
 
                 PlaceBet();
 
-                // Wait for the full delay before next bet
                 float elapsedTime = 0f;
                 while (elapsedTime < autoplayDelay)
                 {
@@ -301,21 +287,17 @@ namespace PlinkoGame
             activeBallCount--;
             UpdateBetButtonState();
 
-            // Process pending result when ball lands
             if (pendingResults.Count > 0)
             {
                 PendingResult result = pendingResults.Dequeue();
 
-                // Update balance with actual win amount
                 uiManager.UpdateBalance(result.newBalance);
 
-                // Show win popup if won
                 if (result.multiplier > 1.0)
                 {
                     uiManager.ShowWinPopup(result.winAmount, result.multiplier);
                 }
 
-                // Add to history - NOW INCLUDES CATCHER INDEX
                 uiManager.AddToHistory(result.multiplier, result.winAmount, catcherIndex);
             }
         }
@@ -473,6 +455,9 @@ namespace PlinkoGame
                 raycastBlocker.SetActive(true);
             }
 
+            // Clean up DOTween
+            DOTween.KillAll();
+
             multiplierService.ClearCache();
             currentMappings.Clear();
             pendingResults.Clear();
@@ -486,6 +471,9 @@ namespace PlinkoGame
             {
                 StopCoroutine(autoplayCoroutine);
             }
+
+            // Kill all DOTween animations to prevent cleanup warnings
+            DOTween.KillAll();
         }
     }
 }

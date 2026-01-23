@@ -10,6 +10,7 @@ namespace PlinkoGame.Network
 {
     /// <summary>
     /// Handles all Socket.IO communication for Plinko game
+    /// FIXED: Proper cleanup to prevent coroutine errors on destroy
     /// </summary>
     public class SocketIOManager : MonoBehaviour
     {
@@ -49,6 +50,7 @@ namespace PlinkoGame.Network
         private bool hasEverConnected = false;
         private bool isExiting = false;
         private bool isWaitingForInitData = false;
+        private bool isBeingDestroyed = false; // NEW: Track destruction state
 
         private float lastPongTime = 0f;
         private const float pingInterval = 2f;
@@ -58,7 +60,7 @@ namespace PlinkoGame.Network
 
         private bool hasFocus = true;
         private float focusLostTime = 0f;
-        private const float maxBackgroundTime = 120f; // 2 minutes
+        private const float maxBackgroundTime = 120f;
 
         private Coroutine PingRoutine;
         private Coroutine initTimeoutRoutine;
@@ -71,6 +73,7 @@ namespace PlinkoGame.Network
         {
             IsInitialized = false;
             IsResultReady = false;
+            isBeingDestroyed = false;
         }
 
         private void Start()
@@ -82,13 +85,35 @@ namespace PlinkoGame.Network
         private void OnDestroy()
         {
             Debug.Log("[CLEANUP] SocketIOManager destroying");
+
+            // Set flag FIRST to prevent any new coroutines
+            isBeingDestroyed = true;
+            isExiting = true;
+
+            // Clean up coroutines
             CleanupRoutines();
-            manager?.Close();
-            manager = null;
+
+            // Close socket
+            if (manager != null)
+            {
+                try
+                {
+                    manager.Close();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[CLEANUP] Error closing manager: {e.Message}");
+                }
+                manager = null;
+            }
+
+            gameSocket = null;
         }
 
         private void OnApplicationFocus(bool focus)
         {
+            if (isBeingDestroyed) return;
+
             hasFocus = focus;
 
             if (!focus)
@@ -96,7 +121,7 @@ namespace PlinkoGame.Network
                 focusLostTime = Time.time;
                 Debug.Log("[FOCUS] Application lost focus");
 
-                if (focusCheckRoutine == null)
+                if (focusCheckRoutine == null && gameObject.activeInHierarchy)
                 {
                     focusCheckRoutine = StartCoroutine(FocusTimeoutCheck());
                 }
@@ -135,6 +160,8 @@ namespace PlinkoGame.Network
         #region Socket Connection
         private void OpenSocket()
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[SOCKET] Opening connection");
             RaycastBlocker?.SetActive(true);
 
@@ -148,7 +175,10 @@ namespace PlinkoGame.Network
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             JSManager.SendCustomMessage("authToken");
-            StartCoroutine(WaitForAuthToken(options));
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(WaitForAuthToken(options));
+            }
 #else
             options.Auth = (Best.SocketIO.SocketManager manager, Socket socket) => new { token = testToken };
             SetupSocketManager(options);
@@ -160,11 +190,13 @@ namespace PlinkoGame.Network
             float timeout = 15f;
             float elapsed = 0f;
 
-            while (myAuth == null && elapsed < timeout)
+            while (myAuth == null && elapsed < timeout && !isBeingDestroyed)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            if (isBeingDestroyed) yield break;
 
             if (myAuth == null)
             {
@@ -174,11 +206,13 @@ namespace PlinkoGame.Network
             }
 
             elapsed = 0f;
-            while (SocketURI == null && elapsed < timeout)
+            while (SocketURI == null && elapsed < timeout && !isBeingDestroyed)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            if (isBeingDestroyed) yield break;
 
             if (SocketURI == null)
             {
@@ -194,6 +228,8 @@ namespace PlinkoGame.Network
 
         private void SetupSocketManager(SocketOptions options)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[SOCKET] Setting up manager");
 
 #if UNITY_EDITOR
@@ -209,7 +245,10 @@ namespace PlinkoGame.Network
             RegisterEventHandlers();
             manager.Open();
 
-            initTimeoutRoutine = StartCoroutine(ConnectionAndInitTimeout());
+            if (gameObject.activeInHierarchy && !isBeingDestroyed)
+            {
+                initTimeoutRoutine = StartCoroutine(ConnectionAndInitTimeout());
+            }
         }
 
         private void RegisterEventHandlers()
@@ -231,12 +270,13 @@ namespace PlinkoGame.Network
             float initTimeout = 10f;
             float elapsed = 0f;
 
-            // Wait for connection
-            while (!isConnected && elapsed < connectionTimeout && !isExiting)
+            while (!isConnected && elapsed < connectionTimeout && !isExiting && !isBeingDestroyed)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            if (isBeingDestroyed) yield break;
 
             if (!isConnected && !isExiting)
             {
@@ -245,13 +285,14 @@ namespace PlinkoGame.Network
                 yield break;
             }
 
-            // Wait for init data
             elapsed = 0f;
-            while (isWaitingForInitData && elapsed < initTimeout && !isExiting)
+            while (isWaitingForInitData && elapsed < initTimeout && !isExiting && !isBeingDestroyed)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            if (isBeingDestroyed) yield break;
 
             if (isWaitingForInitData && !isExiting)
             {
@@ -266,6 +307,8 @@ namespace PlinkoGame.Network
         #region Connection Events
         private void OnConnected(ConnectResponse resp)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[CONNECTION] Connected");
 
             if (initTimeoutRoutine != null)
@@ -290,13 +333,16 @@ namespace PlinkoGame.Network
             if (!IsInitialized)
             {
                 isWaitingForInitData = true;
-                initTimeoutRoutine = StartCoroutine(ConnectionAndInitTimeout());
+                if (gameObject.activeInHierarchy && !isBeingDestroyed)
+                {
+                    initTimeoutRoutine = StartCoroutine(ConnectionAndInitTimeout());
+                }
             }
         }
 
         private void OnDisconnected()
         {
-            if (isExiting)
+            if (isExiting || isBeingDestroyed)
             {
                 Debug.Log("[CONNECTION] Disconnected (intentional)");
                 return;
@@ -307,7 +353,7 @@ namespace PlinkoGame.Network
             ResetPingRoutine();
             uiManager?.ShowDisconnectionPopup();
 
-            if (disconnectTimerCoroutine == null)
+            if (disconnectTimerCoroutine == null && gameObject.activeInHierarchy && !isBeingDestroyed)
             {
                 disconnectTimerCoroutine = StartCoroutine(DisconnectTimer());
             }
@@ -315,6 +361,8 @@ namespace PlinkoGame.Network
 
         private void OnError(Error err)
         {
+            if (isBeingDestroyed) return;
+
             Debug.LogError($"[SOCKET] Error: {err}");
 #if UNITY_WEBGL && !UNITY_EDITOR
             JSManager?.SendCustomMessage("error");
@@ -326,8 +374,13 @@ namespace PlinkoGame.Network
         #region Ping/Pong System
         private void SendPing()
         {
+            if (isBeingDestroyed) return;
+
             ResetPingRoutine();
-            PingRoutine = StartCoroutine(PingCheck());
+            if (gameObject.activeInHierarchy)
+            {
+                PingRoutine = StartCoroutine(PingCheck());
+            }
         }
 
         private void ResetPingRoutine()
@@ -341,7 +394,7 @@ namespace PlinkoGame.Network
 
         private IEnumerator PingCheck()
         {
-            while (isConnected && !isExiting)
+            while (isConnected && !isExiting && !isBeingDestroyed)
             {
                 if (missedPongs == 0 && hasEverConnected)
                 {
@@ -375,6 +428,8 @@ namespace PlinkoGame.Network
 
         private void OnPongReceived(string data)
         {
+            if (isBeingDestroyed) return;
+
             waitingForPong = false;
             missedPongs = 0;
             lastPongTime = Time.time;
@@ -392,11 +447,13 @@ namespace PlinkoGame.Network
             Debug.Log($"[DISCONNECT] Timer started ({disconnectDelay}s)");
             float elapsed = 0f;
 
-            while (elapsed < disconnectDelay && !isConnected && !isExiting)
+            while (elapsed < disconnectDelay && !isConnected && !isExiting && !isBeingDestroyed)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            if (isBeingDestroyed) yield break;
 
             if (!isConnected && !isExiting)
             {
@@ -413,7 +470,7 @@ namespace PlinkoGame.Network
         {
             Debug.Log($"[FOCUS] Starting background timeout check ({maxBackgroundTime}s)");
 
-            while (!hasFocus && !isExiting)
+            while (!hasFocus && !isExiting && !isBeingDestroyed)
             {
                 float timeInBackground = Time.time - focusLostTime;
 
@@ -421,10 +478,20 @@ namespace PlinkoGame.Network
                 {
                     Debug.LogError("[FOCUS] App in background too long - disconnecting");
 
-                    // Disconnect socket
                     isConnected = false;
                     ResetPingRoutine();
-                    manager?.Close();
+
+                    if (manager != null)
+                    {
+                        try
+                        {
+                            manager.Close();
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogWarning($"[FOCUS] Error closing manager: {e.Message}");
+                        }
+                    }
 
                     ShowErrorAndBlock("Game timed out due to inactivity. Please refresh.");
                     focusCheckRoutine = null;
@@ -442,6 +509,8 @@ namespace PlinkoGame.Network
         #region Data Events
         private void OnInitData(string jsonData)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[DATA] Init data received");
             isWaitingForInitData = false;
 
@@ -456,23 +525,30 @@ namespace PlinkoGame.Network
 
         private void OnResult(string jsonData)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[DATA] Result received");
             ParseResponse(jsonData);
         }
 
         private void OnInternalError(string data)
         {
+            if (isBeingDestroyed) return;
+
             Debug.LogError($"[SOCKET] Internal error: {data}");
             uiManager?.ShowErrorPopup("Server error occurred");
         }
 
         private void OnAlert(string data)
         {
+            if (isBeingDestroyed) return;
             Debug.Log($"[SOCKET] Alert: {data}");
         }
 
         private void OnAnotherDevice(string data)
         {
+            if (isBeingDestroyed) return;
+
             Debug.LogWarning($"[SOCKET] Another device: {data}");
             uiManager?.ShowAnotherDevicePopup();
         }
@@ -481,6 +557,8 @@ namespace PlinkoGame.Network
         #region Data Parsing
         private void ParseResponse(string jsonData)
         {
+            if (isBeingDestroyed) return;
+
             try
             {
                 PlinkoRoot root = JsonConvert.DeserializeObject<PlinkoRoot>(jsonData);
@@ -513,6 +591,8 @@ namespace PlinkoGame.Network
 
         private void HandleInitData(PlinkoRoot root)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[HANDLER] Processing init data");
 
             InitialData = root.gameData;
@@ -539,6 +619,8 @@ namespace PlinkoGame.Network
 
         private void HandleResultData(PlinkoRoot root)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[HANDLER] Processing result");
 
             ResultData = root.payload;
@@ -552,6 +634,8 @@ namespace PlinkoGame.Network
         #region Public API
         internal void ReceiveAuthToken(string jsonData)
         {
+            if (isBeingDestroyed) return;
+
             Debug.Log("[AUTH] Received auth data");
 
             try
@@ -576,6 +660,8 @@ namespace PlinkoGame.Network
 
         internal void SendBetRequest(int betIndex, int selectedRiskId, int selectedRowIndex)
         {
+            if (isBeingDestroyed) return;
+
             IsResultReady = false;
 
             PlinkoBetRequest request = new PlinkoBetRequest();
@@ -601,8 +687,18 @@ namespace PlinkoGame.Network
             RaycastBlocker?.SetActive(true);
             CleanupRoutines();
 
-            manager?.Close();
-            manager = null;
+            if (manager != null)
+            {
+                try
+                {
+                    manager.Close();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[SOCKET] Error closing manager: {e.Message}");
+                }
+                manager = null;
+            }
 
             yield return new WaitForSeconds(0.5f);
 
@@ -616,6 +712,8 @@ namespace PlinkoGame.Network
         #region Private Helpers
         private void SendDataWithNamespace(string eventName, string json = null)
         {
+            if (isBeingDestroyed) return;
+
             if (gameSocket != null && gameSocket.IsOpen)
             {
                 if (json != null)
@@ -635,6 +733,8 @@ namespace PlinkoGame.Network
 
         private void ShowErrorAndBlock(string message)
         {
+            if (isBeingDestroyed) return;
+
             uiManager?.ShowErrorPopup(message);
             RaycastBlocker?.SetActive(true);
         }
