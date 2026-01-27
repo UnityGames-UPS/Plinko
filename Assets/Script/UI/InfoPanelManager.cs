@@ -9,6 +9,8 @@ namespace PlinkoGame
     /// <summary>
     /// Dynamically generates and updates the game info panel text
     /// based on received init data
+    /// FIXED: Shows exact multiplier values (up to 2 decimals) matching catcher/history display
+    /// FIXED: Shows probability with proper precision (up to 5 decimals) matching hover popup
     /// </summary>
     public class InfoPanelManager : MonoBehaviour
     {
@@ -93,6 +95,7 @@ namespace PlinkoGame
         /// <summary>
         /// Generates a risk level table (LOW/MEDIUM/HIGH)
         /// Uses minimal spacing for compact alignment
+        /// FIXED: Now shows exact multipliers and probabilities from backend
         /// </summary>
         private void GenerateRiskTable(StringBuilder sb, PlinkoGameData gameData, RiskLevel risk)
         {
@@ -130,8 +133,9 @@ namespace PlinkoGame
                     }
                 }
 
-                string minStr = FormatMultiplierForTable(minMultiplier);
-                string maxStr = FormatMultiplierForTable(rowMaxMultiplier);
+                // FIXED: Use exact multiplier formatting (matches catcher/history display)
+                string minStr = FormatMultiplierExact(minMultiplier);
+                string maxStr = FormatMultiplierExact(rowMaxMultiplier);
 
                 // Format each column with compact spacing (more space for max column)
                 string rowCol = PadCenter(rowCount.ToString(), 9);
@@ -149,10 +153,11 @@ namespace PlinkoGame
                 }
             }
 
-            // Add max payout info with proper formatting
+            // FIXED: Add max payout info with exact probability formatting
             sb.AppendLine();
-            string maxPayoutStr = FormatMultiplierForTable(maxMultiplier);
-            sb.AppendLine($"<b>Max Payout: {maxPayoutStr} ({maxProbability:F2}% chance)</b>");
+            string maxPayoutStr = FormatMultiplierExact(maxMultiplier);
+            string probabilityStr = FormatProbabilityExact(maxProbability);
+            sb.AppendLine($"<b>Max Payout: {maxPayoutStr} ({probabilityStr} chance)</b>");
             sb.AppendLine();
             sb.AppendLine();
         }
@@ -167,16 +172,6 @@ namespace PlinkoGame
             int leftPadding = totalPadding / 2;
             int rightPadding = totalPadding - leftPadding;
             return new string(' ', leftPadding) + text + new string(' ', rightPadding);
-        }
-
-        /// <summary>
-        /// Pads string to left (for right alignment in monospace)
-        /// </summary>
-        private string PadLeft(string text, int width)
-        {
-            if (text.Length >= width) return text;
-            int spaces = width - text.Length;
-            return new string(' ', spaces) + text;
         }
 
         /// <summary>
@@ -218,44 +213,43 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// Formats multiplier for table display with consistent width
+        /// FIXED: Format multiplier to show EXACT values from backend
+        /// Shows up to 2 decimal places (e.g., 0.48, 0.96, 1.06)
+        /// Matches the formatting used in HistoryManager and catchers
         /// </summary>
-        private string FormatMultiplierForTable(double multiplier)
+        private string FormatMultiplierExact(double multiplier)
         {
             if (multiplier >= 1000)
             {
-                // Format as 1K, 2K, etc - no decimal if whole number
-                if (multiplier % 1000 == 0)
-                {
-                    return $"{(multiplier / 1000):F0}K";
-                }
-                else
-                {
-                    return $"{(multiplier / 1000):F1}K";
-                }
-            }
-            else if (multiplier >= 100)
-            {
-                // Format as whole number with 'x'
-                return $"{multiplier:F0}x";
-            }
-            else if (multiplier >= 10)
-            {
-                // Format with one decimal if needed
-                if (multiplier % 1 == 0)
-                {
-                    return $"{multiplier:F0}x";
-                }
-                else
-                {
-                    return $"{multiplier:F1}x";
-                }
+                // Format as K (thousands)
+                double thousands = multiplier / 1000.0;
+                // Remove trailing zeros - show up to 2 decimals
+                string formatted = thousands.ToString("0.##");
+                return $"{formatted}Kx";
             }
             else
             {
-                // Always show one decimal for small numbers
-                return $"{multiplier:F1}x";
+                // Show up to 2 decimal places, removing trailing zeros
+                string formatted = multiplier.ToString("0.##");
+                return $"{formatted}x";
             }
+        }
+
+        /// <summary>
+        /// FIXED: Format probability with proper precision
+        /// Shows up to 5 decimal places (e.g., 0.27344%, 0.00391%, 24.60938%)
+        /// Matches the formatting used in hover popup
+        /// </summary>
+        private string FormatProbabilityExact(double probability)
+        {
+            // Convert to percentage (multiply by 100)
+            double percentage = probability * 100.0;
+
+            // Show up to 5 decimal places, removing trailing zeros
+            // This matches the hover popup format: "0.#################"
+            // But we limit to 5 meaningful decimals for readability
+            string formatted = percentage.ToString("0.#####");
+            return $"{formatted}%";
         }
 
         /// <summary>

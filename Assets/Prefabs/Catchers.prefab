@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x1.50
+  m_text: 0.46x
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4776738cfe229784fa9206f4c6eef743, type: 2}
   m_sharedMaterial: {fileID: -300710452016952327, guid: 4776738cfe229784fa9206f4c6eef743, type: 2}
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 28
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 30
+  m_fontSizeMax: 28
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -278,3 +278,12 @@ MonoBehaviour:
   settleDuration: 0.16
   reversePopScale: 0.92
   multiplierText: {fileID: 2133210261673185838}
+  centerSprite: {fileID: 0}
+  nearCenter1Sprite: {fileID: 0}
+  nearCenter2Sprite: {fileID: 0}
+  midSprite: {fileID: 0}
+  nearEdge2Sprite: {fileID: 0}
+  nearEdge1Sprite: {fileID: 0}
+  edgeSprite: {fileID: 0}
+  uiManager: {fileID: 0}
+  gameManager: {fileID: 0}

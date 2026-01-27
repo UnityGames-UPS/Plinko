@@ -911,7 +911,7 @@ namespace PlinkoGame
             {
                 if (autoplayRounds == 0)
                 {
-                    autoplayRounds = 10;
+                    autoplayRounds = 1;
                     isInfiniteMode = false;
                 }
                 else if (autoplayRounds < 999)
@@ -1287,7 +1287,16 @@ namespace PlinkoGame
 
             if (activeProbabilityText != null)
             {
-                activeProbabilityText.text = $"{currentHoverProbability:F2}%";
+                // Convert to percentage and show exact value
+                double percentage = currentHoverProbability * 100.0;
+
+                // Format to remove trailing zeros but keep precision
+                string percentageText = percentage.ToString("0.#################");
+
+                activeProbabilityText.text = percentageText;
+
+                // Note: TextMeshPro text already has "%" symbol in the UI,
+                // so we don't add it here
             }
         }
 
