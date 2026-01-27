@@ -1,124 +1,128 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using System.Collections;
-using TMPro;
+using DG.Tweening;
 
-public class OrientationChange : MonoBehaviour
+namespace PlinkoGame
 {
-    [SerializeField] private RectTransform UIWrapper;
-    [SerializeField] private CanvasScaler CanvasScaler;
-    [SerializeField] private float MatchWidth = 0f;
-    [SerializeField] private float MatchHeight = 1f;
-    [SerializeField] private float PortraitMatchHeight = 1f;
-    [SerializeField] private float transitionDuration = 0.2f;
-    [SerializeField] private float waitForRotation = 0.2f;
-
-    [Header("Game References (Optional)")]
-    [SerializeField] private PlinkoGame.BoardController boardController;
-    [SerializeField] private PlinkoGame.BallLauncher ballLauncher;
-
-    private Vector2 ReferenceAspect;
-    private Tween matchTween;
-    private Tween rotationTween;
-    private Coroutine rotationRoutine;
-    private bool isLandscape;
-
-    private void Awake()
+    /// <summary>
+    /// Detects screen dimension changes and notifies UIManager
+    /// Handles Canvas Scaler matching for proper scaling across different aspect ratios
+    /// NO rotation logic - UIManager handles layout switching
+    /// </summary>
+    public class OrientationChange : MonoBehaviour
     {
-        ReferenceAspect = CanvasScaler.referenceResolution;
-    }
+        [Header("References")]
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private CanvasScaler canvasScaler;
 
-    void SwitchDisplay(string dimensions)
-    {
-        if (rotationRoutine != null) StopCoroutine(rotationRoutine);
-        rotationRoutine = StartCoroutine(RotationCoroutine(dimensions));
-    }
+        [Header("Match Settings")]
+        [SerializeField] private float matchWidth = 0f;
+        [SerializeField] private float matchHeight = 1f;
+        [SerializeField] private float portraitMatchHeight = 1f;
 
-    IEnumerator RotationCoroutine(string dimensions)
-    {
-        yield return new WaitForSecondsRealtime(waitForRotation);
-        string[] parts = dimensions.Split(',');
-        if (parts.Length == 2 && int.TryParse(parts[0], out int width) && int.TryParse(parts[1], out int height) && width > 0 && height > 0)
+        [Header("Animation")]
+        [SerializeField] private float transitionDuration = 0.2f;
+        [SerializeField] private float waitForRotation = 0.2f;
+
+        private Vector2 referenceAspect;
+        private Tween matchTween;
+        private Coroutine rotationRoutine;
+        private bool isLandscape;
+
+        private void Awake()
         {
-            Debug.LogWarning($"Unity: Received Dimensions - Width: {width}, Height: {height}");
-
-            isLandscape = width > height;
-
-            Quaternion targetRotation = isLandscape ? Quaternion.identity : Quaternion.Euler(0, 0, -90);
-            if (rotationTween != null && rotationTween.IsActive()) rotationTween.Kill();
-            rotationTween = UIWrapper.DOLocalRotateQuaternion(targetRotation, transitionDuration).SetEase(Ease.OutCubic);
-
-            float currentAspectRatio = isLandscape ? (float)width / height : (float)height / width;
-            float referenceAspectRatio = ReferenceAspect.x / ReferenceAspect.y;
-            Debug.LogWarning("currentAspect Ratio: " + currentAspectRatio);
-            float targetMatch;
-
-            if (isLandscape)
+            if (canvasScaler != null)
             {
-                targetMatch = currentAspectRatio > referenceAspectRatio ? MatchHeight : MatchWidth;
+                referenceAspect = canvasScaler.referenceResolution;
+            }
+        }
+
+        /// <summary>
+        /// Called from JavaScript when dimensions change
+        /// </summary>
+        void SwitchDisplay(string dimensions)
+        {
+            if (rotationRoutine != null) StopCoroutine(rotationRoutine);
+            rotationRoutine = StartCoroutine(DimensionChangeCoroutine(dimensions));
+        }
+
+        IEnumerator DimensionChangeCoroutine(string dimensions)
+        {
+            yield return new WaitForSecondsRealtime(waitForRotation);
+
+            string[] parts = dimensions.Split(',');
+            if (parts.Length == 2 && int.TryParse(parts[0], out int width) && int.TryParse(parts[1], out int height) && width > 0 && height > 0)
+            {
+                Debug.Log($"[OrientationChange] Dimensions - Width: {width}, Height: {height}");
+
+                isLandscape = width > height;
+
+                // Calculate aspect ratio and match value
+                float currentAspectRatio = isLandscape ? (float)width / height : (float)height / width;
+                float referenceAspectRatio = referenceAspect.x / referenceAspect.y;
+
+                Debug.Log($"[OrientationChange] Current Aspect Ratio: {currentAspectRatio}");
+
+                float targetMatch;
+
+                if (isLandscape)
+                {
+                    // Horizontal/Landscape mode
+                    targetMatch = currentAspectRatio > referenceAspectRatio ? matchHeight : matchWidth;
+                }
+                else
+                {
+                    // Vertical/Portrait mode - adjusted match values for different aspect ratios
+                    if (currentAspectRatio >= 1.3f && currentAspectRatio < 1.4f)
+                        targetMatch = 0.27f;   // ~1.3
+                    else if (currentAspectRatio >= 1.4f && currentAspectRatio < 1.5f)
+                        targetMatch = 0.32f;   // ~1.4
+                    else if (currentAspectRatio >= 1.5f && currentAspectRatio < 1.6f)
+                        targetMatch = 0.34f;   // ~1.5
+                    else if (currentAspectRatio >= 1.6f && currentAspectRatio < 1.85f)
+                        targetMatch = 0.42f;   // ~1.6-1.8 range
+                    else if (currentAspectRatio >= 1.85f && currentAspectRatio < 2.4f)
+                        targetMatch = 0.5f;    // ~1.85-2.4 range
+                    else
+                        targetMatch = portraitMatchHeight;
+                }
+
+                // Animate canvas scaler match value
+                if (canvasScaler != null)
+                {
+                    if (matchTween != null && matchTween.IsActive()) matchTween.Kill();
+                    matchTween = DOTween.To(
+                        () => canvasScaler.matchWidthOrHeight,
+                        x => canvasScaler.matchWidthOrHeight = x,
+                        targetMatch,
+                        transitionDuration
+                    ).SetEase(Ease.InOutQuad);
+
+                    Debug.Log($"[OrientationChange] matchWidthOrHeight set to: {targetMatch}");
+                }
+
+                // Notify UIManager to handle layout switching
+                if (uiManager != null)
+                {
+                    uiManager.OnOrientationChanged(width, height);
+                }
             }
             else
             {
-                if (currentAspectRatio >= 1.3f && currentAspectRatio < 1.4f)
-                    targetMatch = 0.27f;   // ~1.3
-                else if (currentAspectRatio >= 1.4f && currentAspectRatio < 1.5f)
-                    targetMatch = 0.32f;   // ~1.4
-                else if (currentAspectRatio >= 1.5f && currentAspectRatio < 1.6f)
-                    targetMatch = 0.34f;   // ~1.5
-                else if (currentAspectRatio >= 1.6f && currentAspectRatio < 1.85f)
-                    targetMatch = 0.42f;    // ~2.0 range
-                else if (currentAspectRatio >= 1.85 && currentAspectRatio < 2.4)
-                    targetMatch = 0.5f;
-                else
-                    targetMatch = PortraitMatchHeight;
+                Debug.LogWarning("[OrientationChange] Invalid format received");
             }
-
-            if (matchTween != null && matchTween.IsActive()) matchTween.Kill();
-            matchTween = DOTween.To(() => CanvasScaler.matchWidthOrHeight, x => CanvasScaler.matchWidthOrHeight = x, targetMatch, transitionDuration).SetEase(Ease.InOutQuad);
-
-            Debug.LogWarning($"matchWidthOrHeight set to: {targetMatch}");
-
-            // ✅ NEW: Wait for rotation animation to complete, then update game elements
-            yield return new WaitForSecondsRealtime(transitionDuration + 0.1f);
-
-            // ✅ Notify game components about orientation change
-            OnOrientationChangeComplete();
         }
-        else
-        {
-            Debug.LogWarning("Unity: Invalid format received in SwitchDisplay");
-        }
-    }
-
-    /// <summary>
-    /// Called when orientation change animation completes
-    /// Notifies game components to recalculate positions
-    /// </summary>
-    private void OnOrientationChangeComplete()
-    {
-        Debug.Log("[OrientationChange] Orientation change complete - updating game elements");
-
-        // Update board controller (will rebuild pegs and catchers)
-        if (boardController != null)
-        {
-            boardController.OnOrientationChanged();
-        }
-
-        // Update ball launcher (will recalculate start position)
-        if (ballLauncher != null)
-        {
-            ballLauncher.OnOrientationChanged();
-        }
-    }
 
 #if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Update()
         {
-            SwitchDisplay(Screen.width + "," + Screen.height);
+            // Test dimension change in editor with spacebar
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SwitchDisplay(Screen.width + "," + Screen.height);
+            }
         }
-    }
 #endif
+    }
 }

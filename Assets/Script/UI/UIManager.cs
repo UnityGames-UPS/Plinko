@@ -9,49 +9,147 @@ namespace PlinkoGame
 {
     /// <summary>
     /// Manages all UI elements and popups with animations
-    /// History management moved to HistoryManager
-    /// Updated with comprehensive audio integration
+    /// NOW HANDLES ORIENTATION SWITCHING - Horizontal vs Vertical layouts
+    /// Controls which layout is active based on screen dimensions
+    /// FIXED: Hover popup dual-mode support and popup X position management
     /// </summary>
     public class UIManager : MonoBehaviour
     {
-        [Header("Betting UI")]
-        [SerializeField] private TextMeshProUGUI balanceText;
-        [SerializeField] private TextMeshProUGUI betAmountText;
-        [SerializeField] private Button betButton;
-        [SerializeField] private Button increaseBetButton;
-        [SerializeField] private Button decreaseBetButton;
-        [SerializeField] private GameObject betDisabledOverlay;
+        // ============================================
+        // LAYOUT SYSTEM
+        // ============================================
 
-        [Header("Risk Selection")]
-        [SerializeField] private TMP_Dropdown riskDropdown;
-        [SerializeField] private GameObject riskDisabledOverlay;
+        [Header("Layout Control")]
+        [SerializeField] private GameObject horizontalLayout;
+        [SerializeField] private GameObject verticalLayout;
 
-        [Header("Row Selection")]
-        [SerializeField] private TMP_Dropdown rowDropdown;
-        [SerializeField] private GameObject rowDisabledOverlay;
+        private bool isHorizontalActive = true;
 
-        [Header("Mode Toggle")]
-        [SerializeField] private Button manualModeButton;
-        [SerializeField] private Button autoplayModeButton;
-        [SerializeField] private GameObject manualModeImage;
-        [SerializeField] private GameObject autoplayModeImage;
+        // ============================================
+        // HORIZONTAL LAYOUT REFERENCES
+        // ============================================
 
-        [Header("Autoplay Controls")]
-        [SerializeField] private GameObject autoplayPanel;
-        [SerializeField] private TMP_InputField autoplayRoundsInput;
-        [SerializeField] private Button autoplayToggleButton;
-        [SerializeField] private Image stopAutoplayImage;
-        [SerializeField] private Button increaseRoundsButton;
-        [SerializeField] private Button decreaseRoundsButton;
-        [SerializeField] private GameObject infinityIcon;
-        [SerializeField] private TextMeshProUGUI autoplayCountText;
-        [SerializeField] private GameObject autoplayDisabledOverlay;
+        [Header("Horizontal - Betting UI")]
+        [SerializeField] private TextMeshProUGUI h_balanceText;
+        [SerializeField] private TextMeshProUGUI h_betAmountText;
+        [SerializeField] private Button h_betButton;
+        [SerializeField] private Button h_increaseBetButton;
+        [SerializeField] private Button h_decreaseBetButton;
+        [SerializeField] private GameObject h_betDisabledOverlay;
 
-        [Header("Audio Toggles")]
-        [SerializeField] private Toggle musicToggle;
-        [SerializeField] private Toggle sfxToggle;
+        [Header("Horizontal - Risk Selection")]
+        [SerializeField] private TMP_Dropdown h_riskDropdown;
+        [SerializeField] private GameObject h_riskDisabledOverlay;
 
-        [Header("Popups")]
+        [Header("Horizontal - Row Selection")]
+        [SerializeField] private TMP_Dropdown h_rowDropdown;
+        [SerializeField] private GameObject h_rowDisabledOverlay;
+
+        [Header("Horizontal - Mode Toggle")]
+        [SerializeField] private Button h_manualModeButton;
+        [SerializeField] private Button h_autoplayModeButton;
+        [SerializeField] private GameObject h_manualModeImage;
+        [SerializeField] private GameObject h_autoplayModeImage;
+
+        [Header("Horizontal - Autoplay Controls")]
+        [SerializeField] private GameObject h_autoplayPanel;
+        [SerializeField] private TMP_InputField h_autoplayRoundsInput;
+        [SerializeField] private Button h_autoplayToggleButton;
+        [SerializeField] private Image h_stopAutoplayImage;
+        [SerializeField] private Button h_increaseRoundsButton;
+        [SerializeField] private Button h_decreaseRoundsButton;
+        [SerializeField] private GameObject h_infinityIcon;
+        [SerializeField] private TextMeshProUGUI h_autoplayCountText;
+        [SerializeField] private GameObject h_autoplayDisabledOverlay;
+
+        [Header("Horizontal - Audio Toggles")]
+        [SerializeField] private Toggle h_musicToggle;
+        [SerializeField] private Toggle h_sfxToggle;
+
+        [Header("Horizontal - Game Info")]
+        [SerializeField] private Button h_gameInfoButton;
+        [SerializeField] private Button h_gameInfoCloseButton;
+
+        [Header("Horizontal - Exit")]
+        [SerializeField] private Button h_forceCloseGameButton;
+
+        [Header("Horizontal - History")]
+        [SerializeField] private Transform h_historyContainer;
+        [SerializeField] private TextMeshProUGUI h_historyEmptyText;
+
+        [Header("Horizontal - Hover Popup")]
+        [SerializeField] private GameObject h_hoverPopup;
+        [SerializeField] private TextMeshProUGUI h_hoverProfitText;
+        [SerializeField] private TextMeshProUGUI h_hoverProbabilityText;
+        [SerializeField] private RectTransform h_hoverArrow;
+        [SerializeField] private Button h_hoverCloseButton;
+        [SerializeField] private RectTransform h_hoverPopupRect;
+
+        // ============================================
+        // VERTICAL LAYOUT REFERENCES
+        // ============================================
+
+        [Header("Vertical - Betting UI")]
+        [SerializeField] private TextMeshProUGUI v_balanceText;
+        [SerializeField] private TextMeshProUGUI v_betAmountText;
+        [SerializeField] private Button v_betButton;
+        [SerializeField] private Button v_increaseBetButton;
+        [SerializeField] private Button v_decreaseBetButton;
+        [SerializeField] private GameObject v_betDisabledOverlay;
+
+        [Header("Vertical - Risk Selection")]
+        [SerializeField] private TMP_Dropdown v_riskDropdown;
+        [SerializeField] private GameObject v_riskDisabledOverlay;
+
+        [Header("Vertical - Row Selection")]
+        [SerializeField] private TMP_Dropdown v_rowDropdown;
+        [SerializeField] private GameObject v_rowDisabledOverlay;
+
+        [Header("Vertical - Mode Toggle")]
+        [SerializeField] private Button v_manualModeButton;
+        [SerializeField] private Button v_autoplayModeButton;
+        [SerializeField] private GameObject v_manualModeImage;
+        [SerializeField] private GameObject v_autoplayModeImage;
+
+        [Header("Vertical - Autoplay Controls")]
+        [SerializeField] private GameObject v_autoplayPanel;
+        [SerializeField] private TMP_InputField v_autoplayRoundsInput;
+        [SerializeField] private Button v_autoplayToggleButton;
+        [SerializeField] private Image v_stopAutoplayImage;
+        [SerializeField] private Button v_increaseRoundsButton;
+        [SerializeField] private Button v_decreaseRoundsButton;
+        [SerializeField] private GameObject v_infinityIcon;
+        [SerializeField] private TextMeshProUGUI v_autoplayCountText;
+        [SerializeField] private GameObject v_autoplayDisabledOverlay;
+
+        [Header("Vertical - Audio Toggles")]
+        [SerializeField] private Toggle v_musicToggle;
+        [SerializeField] private Toggle v_sfxToggle;
+
+        [Header("Vertical - Game Info")]
+        [SerializeField] private Button v_gameInfoButton;
+        [SerializeField] private Button v_gameInfoCloseButton;
+
+        [Header("Vertical - Exit")]
+        [SerializeField] private Button v_forceCloseGameButton;
+
+        [Header("Vertical - History")]
+        [SerializeField] private Transform v_historyContainer;
+        [SerializeField] private TextMeshProUGUI v_historyEmptyText;
+
+        [Header("Vertical - Hover Popup")]
+        [SerializeField] private GameObject v_hoverPopup;
+        [SerializeField] private TextMeshProUGUI v_hoverProfitText;
+        [SerializeField] private TextMeshProUGUI v_hoverProbabilityText;
+        [SerializeField] private RectTransform v_hoverArrow;
+        [SerializeField] private Button v_hoverCloseButton;
+        [SerializeField] private RectTransform v_hoverPopupRect;
+
+        // ============================================
+        // SHARED POPUPS (Same for both layouts)
+        // ============================================
+
+        [Header("Shared Popups")]
         [SerializeField] private GameObject winPopupMainPanel;
         [SerializeField] private GameObject winPopupArea;
         [SerializeField] private TextMeshProUGUI winAmountText;
@@ -74,27 +172,10 @@ namespace PlinkoGame
         [SerializeField] private GameObject gameInfoPopupMainPanel;
         [SerializeField] private GameObject gameInfoPopupArea;
 
-        [Header("Exit Popup Buttons")]
+        [Header("Shared Popup Buttons")]
         [SerializeField] private Button exitYesButton;
         [SerializeField] private Button exitNoButton;
-
-        [Header("Disconnection Popup Button")]
         [SerializeField] private Button disconnectionOkButton;
-
-        [Header("Game Exit")]
-        [SerializeField] private Button forceCloseGameButton;
-
-
-        [Header("Game Info")]
-        [SerializeField] private Button gameInfoButton;
-        [SerializeField] private Button gameInfoCloseButton;
-
-        [Header("Hover Popup")]
-        [SerializeField] private GameObject hoverPopup;
-        [SerializeField] private TextMeshProUGUI hoverProfitText;
-        [SerializeField] private TextMeshProUGUI hoverProbabilityText;
-        [SerializeField] private RectTransform hoverArrow;
-        [SerializeField] private Button hoverCloseButton;
 
         [Header("Popup Animation Settings")]
         [SerializeField] private float popupScaleInDuration = 0.3f;
@@ -106,6 +187,13 @@ namespace PlinkoGame
         [SerializeField] private GameManager gameManager;
         [SerializeField] private HistoryManager historyManager;
 
+        // ============================================
+        // POPUP X POSITION STORAGE
+        // ============================================
+
+        private Dictionary<RectTransform, float> storedHorizontalXPositions = new Dictionary<RectTransform, float>();
+
+        // State
         private bool isManualMode = true;
         private bool isAutoplayActive;
         private int autoplayRounds = 0;
@@ -120,6 +208,7 @@ namespace PlinkoGame
             SetupDropdowns();
             SetupAudioToggles();
             HideAllPopups();
+            StoreInitialPopupXPositions();
         }
 
         private void Start()
@@ -127,6 +216,131 @@ namespace PlinkoGame
             SetMode(true);
             UpdateAutoplayRoundsDisplay();
             InitializeAudioToggles();
+
+            // Start with horizontal layout by default
+            SwitchToLayout(true);
+        }
+
+        // ============================================
+        // POPUP X POSITION MANAGEMENT
+        // ============================================
+
+        /// <summary>
+        /// Store initial horizontal X positions of all popup areas
+        /// Called once during Awake
+        /// </summary>
+        private void StoreInitialPopupXPositions()
+        {
+            // Store all popup area X positions (children of mainPanel)
+            StorePopupXPosition(winPopupArea);
+            StorePopupXPosition(errorPopupArea);
+            StorePopupXPosition(reconnectionPopupArea);
+            StorePopupXPosition(disconnectionPopupArea);
+            StorePopupXPosition(exitConfirmPopupArea);
+            StorePopupXPosition(gameInfoPopupArea);
+
+            Debug.Log($"[UIManager] Stored {storedHorizontalXPositions.Count} popup X positions");
+        }
+
+        private void StorePopupXPosition(GameObject popupArea)
+        {
+            if (popupArea != null)
+            {
+                RectTransform rect = popupArea.GetComponent<RectTransform>();
+                if (rect != null && !storedHorizontalXPositions.ContainsKey(rect))
+                {
+                    storedHorizontalXPositions[rect] = rect.localPosition.x;
+                    Debug.Log($"[UIManager] Stored X position for {popupArea.name}: {rect.localPosition.x}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates all popup X positions based on active layout
+        /// Vertical mode: X = 0
+        /// Horizontal mode: X = stored original value
+        /// </summary>
+        private void UpdateAllPopupXPositions()
+        {
+            foreach (var kvp in storedHorizontalXPositions)
+            {
+                RectTransform rect = kvp.Key;
+                float horizontalX = kvp.Value;
+
+                if (rect != null)
+                {
+                    Vector3 pos = rect.localPosition;
+                    pos.x = isHorizontalActive ? horizontalX : 0f;
+                    rect.localPosition = pos;
+                }
+            }
+
+            Debug.Log($"[UIManager] Updated all popup X positions to {(isHorizontalActive ? "HORIZONTAL" : "VERTICAL (0)")}");
+        }
+
+        // ============================================
+        // ORIENTATION & LAYOUT CONTROL
+        // ============================================
+
+        /// <summary>
+        /// Called by OrientationChange when screen dimensions change
+        /// </summary>
+        public void OnOrientationChanged(int width, int height)
+        {
+            bool shouldBeHorizontal = width > height;
+
+            if (shouldBeHorizontal != isHorizontalActive)
+            {
+                SwitchToLayout(shouldBeHorizontal);
+
+                // Notify GameManager to update active board reference
+                if (gameManager != null)
+                {
+                    gameManager.OnLayoutSwitched(shouldBeHorizontal);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Switches between horizontal and vertical layouts
+        /// </summary>
+        private void SwitchToLayout(bool horizontal)
+        {
+            isHorizontalActive = horizontal;
+
+            // Activate/deactivate layout GameObjects
+            if (horizontalLayout != null)
+                horizontalLayout.SetActive(horizontal);
+
+            if (verticalLayout != null)
+                verticalLayout.SetActive(!horizontal);
+
+            // Update all popup X positions
+            UpdateAllPopupXPositions();
+
+            // Rebind history manager to active layout
+            if (historyManager != null)
+            {
+                Transform activeHistoryContainer = horizontal ? h_historyContainer : v_historyContainer;
+                TextMeshProUGUI activeEmptyText = horizontal ? h_historyEmptyText : v_historyEmptyText;
+                historyManager.BindToLayout(activeHistoryContainer, activeEmptyText);
+            }
+
+            // If hover popup is visible, refresh it for the new layout
+            if (isHoverPopupVisible)
+            {
+                ShowHoverPopup(currentHoverPosition, currentHoverProfit, currentHoverProbability);
+            }
+
+            Debug.Log($"[UIManager] Switched to {(horizontal ? "HORIZONTAL" : "VERTICAL")} layout");
+        }
+
+        /// <summary>
+        /// Returns active layout state
+        /// </summary>
+        public bool IsHorizontalLayout()
+        {
+            return isHorizontalActive;
         }
 
         // ============================================
@@ -135,17 +349,28 @@ namespace PlinkoGame
 
         private void SetupAudioToggles()
         {
-            if (musicToggle != null)
+            // Horizontal
+            if (h_musicToggle != null)
             {
-                // Remove listener temporarily to prevent triggering during setup
-                musicToggle.onValueChanged.RemoveAllListeners();
-                musicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
+                h_musicToggle.onValueChanged.RemoveAllListeners();
+                h_musicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
+            }
+            if (h_sfxToggle != null)
+            {
+                h_sfxToggle.onValueChanged.RemoveAllListeners();
+                h_sfxToggle.onValueChanged.AddListener(OnSFXToggleChanged);
             }
 
-            if (sfxToggle != null)
+            // Vertical
+            if (v_musicToggle != null)
             {
-                sfxToggle.onValueChanged.RemoveAllListeners();
-                sfxToggle.onValueChanged.AddListener(OnSFXToggleChanged);
+                v_musicToggle.onValueChanged.RemoveAllListeners();
+                v_musicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
+            }
+            if (v_sfxToggle != null)
+            {
+                v_sfxToggle.onValueChanged.RemoveAllListeners();
+                v_sfxToggle.onValueChanged.AddListener(OnSFXToggleChanged);
             }
         }
 
@@ -153,16 +378,19 @@ namespace PlinkoGame
         {
             if (AudioManager.Instance != null)
             {
-                if (musicToggle != null)
-                {
-                    // Use SetIsOnWithoutNotify to avoid triggering the callback
-                    musicToggle.SetIsOnWithoutNotify(AudioManager.Instance.IsMusicEnabled());
-                }
+                bool musicEnabled = AudioManager.Instance.IsMusicEnabled();
+                bool sfxEnabled = AudioManager.Instance.IsSFXEnabled();
 
-                if (sfxToggle != null)
-                {
-                    sfxToggle.SetIsOnWithoutNotify(AudioManager.Instance.IsSFXEnabled());
-                }
+                // Sync both layouts
+                if (h_musicToggle != null)
+                    h_musicToggle.SetIsOnWithoutNotify(musicEnabled);
+                if (v_musicToggle != null)
+                    v_musicToggle.SetIsOnWithoutNotify(musicEnabled);
+
+                if (h_sfxToggle != null)
+                    h_sfxToggle.SetIsOnWithoutNotify(sfxEnabled);
+                if (v_sfxToggle != null)
+                    v_sfxToggle.SetIsOnWithoutNotify(sfxEnabled);
             }
         }
 
@@ -170,6 +398,12 @@ namespace PlinkoGame
         {
             AudioManager.Instance?.ToggleMusic(isOn);
             AudioManager.Instance?.PlayButtonClick();
+
+            // Sync other layout toggle
+            if (isHorizontalActive && v_musicToggle != null)
+                v_musicToggle.SetIsOnWithoutNotify(isOn);
+            else if (!isHorizontalActive && h_musicToggle != null)
+                h_musicToggle.SetIsOnWithoutNotify(isOn);
         }
 
         private void OnSFXToggleChanged(bool isOn)
@@ -179,68 +413,155 @@ namespace PlinkoGame
             {
                 AudioManager.Instance?.PlayButtonClick();
             }
+
+            // Sync other layout toggle
+            if (isHorizontalActive && v_sfxToggle != null)
+                v_sfxToggle.SetIsOnWithoutNotify(isOn);
+            else if (!isHorizontalActive && h_sfxToggle != null)
+                h_sfxToggle.SetIsOnWithoutNotify(isOn);
         }
 
         // ============================================
-        // BUTTON SETUP
+        // BUTTON SETUP (Both Layouts)
         // ============================================
 
         private void SetupButtons()
         {
-            if (betButton != null)
-                betButton.onClick.AddListener(() => {
+            // Horizontal layout
+            if (h_betButton != null)
+                h_betButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayStartButtonClick();
                     gameManager?.OnBetButtonClicked();
                 });
 
-            if (increaseBetButton != null)
-                increaseBetButton.onClick.AddListener(() => {
+            if (h_increaseBetButton != null)
+                h_increaseBetButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayIncreaseBet();
                     gameManager?.OnBetChanged(true);
                 });
 
-            if (decreaseBetButton != null)
-                decreaseBetButton.onClick.AddListener(() => {
+            if (h_decreaseBetButton != null)
+                h_decreaseBetButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayDecreaseBet();
                     gameManager?.OnBetChanged(false);
                 });
 
-            if (manualModeButton != null)
-                manualModeButton.onClick.AddListener(() => {
+            if (h_manualModeButton != null)
+                h_manualModeButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
                     SetMode(true);
                 });
 
-            if (autoplayModeButton != null)
-                autoplayModeButton.onClick.AddListener(() => {
+            if (h_autoplayModeButton != null)
+                h_autoplayModeButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
                     SetMode(false);
                 });
 
-            if (autoplayToggleButton != null)
-                autoplayToggleButton.onClick.AddListener(() => {
-                    AudioManager.Instance?.PlayStartButtonClick();
-                    OnAutoplayToggleClicked();
+            if (h_autoplayToggleButton != null)
+                h_autoplayToggleButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    OnAutoplayToggle();
                 });
 
-            if (increaseRoundsButton != null)
-                increaseRoundsButton.onClick.AddListener(() => {
+            if (h_increaseRoundsButton != null)
+                h_increaseRoundsButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayIncreaseBet();
-                    ChangeAutoplayRounds(1);
+                    AdjustAutoplayRounds(true);
                 });
 
-            if (decreaseRoundsButton != null)
-                decreaseRoundsButton.onClick.AddListener(() => {
+            if (h_decreaseRoundsButton != null)
+                h_decreaseRoundsButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayDecreaseBet();
-                    ChangeAutoplayRounds(-1);
+                    AdjustAutoplayRounds(false);
                 });
 
-            if (forceCloseGameButton != null)
-                forceCloseGameButton.onClick.AddListener(() => {
+            if (h_forceCloseGameButton != null)
+                h_forceCloseGameButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
                     ShowExitConfirmPopup();
                 });
 
+            if (h_gameInfoButton != null)
+                h_gameInfoButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    ShowInfoPopup();
+                });
+
+            if (h_gameInfoCloseButton != null)
+                h_gameInfoCloseButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    OnInfoClose();
+                });
+
+            // Vertical layout (same callbacks)
+            if (v_betButton != null)
+                v_betButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayStartButtonClick();
+                    gameManager?.OnBetButtonClicked();
+                });
+
+            if (v_increaseBetButton != null)
+                v_increaseBetButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayIncreaseBet();
+                    gameManager?.OnBetChanged(true);
+                });
+
+            if (v_decreaseBetButton != null)
+                v_decreaseBetButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayDecreaseBet();
+                    gameManager?.OnBetChanged(false);
+                });
+
+            if (v_manualModeButton != null)
+                v_manualModeButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    SetMode(true);
+                });
+
+            if (v_autoplayModeButton != null)
+                v_autoplayModeButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    SetMode(false);
+                });
+
+            if (v_autoplayToggleButton != null)
+                v_autoplayToggleButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    OnAutoplayToggle();
+                });
+
+            if (v_increaseRoundsButton != null)
+                v_increaseRoundsButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayIncreaseBet();
+                    AdjustAutoplayRounds(true);
+                });
+
+            if (v_decreaseRoundsButton != null)
+                v_decreaseRoundsButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayDecreaseBet();
+                    AdjustAutoplayRounds(false);
+                });
+
+            if (v_forceCloseGameButton != null)
+                v_forceCloseGameButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    ShowExitConfirmPopup();
+                });
+
+            if (v_gameInfoButton != null)
+                v_gameInfoButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    ShowInfoPopup();
+                });
+
+            if (v_gameInfoCloseButton != null)
+                v_gameInfoCloseButton.onClick.AddListener(() => {
+                    AudioManager.Instance?.PlayButtonClick();
+                    OnInfoClose();
+                });
+
+            // Shared popup buttons
             if (exitYesButton != null)
                 exitYesButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
@@ -259,178 +580,227 @@ namespace PlinkoGame
                     OnDisconnectionOk();
                 });
 
-            if (hoverCloseButton != null)
-                hoverCloseButton.onClick.AddListener(() => {
-                    AudioManager.Instance?.PlayButtonClick();
-                    HideHoverPopup();
-                });
-
             if (errorPopupbtn != null)
                 errorPopupbtn.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
                     OnErrorOK();
                 });
 
-            if (gameInfoButton != null)
-                gameInfoButton.onClick.AddListener(() => {
+            // Hover popup close buttons
+            if (h_hoverCloseButton != null)
+                h_hoverCloseButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
-                    ShowInfoPopup();
+                    HideHoverPopup();
                 });
 
-            if (gameInfoCloseButton != null)
-                gameInfoCloseButton.onClick.AddListener(() => {
+            if (v_hoverCloseButton != null)
+                v_hoverCloseButton.onClick.AddListener(() => {
                     AudioManager.Instance?.PlayButtonClick();
-                    OnInfoClose();
+                    HideHoverPopup();
                 });
-        }
-
-        private void SetupDropdowns()
-        {
-            if (riskDropdown != null)
-            {
-                riskDropdown.onValueChanged.AddListener(OnRiskChanged);
-                var riskTrigger = riskDropdown.GetComponent<UnityEngine.EventSystems.EventTrigger>();
-                if (riskTrigger == null)
-                {
-                    riskTrigger = riskDropdown.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
-                }
-                AddDropdownClickTrigger(riskTrigger);
-            }
-
-            if (rowDropdown != null)
-            {
-                rowDropdown.onValueChanged.AddListener(OnRowChanged);
-                var rowTrigger = rowDropdown.GetComponent<UnityEngine.EventSystems.EventTrigger>();
-                if (rowTrigger == null)
-                {
-                    rowTrigger = rowDropdown.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
-                }
-                AddDropdownClickTrigger(rowTrigger);
-            }
-
-            if (autoplayRoundsInput != null)
-            {
-                autoplayRoundsInput.interactable = false;
-            }
-        }
-
-        private void AddDropdownClickTrigger(UnityEngine.EventSystems.EventTrigger trigger)
-        {
-            var entry = new UnityEngine.EventSystems.EventTrigger.Entry
-            {
-                eventID = UnityEngine.EventSystems.EventTriggerType.PointerClick
-            };
-            entry.callback.AddListener((data) => { AudioManager.Instance?.PlayButtonClick(); });
-            trigger.triggers.Add(entry);
         }
 
         // ============================================
-        // INITIALIZATION
+        // DROPDOWN SETUP (Both Layouts)
+        // ============================================
+
+        private void SetupDropdowns()
+        {
+            // Horizontal
+            if (h_riskDropdown != null)
+            {
+                h_riskDropdown.onValueChanged.AddListener((index) => {
+                    AudioManager.Instance?.PlayDropdownClick();
+                    gameManager?.OnRiskChanged(index);
+
+                    // Sync other layout
+                    if (v_riskDropdown != null)
+                        v_riskDropdown.SetValueWithoutNotify(index);
+                });
+            }
+
+            if (h_rowDropdown != null)
+            {
+                h_rowDropdown.onValueChanged.AddListener((index) => {
+                    AudioManager.Instance?.PlayDropdownClick();
+                    gameManager?.OnRowChanged(index);
+
+                    // Sync other layout
+                    if (v_rowDropdown != null)
+                        v_rowDropdown.SetValueWithoutNotify(index);
+                });
+            }
+
+            // Vertical
+            if (v_riskDropdown != null)
+            {
+                v_riskDropdown.onValueChanged.AddListener((index) => {
+                    AudioManager.Instance?.PlayDropdownClick();
+                    gameManager?.OnRiskChanged(index);
+
+                    // Sync other layout
+                    if (h_riskDropdown != null)
+                        h_riskDropdown.SetValueWithoutNotify(index);
+                });
+            }
+
+            if (v_rowDropdown != null)
+            {
+                v_rowDropdown.onValueChanged.AddListener((index) => {
+                    AudioManager.Instance?.PlayDropdownClick();
+                    gameManager?.OnRowChanged(index);
+
+                    // Sync other layout
+                    if (h_rowDropdown != null)
+                        h_rowDropdown.SetValueWithoutNotify(index);
+                });
+            }
+        }
+
+        // ============================================
+        // UI INITIALIZATION FROM GAME DATA
         // ============================================
 
         internal void InitializeFromGameData(PlinkoGameData gameData, double initialBalance)
         {
-            if (riskDropdown != null && gameData.risks != null)
-            {
-                riskDropdown.ClearOptions();
-                List<string> riskNames = new List<string>();
-                foreach (RiskLevel risk in gameData.risks)
-                {
-                    riskNames.Add(risk.name);
-                }
-                riskDropdown.AddOptions(riskNames);
-                riskDropdown.value = 0;
-            }
-
-            if (rowDropdown != null && gameData.rows != null)
-            {
-                rowDropdown.ClearOptions();
-                List<string> rowOptions = new List<string>();
-                foreach (PlinkoRow row in gameData.rows)
-                {
-                    rowOptions.Add($"{row.id}");
-                }
-                rowDropdown.AddOptions(rowOptions);
-                rowDropdown.value = 0;
-            }
-
+            InitializeRiskDropdowns(gameData.risks);
+            InitializeRowDropdowns(gameData.rows);
             UpdateBalance(initialBalance);
+            UpdateBetDisplay(gameData.bets[0]);
+        }
 
-            if (gameData.bets != null && gameData.bets.Count > 0)
+        private void InitializeRiskDropdowns(List<RiskLevel> risks)
+        {
+            List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+            foreach (var risk in risks)
             {
-                UpdateBetDisplay(gameData.bets[0]);
+                options.Add(new TMP_Dropdown.OptionData(risk.name));
             }
 
-            if (stopAutoplayImage != null)
+            // Update both dropdowns
+            if (h_riskDropdown != null)
             {
-                stopAutoplayImage.gameObject.SetActive(false);
+                h_riskDropdown.ClearOptions();
+                h_riskDropdown.AddOptions(options);
+                h_riskDropdown.value = 0;
+            }
+
+            if (v_riskDropdown != null)
+            {
+                v_riskDropdown.ClearOptions();
+                v_riskDropdown.AddOptions(options);
+                v_riskDropdown.value = 0;
             }
         }
 
+        private void InitializeRowDropdowns(List<PlinkoRow> rows)
+        {
+            List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+            foreach (var row in rows)
+            {
+                options.Add(new TMP_Dropdown.OptionData(row.id));
+            }
+
+            // Update both dropdowns
+            if (h_rowDropdown != null)
+            {
+                h_rowDropdown.ClearOptions();
+                h_rowDropdown.AddOptions(options);
+                h_rowDropdown.value = 0;
+            }
+
+            if (v_rowDropdown != null)
+            {
+                v_rowDropdown.ClearOptions();
+                v_rowDropdown.AddOptions(options);
+                v_rowDropdown.value = 0;
+            }
+        }
+
+        // ============================================
+        // UI UPDATES (Both Layouts)
+        // ============================================
+
         internal void UpdateBalance(double balance)
         {
-            if (balanceText != null)
-            {
-                balanceText.text = balance.ToString("F2");
-            }
+            string formatted = balance.ToString("F2");
+            if (h_balanceText != null)
+                h_balanceText.text = formatted;
+            if (v_balanceText != null)
+                v_balanceText.text = formatted;
         }
 
         internal void UpdateBetDisplay(double betAmount)
         {
-            if (betAmountText != null)
-            {
-                betAmountText.text = betAmount.ToString("F2");
-            }
+            string formatted = betAmount.ToString("F2");
+            if (h_betAmountText != null)
+                h_betAmountText.text = formatted;
+            if (v_betAmountText != null)
+                v_betAmountText.text = formatted;
         }
 
         internal void UpdateBetButtonState(bool canBet)
         {
-            if (betButton != null)
-            {
-                betButton.interactable = canBet;
-            }
+            if (h_betButton != null)
+                h_betButton.interactable = canBet;
+            if (v_betButton != null)
+                v_betButton.interactable = canBet;
 
-            if (betDisabledOverlay != null)
-            {
-                betDisabledOverlay.SetActive(!canBet);
-            }
+            if (h_betDisabledOverlay != null)
+                h_betDisabledOverlay.SetActive(!canBet);
+            if (v_betDisabledOverlay != null)
+                v_betDisabledOverlay.SetActive(!canBet);
         }
 
         // ============================================
-        // MODE MANAGEMENT
+        // MODE SWITCHING (Manual/Autoplay)
         // ============================================
 
-        private void SetMode(bool manualMode)
+        private void SetMode(bool manual)
         {
-            isManualMode = manualMode;
+            isManualMode = manual;
 
-            if (manualModeImage != null)
-                manualModeImage.SetActive(manualMode);
+            // Horizontal
+            if (h_manualModeImage != null)
+                h_manualModeImage.SetActive(manual);
+            if (h_autoplayModeImage != null)
+                h_autoplayModeImage.SetActive(!manual);
+            if (h_autoplayPanel != null)
+                h_autoplayPanel.SetActive(!manual);
 
-            if (betButton != null)
-                betButton.gameObject.SetActive(manualMode);
+            // Vertical
+            if (v_manualModeImage != null)
+                v_manualModeImage.SetActive(manual);
+            if (v_autoplayModeImage != null)
+                v_autoplayModeImage.SetActive(!manual);
+            if (v_autoplayPanel != null)
+                v_autoplayPanel.SetActive(!manual);
 
-            if (autoplayModeImage != null)
-                autoplayModeImage.SetActive(!manualMode);
+            UpdateControlStates();
+        }
 
-            if (autoplayPanel != null)
-                autoplayPanel.SetActive(!manualMode);
+        private void UpdateControlStates()
+        {
+            bool controlsEnabled = !isAutoplayActive;
 
-            if (betButton != null)
-            {
-                TextMeshProUGUI buttonText = betButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)
-                {
-                    buttonText.text = manualMode ? "BET" : "START AUTOPLAY";
-                }
-            }
+            // Horizontal
+            if (h_riskDisabledOverlay != null)
+                h_riskDisabledOverlay.SetActive(!controlsEnabled);
+            if (h_rowDisabledOverlay != null)
+                h_rowDisabledOverlay.SetActive(!controlsEnabled);
+
+            // Vertical
+            if (v_riskDisabledOverlay != null)
+                v_riskDisabledOverlay.SetActive(!controlsEnabled);
+            if (v_rowDisabledOverlay != null)
+                v_rowDisabledOverlay.SetActive(!controlsEnabled);
         }
 
         // ============================================
-        // AUTOPLAY MANAGEMENT
+        // AUTOPLAY CONTROLS
         // ============================================
 
-        private void OnAutoplayToggleClicked()
+        private void OnAutoplayToggle()
         {
             if (isAutoplayActive)
             {
@@ -438,61 +808,7 @@ namespace PlinkoGame
             }
             else
             {
-                if (autoplayRounds > 0 || autoplayRounds == 0)
-                {
-                    gameManager?.StartAutoplay(autoplayRounds);
-                }
-            }
-        }
-
-        private void ChangeAutoplayRounds(int delta)
-        {
-            if (isAutoplayActive) return;
-
-            autoplayRounds += delta;
-
-            if (autoplayRounds < 0)
-            {
-                autoplayRounds = 0;
-                if (infinityIcon != null)
-                    infinityIcon.SetActive(true);
-            }
-            else if (autoplayRounds > 100)
-                autoplayRounds = 100;
-
-            UpdateAutoplayRoundsDisplay();
-        }
-
-        private void UpdateAutoplayRoundsDisplay()
-        {
-            if (autoplayRoundsInput != null)
-            {
-                if (autoplayRounds == 0)
-                {
-                    autoplayRoundsInput.gameObject.SetActive(true);
-                    autoplayRoundsInput.text = "0";
-                }
-                else
-                {
-                    autoplayRoundsInput.gameObject.SetActive(true);
-                    autoplayRoundsInput.text = autoplayRounds.ToString();
-                    if (infinityIcon != null)
-                        infinityIcon.SetActive(false);
-                }
-            }
-        }
-
-        internal void UpdateAutoplayRounds(int rounds)
-        {
-            if (autoplayRoundsInput != null)
-            {
-                autoplayRoundsInput.gameObject.SetActive(true);
-                autoplayRoundsInput.text = rounds.ToString();
-
-                if (infinityIcon != null)
-                {
-                    infinityIcon.SetActive(false);
-                }
+                gameManager?.StartAutoplay(autoplayRounds);
             }
         }
 
@@ -500,124 +816,99 @@ namespace PlinkoGame
         {
             isAutoplayActive = true;
 
-            if (autoplayToggleButton != null)
-            {
-                TextMeshProUGUI buttonText = autoplayToggleButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)
-                {
-                    buttonText.text = "STOP AUTOPLAY";
-                }
-            }
+            // Horizontal
+            if (h_stopAutoplayImage != null)
+                h_stopAutoplayImage.gameObject.SetActive(true);
+            if (h_infinityIcon != null)
+                h_infinityIcon.SetActive(isInfinite);
+            if (h_autoplayCountText != null)
+                h_autoplayCountText.gameObject.SetActive(!isInfinite);
+            if (h_autoplayRoundsInput != null)
+                h_autoplayRoundsInput.interactable = false;
+            if (h_autoplayDisabledOverlay != null)
+                h_autoplayDisabledOverlay.SetActive(true);
 
-            if (stopAutoplayImage != null)
-            {
-                stopAutoplayImage.gameObject.SetActive(true);
-            }
+            // Vertical
+            if (v_stopAutoplayImage != null)
+                v_stopAutoplayImage.gameObject.SetActive(true);
+            if (v_infinityIcon != null)
+                v_infinityIcon.SetActive(isInfinite);
+            if (v_autoplayCountText != null)
+                v_autoplayCountText.gameObject.SetActive(!isInfinite);
+            if (v_autoplayRoundsInput != null)
+                v_autoplayRoundsInput.interactable = false;
+            if (v_autoplayDisabledOverlay != null)
+                v_autoplayDisabledOverlay.SetActive(true);
 
-            if (autoplayRoundsInput != null)
-            {
-                if (isInfinite)
-                {
-                    autoplayRoundsInput.gameObject.SetActive(false);
-                    if (infinityIcon != null)
-                        infinityIcon.SetActive(true);
-                }
-                else
-                {
-                    autoplayRoundsInput.gameObject.SetActive(true);
-                    autoplayRoundsInput.text = autoplayRounds.ToString();
-                    if (infinityIcon != null)
-                        infinityIcon.SetActive(false);
-                }
-            }
-
-            SetControlsInteractable(false);
+            UpdateControlStates();
         }
 
         internal void OnAutoplayStopped()
         {
             isAutoplayActive = false;
 
-            if (autoplayToggleButton != null)
-            {
-                TextMeshProUGUI buttonText = autoplayToggleButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)
-                {
-                    buttonText.text = "START AUTOPLAY";
-                }
-            }
+            // Horizontal
+            if (h_stopAutoplayImage != null)
+                h_stopAutoplayImage.gameObject.SetActive(false);
+            if (h_autoplayRoundsInput != null)
+                h_autoplayRoundsInput.interactable = true;
+            if (h_autoplayDisabledOverlay != null)
+                h_autoplayDisabledOverlay.SetActive(false);
 
-            if (stopAutoplayImage != null)
-            {
-                stopAutoplayImage.gameObject.SetActive(false);
-            }
+            // Vertical
+            if (v_stopAutoplayImage != null)
+                v_stopAutoplayImage.gameObject.SetActive(false);
+            if (v_autoplayRoundsInput != null)
+                v_autoplayRoundsInput.interactable = true;
+            if (v_autoplayDisabledOverlay != null)
+                v_autoplayDisabledOverlay.SetActive(false);
 
-            SetControlsInteractable(true);
+            UpdateControlStates();
             UpdateAutoplayRoundsDisplay();
         }
 
-        private void SetControlsInteractable(bool interactable)
+        internal void UpdateAutoplayRounds(int rounds)
         {
-            if (riskDropdown != null)
-                riskDropdown.interactable = interactable;
+            if (h_autoplayCountText != null)
+                h_autoplayCountText.text = rounds.ToString();
+            if (v_autoplayCountText != null)
+                v_autoplayCountText.text = rounds.ToString();
+        }
 
-            if (rowDropdown != null)
-                rowDropdown.interactable = interactable;
+        private void AdjustAutoplayRounds(bool increase)
+        {
+            if (increase)
+            {
+                if (autoplayRounds == 0)
+                    autoplayRounds = 10;
+                else
+                    autoplayRounds = Mathf.Min(autoplayRounds + 10, 1000);
+            }
+            else
+            {
+                autoplayRounds = Mathf.Max(autoplayRounds - 10, 0);
+            }
 
-            if (increaseBetButton != null)
-                increaseBetButton.interactable = interactable;
+            UpdateAutoplayRoundsDisplay();
+        }
 
-            if (decreaseBetButton != null)
-                decreaseBetButton.interactable = interactable;
+        private void UpdateAutoplayRoundsDisplay()
+        {
+            string displayText = autoplayRounds == 0 ? "∞" : autoplayRounds.ToString();
 
-            if (increaseRoundsButton != null)
-                increaseRoundsButton.interactable = interactable;
-
-            if (decreaseRoundsButton != null)
-                decreaseRoundsButton.interactable = interactable;
-
-            if (manualModeButton != null)
-                manualModeButton.interactable = interactable;
-
-            if (autoplayModeButton != null)
-                autoplayModeButton.interactable = interactable;
-
-            if (riskDisabledOverlay != null)
-                riskDisabledOverlay.SetActive(!interactable);
-
-            if (rowDisabledOverlay != null)
-                rowDisabledOverlay.SetActive(!interactable);
-
-            if (autoplayDisabledOverlay != null)
-                autoplayDisabledOverlay.SetActive(!interactable);
+            if (h_autoplayRoundsInput != null)
+                h_autoplayRoundsInput.text = displayText;
+            if (v_autoplayRoundsInput != null)
+                v_autoplayRoundsInput.text = displayText;
         }
 
         // ============================================
-        // DROPDOWN HANDLERS
-        // ============================================
-
-        private void OnRiskChanged(int value)
-        {
-            AudioManager.Instance?.PlayDropdownClick();
-            gameManager?.OnRiskChanged(value);
-        }
-
-        private void OnRowChanged(int value)
-        {
-            AudioManager.Instance?.PlayDropdownClick();
-            gameManager?.OnRowChanged(value);
-        }
-
-        // ============================================
-        // HISTORY
+        // HISTORY MANAGEMENT
         // ============================================
 
         internal void AddToHistory(double multiplier, double winAmount, int catcherIndex)
         {
-            if (historyManager != null)
-            {
-                historyManager.AddHistoryEntry(multiplier, catcherIndex);
-            }
+            historyManager?.AddEntry(multiplier, winAmount, catcherIndex);
         }
 
         // ============================================
@@ -628,52 +919,40 @@ namespace PlinkoGame
         {
             if (winPopupMainPanel != null)
                 winPopupMainPanel.SetActive(false);
-
             if (errorPopupMainPanel != null)
                 errorPopupMainPanel.SetActive(false);
-
             if (reconnectionPopupMainPanel != null)
                 reconnectionPopupMainPanel.SetActive(false);
-
             if (disconnectionPopupMainPanel != null)
                 disconnectionPopupMainPanel.SetActive(false);
-
             if (exitConfirmPopupMainPanel != null)
                 exitConfirmPopupMainPanel.SetActive(false);
-
             if (gameInfoPopupMainPanel != null)
                 gameInfoPopupMainPanel.SetActive(false);
 
-            HideHoverPopup();
-        }
-
-        internal void CheckAndClosePopups()
-        {
-            if (reconnectionPopupMainPanel != null && reconnectionPopupMainPanel.activeSelf)
-            {
-                ClosePopupWithAnimation(reconnectionPopupMainPanel, reconnectionPopupArea);
-            }
+            // Hide both hover popups
+            if (h_hoverPopup != null)
+                h_hoverPopup.SetActive(false);
+            if (v_hoverPopup != null)
+                v_hoverPopup.SetActive(false);
         }
 
         internal void ShowWinPopup(double winAmount, double multiplier)
         {
-            if (multiplier <= 1.0) return;
-
             AudioManager.Instance?.PlayWinSound();
+
+            if (winAmountText != null)
+                winAmountText.text = winAmount.ToString("F2");
+            if (winMultiplierText != null)
+                winMultiplierText.text = multiplier.ToString("F2") + "x";
 
             if (winPopupMainPanel != null)
                 winPopupMainPanel.SetActive(true);
 
             if (winPopupArea != null)
             {
-                if (winAmountText != null)
-                    winAmountText.text = winAmount.ToString("F2");
-
-                if (winMultiplierText != null)
-                    winMultiplierText.text = $"{multiplier:F1}x";
-
                 ShowPopupWithAnimation(winPopupArea);
-                StartCoroutine(AutoClosePopup(winPopupMainPanel, winPopupArea, 1.0f));
+                StartCoroutine(AutoClosePopup(winPopupMainPanel, winPopupArea, 2f));
             }
         }
 
@@ -681,22 +960,20 @@ namespace PlinkoGame
         {
             AudioManager.Instance?.PlayErrorSound();
 
+            if (errorMessageText != null)
+                errorMessageText.text = message;
+
             if (errorPopupMainPanel != null)
                 errorPopupMainPanel.SetActive(true);
 
             if (errorPopupArea != null)
             {
-                if (errorMessageText != null)
-                    errorMessageText.text = message;
-
                 ShowPopupWithAnimation(errorPopupArea);
             }
         }
 
         internal void ShowReconnectionPopup()
         {
-            AudioManager.Instance?.PlayErrorSound();
-
             if (reconnectionPopupMainPanel != null)
                 reconnectionPopupMainPanel.SetActive(true);
 
@@ -706,13 +983,13 @@ namespace PlinkoGame
             }
         }
 
+        internal void HideReconnectionPopup()
+        {
+            ClosePopupWithAnimation(reconnectionPopupMainPanel, reconnectionPopupArea);
+        }
+
         internal void ShowDisconnectionPopup()
         {
-            HideAllPopups();
-
-            // AUDIO: Play error sound for disconnection
-            AudioManager.Instance?.PlayErrorSound();
-
             if (disconnectionPopupMainPanel != null)
                 disconnectionPopupMainPanel.SetActive(true);
 
@@ -722,16 +999,8 @@ namespace PlinkoGame
             }
         }
 
-        internal void ShowAnotherDevicePopup()
-        {
-            ShowErrorPopup("Account logged in from another device");
-        }
-
         private void ShowExitConfirmPopup()
         {
-
-            AudioManager.Instance?.PlayErrorSound();
-
             if (exitConfirmPopupMainPanel != null)
                 exitConfirmPopupMainPanel.SetActive(true);
 
@@ -740,12 +1009,13 @@ namespace PlinkoGame
                 ShowPopupWithAnimation(exitConfirmPopupArea);
             }
         }
+
         private void ShowInfoPopup()
         {
             if (gameInfoPopupMainPanel != null)
                 gameInfoPopupMainPanel.SetActive(true);
-
         }
+
         private void ShowPopupWithAnimation(GameObject popupArea)
         {
             if (popupArea == null) return;
@@ -800,11 +1070,13 @@ namespace PlinkoGame
         {
             ClosePopupWithAnimation(exitConfirmPopupMainPanel, exitConfirmPopupArea);
         }
+
         private void OnInfoClose()
         {
             if (gameInfoPopupMainPanel != null && gameInfoPopupMainPanel.activeSelf)
                 gameInfoPopupMainPanel.SetActive(false);
         }
+
         private void OnDisconnectionOk()
         {
             ClosePopupWithAnimation(disconnectionPopupMainPanel, disconnectionPopupArea);
@@ -816,55 +1088,72 @@ namespace PlinkoGame
             ClosePopupWithAnimation(errorPopupMainPanel, errorPopupArea);
         }
 
-        // ============================================
-        // HOVER POPUP
-        // ============================================
+        internal void CheckAndClosePopups()
+        {
+            if (reconnectionPopupMainPanel != null && reconnectionPopupMainPanel.activeSelf)
+            {
+                ClosePopupWithAnimation(reconnectionPopupMainPanel, reconnectionPopupArea);
+            }
+        }
 
-        // Replace ShowHoverPopup method in UIManager.cs
+        internal void ShowAnotherDevicePopup()
+        {
+            ShowErrorPopup("Account logged in from another device");
+        }
+
+        // ============================================
+        // HOVER POPUP (DUAL MODE SUPPORT)
+        // ============================================
 
         internal void ShowHoverPopup(Vector3 catcherPosition, double profit, double probability)
         {
-            if (hoverPopup == null) return;
-
             currentHoverPosition = catcherPosition;
             currentHoverProfit = profit;
             currentHoverProbability = probability;
 
-            hoverPopup.SetActive(true);
+            // Get active layout references
+            GameObject activeHoverPopup = isHorizontalActive ? h_hoverPopup : v_hoverPopup;
+            RectTransform activeHoverArrow = isHorizontalActive ? h_hoverArrow : v_hoverArrow;
+            Button activeHoverCloseButton = isHorizontalActive ? h_hoverCloseButton : v_hoverCloseButton;
+
+            // Hide inactive hover popup
+            GameObject inactiveHoverPopup = isHorizontalActive ? v_hoverPopup : h_hoverPopup;
+            if (inactiveHoverPopup != null)
+            {
+                inactiveHoverPopup.SetActive(false);
+            }
+
+            if (activeHoverPopup == null) return;
+
+            // Show active popup and update
+            activeHoverPopup.SetActive(true);
             UpdateHoverTexts();
 
-            if (hoverArrow != null)
+            if (activeHoverArrow != null)
             {
-                // The catcherPosition passed is already in world space
-                // But if the catcher's position changes due to rotation, we need to handle it
-                // The hover arrow should align with the catcher in SCREEN space
-
-                // Get the RectTransform of the hover arrow
-                RectTransform arrowRect = hoverArrow.GetComponent<RectTransform>();
-
-                if (arrowRect != null)
-                {
-                    // Keep the same X position as the catcher (world space)
-                    // But maintain the arrow's Y position
-                    Vector3 arrowPos = hoverArrow.position;
-                    arrowPos.x = catcherPosition.x;
-                    hoverArrow.position = arrowPos;
-                }
+                Vector3 arrowPos = activeHoverArrow.position;
+                arrowPos.x = catcherPosition.x;
+                activeHoverArrow.position = arrowPos;
             }
 
             isHoverPopupVisible = true;
 
-            if (hoverCloseButton != null)
+            if (activeHoverCloseButton != null)
             {
-                hoverCloseButton.gameObject.SetActive(IsMobilePlatform());
+                activeHoverCloseButton.gameObject.SetActive(IsMobilePlatform());
             }
         }
 
         internal void HideHoverPopup()
         {
-            if (hoverPopup != null)
+            // Hide both hover popups (ensures clean state)
+            if (h_hoverPopup != null)
             {
-                hoverPopup.SetActive(false);
+                h_hoverPopup.SetActive(false);
+            }
+            if (v_hoverPopup != null)
+            {
+                v_hoverPopup.SetActive(false);
             }
             isHoverPopupVisible = false;
         }
@@ -891,28 +1180,32 @@ namespace PlinkoGame
 
         private void UpdateHoverTexts()
         {
-            if (hoverProfitText != null)
+            // Update texts for active layout only
+            TextMeshProUGUI activeProfitText = isHorizontalActive ? h_hoverProfitText : v_hoverProfitText;
+            TextMeshProUGUI activeProbabilityText = isHorizontalActive ? h_hoverProbabilityText : v_hoverProbabilityText;
+
+            if (activeProfitText != null)
             {
                 string profitSign = currentHoverProfit >= 0 ? "+" : "";
-                hoverProfitText.text = $"{profitSign}{currentHoverProfit:F2}";
+                activeProfitText.text = $"{profitSign}{currentHoverProfit:F2}";
 
                 if (currentHoverProfit > 0)
                 {
-                    hoverProfitText.color = Color.green;
+                    activeProfitText.color = Color.green;
                 }
                 else if (currentHoverProfit < 0)
                 {
-                    hoverProfitText.color = Color.red;
+                    activeProfitText.color = Color.red;
                 }
                 else
                 {
-                    hoverProfitText.color = Color.white;
+                    activeProfitText.color = Color.white;
                 }
             }
 
-            if (hoverProbabilityText != null)
+            if (activeProbabilityText != null)
             {
-                hoverProbabilityText.text = $"{currentHoverProbability:F2}%";
+                activeProbabilityText.text = $"{currentHoverProbability:F2}%";
             }
         }
 
@@ -931,22 +1224,43 @@ namespace PlinkoGame
 
         private void OnDestroy()
         {
-            betButton?.onClick.RemoveAllListeners();
-            increaseBetButton?.onClick.RemoveAllListeners();
-            decreaseBetButton?.onClick.RemoveAllListeners();
-            autoplayToggleButton?.onClick.RemoveAllListeners();
-            forceCloseGameButton?.onClick.RemoveAllListeners();
+            // Horizontal
+            h_betButton?.onClick.RemoveAllListeners();
+            h_increaseBetButton?.onClick.RemoveAllListeners();
+            h_decreaseBetButton?.onClick.RemoveAllListeners();
+            h_autoplayToggleButton?.onClick.RemoveAllListeners();
+            h_forceCloseGameButton?.onClick.RemoveAllListeners();
+            h_riskDropdown?.onValueChanged.RemoveAllListeners();
+            h_rowDropdown?.onValueChanged.RemoveAllListeners();
+            h_increaseRoundsButton?.onClick.RemoveAllListeners();
+            h_decreaseRoundsButton?.onClick.RemoveAllListeners();
+            h_musicToggle?.onValueChanged.RemoveAllListeners();
+            h_sfxToggle?.onValueChanged.RemoveAllListeners();
+            h_gameInfoButton?.onClick.RemoveAllListeners();
+            h_gameInfoCloseButton?.onClick.RemoveAllListeners();
+            h_hoverCloseButton?.onClick.RemoveAllListeners();
+
+            // Vertical
+            v_betButton?.onClick.RemoveAllListeners();
+            v_increaseBetButton?.onClick.RemoveAllListeners();
+            v_decreaseBetButton?.onClick.RemoveAllListeners();
+            v_autoplayToggleButton?.onClick.RemoveAllListeners();
+            v_forceCloseGameButton?.onClick.RemoveAllListeners();
+            v_riskDropdown?.onValueChanged.RemoveAllListeners();
+            v_rowDropdown?.onValueChanged.RemoveAllListeners();
+            v_increaseRoundsButton?.onClick.RemoveAllListeners();
+            v_decreaseRoundsButton?.onClick.RemoveAllListeners();
+            v_musicToggle?.onValueChanged.RemoveAllListeners();
+            v_sfxToggle?.onValueChanged.RemoveAllListeners();
+            v_gameInfoButton?.onClick.RemoveAllListeners();
+            v_gameInfoCloseButton?.onClick.RemoveAllListeners();
+            v_hoverCloseButton?.onClick.RemoveAllListeners();
+
+            // Shared
             exitYesButton?.onClick.RemoveAllListeners();
             exitNoButton?.onClick.RemoveAllListeners();
             disconnectionOkButton?.onClick.RemoveAllListeners();
-            hoverCloseButton?.onClick.RemoveAllListeners();
-            riskDropdown?.onValueChanged.RemoveAllListeners();
-            rowDropdown?.onValueChanged.RemoveAllListeners();
             errorPopupbtn?.onClick.RemoveAllListeners();
-            increaseRoundsButton?.onClick.RemoveAllListeners();
-            decreaseRoundsButton?.onClick.RemoveAllListeners();
-            musicToggle?.onValueChanged.RemoveAllListeners();
-            sfxToggle?.onValueChanged.RemoveAllListeners();
         }
     }
 }

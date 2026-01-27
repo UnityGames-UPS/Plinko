@@ -240,9 +240,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socketManager: {fileID: 1460689619}
   uiManager: {fileID: 219230577}
-  boardController: {fileID: 756274959}
-  ballLauncher: {fileID: 238813834}
   infoPanelManager: {fileID: 893536192}
+  horizontalBoardController: {fileID: 756274959}
+  horizontalBallLauncher: {fileID: 238813834}
+  verticalBoardController: {fileID: 1377344435}
+  verticalBallLauncher: {fileID: 2113262719}
   maxParallelBalls: 10
   autoplayDelay: 3
   raycastBlocker: {fileID: 419093565}
@@ -557,13 +559,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &34268821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,10 +1610,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 982350693}
-  - {fileID: 1343761070}
-  - {fileID: 266244405}
-  - {fileID: 371880292}
+  - {fileID: 321287245}
+  - {fileID: 1477253812}
   - {fileID: 956427173}
   - {fileID: 419093566}
   m_Father: {fileID: 352649144}
@@ -1893,13 +1893,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &137857132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,13 +2059,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &145696826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,13 +2124,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &145696829
 Rigidbody2D:
   serializedVersion: 5
@@ -2391,13 +2391,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!224 &168606576 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7386386130475827203, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
@@ -2850,13 +2850,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &195803322
 Rigidbody2D:
   serializedVersion: 5
@@ -3584,31 +3584,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f9dbfd2521ef744ab4d0df72d65c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balanceText: {fileID: 1317950240}
-  betAmountText: {fileID: 2133392358}
-  betButton: {fileID: 191229445}
-  increaseBetButton: {fileID: 1819284269}
-  decreaseBetButton: {fileID: 279785264}
-  betDisabledOverlay: {fileID: 1612297909}
-  riskDropdown: {fileID: 1565326692}
-  riskDisabledOverlay: {fileID: 1917681887}
-  rowDropdown: {fileID: 673463359}
-  rowDisabledOverlay: {fileID: 691196242}
-  manualModeButton: {fileID: 713253393}
-  autoplayModeButton: {fileID: 1806371096}
-  manualModeImage: {fileID: 1407465564}
-  autoplayModeImage: {fileID: 1778438005}
-  autoplayPanel: {fileID: 178753243}
-  autoplayRoundsInput: {fileID: 560965785}
-  autoplayToggleButton: {fileID: 1967244562}
-  stopAutoplayImage: {fileID: 735894113}
-  increaseRoundsButton: {fileID: 1953535354}
-  decreaseRoundsButton: {fileID: 926782257}
-  infinityIcon: {fileID: 1820231931}
-  autoplayCountText: {fileID: 1847764494}
-  autoplayDisabledOverlay: {fileID: 1518762096}
-  musicToggle: {fileID: 2141554593}
-  sfxToggle: {fileID: 638984629}
+  horizontalLayout: {fileID: 321287244}
+  verticalLayout: {fileID: 1477253811}
+  h_balanceText: {fileID: 1317950240}
+  h_betAmountText: {fileID: 2133392358}
+  h_betButton: {fileID: 191229445}
+  h_increaseBetButton: {fileID: 1819284269}
+  h_decreaseBetButton: {fileID: 279785264}
+  h_betDisabledOverlay: {fileID: 1612297909}
+  h_riskDropdown: {fileID: 1565326692}
+  h_riskDisabledOverlay: {fileID: 1917681887}
+  h_rowDropdown: {fileID: 673463359}
+  h_rowDisabledOverlay: {fileID: 691196242}
+  h_manualModeButton: {fileID: 713253393}
+  h_autoplayModeButton: {fileID: 1806371096}
+  h_manualModeImage: {fileID: 1407465564}
+  h_autoplayModeImage: {fileID: 1778438005}
+  h_autoplayPanel: {fileID: 178753243}
+  h_autoplayRoundsInput: {fileID: 560965785}
+  h_autoplayToggleButton: {fileID: 1967244562}
+  h_stopAutoplayImage: {fileID: 735894113}
+  h_increaseRoundsButton: {fileID: 1953535354}
+  h_decreaseRoundsButton: {fileID: 926782257}
+  h_infinityIcon: {fileID: 1820231931}
+  h_autoplayCountText: {fileID: 1847764494}
+  h_autoplayDisabledOverlay: {fileID: 1518762096}
+  h_musicToggle: {fileID: 2141554593}
+  h_sfxToggle: {fileID: 638984629}
+  h_gameInfoButton: {fileID: 207674246}
+  h_gameInfoCloseButton: {fileID: 1243746608}
+  h_forceCloseGameButton: {fileID: 652550078}
+  h_historyContainer: {fileID: 675474232}
+  h_historyEmptyText: {fileID: 0}
+  h_hoverPopup: {fileID: 1714086029}
+  h_hoverProfitText: {fileID: 1254022197}
+  h_hoverProbabilityText: {fileID: 198125658}
+  h_hoverArrow: {fileID: 794369567}
+  h_hoverCloseButton: {fileID: 881324665}
+  h_hoverPopupRect: {fileID: 1714086030}
+  v_balanceText: {fileID: 1539070984}
+  v_betAmountText: {fileID: 1713017360}
+  v_betButton: {fileID: 362479057}
+  v_increaseBetButton: {fileID: 1776677403}
+  v_decreaseBetButton: {fileID: 934058123}
+  v_betDisabledOverlay: {fileID: 1361177332}
+  v_riskDropdown: {fileID: 958842622}
+  v_riskDisabledOverlay: {fileID: 1414865263}
+  v_rowDropdown: {fileID: 732158883}
+  v_rowDisabledOverlay: {fileID: 1303442845}
+  v_manualModeButton: {fileID: 1647279620}
+  v_autoplayModeButton: {fileID: 1828222669}
+  v_manualModeImage: {fileID: 36760587}
+  v_autoplayModeImage: {fileID: 1581258223}
+  v_autoplayPanel: {fileID: 492389290}
+  v_autoplayRoundsInput: {fileID: 1327674508}
+  v_autoplayToggleButton: {fileID: 2040177836}
+  v_stopAutoplayImage: {fileID: 1965455116}
+  v_increaseRoundsButton: {fileID: 807657411}
+  v_decreaseRoundsButton: {fileID: 2046699178}
+  v_infinityIcon: {fileID: 1703092526}
+  v_autoplayCountText: {fileID: 593200309}
+  v_autoplayDisabledOverlay: {fileID: 1090489331}
+  v_musicToggle: {fileID: 949900025}
+  v_sfxToggle: {fileID: 694555208}
+  v_gameInfoButton: {fileID: 561218434}
+  v_gameInfoCloseButton: {fileID: 1243746608}
+  v_forceCloseGameButton: {fileID: 1374249308}
+  v_historyContainer: {fileID: 849391510}
+  v_historyEmptyText: {fileID: 0}
+  v_hoverPopup: {fileID: 115558576}
+  v_hoverProfitText: {fileID: 909281180}
+  v_hoverProbabilityText: {fileID: 965687652}
+  v_hoverArrow: {fileID: 262613023}
+  v_hoverCloseButton: {fileID: 764108841}
+  v_hoverPopupRect: {fileID: 115558577}
   winPopupMainPanel: {fileID: 2092859036}
   winPopupArea: {fileID: 1211122762}
   winAmountText: {fileID: 28874833}
@@ -3628,14 +3677,6 @@ MonoBehaviour:
   exitYesButton: {fileID: 242130805}
   exitNoButton: {fileID: 1325684583}
   disconnectionOkButton: {fileID: 1904405709}
-  forceCloseGameButton: {fileID: 652550078}
-  gameInfoButton: {fileID: 207674246}
-  gameInfoCloseButton: {fileID: 1243746608}
-  hoverPopup: {fileID: 1714086029}
-  hoverProfitText: {fileID: 1254022197}
-  hoverProbabilityText: {fileID: 198125658}
-  hoverArrow: {fileID: 794369567}
-  hoverCloseButton: {fileID: 881324665}
   popupScaleInDuration: 0.3
   popupScaleOutDuration: 0.2
   popupScaleInEase: 27
@@ -3669,16 +3710,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f87912c7e27dcc4290f5c14f8292df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  historyCard1: {fileID: 441154987}
-  historyCard2: {fileID: 437970546}
-  historyCard3: {fileID: 889379897}
-  historyCard4: {fileID: 1967713899}
-  historyCard5: {fileID: 1985348936}
-  historyBackground1: {fileID: 441154988}
-  historyBackground2: {fileID: 437970547}
-  historyBackground3: {fileID: 889379898}
-  historyBackground4: {fileID: 1967713900}
-  historyBackground5: {fileID: 1985348937}
+  h_historyCard1: {fileID: 441154987}
+  h_historyCard2: {fileID: 437970546}
+  h_historyCard3: {fileID: 889379897}
+  h_historyCard4: {fileID: 1967713899}
+  h_historyCard5: {fileID: 1985348936}
+  h_historyBackground1: {fileID: 441154988}
+  h_historyBackground2: {fileID: 437970547}
+  h_historyBackground3: {fileID: 889379898}
+  h_historyBackground4: {fileID: 1967713900}
+  h_historyBackground5: {fileID: 1985348937}
+  h_historyText1: {fileID: 2138940416}
+  h_historyText2: {fileID: 1943399626}
+  h_historyText3: {fileID: 586333872}
+  h_historyText4: {fileID: 1408464284}
+  h_historyText5: {fileID: 724625395}
+  v_historyCard1: {fileID: 94621176}
+  v_historyCard2: {fileID: 905667493}
+  v_historyCard3: {fileID: 2087116479}
+  v_historyCard4: {fileID: 2117141474}
+  v_historyCard5: {fileID: 201393271}
+  v_historyBackground1: {fileID: 94621177}
+  v_historyBackground2: {fileID: 905667494}
+  v_historyBackground3: {fileID: 2087116480}
+  v_historyBackground4: {fileID: 2117141475}
+  v_historyBackground5: {fileID: 201393272}
+  v_historyText1: {fileID: 1341815194}
+  v_historyText2: {fileID: 1134779964}
+  v_historyText3: {fileID: 2017482614}
+  v_historyText4: {fileID: 932253039}
+  v_historyText5: {fileID: 609502321}
   pos1_centerSprite: {fileID: 2184489193059282446, guid: 0f07c0a37bb6c424b86853db7dc5dfc5, type: 3}
   pos1_nearCenter1Sprite: {fileID: 4417250117715479253, guid: 0f07c0a37bb6c424b86853db7dc5dfc5, type: 3}
   pos1_nearCenter2Sprite: {fileID: 7696069699695761514, guid: 0f07c0a37bb6c424b86853db7dc5dfc5, type: 3}
@@ -3714,30 +3775,8 @@ MonoBehaviour:
   pos5_nearEdge2Sprite: {fileID: -5292484836714069836, guid: 791be9634f80f2e48baecd1307f4d2b4, type: 3}
   pos5_nearEdge1Sprite: {fileID: -3730494359407890770, guid: 791be9634f80f2e48baecd1307f4d2b4, type: 3}
   pos5_edgeSprite: {fileID: 7184657362789340604, guid: 7e4c6537affa8184e9d76a5eea43fc89, type: 3}
-  historyText1: {fileID: 2138940416}
-  historyText2: {fileID: 1943399626}
-  historyText3: {fileID: 586333872}
-  historyText4: {fileID: 1408464284}
-  historyText5: {fileID: 724625395}
-  catcherReferences:
-  - {fileID: 825600343}
-  - {fileID: 1319122778}
-  - {fileID: 1163469410}
-  - {fileID: 62381910}
-  - {fileID: 426053963}
-  - {fileID: 796276111}
-  - {fileID: 1217148536}
-  - {fileID: 702779024}
-  - {fileID: 684144327}
-  - {fileID: 935180895}
-  - {fileID: 746370352}
-  - {fileID: 1387323916}
-  - {fileID: 168606576}
-  - {fileID: 1002116144}
-  - {fileID: 1077134656}
-  - {fileID: 1643472815}
-  - {fileID: 1208787701}
-  boardController: {fileID: 756274959}
+  horizontalBoardController: {fileID: 756274959}
+  verticalBoardController: {fileID: 1377344435}
   animationDuration: 0.4
   entryOffset: 100
   animationEase: 6
@@ -4167,9 +4206,8 @@ GameObject:
   m_Component:
   - component: {fileID: 238813833}
   - component: {fileID: 238813834}
-  - component: {fileID: 238813835}
   m_Layer: 0
-  m_Name: DropManager
+  m_Name: DropManagerHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4215,7 +4253,7 @@ MonoBehaviour:
   - {fileID: 1405572524}
   boardController: {fileID: 756274959}
   spawnTransform: {fileID: 380777455}
-  pathCalculator: {fileID: 238813835}
+  pathCalculator: {fileID: 1975413001}
   gameManager: {fileID: 22559460}
   baseGravityScale: 1.5
   ballScaleAt8Rows: 0.8
@@ -4223,28 +4261,10 @@ MonoBehaviour:
   startOffsetAt8Rows: 40
   startOffsetAt16Rows: 40
   maxActiveBalls: 10
-  spawnDelay: 1.5
+  spawnDelay: 0.1
   lowDifficultySprite: {fileID: 4840735777579599281, guid: c697528fe30e8d147933ef6423de2a00, type: 3}
   mediumDifficultySprite: {fileID: 3501689478382954987, guid: add904718f58dfd47bc920e24cf0399b, type: 3}
   highDifficultySprite: {fileID: -5185680815138586352, guid: 729c2c62ed069f249b5520b16588059e, type: 3}
---- !u!114 &238813835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238813831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2afdbdcccefce54182f5ca2a00b6ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalVariation: 0.03
-  verticalOffset: 0.3
-  catcherApproachOffset: 0.5
-  gapBiasFactor: 0.6
-  pathRandomization: 0.2
-  debugPath: 1
 --- !u!1 &242130803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,7 +4819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &266244405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4807,13 +4827,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266244404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1189393091}
-  m_Father: {fileID: 118540557}
+  m_Father: {fileID: 1477253812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5202,6 +5222,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306732964}
   m_CullTransparentMesh: 1
+--- !u!1 &321287244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321287245}
+  m_Layer: 5
+  m_Name: HorizontalGP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &321287245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321287244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 982350693}
+  - {fileID: 1343761070}
+  m_Father: {fileID: 118540557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &321734241
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5484,8 @@ RectTransform:
   - {fileID: 362479056}
   - {fileID: 492389291}
   - {fileID: 541106986}
+  - {fileID: 1318989605}
+  - {fileID: 849391510}
   m_Father: {fileID: 371880292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5631,13 +5690,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &339336266
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,7 +6161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &371880292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6110,15 +6169,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371880291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 327129012}
-  - {fileID: 1318989605}
-  - {fileID: 849391510}
-  m_Father: {fileID: 118540557}
+  m_Father: {fileID: 1477253812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6272,10 +6329,10 @@ RectTransform:
   - {fileID: 675474232}
   m_Father: {fileID: 1343761070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 329.7799, y: 0}
-  m_SizeDelta: {x: 1680.44, y: 1080}
+  m_SizeDelta: {x: -659.56006, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386308782
 MonoBehaviour:
@@ -6373,13 +6430,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &395433917
 Rigidbody2D:
   serializedVersion: 5
@@ -6732,9 +6789,9 @@ RectTransform:
   - {fileID: 638984628}
   m_Father: {fileID: 386308781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 840.2199, y: 540}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 230, y: 540}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &421482440
@@ -7327,13 +7384,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &481198333
 GameObject:
   m_ObjectHideFlags: 0
@@ -7644,13 +7701,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 15
+  unstuckForce: 20
 --- !u!50 &501176742
 Rigidbody2D:
   serializedVersion: 5
@@ -9243,15 +9300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f696ec4830c9041a9747d535c98e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIWrapper: {fileID: 118540557}
-  CanvasScaler: {fileID: 352649142}
-  MatchWidth: 1
-  MatchHeight: 1
-  PortraitMatchHeight: 0.5
+  uiManager: {fileID: 219230577}
+  canvasScaler: {fileID: 352649142}
+  matchWidth: 1
+  matchHeight: 1
+  portraitMatchHeight: 1
   transitionDuration: 0.2
   waitForRotation: 0.2
-  boardController: {fileID: 756274959}
-  ballLauncher: {fileID: 238813834}
 --- !u!4 &622577595
 Transform:
   m_ObjectHideFlags: 0
@@ -10206,11 +10261,11 @@ RectTransform:
   - {fileID: 1363130622}
   m_Father: {fileID: 386308781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -725.11, y: 0.0000076293945}
-  m_SizeDelta: {x: 230.22, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
+  m_SizeDelta: {x: 230.21997, y: 1080}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &675986102
 GameObject:
   m_ObjectHideFlags: 0
@@ -10269,13 +10324,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &675986105
 Rigidbody2D:
   serializedVersion: 5
@@ -12593,12 +12648,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1546125816}
-  m_Father: {fileID: 371880292}
+  m_Father: {fileID: 327129012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -456.4017, y: -551.6998}
-  m_SizeDelta: {x: 278.6, y: 991.4}
+  m_AnchoredPosition: {x: -446.5, y: 0}
+  m_SizeDelta: {x: 300, y: 1010}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &853572301
 GameObject:
@@ -13106,7 +13161,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -40.08999}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 80, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889379898
 MonoBehaviour:
@@ -13587,7 +13642,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 39.91001}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 80, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &905667494
 MonoBehaviour:
@@ -13609,7 +13664,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -885829540479703452, guid: e544a8a374003c34d8099ec6c739cf11, type: 3}
+  m_Sprite: {fileID: 2765811202795217436, guid: e544a8a374003c34d8099ec6c739cf11, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -15060,18 +15115,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982350692}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1967405345}
-  m_Father: {fileID: 118540557}
+  m_Father: {fileID: 321287245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2340, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1002116144 stripped
 RectTransform:
@@ -17525,10 +17580,10 @@ RectTransform:
   - {fileID: 1267090373}
   m_Father: {fileID: 266244405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0016785, y: 500.9002}
-  m_SizeDelta: {x: 1191.4, y: 1119.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.001953125, y: 500.90015}
+  m_SizeDelta: {x: -0.5999756, y: -1000.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189393092
 MonoBehaviour:
@@ -17994,8 +18049,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -475}
-  m_SizeDelta: {x: 1220, y: 80}
+  m_AnchoredPosition: {x: 0.0000095367, y: -475}
+  m_SizeDelta: {x: 1191.4, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1269848162
 GameObject:
@@ -18276,12 +18331,12 @@ RectTransform:
   - {fileID: 561218433}
   - {fileID: 949900024}
   - {fileID: 694555207}
-  m_Father: {fileID: 371880292}
+  m_Father: {fileID: 327129012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 595.69, y: -56.075}
-  m_SizeDelta: {x: 230, y: 540}
+  m_AnchoredPosition: {x: 596, y: 505}
+  m_SizeDelta: {x: 200, y: 500}
   m_Pivot: {x: 1, y: 1}
 --- !u!224 &1319122778 stripped
 RectTransform:
@@ -19166,18 +19221,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343761069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 386308781}
-  m_Father: {fileID: 118540557}
+  m_Father: {fileID: 321287245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2340, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1361177332
 GameObject:
@@ -19295,7 +19350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000061989, y: 80.08999}
+  m_AnchoredPosition: {x: 0, y: 80.08999}
   m_SizeDelta: {x: 80, y: 317.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363130623
@@ -19566,7 +19621,7 @@ MonoBehaviour:
   yOffsetAt16Rows: 440
   mainCanvas: {fileID: 352649143}
   minScale: 0.04
-  ballLauncher: {fileID: 238813834}
+  ballLauncher: {fileID: 2113262719}
 --- !u!1 &1385271516
 GameObject:
   m_ObjectHideFlags: 0
@@ -20115,13 +20170,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &1407465564
 GameObject:
   m_ObjectHideFlags: 0
@@ -20655,7 +20710,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: 645ce932cd604ea9a0af2c39a4776645
+  testToken: 6608b0ed269a4b36b16bbbe7762e18cf
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
@@ -20822,6 +20877,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
+--- !u!1 &1477253811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477253812}
+  m_Layer: 5
+  m_Name: VerticalGP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1477253812
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477253811}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 266244405}
+  - {fileID: 371880292}
+  m_Father: {fileID: 118540557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1518762096
 GameObject:
   m_ObjectHideFlags: 0
@@ -22536,13 +22628,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1001 &1619475255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23895,13 +23987,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &1732769150
 Rigidbody2D:
   serializedVersion: 5
@@ -25769,13 +25861,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 15
+  unstuckForce: 20
 --- !u!1 &1828222667
 GameObject:
   m_ObjectHideFlags: 0
@@ -26319,13 +26411,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &1852849906
 Rigidbody2D:
   serializedVersion: 5
@@ -28741,11 +28833,11 @@ RectTransform:
   - {fileID: 1327950527}
   m_Father: {fileID: 982350693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -820.43994, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 50.680176, y: 0}
   m_SizeDelta: {x: 620, y: 980}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1967405346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29002,6 +29094,56 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7386386130475827203, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
   m_PrefabInstance: {fileID: 1970508064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1975413000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975413002}
+  - component: {fileID: 1975413001}
+  m_Layer: 0
+  m_Name: PathCalculator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1975413001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975413000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2afdbdcccefce54182f5ca2a00b6ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalVariation: 0.03
+  verticalOffset: 0.6
+  catcherApproachOffset: 0.5
+  gapBiasFactor: 0.65
+  pathRandomization: 0.15
+  debugPath: 1
+--- !u!4 &1975413002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975413000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.41641775, y: -1.383353, z: 7684.794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975663516
 GameObject:
   m_ObjectHideFlags: 0
@@ -29169,13 +29311,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &1976413334
 Rigidbody2D:
   serializedVersion: 5
@@ -30177,13 +30319,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!1 &2087116478
 GameObject:
   m_ObjectHideFlags: 0
@@ -30394,13 +30536,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &2111272309
 Rigidbody2D:
   serializedVersion: 5
@@ -30502,6 +30644,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111272306}
   m_CullTransparentMesh: 1
+--- !u!1 &2113262718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113262720}
+  - component: {fileID: 2113262719}
+  m_Layer: 0
+  m_Name: DropManagerVertical
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2113262719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113262718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b897fc1552f016f4e9fd77df0554428b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPool:
+  - {fileID: 501176739}
+  - {fileID: 1976413331}
+  - {fileID: 145696826}
+  - {fileID: 1732769147}
+  - {fileID: 2121449736}
+  - {fileID: 675986102}
+  - {fileID: 1852849903}
+  - {fileID: 395433914}
+  - {fileID: 195803319}
+  - {fileID: 2111272306}
+  boardController: {fileID: 1377344435}
+  spawnTransform: {fileID: 742723081}
+  pathCalculator: {fileID: 1975413001}
+  gameManager: {fileID: 22559460}
+  baseGravityScale: 1.5
+  ballScaleAt8Rows: 0.8
+  ballScaleAt16Rows: 0.6
+  startOffsetAt8Rows: 40
+  startOffsetAt16Rows: 40
+  maxActiveBalls: 10
+  spawnDelay: 0.1
+  lowDifficultySprite: {fileID: 4840735777579599281, guid: c697528fe30e8d147933ef6423de2a00, type: 3}
+  mediumDifficultySprite: {fileID: 3501689478382954987, guid: add904718f58dfd47bc920e24cf0399b, type: 3}
+  highDifficultySprite: {fileID: -5185680815138586352, guid: 729c2c62ed069f249b5520b16588059e, type: 3}
+--- !u!4 &2113262720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113262718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5630054, y: 4.753402, z: 3091.2568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117141473
 GameObject:
   m_ObjectHideFlags: 0
@@ -30636,13 +30847,13 @@ MonoBehaviour:
   pathFollowStrength: 18
   nextPointThreshold: 0.3
   finalApproachDistance: 2
-  stuckCheckInterval: 0.5
-  stuckVelocityThreshold: 0.1
+  stuckCheckInterval: 0.15
+  stuckVelocityThreshold: 0.05
   maxStuckFrames: 3
   visualizePath: 1
   pegBounceReduction: 0.3
   pegPushForce: 1.5
-  unstuckForce: 5
+  unstuckForce: 20
 --- !u!50 &2121449739
 Rigidbody2D:
   serializedVersion: 5
@@ -31278,6 +31489,7 @@ SceneRoots:
   - {fileID: 719240420}
   - {fileID: 352649144}
   - {fileID: 238813833}
+  - {fileID: 2113262720}
   - {fileID: 1460689621}
   - {fileID: 219230578}
   - {fileID: 22559461}
@@ -31286,3 +31498,4 @@ SceneRoots:
   - {fileID: 628707861}
   - {fileID: 622577595}
   - {fileID: 893536193}
+  - {fileID: 1975413002}

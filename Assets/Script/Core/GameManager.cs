@@ -5,22 +5,29 @@ using PlinkoGame.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening; // Added for proper cleanup
+using DG.Tweening;
 
 namespace PlinkoGame
 {
     /// <summary>
     /// Main game controller
-    /// FIXED: Proper DOTween cleanup on destroy
+    /// NOW SUPPORTS DUAL LAYOUT SYSTEM
+    /// References active BoardController and BallLauncher based on orientation
     /// </summary>
     public class GameManager : MonoBehaviour
     {
         [Header("Core References")]
         [SerializeField] private SocketIOManager socketManager;
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private BoardController boardController;
-        [SerializeField] private BallLauncher ballLauncher;
         [SerializeField] private InfoPanelManager infoPanelManager;
+
+        [Header("Horizontal Layout")]
+        [SerializeField] private BoardController horizontalBoardController;
+        [SerializeField] private BallLauncher horizontalBallLauncher;
+
+        [Header("Vertical Layout")]
+        [SerializeField] private BoardController verticalBoardController;
+        [SerializeField] private BallLauncher verticalBallLauncher;
 
         [Header("Settings")]
         [SerializeField] private int maxParallelBalls = 10;
@@ -28,6 +35,10 @@ namespace PlinkoGame
 
         [Header("Blocker")]
         [SerializeField] private GameObject raycastBlocker;
+
+        // Active references (updated on orientation change)
+        private BoardController activeBoardController;
+        private BallLauncher activeBallLauncher;
 
         private MultiplierService multiplierService;
         private int currentBetIndex;
@@ -55,6 +66,36 @@ namespace PlinkoGame
         private void Awake()
         {
             multiplierService = new MultiplierService();
+
+            // Start with horizontal layout as default
+            activeBoardController = horizontalBoardController;
+            activeBallLauncher = horizontalBallLauncher;
+        }
+
+        /// <summary>
+        /// Called by UIManager when layout switches
+        /// Updates active board and ball launcher references
+        /// </summary>
+        internal void OnLayoutSwitched(bool isHorizontal)
+        {
+            activeBoardController = isHorizontal ? horizontalBoardController : verticalBoardController;
+            activeBallLauncher = isHorizontal ? horizontalBallLauncher : verticalBallLauncher;
+
+            // Update the active board with current settings
+            if (activeBoardController != null)
+            {
+                int currentRows = GetRowCountFromIndex(currentRowIndex);
+                activeBoardController.SetRows(currentRows);
+                UpdateCatcherMultipliers(currentRows, currentRiskName);
+            }
+
+            // Update ball launcher sprites
+            if (activeBallLauncher != null)
+            {
+                activeBallLauncher.UpdateBallSprites(currentRiskName);
+            }
+
+            Debug.Log($"[GameManager] Layout switched to {(isHorizontal ? "HORIZONTAL" : "VERTICAL")}");
         }
 
         internal void OnInitDataReceived()
@@ -77,7 +118,12 @@ namespace PlinkoGame
             GenerateAllMultiplierMappings();
 
             int defaultRows = GetRowCountFromIndex(currentRowIndex);
-            boardController.SetRows(defaultRows);
+
+            // Initialize BOTH boards (only active one will be visible)
+            if (horizontalBoardController != null)
+                horizontalBoardController.SetRows(defaultRows);
+            if (verticalBoardController != null)
+                verticalBoardController.SetRows(defaultRows);
 
             uiManager.InitializeFromGameData(
                 socketManager.InitialData,
@@ -91,7 +137,12 @@ namespace PlinkoGame
             }
 
             UpdateCatcherMultipliers(defaultRows, currentRiskName);
-            ballLauncher.UpdateBallSprites(currentRiskName);
+
+            // Update sprites for both launchers
+            if (horizontalBallLauncher != null)
+                horizontalBallLauncher.UpdateBallSprites(currentRiskName);
+            if (verticalBallLauncher != null)
+                verticalBallLauncher.UpdateBallSprites(currentRiskName);
         }
 
         internal void OnDataRefreshed()
@@ -102,8 +153,6 @@ namespace PlinkoGame
             }
             GenerateAllMultiplierMappings();
         }
-
-        // Replace OnResultReceived() method in GameManager.cs
 
         internal void OnResultReceived()
         {
@@ -122,18 +171,19 @@ namespace PlinkoGame
             };
             pendingResults.Enqueue(pendingResult);
 
-            ballLauncher.DropBallToTarget(targetCatcherIndex);
+            // Drop ball using ACTIVE ball launcher
+            if (activeBallLauncher != null)
+            {
+                activeBallLauncher.DropBallToTarget(targetCatcherIndex);
+            }
 
             activeBallCount++;
 
-            // FIX: Clear processing flags IMMEDIATELY after ball is launched
-            // This allows the next bet to be placed while the ball is still falling
             isProcessingBet = false;
             isWaitingForResult = false;
 
             socketManager.ConsumeResult();
 
-            // Update button state so user can place next bet
             UpdateBetButtonState();
 
             if (isAutoplayActive)
@@ -151,7 +201,6 @@ namespace PlinkoGame
             }
         }
 
-        // Keep the rest of GameManager.cs unchanged
         internal void OnBetButtonClicked()
         {
             if (activeBallCount >= maxParallelBalls || isProcessingBet || isWaitingForResult)
@@ -240,18 +289,12 @@ namespace PlinkoGame
                     yield break;
                 }
 
-                if (!isInfiniteAutoplay && autoplayRoundsRemaining <= 0)
-                {
-                    StopAutoplay();
-                    yield break;
-                }
-
                 PlaceBet();
 
-                float elapsedTime = 0f;
-                while (elapsedTime < autoplayDelay)
+                yield return new WaitForSeconds(autoplayDelay);
+
+                while (activeBallCount >= maxParallelBalls)
                 {
-                    elapsedTime += Time.deltaTime;
                     yield return null;
                 }
             }
@@ -281,7 +324,11 @@ namespace PlinkoGame
             int currentRows = GetRowCountFromIndex(currentRowIndex);
             UpdateCatcherMultipliers(currentRows, currentRiskName);
 
-            ballLauncher.UpdateBallSprites(currentRiskName);
+            // Update BOTH ball launchers (only active one visible)
+            if (horizontalBallLauncher != null)
+                horizontalBallLauncher.UpdateBallSprites(currentRiskName);
+            if (verticalBallLauncher != null)
+                verticalBallLauncher.UpdateBallSprites(currentRiskName);
 
             uiManager.RefreshHoverData(GetCurrentBetAmount());
         }
@@ -291,7 +338,12 @@ namespace PlinkoGame
             currentRowIndex = rowIndex;
             int rowCount = GetRowCountFromIndex(rowIndex);
 
-            boardController.SetRows(rowCount);
+            // Update ACTIVE board controller only
+            if (activeBoardController != null)
+            {
+                activeBoardController.SetRows(rowCount);
+            }
+
             UpdateCatcherMultipliers(rowCount, currentRiskName);
 
             uiManager.RefreshHoverData(GetCurrentBetAmount());
@@ -355,7 +407,12 @@ namespace PlinkoGame
             if (currentMappings.ContainsKey(key))
             {
                 MultiplierMapping mapping = currentMappings[key];
-                boardController.UpdateCatcherMultipliers(mapping.fullMultipliers);
+
+                // Update BOTH boards (only active one visible)
+                if (horizontalBoardController != null)
+                    horizontalBoardController.UpdateCatcherMultipliers(mapping.fullMultipliers);
+                if (verticalBoardController != null)
+                    verticalBoardController.UpdateCatcherMultipliers(mapping.fullMultipliers);
             }
         }
 
@@ -470,7 +527,6 @@ namespace PlinkoGame
                 raycastBlocker.SetActive(true);
             }
 
-            // Clean up DOTween
             DOTween.KillAll();
 
             multiplierService.ClearCache();
@@ -487,7 +543,6 @@ namespace PlinkoGame
                 StopCoroutine(autoplayCoroutine);
             }
 
-            // Kill all DOTween animations to prevent cleanup warnings
             DOTween.KillAll();
         }
     }
