@@ -6,8 +6,7 @@ using UnityEngine.UI;
 namespace PlinkoGame
 {
     /// <summary>
-    /// Ball position calculated in LOCAL space, converted to WORLD for spawn
-    /// Works with any orientation/ratio
+    /// Ball launcher with optimized spawning for high ball counts
     /// </summary>
     public class BallLauncher : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace PlinkoGame
         [SerializeField] private GameManager gameManager;
 
         [Header("Physics")]
-        [SerializeField] private float baseGravityScale = 1.5f;
+        [SerializeField] private float baseGravityScale = 1.2f;
 
         [Header("Ball Scaling")]
         [SerializeField] private float ballScaleAt8Rows = 1.0f;
@@ -30,8 +29,8 @@ namespace PlinkoGame
         [SerializeField] private float startOffsetAt16Rows = 0.3f;
 
         [Header("Multi-Ball Settings")]
-        [SerializeField] private int maxActiveBalls = 10;
-        [SerializeField] private float spawnDelay = 0.1f; // Reduced delay with better stuck handling
+        [SerializeField] private int maxActiveBalls = 50;
+        [SerializeField] private float spawnDelay = 0.05f;
 
         [Header("Difficulty Sprites")]
         [SerializeField] private Sprite lowDifficultySprite;
@@ -45,7 +44,6 @@ namespace PlinkoGame
         private HashSet<GameObject> ballsInUse = new HashSet<GameObject>();
         private string currentDifficulty = "LOW";
 
-        // Spawn queue system
         private Queue<int> spawnQueue = new Queue<int>();
         private bool isSpawning = false;
         private Coroutine spawnCoroutine;
@@ -69,7 +67,6 @@ namespace PlinkoGame
             UpdateBallScale();
             UpdateBallStartPosition();
             UpdateBallSprites(currentDifficulty);
-
         }
 
         private void ValidateAndInitializeBalls()
@@ -85,8 +82,12 @@ namespace PlinkoGame
 
                 if (rb == null || controller == null) continue;
 
+                // Configure for minimal ball-to-ball collision
                 rb.simulated = false;
                 ball.SetActive(false);
+
+                // Set collision layers to reduce ball-to-ball physics
+                ball.layer = LayerMask.NameToLayer("Default");
             }
         }
 
@@ -100,10 +101,8 @@ namespace PlinkoGame
                 return;
             }
 
-            // Add to spawn queue instead of spawning immediately
             spawnQueue.Enqueue(targetCatcherIndex);
 
-            // Start spawn coroutine if not already running
             if (!isSpawning)
             {
                 if (spawnCoroutine != null)
@@ -120,10 +119,8 @@ namespace PlinkoGame
 
             while (spawnQueue.Count > 0)
             {
-                // Check if we have available ball slots
                 if (activeBallCount >= maxActiveBalls)
                 {
-                    // Wait until a slot becomes available
                     yield return new WaitForSeconds(0.1f);
                     continue;
                 }
@@ -133,7 +130,6 @@ namespace PlinkoGame
                 GameObject availableBall = GetAvailableBall();
                 if (availableBall == null)
                 {
-                    Debug.LogWarning("[BallLauncher] No available balls");
                     yield return new WaitForSeconds(0.1f);
                     continue;
                 }
@@ -141,7 +137,6 @@ namespace PlinkoGame
                 Transform targetCatcher = activeCatchers[targetCatcherIndex];
                 DropBallInternal(availableBall, targetCatcher);
 
-                // Wait before spawning next ball (prevents path confusion)
                 yield return new WaitForSeconds(spawnDelay);
             }
 
@@ -154,13 +149,18 @@ namespace PlinkoGame
 
             List<List<Vector2>> pegRows = pathCalculator.GetPegRowsFromBoard(boardController);
 
+            // Generate unique path for this ball
             List<Vector2> calculatedPath = pathCalculator.CalculatePath(
                 initialBallWorldPosition,
                 targetCatcher,
                 pegRows
             );
 
-            ball.transform.position = initialBallWorldPosition;
+            // Add small random spawn offset to prevent overlap
+            Vector3 spawnPos = initialBallWorldPosition;
+            spawnPos.x += Random.Range(-0.1f, 0.1f);
+
+            ball.transform.position = spawnPos;
             ball.transform.rotation = Quaternion.identity;
             ball.SetActive(true);
 
@@ -172,8 +172,8 @@ namespace PlinkoGame
                 ballRb.linearVelocity = Vector2.zero;
                 ballRb.angularVelocity = 0;
                 ballRb.gravityScale = baseGravityScale;
-                ballRb.linearDamping = 0.3f;
-                ballRb.angularDamping = 0.5f;
+                ballRb.linearDamping = 0.5f;
+                ballRb.angularDamping = 0.8f;
                 ballRb.simulated = true;
                 ballRb.WakeUp();
 
@@ -181,8 +181,8 @@ namespace PlinkoGame
                 {
                     PhysicsMaterial2D bouncyMaterial = new PhysicsMaterial2D
                     {
-                        bounciness = 0.2f,
-                        friction = 0.1f
+                        bounciness = 0.08f, // Minimal bounce
+                        friction = 0.15f
                     };
                     ballRb.sharedMaterial = bouncyMaterial;
                 }
@@ -209,7 +209,7 @@ namespace PlinkoGame
 
             if (landedBall != null && ballsInUse.Contains(landedBall))
             {
-                StartCoroutine(ResetBallAfterDelay(landedBall, 1.5f));
+                StartCoroutine(ResetBallAfterDelay(landedBall, 1.2f));
             }
         }
 
@@ -295,10 +295,6 @@ namespace PlinkoGame
             }
         }
 
-        /// <summary>
-        /// Calculate in LOCAL space, convert to WORLD
-        /// Works with any orientation/rotation
-        /// </summary>
         private void UpdateBallStartPosition()
         {
             if (boardController == null)
@@ -308,24 +304,13 @@ namespace PlinkoGame
             }
 
             currentRows = boardController.GetCurrentRows();
-
-            // Get first peg row LOCAL Y
             float firstRowLocalY = boardController.GetFirstPegRowLocalY();
 
-            // Calculate offset based on rows
             float t = Mathf.InverseLerp(8, 16, currentRows);
             float offset = Mathf.Lerp(startOffsetAt8Rows, startOffsetAt16Rows, t);
 
-            // Position in LOCAL space (center X = 0)
-            Vector3 localPosition = new Vector3(
-                0,                      // Center in local space
-                firstRowLocalY + offset, // Above first peg row
-                0
-            );
-
-            // Convert to WORLD space using board transform
+            Vector3 localPosition = new Vector3(0, firstRowLocalY + offset, 0);
             initialBallWorldPosition = boardController.transform.TransformPoint(localPosition);
-
         }
 
         internal void UpdateBallSprites(string difficulty)
@@ -355,9 +340,6 @@ namespace PlinkoGame
             }
         }
 
-        /// <summary>
-        /// Called on board rebuild (row change)
-        /// </summary>
         internal void OnBoardRebuilt()
         {
             UpdateActiveCatchers();
@@ -365,9 +347,6 @@ namespace PlinkoGame
             UpdateBallStartPosition();
         }
 
-        /// <summary>
-        /// Called on orientation change
-        /// </summary>
         internal void OnOrientationChanged()
         {
             UpdateActiveCatchers();
@@ -375,9 +354,6 @@ namespace PlinkoGame
             UpdateBallStartPosition();
         }
 
-        /// <summary>
-        /// Called on risk change (sprites only)
-        /// </summary>
         internal void OnRiskChanged(string riskName)
         {
             UpdateBallSprites(riskName);
@@ -395,14 +371,12 @@ namespace PlinkoGame
 
         private void OnDestroy()
         {
-            // Stop spawn coroutine if running
             if (spawnCoroutine != null)
             {
                 StopCoroutine(spawnCoroutine);
                 spawnCoroutine = null;
             }
 
-            // Clear spawn queue
             spawnQueue.Clear();
 
             if (ballPool != null)

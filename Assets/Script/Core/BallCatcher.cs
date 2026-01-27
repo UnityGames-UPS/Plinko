@@ -9,7 +9,7 @@ namespace PlinkoGame
 {
     /// <summary>
     /// Handles individual catcher behavior, animation, and hover interactions
-    /// FIXED: Shows exact multiplier values (e.g., 0.48, 0.96) up to 2 decimal places
+    /// FIXED: Animation cooldown prevents multiple simultaneous animations
     /// </summary>
     public class BallCatcher : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
@@ -18,6 +18,7 @@ namespace PlinkoGame
         [SerializeField] private float impactDuration = 0.10f;
         [SerializeField] private float settleDuration = 0.16f;
         [SerializeField] private float reversePopScale = 0.92f;
+        [SerializeField] private float animationCooldown = 0.3f; // Cooldown between animations
 
         [Header("Multiplier Display")]
         [SerializeField] private TextMeshProUGUI multiplierText;
@@ -39,7 +40,8 @@ namespace PlinkoGame
         private Image catcherImage;
         private float multiplierValue = 1f;
         private bool isAnimating = false;
-        private int pendingAnimations = 0;
+        private float lastAnimationTime = -999f; // Track last animation time
+        private int ballsInCooldown = 0; // Count balls caught during cooldown
         private Vector3 originalPosition;
         private Vector3 originalScale;
         private int catcherIndexInRow = -1;
@@ -81,14 +83,18 @@ namespace PlinkoGame
             // AUDIO: Play ball catch sound
             AudioManager.Instance?.PlayBallCatch();
 
-            if (isAnimating)
+            float timeSinceLastAnimation = Time.time - lastAnimationTime;
+
+            // Only play animation if cooldown has passed
+            if (timeSinceLastAnimation >= animationCooldown && !isAnimating)
             {
-                pendingAnimations++;
-                StartCoroutine(PlayQueuedAnimation());
+                PlayCatchAnimation();
+                ballsInCooldown = 0; // Reset counter
             }
             else
             {
-                PlayCatchAnimation();
+                // Count balls caught during cooldown (for debugging)
+                ballsInCooldown++;
             }
         }
 
@@ -101,6 +107,7 @@ namespace PlinkoGame
             rectTransform.localScale = originalScale;
 
             isAnimating = true;
+            lastAnimationTime = Time.time;
 
             Sequence seq = DOTween.Sequence();
 
@@ -130,17 +137,6 @@ namespace PlinkoGame
                 rectTransform.localScale = originalScale;
                 isAnimating = false;
             });
-        }
-
-        private IEnumerator PlayQueuedAnimation()
-        {
-            while (isAnimating)
-            {
-                yield return null;
-            }
-
-            pendingAnimations--;
-            PlayCatchAnimation();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -242,22 +238,19 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// FIXED: Format multiplier to show EXACT values from backend
-        /// Shows up to 2 decimal places (e.g., 0.48, 0.96, 1.06)
+        /// Format multiplier to show exact values from backend
+        /// Shows up to 2 decimal places
         /// </summary>
         private string FormatMultiplierExact(float value)
         {
             if (value >= 1000)
             {
-                // Format as K (thousands)
                 double thousands = value / 1000.0;
-                // Remove trailing zeros
                 string formatted = thousands.ToString("0.##");
                 return $"{formatted}K";
             }
             else
             {
-                // Show up to 2 decimal places, removing trailing zeros
                 string formatted = value.ToString("0.##");
                 return $"{formatted}x";
             }
@@ -335,7 +328,8 @@ namespace PlinkoGame
             }
 
             isAnimating = false;
-            pendingAnimations = 0;
+            ballsInCooldown = 0;
+            lastAnimationTime = -999f;
         }
 
         internal void UpdateOriginalState()

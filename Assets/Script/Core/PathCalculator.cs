@@ -4,282 +4,236 @@ using System.Collections.Generic;
 namespace PlinkoGame
 {
     /// <summary>
-    /// Calculates ball path from start to target catcher
-    /// IMPROVED VERSION:
-    /// - Works in LOCAL SPACE (rotation-independent)
-    /// - Uses SMART gap positioning (biased toward target)
-    /// - Creates SMOOTH, natural paths (no sharp direction changes)
-    /// - RANDOMIZED paths - each ball takes a unique route
+    /// Creates unique randomized paths with strong peg avoidance
+    /// Each ball gets different waypoints even for same target
     /// </summary>
     public class PathCalculator : MonoBehaviour
     {
         [Header("Path Settings")]
-        [SerializeField] private float horizontalVariation = 0.08f; // Increased for more randomness
-        [SerializeField] private float verticalOffset = 0.6f; // INCREASED - waypoints below pegs, never AT pegs
-        [SerializeField] private float catcherApproachOffset = 0.5f;
-        [SerializeField][Range(0f, 1f)] private float gapBiasFactor = 0.65f;
-        [SerializeField] private float pathRandomization = 0.15f; // Random offset per waypoint
+        [SerializeField] private float pegClearance = 0.65f;
+        [SerializeField] private float rowOffset = 0.7f;
+        [SerializeField] private float randomSpread = 0.2f;
+        [SerializeField] private float targetApproach = 0.4f;
+
+        [Header("Debug")]
         [SerializeField] private bool debugPath = false;
 
-        // ============================================
-        // PATH CALCULATION - SMOOTH & NATURAL
-        // ============================================
-
-        public List<Vector2> CalculatePath(Vector2 startPosWorld, Transform targetCatcher, List<List<Vector2>> pegRowsWorld)
+        public List<Vector2> CalculatePath(Vector2 startWorld, Transform targetCatcher, List<List<Vector2>> pegRowsWorld)
         {
             List<Vector2> pathWorld = new List<Vector2>();
 
             if (targetCatcher == null)
             {
-                Debug.LogError("[PathCalc] Target catcher is null!");
-                pathWorld.Add(startPosWorld);
+                pathWorld.Add(startWorld);
                 return pathWorld;
             }
 
-            Transform boardTransform = targetCatcher.parent;
-            if (boardTransform == null)
+            Transform board = targetCatcher.parent;
+            if (board == null)
             {
-                Debug.LogError("[PathCalc] Target catcher has no parent (board)!");
-                pathWorld.Add(startPosWorld);
+                pathWorld.Add(startWorld);
                 return pathWorld;
             }
 
             // Convert to local space
-            Vector2 startPosLocal = boardTransform.InverseTransformPoint(startPosWorld);
-            Vector2 targetPosLocal = boardTransform.InverseTransformPoint(targetCatcher.position);
+            Vector2 startLocal = board.InverseTransformPoint(startWorld);
+            Vector2 targetLocal = board.InverseTransformPoint(targetCatcher.position);
 
-            // Convert peg rows to local space
+            if (debugPath)
+            {
+                Debug.Log($"[PathCalc] Start: {startLocal}, Target: {targetLocal}");
+            }
+
+            // Convert peg rows to local
             List<List<Vector2>> pegRowsLocal = new List<List<Vector2>>();
             foreach (List<Vector2> rowWorld in pegRowsWorld)
             {
                 List<Vector2> rowLocal = new List<Vector2>();
                 foreach (Vector2 pegWorld in rowWorld)
                 {
-                    Vector2 pegLocal = boardTransform.InverseTransformPoint(pegWorld);
-                    rowLocal.Add(pegLocal);
+                    rowLocal.Add(board.InverseTransformPoint(pegWorld));
                 }
                 rowLocal.Sort((a, b) => a.x.CompareTo(b.x));
                 pegRowsLocal.Add(rowLocal);
             }
 
-            if (debugPath)
-            {
-            }
-
-            // Calculate smooth path in local space
-            List<Vector2> pathLocal = CalculateSmoothPath(startPosLocal, targetPosLocal, pegRowsLocal);
+            // Generate unique path in local space
+            List<Vector2> pathLocal = GenerateUniquePath(startLocal, targetLocal, pegRowsLocal);
 
             // Convert back to world space
             foreach (Vector2 pointLocal in pathLocal)
             {
-                Vector2 pointWorld = boardTransform.TransformPoint(pointLocal);
-                pathWorld.Add(pointWorld);
+                pathWorld.Add(board.TransformPoint(pointLocal));
             }
 
             return pathWorld;
         }
 
-        private List<Vector2> CalculateSmoothPath(Vector2 startPos, Vector2 targetPos, List<List<Vector2>> pegRows)
+        private List<Vector2> GenerateUniquePath(Vector2 start, Vector2 target, List<List<Vector2>> pegRows)
         {
             List<Vector2> path = new List<Vector2>();
 
-            // Add initial random offset to starting position
-            Vector2 randomizedStart = startPos;
-            randomizedStart.x += Random.Range(-horizontalVariation * 2f, horizontalVariation * 2f);
-            path.Add(randomizedStart);
+            // Randomize start position
+            Vector2 randomStart = start;
+            randomStart.x += Random.Range(-randomSpread * 0.8f, randomSpread * 0.8f);
+            path.Add(randomStart);
 
-            int totalRows = pegRows.Count;
-            if (totalRows == 0)
+            if (pegRows.Count == 0)
             {
-                path.Add(targetPos);
+                path.Add(target);
                 return path;
             }
 
-            float startX = randomizedStart.x;
-            float targetX = targetPos.x;
-            float totalDistance = targetX - startX;
+            float startX = randomStart.x;
+            float targetX = target.x;
+            float totalDist = targetX - startX;
 
-            // Generate unique random seed for this path
-            float pathRandomSeed = Random.Range(0f, 1f);
-
-            // Track previous waypoint for smoothing
-            Vector2 previousPoint = randomizedStart;
-
-            for (int row = 0; row < totalRows; row++)
+            // Create waypoints for each row
+            for (int i = 0; i < pegRows.Count; i++)
             {
-                List<Vector2> rowPegs = pegRows[row];
-                if (rowPegs.Count == 0) continue;
+                List<Vector2> row = pegRows[i];
+                if (row.Count == 0) continue;
 
-                // Calculate ideal X (linear progression)
-                float progress = (float)(row + 1) / (totalRows + 1);
-                float idealX = startX + (totalDistance * progress);
+                // Calculate ideal X with progression toward target
+                float progress = (float)(i + 1) / (pegRows.Count + 1);
+                float idealX = startX + (totalDist * progress);
 
-                // Add wave-like randomization based on row and seed
-                float waveOffset = Mathf.Sin((row + pathRandomSeed * 10f) * 0.5f) * pathRandomization;
-                idealX += waveOffset;
+                // Reduced randomization for more consistent paths
+                float uniqueOffset = Random.Range(-randomSpread * 1.2f, randomSpread * 1.2f);
+                idealX += uniqueOffset;
 
-                // Find smooth waypoint that flows toward target
-                Vector2 waypoint = FindSmoothWaypoint(rowPegs, idealX, previousPoint, targetPos);
+                // Smaller wave pattern
+                float wave = Mathf.Sin(i * 0.8f + Random.value * 6.28f) * randomSpread * 0.5f;
+                idealX += wave;
 
-                // Add stronger random variation for unique paths
-                float randomOffsetX = Random.Range(-horizontalVariation, horizontalVariation);
-                float randomOffsetY = Random.Range(-horizontalVariation * 0.5f, horizontalVariation * 0.5f);
-                waypoint.x += randomOffsetX;
-                waypoint.y += randomOffsetY;
-
+                // Find safe waypoint
+                Vector2 waypoint = FindSafeWaypoint(row, idealX);
                 path.Add(waypoint);
-                previousPoint = waypoint;
 
-                if (debugPath && row % 4 == 0)
+                if (debugPath && i % 3 == 0)
                 {
+                    Debug.Log($"[PathCalc] Row {i}: idealX={idealX:F2}, waypoint={waypoint}");
                 }
             }
 
-            // Add randomization to approach point
-            Vector2 approachPoint = new Vector2(targetX, targetPos.y + catcherApproachOffset);
-            approachPoint.x += Random.Range(-horizontalVariation, horizontalVariation);
-            path.Add(approachPoint);
-            path.Add(targetPos);
+            // Add approach point DIRECTLY above target with minimal offset
+            Vector2 approach = new Vector2(
+                target.x + Random.Range(-randomSpread * 0.2f, randomSpread * 0.2f),
+                target.y + targetApproach
+            );
+            path.Add(approach);
+
+            // Add final target point
+            path.Add(target);
 
             return path;
         }
 
-        /// <summary>
-        /// Finds waypoint that creates smooth, natural path
-        /// Biases position within gap toward the target direction
-        /// CRITICAL: Ensures waypoint is NEVER at peg position
-        /// </summary>
-        private Vector2 FindSmoothWaypoint(List<Vector2> rowPegs, float idealX, Vector2 previousPoint, Vector2 targetPos)
+        private Vector2 FindSafeWaypoint(List<Vector2> rowPegs, float idealX)
         {
             if (rowPegs.Count == 0)
             {
                 return new Vector2(idealX, 0);
             }
 
-            List<Vector2> sortedPegs = new List<Vector2>(rowPegs);
-            sortedPegs.Sort((a, b) => a.x.CompareTo(b.x));
+            List<Vector2> pegs = new List<Vector2>(rowPegs);
+            pegs.Sort((a, b) => a.x.CompareTo(b.x));
 
-            // Determine direction of travel
-            float directionToTarget = Mathf.Sign(targetPos.x - previousPoint.x);
+            // Place waypoint BELOW pegs by rowOffset
+            float y = pegs[0].y - rowOffset;
 
-            // Safety distance - waypoints must be this far from ANY peg
-            float minSafeDistance = 0.5f; // Minimum safe distance from pegs
+            // Find safe X position
+            float x = idealX;
 
-            // LEFT of all pegs
-            if (idealX < sortedPegs[0].x)
+            // Check if ideal X is safe from all pegs
+            bool needsAdjustment = false;
+            foreach (Vector2 peg in pegs)
             {
-                float gapX = sortedPegs[0].x - 0.5f;
-                float gapY = sortedPegs[0].y - verticalOffset;
-                return new Vector2(gapX, gapY);
+                float dist = Mathf.Abs(x - peg.x);
+                if (dist < pegClearance)
+                {
+                    needsAdjustment = true;
+                    break;
+                }
             }
 
-            // RIGHT of all pegs
-            if (idealX > sortedPegs[sortedPegs.Count - 1].x)
+            // If not safe, find nearest gap
+            if (needsAdjustment)
             {
-                float gapX = sortedPegs[sortedPegs.Count - 1].x + 0.5f;
-                float gapY = sortedPegs[sortedPegs.Count - 1].y - verticalOffset;
-                return new Vector2(gapX, gapY);
+                x = FindNearestGap(pegs, idealX);
+            }
+
+            // Add final random offset (reduced for better accuracy)
+            x += Random.Range(-randomSpread * 0.2f, randomSpread * 0.2f);
+
+            // Verify final position is safe
+            foreach (Vector2 peg in pegs)
+            {
+                float dist = Mathf.Abs(x - peg.x);
+                if (dist < pegClearance * 0.8f)
+                {
+                    // Push away from peg
+                    float pushDir = Mathf.Sign(x - peg.x);
+                    x = peg.x + (pushDir * pegClearance);
+                }
+            }
+
+            return new Vector2(x, y);
+        }
+
+        private float FindNearestGap(List<Vector2> pegs, float idealX)
+        {
+            // Left of all pegs
+            if (idealX < pegs[0].x)
+            {
+                return pegs[0].x - pegClearance;
+            }
+
+            // Right of all pegs
+            if (idealX > pegs[pegs.Count - 1].x)
+            {
+                return pegs[pegs.Count - 1].x + pegClearance;
             }
 
             // Find gap containing ideal X
-            for (int i = 0; i < sortedPegs.Count - 1; i++)
+            for (int i = 0; i < pegs.Count - 1; i++)
             {
-                Vector2 leftPeg = sortedPegs[i];
-                Vector2 rightPeg = sortedPegs[i + 1];
+                float leftPegX = pegs[i].x;
+                float rightPegX = pegs[i + 1].x;
 
-                if (idealX >= leftPeg.x && idealX <= rightPeg.x)
+                if (idealX >= leftPegX && idealX <= rightPegX)
                 {
-                    // Calculate initial position within gap
-                    float gapX = CalculateBiasedGapPosition(leftPeg.x, rightPeg.x, idealX, directionToTarget);
-                    float gapY = leftPeg.y - verticalOffset;
+                    float gapCenter = (leftPegX + rightPegX) / 2f;
+                    float gapWidth = rightPegX - leftPegX;
 
-                    // CRITICAL SAFETY CHECK: Ensure waypoint is far from ALL pegs
-                    bool isSafe = false;
-                    int attempts = 0;
-
-                    while (!isSafe && attempts < 5)
+                    // Only use gap if wide enough
+                    if (gapWidth > pegClearance * 2.5f)
                     {
-                        isSafe = true;
+                        float offset = (idealX - gapCenter) / (gapWidth * 0.5f);
+                        offset = Mathf.Clamp(offset, -0.7f, 0.7f);
+                        return gapCenter + (offset * gapWidth * 0.3f);
+                    }
+                    else
+                    {
+                        // Gap too narrow, go to side with more space
+                        float leftDist = Mathf.Abs(idealX - leftPegX);
+                        float rightDist = Mathf.Abs(idealX - rightPegX);
 
-                        // Check distance to every peg in this row
-                        foreach (Vector2 peg in sortedPegs)
+                        if (leftDist < rightDist)
                         {
-                            Vector2 waypoint = new Vector2(gapX, gapY);
-                            float distanceToPeg = Vector2.Distance(waypoint, peg);
-
-                            // If too close to any peg, adjust position
-                            if (distanceToPeg < minSafeDistance)
-                            {
-                                isSafe = false;
-
-                                // Move waypoint away from the peg
-                                Vector2 awayFromPeg = (waypoint - peg).normalized;
-                                Vector2 adjustment = awayFromPeg * (minSafeDistance - distanceToPeg + 0.1f);
-
-                                gapX += adjustment.x;
-                                gapY += adjustment.y;
-
-                                // Keep X within gap bounds
-                                float gapWidth = rightPeg.x - leftPeg.x;
-                                float margin = gapWidth * 0.15f;
-                                gapX = Mathf.Clamp(gapX, leftPeg.x + margin, rightPeg.x - margin);
-
-                                break;
-                            }
+                            return leftPegX - pegClearance;
                         }
-
-                        attempts++;
+                        else
+                        {
+                            return rightPegX + pegClearance;
+                        }
                     }
-
-                    if (debugPath)
-                    {
-                    }
-
-                    return new Vector2(gapX, gapY);
                 }
             }
 
             // Fallback
-            float centerX = (sortedPegs[0].x + sortedPegs[1].x) / 2f;
-            float centerY = sortedPegs[0].y - verticalOffset;
-            return new Vector2(centerX, centerY);
+            return (pegs[0].x + pegs[1].x) / 2f;
         }
-
-        /// <summary>
-        /// Calculates position within gap that creates smooth flow
-        /// Instead of always using center, bias toward direction of travel
-        /// Adds random variation for unique paths
-        /// </summary>
-        private float CalculateBiasedGapPosition(float leftPegX, float rightPegX, float idealX, float direction)
-        {
-            float gapWidth = rightPegX - leftPegX;
-            float gapCenter = (leftPegX + rightPegX) / 2f;
-
-            // Calculate how far ideal X is from center (normalized -1 to 1)
-            float offsetFromCenter = (idealX - gapCenter) / (gapWidth * 0.5f);
-            offsetFromCenter = Mathf.Clamp(offsetFromCenter, -1f, 1f);
-
-            // Add random variation to offset (makes each path unique)
-            float randomVariation = Random.Range(-0.3f, 0.3f);
-            offsetFromCenter += randomVariation;
-            offsetFromCenter = Mathf.Clamp(offsetFromCenter, -1f, 1f);
-
-            // Apply bias factor to smooth the path
-            float biasedOffset = offsetFromCenter * gapBiasFactor;
-
-            // Calculate final position
-            float biasedX = gapCenter + (biasedOffset * gapWidth * 0.5f);
-
-            // Ensure we stay safely within gap (with margins)
-            float margin = gapWidth * 0.15f; // 15% margin from edges
-            biasedX = Mathf.Clamp(biasedX, leftPegX + margin, rightPegX - margin);
-
-            return biasedX;
-        }
-
-        // ============================================
-        // BOARD DATA EXTRACTION
-        // ============================================
 
         public List<List<Vector2>> GetPegRowsFromBoard(BoardController board)
         {
@@ -293,8 +247,7 @@ namespace PlinkoGame
 
                 if (child.gameObject.activeSelf && child.CompareTag("Peg"))
                 {
-                    Vector3 localPos = child.localPosition;
-                    float yPos = Mathf.Round(localPos.y * 100f) / 100f;
+                    float yPos = Mathf.Round(child.localPosition.y * 100f) / 100f;
 
                     if (!rowDict.ContainsKey(yPos))
                     {
@@ -310,8 +263,7 @@ namespace PlinkoGame
 
             foreach (float y in sortedY)
             {
-                List<Vector2> row = rowDict[y];
-                pegRows.Add(row);
+                pegRows.Add(rowDict[y]);
             }
 
             return pegRows;
