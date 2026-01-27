@@ -3006,7 +3006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalVariation: 0.03
-  pegPassOffset: 0.3
+  verticalOffset: 0.3
   catcherApproachOffset: 0.5
   debugPath: 1
 --- !u!1 &242130803
@@ -11842,7 +11842,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: 8a9da3df28214950b5987ff6591c49c0
+  testToken: 7acd53a340e04fdfba8da5deac9b26a6
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
