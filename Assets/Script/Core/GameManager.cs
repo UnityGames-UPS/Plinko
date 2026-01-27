@@ -20,6 +20,7 @@ namespace PlinkoGame
         [SerializeField] private UIManager uiManager;
         [SerializeField] private BoardController boardController;
         [SerializeField] private BallLauncher ballLauncher;
+        [SerializeField] private InfoPanelManager infoPanelManager;
 
         [Header("Settings")]
         [SerializeField] private int maxParallelBalls = 10;
@@ -83,6 +84,12 @@ namespace PlinkoGame
                 socketManager.PlayerData.balance
             );
 
+            // Generate info panel text
+            if (infoPanelManager != null)
+            {
+                infoPanelManager.GenerateInfoText(socketManager.InitialData);
+            }
+
             UpdateCatcherMultipliers(defaultRows, currentRiskName);
             ballLauncher.UpdateBallSprites(currentRiskName);
         }
@@ -119,14 +126,14 @@ namespace PlinkoGame
 
             activeBallCount++;
 
-            // ✅ FIX: Clear processing flags IMMEDIATELY after ball is launched
+            // FIX: Clear processing flags IMMEDIATELY after ball is launched
             // This allows the next bet to be placed while the ball is still falling
             isProcessingBet = false;
             isWaitingForResult = false;
 
             socketManager.ConsumeResult();
 
-            // ✅ Update button state so user can place next bet
+            // Update button state so user can place next bet
             UpdateBetButtonState();
 
             if (isAutoplayActive)

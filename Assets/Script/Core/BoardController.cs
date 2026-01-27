@@ -200,12 +200,12 @@ namespace PlinkoGame
                 }
             }
 
-            // ✅ Position catchers BETWEEN pegs (within boundaries)
+            // Position catchers BETWEEN pegs (within boundaries)
             AlignCatchersInGaps(lastRowPegCount, center.x, xSpacing);
         }
 
         /// <summary>
-        /// ✅ FIXED POSITION LOGIC: Catchers positioned in gaps starting from peg[0]-peg[1]
+        /// FIXED POSITION LOGIC: Catchers positioned in gaps starting from peg[0]-peg[1]
         /// - Count: currentRows + 1 (UNCHANGED)
         /// - First catcher: between peg[0] and peg[1]
         /// - Size logic: UNCHANGED
@@ -221,11 +221,11 @@ namespace PlinkoGame
 
             int startIndex = (totalCatchers - catchersToUse) / 2;
 
-            // ✅ FIX: Calculate first peg position, then place first catcher in gap
+            // FIX: Calculate first peg position, then place first catcher in gap
             float lastRowWidth = (lastRowPegCount - 1) * xSpacing;
             float leftMostPegX = centerX - lastRowWidth / 2f;
 
-            // ✅ CORRECTED: Add spacing to start from gap between peg[0] and peg[1]
+            // CORRECTED: Add spacing to start from gap between peg[0] and peg[1]
             float firstCatcherX = leftMostPegX + (xSpacing / 2f);
 
             // Size calculations (UNCHANGED from original)
@@ -245,7 +245,7 @@ namespace PlinkoGame
                 Transform box = catchers[index];
                 box.gameObject.SetActive(true);
 
-                // ✅ POSITION: Starting from gap between peg[0] and peg[1]
+                // POSITION: Starting from gap between peg[0] and peg[1]
                 float x = firstCatcherX + (i * xSpacing);
                 float y = bottomY + dynamicYOffset;
 
@@ -263,7 +263,6 @@ namespace PlinkoGame
                 }
             }
 
-            Debug.Log($"[Board] Positioned {catchersToUse} catchers in gaps | First X: {firstCatcherX:F2} | Spacing: {xSpacing:F2}");
         }
 
         private void UpdateAllPegAnimationScales()

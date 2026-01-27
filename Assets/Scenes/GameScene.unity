@@ -242,6 +242,7 @@ MonoBehaviour:
   uiManager: {fileID: 219230577}
   boardController: {fileID: 756274959}
   ballLauncher: {fileID: 238813834}
+  infoPanelManager: {fileID: 893536192}
   maxParallelBalls: 10
   autoplayDelay: 3
   raycastBlocker: {fileID: 419093565}
@@ -3008,6 +3009,7 @@ MonoBehaviour:
   horizontalVariation: 0.03
   verticalOffset: 0.3
   catcherApproachOffset: 0.5
+  gapBiasFactor: 0.65
   debugPath: 1
 --- !u!1 &242130803
 GameObject:
@@ -5827,42 +5829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b><size=32>How to Play Plinko?</size></b>\r\n\r\nPlinko is a classic
-    game of chance where the player drops a ball in a multi-row pin pyramid, with
-    the ball bouncing between pins in a random route until it reaches a destination
-    at the bottom of the pyramid.\r\n\r\nThe location where the ball lands determines
-    the payout, with large payouts towards the edges of the pin pyramid, whilst the
-    centre of the pyramid provides lower payouts and losses.\r\n\r\nThe strategy
-    to succeed in Plinko is all about bankroll control and surviving the lows until
-    variance turns in your favour.\r\n\r\n\r\n<b><size=26>Gameplay Options</size></b>\r\n\r\n<b>Risk
-    Level:</b> Control the volatility of payouts\r\n   \u2022 Low Risk - Stable payouts\r\n  
-    \u2022 Medium Risk - Balanced rewards  \r\n   \u2022 High Risk - Maximum wins\r\n\r\n<b>Rows:</b>
-    Select between 8 to 16 rows\r\n   More rows = More pins = Altered payouts\r\n\r\n<b><size=30>Low-Risk
-    Options</size></b>\r\n\r\n<b>Rows  |  Destinations  |  Min  |  Max</b>\r\n  8         
-    9              0.5x      5.6x\r\n  9          10             0.7x      5.6x\r\n 
-    10         11             0.5x      8.9x\r\n  11         12             0.7x     
-    8.4x\r\n  12         13             0.5x      10x\r\n  13         14            
-    0.7x      8.1x\r\n  14         15             0.5x      7.1x\r\n  15        
-    16             0.7x      15x\r\n  16         17             0.5x      <b>16x</b>\r\n\r\n<b>Max
-    Payout: 16x (0.0015% chance)</b>\r\n\r\n<b><size=30>Medium-Risk Options</size></b>\r\n\r\n<b>Rows 
-    |  Destinations  |  Min  |  Max</b>\r\n  8          9              0.4x     
-    13x\r\n  9          10             0.5x      18x\r\n  10         11            
-    0.4x      22x\r\n  11         12             0.5x      24x\r\n  12         13            
-    0.3x      33x\r\n  13         14             0.4x      43x\r\n  14         15            
-    0.2x      58x\r\n  15         16             0.3x      88x\r\n  16         17            
-    0.3x      <b>110x</b>\r\n\r\n<b>Max Payout: 110x (0.0015% chance)</b>\r\n\r\n<b><size=30>High-Risk
-    Options</size></b>\r\n\r\n\r\n<b>Rows  |  Destinations  |  Min  |  Max</b>\r\n 
-    8          9              0.2x      29x\r\n  9          10             0.2x     
-    43x\r\n  10         11             0.2x      76x\r\n  11         12            
-    0.2x      120x\r\n  12         13             0.2x      170x\r\n  13        
-    14             0.2x      260x\r\n  14         15             0.2x      420x\r\n 
-    15         16             0.2x      620x\r\n  16         17             0.2x     
-    <b>1000x</b>\r\n\r\n<b>Max Payout: 1000x (0.0015% chance)</b>\r\n\r\n<b><size=30>Strategy
-    Tips</size></b>\r\n\r\n\u2022 <b>Bankroll Management</b>\r\n  Control betting
-    sizes to survive variance\r\n\r\n\u2022 <b>Risk Selection</b>\r\n  Match risk
-    level to your playing style\r\n\r\n\u2022 <b>Row Configuration</b>\r\n  More
-    rows = More destinations\r\n\r\n\u2022 <b>Patience</b>\r\n  Wait for variance
-    to turn in your favour\r\n\r\n\r\n<size=18><b>Good luck and play responsibly!</b></size>"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ef0b1c0e5781034fa5468527dc75e1a, type: 2}
   m_sharedMaterial: {fileID: -10392707003021104, guid: 9ef0b1c0e5781034fa5468527dc75e1a, type: 2}
@@ -8225,6 +8192,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889379896}
   m_CullTransparentMesh: 1
+--- !u!1 &893536191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893536193}
+  - component: {fileID: 893536192}
+  m_Layer: 0
+  m_Name: Infomanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &893536192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893536191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da8c14193a4faf4ba8fa016c824ae36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoPanelText: {fileID: 627708237}
+--- !u!4 &893536193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893536191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17396286, y: -0.46013403, z: -9.966269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911680799
 GameObject:
   m_ObjectHideFlags: 0
@@ -11842,7 +11854,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: 7acd53a340e04fdfba8da5deac9b26a6
+  testToken: 645ce932cd604ea9a0af2c39a4776645
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
@@ -18200,3 +18212,4 @@ SceneRoots:
   - {fileID: 1749571977}
   - {fileID: 628707861}
   - {fileID: 622577595}
+  - {fileID: 893536193}

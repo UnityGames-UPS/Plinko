@@ -79,7 +79,7 @@ namespace PlinkoGame
 
             collision.gameObject.SetActive(false);
 
-            // ✅ AUDIO: Play ball catch sound
+            // AUDIO: Play ball catch sound
             AudioManager.Instance?.PlayBallCatch();
 
             if (isAnimating)
@@ -161,7 +161,7 @@ namespace PlinkoGame
             {
                 if (uiManager != null)
                 {
-                    // ✅ Use world position for hover popup (it will be converted properly by UIManager)
+                    // Use world position for hover popup (it will be converted properly by UIManager)
                     uiManager.ToggleHoverPopup(transform.position, GetProfit(), GetProbability());
                 }
             }
@@ -177,7 +177,7 @@ namespace PlinkoGame
             double profit = GetProfit();
             double probability = GetProbability();
 
-            // ✅ Use world position - UIManager will handle the positioning correctly
+            // Use world position - UIManager will handle the positioning correctly
             uiManager.ShowHoverPopup(transform.position, profit, probability);
         }
 
@@ -189,7 +189,7 @@ namespace PlinkoGame
             }
         }
 
-       
+
 
         private void HideHoverPopup()
         {

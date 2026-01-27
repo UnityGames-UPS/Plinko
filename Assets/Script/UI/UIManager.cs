@@ -641,7 +641,7 @@ namespace PlinkoGame
             if (exitConfirmPopupMainPanel != null)
                 exitConfirmPopupMainPanel.SetActive(false);
 
-            if(gameInfoPopupMainPanel != null)
+            if (gameInfoPopupMainPanel != null)
                 gameInfoPopupMainPanel.SetActive(false);
 
             HideHoverPopup();
@@ -710,7 +710,7 @@ namespace PlinkoGame
         {
             HideAllPopups();
 
-            // ✅ AUDIO: Play error sound for disconnection
+            // AUDIO: Play error sound for disconnection
             AudioManager.Instance?.PlayErrorSound();
 
             if (disconnectionPopupMainPanel != null)
@@ -729,7 +729,7 @@ namespace PlinkoGame
 
         private void ShowExitConfirmPopup()
         {
-         
+
             AudioManager.Instance?.PlayErrorSound();
 
             if (exitConfirmPopupMainPanel != null)
@@ -802,7 +802,7 @@ namespace PlinkoGame
         }
         private void OnInfoClose()
         {
-            if(gameInfoPopupMainPanel != null  && gameInfoPopupMainPanel.activeSelf)
+            if (gameInfoPopupMainPanel != null && gameInfoPopupMainPanel.activeSelf)
                 gameInfoPopupMainPanel.SetActive(false);
         }
         private void OnDisconnectionOk()
@@ -835,7 +835,7 @@ namespace PlinkoGame
 
             if (hoverArrow != null)
             {
-                // ✅ The catcherPosition passed is already in world space
+                // The catcherPosition passed is already in world space
                 // But if the catcher's position changes due to rotation, we need to handle it
                 // The hover arrow should align with the catcher in SCREEN space
 

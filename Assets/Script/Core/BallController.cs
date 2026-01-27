@@ -77,7 +77,6 @@ namespace PlinkoGame
             pegCollisions = 0;
             hitPegs.Clear();
 
-            Debug.Log($"Ball {gameObject.name} initialized - Target: {targetCatcher}, Path points: {path.Count}");
         }
 
         private void FixedUpdate()
@@ -147,7 +146,7 @@ namespace PlinkoGame
 
                     OnPegHit?.Invoke(collision.gameObject);
 
-                    // ✅ AUDIO: Play ball collision sound
+                    // AUDIO: Play ball collision sound
                     AudioManager.Instance?.PlayBallCollision();
 
                     rb.linearVelocity *= (1f - pegBounceReduction);
@@ -172,8 +171,7 @@ namespace PlinkoGame
             int actualCatcherIndex = ParseCatcherIndex(catcher.name);
             bool hitTarget = (catcher.name == targetCatcherName);
 
-            Debug.Log($"Ball {gameObject.name} caught! Collisions: {pegCollisions}, Catcher: {catcher.name}, " +
-                      $"Target: {targetCatcherName}, HIT: {hitTarget}");
+            Debug.Log($"Target: {targetCatcherName}, HIT: {hitTarget}");
 
             if (rb != null)
             {

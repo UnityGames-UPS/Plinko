@@ -62,7 +62,6 @@ namespace PlinkoGame
 
             if (debugPath)
             {
-                Debug.Log($"[PathCalc] Start: {startPosLocal:F2} → Target: {targetPosLocal:F2} | Rows: {pegRowsLocal.Count}");
             }
 
             // Calculate smooth path in local space
@@ -117,7 +116,6 @@ namespace PlinkoGame
 
                 if (debugPath && row % 4 == 0)
                 {
-                    Debug.Log($"  Row {row}: Ideal={idealX:F2}, Waypoint={waypoint:F2}");
                 }
             }
 
@@ -170,13 +168,12 @@ namespace PlinkoGame
 
                 if (idealX >= leftPeg.x && idealX <= rightPeg.x)
                 {
-                    // ✅ SMOOTH PATH: Bias position within gap toward target
+                    // SMOOTH PATH: Bias position within gap toward target
                     float gapX = CalculateBiasedGapPosition(leftPeg.x, rightPeg.x, idealX, directionToTarget);
                     float gapY = leftPeg.y - verticalOffset;
 
                     if (debugPath)
                     {
-                        Debug.Log($"    Gap: [{leftPeg.x:F2}, {rightPeg.x:F2}] → Biased: {gapX:F2} (dir={directionToTarget:F0})");
                     }
 
                     return new Vector2(gapX, gapY);
@@ -255,7 +252,6 @@ namespace PlinkoGame
                 pegRows.Add(row);
             }
 
-            Debug.Log($"[PathCalc] Extracted {pegRows.Count} peg rows");
             return pegRows;
         }
     }

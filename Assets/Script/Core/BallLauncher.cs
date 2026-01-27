@@ -64,7 +64,6 @@ namespace PlinkoGame
             UpdateBallStartPosition();
             UpdateBallSprites(currentDifficulty);
 
-            Debug.Log($"[BallLauncher] ✅ Initialized | Ball World Pos: {initialBallWorldPosition}");
         }
 
         private void ValidateAndInitializeBalls()
@@ -254,7 +253,7 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// ✅ Calculate in LOCAL space, convert to WORLD
+        /// Calculate in LOCAL space, convert to WORLD
         /// Works with any orientation/rotation
         /// </summary>
         private void UpdateBallStartPosition()
@@ -274,17 +273,16 @@ namespace PlinkoGame
             float t = Mathf.InverseLerp(8, 16, currentRows);
             float offset = Mathf.Lerp(startOffsetAt8Rows, startOffsetAt16Rows, t);
 
-            // ✅ Position in LOCAL space (center X = 0)
+            // Position in LOCAL space (center X = 0)
             Vector3 localPosition = new Vector3(
                 0,                      // Center in local space
                 firstRowLocalY + offset, // Above first peg row
                 0
             );
 
-            // ✅ Convert to WORLD space using board transform
+            // Convert to WORLD space using board transform
             initialBallWorldPosition = boardController.transform.TransformPoint(localPosition);
 
-            Debug.Log($"[BallLauncher] ✅ Position updated | Local: {localPosition} → World: {initialBallWorldPosition} | Rows: {currentRows}");
         }
 
         internal void UpdateBallSprites(string difficulty)
@@ -315,34 +313,31 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// ✅ Called on board rebuild (row change)
+        /// Called on board rebuild (row change)
         /// </summary>
         internal void OnBoardRebuilt()
         {
             UpdateActiveCatchers();
             UpdateBallScale();
             UpdateBallStartPosition();
-            Debug.Log("[BallLauncher] ✅ Board rebuilt");
         }
 
         /// <summary>
-        /// ✅ Called on orientation change
+        /// Called on orientation change
         /// </summary>
         internal void OnOrientationChanged()
         {
             UpdateActiveCatchers();
             UpdateBallScale();
             UpdateBallStartPosition();
-            Debug.Log("[BallLauncher] ✅ Orientation changed");
         }
 
         /// <summary>
-        /// ✅ Called on risk change (sprites only)
+        /// Called on risk change (sprites only)
         /// </summary>
         internal void OnRiskChanged(string riskName)
         {
             UpdateBallSprites(riskName);
-            Debug.Log($"[BallLauncher] ✅ Risk changed: {riskName}");
         }
 
         internal bool HasAvailableBalls()

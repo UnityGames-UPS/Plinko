@@ -84,16 +84,13 @@ namespace PlinkoGame.Network
 
         private void OnDestroy()
         {
-            Debug.Log("[CLEANUP] SocketIOManager destroying");
+            Debug.Log("[SOCKET] Destroying");
 
-            // Set flag FIRST to prevent any new coroutines
             isBeingDestroyed = true;
             isExiting = true;
 
-            // Clean up coroutines
             CleanupRoutines();
 
-            // Close socket
             if (manager != null)
             {
                 try
@@ -102,7 +99,7 @@ namespace PlinkoGame.Network
                 }
                 catch (Exception e)
                 {
-                    Debug.LogWarning($"[CLEANUP] Error closing manager: {e.Message}");
+                    Debug.LogWarning($"[SOCKET] Error closing: {e.Message}");
                 }
                 manager = null;
             }
@@ -119,7 +116,6 @@ namespace PlinkoGame.Network
             if (!focus)
             {
                 focusLostTime = Time.time;
-                Debug.Log("[FOCUS] Application lost focus");
 
                 if (focusCheckRoutine == null && gameObject.activeInHierarchy)
                 {
@@ -128,8 +124,6 @@ namespace PlinkoGame.Network
             }
             else
             {
-                Debug.Log("[FOCUS] Application gained focus");
-
                 if (focusCheckRoutine != null)
                 {
                     StopCoroutine(focusCheckRoutine);
@@ -149,7 +143,6 @@ namespace PlinkoGame.Network
                 ShowErrorAndBlock("Test token is required in editor mode");
                 return false;
             }
-            Debug.Log("[VALIDATION] Token validated");
             return true;
 #else
             return true;
@@ -162,7 +155,6 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[SOCKET] Opening connection");
             RaycastBlocker?.SetActive(true);
 
             SocketOptions options = new SocketOptions
@@ -221,7 +213,6 @@ namespace PlinkoGame.Network
                 yield break;
             }
 
-            Debug.Log($"[AUTH] Authenticated: {myAuth.Substring(0, Math.Min(20, myAuth.Length))}...");
             options.Auth = (Best.SocketIO.SocketManager manager, Socket socket) => new { token = myAuth };
             SetupSocketManager(options);
         }
@@ -230,7 +221,6 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[SOCKET] Setting up manager");
 
 #if UNITY_EDITOR
             this.manager = new Best.SocketIO.SocketManager(new Uri(TestSocketURI), options);
@@ -309,7 +299,7 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[CONNECTION] Connected");
+            Debug.Log("[CONNECT] Connected");
 
             if (initTimeoutRoutine != null)
             {
@@ -344,11 +334,10 @@ namespace PlinkoGame.Network
         {
             if (isExiting || isBeingDestroyed)
             {
-                Debug.Log("[CONNECTION] Disconnected (intentional)");
                 return;
             }
 
-            Debug.LogWarning("[CONNECTION] Disconnected");
+            Debug.LogWarning("[DISCONNECT] Lost connection");
             isConnected = false;
             ResetPingRoutine();
             uiManager?.ShowDisconnectionPopup();
@@ -404,7 +393,7 @@ namespace PlinkoGame.Network
                 if (waitingForPong)
                 {
                     missedPongs++;
-                    Debug.LogWarning($"[PING] Missed pong #{missedPongs}/{MaxMissedPongs}");
+                    Debug.LogWarning($"[PING] Missed pong {missedPongs}/{MaxMissedPongs}");
 
                     if (missedPongs == 2)
                     {
@@ -413,7 +402,7 @@ namespace PlinkoGame.Network
 
                     if (missedPongs >= MaxMissedPongs)
                     {
-                        Debug.LogError("[PING] Connection lost - max pongs missed");
+                        Debug.LogError("[PING] Max pongs missed");
                         isConnected = false;
                         uiManager?.ShowDisconnectionPopup();
                         yield break;
@@ -444,7 +433,6 @@ namespace PlinkoGame.Network
         #region Disconnect Timer
         private IEnumerator DisconnectTimer()
         {
-            Debug.Log($"[DISCONNECT] Timer started ({disconnectDelay}s)");
             float elapsed = 0f;
 
             while (elapsed < disconnectDelay && !isConnected && !isExiting && !isBeingDestroyed)
@@ -468,15 +456,13 @@ namespace PlinkoGame.Network
         #region Focus Check
         private IEnumerator FocusTimeoutCheck()
         {
-            Debug.Log($"[FOCUS] Starting background timeout check ({maxBackgroundTime}s)");
-
             while (!hasFocus && !isExiting && !isBeingDestroyed)
             {
                 float timeInBackground = Time.time - focusLostTime;
 
                 if (timeInBackground >= maxBackgroundTime)
                 {
-                    Debug.LogError("[FOCUS] App in background too long - disconnecting");
+                    Debug.LogError("[FOCUS] Background timeout");
 
                     isConnected = false;
                     ResetPingRoutine();
@@ -489,7 +475,7 @@ namespace PlinkoGame.Network
                         }
                         catch (Exception e)
                         {
-                            Debug.LogWarning($"[FOCUS] Error closing manager: {e.Message}");
+                            Debug.LogWarning($"[FOCUS] Error: {e.Message}");
                         }
                     }
 
@@ -501,7 +487,6 @@ namespace PlinkoGame.Network
                 yield return new WaitForSeconds(1f);
             }
 
-            Debug.Log("[FOCUS] Focus regained or game exiting");
             focusCheckRoutine = null;
         }
         #endregion
@@ -527,7 +512,6 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[DATA] Result received");
             ParseResponse(jsonData);
         }
 
@@ -535,21 +519,20 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.LogError($"[SOCKET] Internal error: {data}");
+            Debug.LogError($"[ERROR] Internal: {data}");
             uiManager?.ShowErrorPopup("Server error occurred");
         }
 
         private void OnAlert(string data)
         {
             if (isBeingDestroyed) return;
-            Debug.Log($"[SOCKET] Alert: {data}");
         }
 
         private void OnAnotherDevice(string data)
         {
             if (isBeingDestroyed) return;
 
-            Debug.LogWarning($"[SOCKET] Another device: {data}");
+            Debug.LogWarning("[DEVICE] Another device detected");
             uiManager?.ShowAnotherDevicePopup();
         }
         #endregion
@@ -558,6 +541,9 @@ namespace PlinkoGame.Network
         private void ParseResponse(string jsonData)
         {
             if (isBeingDestroyed) return;
+
+            // Log the JSON response for tracking
+            Debug.Log($"[JSON] Response: {jsonData}");
 
             try
             {
@@ -593,7 +579,7 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[HANDLER] Processing init data");
+            Debug.Log("[INIT] Processing data");
 
             InitialData = root.gameData;
             PlayerData = root.player;
@@ -604,12 +590,11 @@ namespace PlinkoGame.Network
                 IsInitialized = true;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-                Debug.Log("[PLATFORM] Sending OnEnter");
                 JSManager?.SendCustomMessage("OnEnter");
 #endif
 
                 RaycastBlocker?.SetActive(false);
-                Debug.Log("[UI] Game ready");
+                Debug.Log("[INIT] Game ready");
             }
             else
             {
@@ -621,7 +606,7 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[HANDLER] Processing result");
+            Debug.Log("[RESULT] Processing");
 
             ResultData = root.payload;
             PlayerData = root.player;
@@ -636,7 +621,6 @@ namespace PlinkoGame.Network
         {
             if (isBeingDestroyed) return;
 
-            Debug.Log("[AUTH] Received auth data");
 
             try
             {
@@ -670,7 +654,6 @@ namespace PlinkoGame.Network
             request.payload.selectedRowIndex = selectedRowIndex;
 
             string json = JsonUtility.ToJson(request);
-            Debug.Log("[REQUEST] Sending bet");
             SendDataWithNamespace("request", json);
         }
 
