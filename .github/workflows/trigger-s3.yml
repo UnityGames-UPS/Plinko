@@ -13,4 +13,4 @@ jobs:
       s3_bucket: unity.build-dev
       s3_folder: OT-PLINCO
       cloudfront_distribution_id: ERDVMYSDM278F
-      invalidate_paths: "/*"
+      invalidate_paths: "/OT-PLINCO/*"
