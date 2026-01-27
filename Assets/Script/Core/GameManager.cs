@@ -96,6 +96,8 @@ namespace PlinkoGame
             GenerateAllMultiplierMappings();
         }
 
+        // Replace OnResultReceived() method in GameManager.cs
+
         internal void OnResultReceived()
         {
             PlinkoResultPayload result = socketManager.ResultData;
@@ -116,11 +118,16 @@ namespace PlinkoGame
             ballLauncher.DropBallToTarget(targetCatcherIndex);
 
             activeBallCount++;
-            UpdateBetButtonState();
 
-            socketManager.ConsumeResult();
+            // ✅ FIX: Clear processing flags IMMEDIATELY after ball is launched
+            // This allows the next bet to be placed while the ball is still falling
             isProcessingBet = false;
             isWaitingForResult = false;
+
+            socketManager.ConsumeResult();
+
+            // ✅ Update button state so user can place next bet
+            UpdateBetButtonState();
 
             if (isAutoplayActive)
             {
@@ -137,6 +144,7 @@ namespace PlinkoGame
             }
         }
 
+        // Keep the rest of GameManager.cs unchanged
         internal void OnBetButtonClicked()
         {
             if (activeBallCount >= maxParallelBalls || isProcessingBet || isWaitingForResult)

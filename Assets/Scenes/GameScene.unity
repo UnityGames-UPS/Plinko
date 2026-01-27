@@ -11842,7 +11842,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: 3a47eca49bc9498782b04f665702c421
+  testToken: 8a9da3df28214950b5987ff6591c49c0
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
