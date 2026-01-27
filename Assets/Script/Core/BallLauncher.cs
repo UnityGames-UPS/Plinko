@@ -31,6 +31,7 @@ namespace PlinkoGame
 
         [Header("Multi-Ball Settings")]
         [SerializeField] private int maxActiveBalls = 10;
+        [SerializeField] private float spawnDelay = 0.1f; // Reduced delay with better stuck handling
 
         [Header("Difficulty Sprites")]
         [SerializeField] private Sprite lowDifficultySprite;
@@ -43,6 +44,11 @@ namespace PlinkoGame
         private int activeBallCount;
         private HashSet<GameObject> ballsInUse = new HashSet<GameObject>();
         private string currentDifficulty = "LOW";
+
+        // Spawn queue system
+        private Queue<int> spawnQueue = new Queue<int>();
+        private bool isSpawning = false;
+        private Coroutine spawnCoroutine;
 
         private void Start()
         {
@@ -94,15 +100,52 @@ namespace PlinkoGame
                 return;
             }
 
-            GameObject availableBall = GetAvailableBall();
-            if (availableBall == null)
+            // Add to spawn queue instead of spawning immediately
+            spawnQueue.Enqueue(targetCatcherIndex);
+
+            // Start spawn coroutine if not already running
+            if (!isSpawning)
             {
-                Debug.LogWarning("[BallLauncher] No available balls");
-                return;
+                if (spawnCoroutine != null)
+                {
+                    StopCoroutine(spawnCoroutine);
+                }
+                spawnCoroutine = StartCoroutine(ProcessSpawnQueue());
+            }
+        }
+
+        private IEnumerator ProcessSpawnQueue()
+        {
+            isSpawning = true;
+
+            while (spawnQueue.Count > 0)
+            {
+                // Check if we have available ball slots
+                if (activeBallCount >= maxActiveBalls)
+                {
+                    // Wait until a slot becomes available
+                    yield return new WaitForSeconds(0.1f);
+                    continue;
+                }
+
+                int targetCatcherIndex = spawnQueue.Dequeue();
+
+                GameObject availableBall = GetAvailableBall();
+                if (availableBall == null)
+                {
+                    Debug.LogWarning("[BallLauncher] No available balls");
+                    yield return new WaitForSeconds(0.1f);
+                    continue;
+                }
+
+                Transform targetCatcher = activeCatchers[targetCatcherIndex];
+                DropBallInternal(availableBall, targetCatcher);
+
+                // Wait before spawning next ball (prevents path confusion)
+                yield return new WaitForSeconds(spawnDelay);
             }
 
-            Transform targetCatcher = activeCatchers[targetCatcherIndex];
-            DropBallInternal(availableBall, targetCatcher);
+            isSpawning = false;
         }
 
         private void DropBallInternal(GameObject ball, Transform targetCatcher)
@@ -352,6 +395,16 @@ namespace PlinkoGame
 
         private void OnDestroy()
         {
+            // Stop spawn coroutine if running
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+                spawnCoroutine = null;
+            }
+
+            // Clear spawn queue
+            spawnQueue.Clear();
+
             if (ballPool != null)
             {
                 foreach (GameObject ball in ballPool)

@@ -9,14 +9,16 @@ namespace PlinkoGame
     /// - Works in LOCAL SPACE (rotation-independent)
     /// - Uses SMART gap positioning (biased toward target)
     /// - Creates SMOOTH, natural paths (no sharp direction changes)
+    /// - RANDOMIZED paths - each ball takes a unique route
     /// </summary>
     public class PathCalculator : MonoBehaviour
     {
         [Header("Path Settings")]
-        [SerializeField] private float horizontalVariation = 0.015f;
-        [SerializeField] private float verticalOffset = 0.3f;
+        [SerializeField] private float horizontalVariation = 0.08f; // Increased for more randomness
+        [SerializeField] private float verticalOffset = 0.6f; // INCREASED - waypoints below pegs, never AT pegs
         [SerializeField] private float catcherApproachOffset = 0.5f;
-        [SerializeField][Range(0f, 1f)] private float gapBiasFactor = 0.65f; // How much to bias toward target (0.5 = center, 1.0 = edge)
+        [SerializeField][Range(0f, 1f)] private float gapBiasFactor = 0.65f;
+        [SerializeField] private float pathRandomization = 0.15f; // Random offset per waypoint
         [SerializeField] private bool debugPath = false;
 
         // ============================================
@@ -80,7 +82,11 @@ namespace PlinkoGame
         private List<Vector2> CalculateSmoothPath(Vector2 startPos, Vector2 targetPos, List<List<Vector2>> pegRows)
         {
             List<Vector2> path = new List<Vector2>();
-            path.Add(startPos);
+
+            // Add initial random offset to starting position
+            Vector2 randomizedStart = startPos;
+            randomizedStart.x += Random.Range(-horizontalVariation * 2f, horizontalVariation * 2f);
+            path.Add(randomizedStart);
 
             int totalRows = pegRows.Count;
             if (totalRows == 0)
@@ -89,12 +95,15 @@ namespace PlinkoGame
                 return path;
             }
 
-            float startX = startPos.x;
+            float startX = randomizedStart.x;
             float targetX = targetPos.x;
             float totalDistance = targetX - startX;
 
+            // Generate unique random seed for this path
+            float pathRandomSeed = Random.Range(0f, 1f);
+
             // Track previous waypoint for smoothing
-            Vector2 previousPoint = startPos;
+            Vector2 previousPoint = randomizedStart;
 
             for (int row = 0; row < totalRows; row++)
             {
@@ -105,11 +114,18 @@ namespace PlinkoGame
                 float progress = (float)(row + 1) / (totalRows + 1);
                 float idealX = startX + (totalDistance * progress);
 
+                // Add wave-like randomization based on row and seed
+                float waveOffset = Mathf.Sin((row + pathRandomSeed * 10f) * 0.5f) * pathRandomization;
+                idealX += waveOffset;
+
                 // Find smooth waypoint that flows toward target
                 Vector2 waypoint = FindSmoothWaypoint(rowPegs, idealX, previousPoint, targetPos);
 
-                // Very small random variation for realism
-                waypoint.x += Random.Range(-horizontalVariation, horizontalVariation);
+                // Add stronger random variation for unique paths
+                float randomOffsetX = Random.Range(-horizontalVariation, horizontalVariation);
+                float randomOffsetY = Random.Range(-horizontalVariation * 0.5f, horizontalVariation * 0.5f);
+                waypoint.x += randomOffsetX;
+                waypoint.y += randomOffsetY;
 
                 path.Add(waypoint);
                 previousPoint = waypoint;
@@ -119,8 +135,9 @@ namespace PlinkoGame
                 }
             }
 
-            // Smooth approach to target
+            // Add randomization to approach point
             Vector2 approachPoint = new Vector2(targetX, targetPos.y + catcherApproachOffset);
+            approachPoint.x += Random.Range(-horizontalVariation, horizontalVariation);
             path.Add(approachPoint);
             path.Add(targetPos);
 
@@ -130,6 +147,7 @@ namespace PlinkoGame
         /// <summary>
         /// Finds waypoint that creates smooth, natural path
         /// Biases position within gap toward the target direction
+        /// CRITICAL: Ensures waypoint is NEVER at peg position
         /// </summary>
         private Vector2 FindSmoothWaypoint(List<Vector2> rowPegs, float idealX, Vector2 previousPoint, Vector2 targetPos)
         {
@@ -143,6 +161,9 @@ namespace PlinkoGame
 
             // Determine direction of travel
             float directionToTarget = Mathf.Sign(targetPos.x - previousPoint.x);
+
+            // Safety distance - waypoints must be this far from ANY peg
+            float minSafeDistance = 0.5f; // Minimum safe distance from pegs
 
             // LEFT of all pegs
             if (idealX < sortedPegs[0].x)
@@ -168,9 +189,47 @@ namespace PlinkoGame
 
                 if (idealX >= leftPeg.x && idealX <= rightPeg.x)
                 {
-                    // SMOOTH PATH: Bias position within gap toward target
+                    // Calculate initial position within gap
                     float gapX = CalculateBiasedGapPosition(leftPeg.x, rightPeg.x, idealX, directionToTarget);
                     float gapY = leftPeg.y - verticalOffset;
+
+                    // CRITICAL SAFETY CHECK: Ensure waypoint is far from ALL pegs
+                    bool isSafe = false;
+                    int attempts = 0;
+
+                    while (!isSafe && attempts < 5)
+                    {
+                        isSafe = true;
+
+                        // Check distance to every peg in this row
+                        foreach (Vector2 peg in sortedPegs)
+                        {
+                            Vector2 waypoint = new Vector2(gapX, gapY);
+                            float distanceToPeg = Vector2.Distance(waypoint, peg);
+
+                            // If too close to any peg, adjust position
+                            if (distanceToPeg < minSafeDistance)
+                            {
+                                isSafe = false;
+
+                                // Move waypoint away from the peg
+                                Vector2 awayFromPeg = (waypoint - peg).normalized;
+                                Vector2 adjustment = awayFromPeg * (minSafeDistance - distanceToPeg + 0.1f);
+
+                                gapX += adjustment.x;
+                                gapY += adjustment.y;
+
+                                // Keep X within gap bounds
+                                float gapWidth = rightPeg.x - leftPeg.x;
+                                float margin = gapWidth * 0.15f;
+                                gapX = Mathf.Clamp(gapX, leftPeg.x + margin, rightPeg.x - margin);
+
+                                break;
+                            }
+                        }
+
+                        attempts++;
+                    }
 
                     if (debugPath)
                     {
@@ -189,6 +248,7 @@ namespace PlinkoGame
         /// <summary>
         /// Calculates position within gap that creates smooth flow
         /// Instead of always using center, bias toward direction of travel
+        /// Adds random variation for unique paths
         /// </summary>
         private float CalculateBiasedGapPosition(float leftPegX, float rightPegX, float idealX, float direction)
         {
@@ -199,17 +259,19 @@ namespace PlinkoGame
             float offsetFromCenter = (idealX - gapCenter) / (gapWidth * 0.5f);
             offsetFromCenter = Mathf.Clamp(offsetFromCenter, -1f, 1f);
 
+            // Add random variation to offset (makes each path unique)
+            float randomVariation = Random.Range(-0.3f, 0.3f);
+            offsetFromCenter += randomVariation;
+            offsetFromCenter = Mathf.Clamp(offsetFromCenter, -1f, 1f);
+
             // Apply bias factor to smooth the path
-            // gapBiasFactor = 0.5: Always center (rigid)
-            // gapBiasFactor = 0.65: Slightly biased (smooth, natural)
-            // gapBiasFactor = 1.0: Maximum bias (follows ideal closely)
             float biasedOffset = offsetFromCenter * gapBiasFactor;
 
             // Calculate final position
             float biasedX = gapCenter + (biasedOffset * gapWidth * 0.5f);
 
             // Ensure we stay safely within gap (with margins)
-            float margin = gapWidth * 0.1f; // 10% margin from edges
+            float margin = gapWidth * 0.15f; // 15% margin from edges
             biasedX = Mathf.Clamp(biasedX, leftPegX + margin, rightPegX - margin);
 
             return biasedX;
