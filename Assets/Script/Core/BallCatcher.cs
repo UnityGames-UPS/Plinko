@@ -9,8 +9,7 @@ namespace PlinkoGame
 {
     /// <summary>
     /// Handles individual catcher behavior, animation, and hover interactions
-    /// Includes sprite changing based on catcher position (center to edge)
-    /// Updated with audio integration
+    /// FIXED: Shows exact multiplier values (e.g., 0.48, 0.96) up to 2 decimal places
     /// </summary>
     public class BallCatcher : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
@@ -144,8 +143,6 @@ namespace PlinkoGame
             PlayCatchAnimation();
         }
 
-        // Replace hover methods in BallCatcher.cs
-
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!IsMobilePlatform() && gameObject.activeSelf)
@@ -161,7 +158,6 @@ namespace PlinkoGame
             {
                 if (uiManager != null)
                 {
-                    // Use world position for hover popup (it will be converted properly by UIManager)
                     uiManager.ToggleHoverPopup(transform.position, GetProfit(), GetProbability());
                 }
             }
@@ -177,7 +173,6 @@ namespace PlinkoGame
             double profit = GetProfit();
             double probability = GetProbability();
 
-            // Use world position - UIManager will handle the positioning correctly
             uiManager.ShowHoverPopup(transform.position, profit, probability);
         }
 
@@ -188,8 +183,6 @@ namespace PlinkoGame
                 HideHoverPopup();
             }
         }
-
-
 
         private void HideHoverPopup()
         {
@@ -239,7 +232,7 @@ namespace PlinkoGame
 
             if (multiplierText != null)
             {
-                multiplierText.text = FormatMultiplier(value);
+                multiplierText.text = FormatMultiplierExact(value);
             }
         }
 
@@ -248,23 +241,25 @@ namespace PlinkoGame
             return multiplierValue;
         }
 
-        private string FormatMultiplier(float value)
+        /// <summary>
+        /// FIXED: Format multiplier to show EXACT values from backend
+        /// Shows up to 2 decimal places (e.g., 0.48, 0.96, 1.06)
+        /// </summary>
+        private string FormatMultiplierExact(float value)
         {
             if (value >= 1000)
             {
-                return $"{(value / 1000):F1}K";
-            }
-            else if (value >= 100)
-            {
-                return $"{value:F0}x";
-            }
-            else if (value % 1 == 0)
-            {
-                return $"{value:F0}x";
+                // Format as K (thousands)
+                double thousands = value / 1000.0;
+                // Remove trailing zeros
+                string formatted = thousands.ToString("0.##");
+                return $"{formatted}K";
             }
             else
             {
-                return $"{value:F1}x";
+                // Show up to 2 decimal places, removing trailing zeros
+                string formatted = value.ToString("0.##");
+                return $"{formatted}x";
             }
         }
 

@@ -8,8 +8,8 @@ namespace PlinkoGame
 {
     /// <summary>
     /// Manages history panel animations and color matching
-    /// NOW SUPPORTS DUAL LAYOUT SYSTEM
-    /// Logic is shared, but UI elements can be rebound to active layout
+    /// FIXED: Now correctly selects horizontal/vertical objects based on active layout
+    /// FIXED: Uses exact multiplier values from backend (e.g., 0.48, 0.96)
     /// </summary>
     public class HistoryManager : MonoBehaviour
     {
@@ -109,9 +109,8 @@ namespace PlinkoGame
         [SerializeField] private float entryOffset = 100f;
         [SerializeField] private Ease animationEase = Ease.OutCubic;
 
-        // Active layout references (updated on layout switch)
-        private Transform activeHistoryContainer;
-        private TextMeshProUGUI activeEmptyText;
+        // Active layout tracking
+        private bool isHorizontalLayout = true;
         private BoardController activeBoardController;
 
         // Active lists for current layout
@@ -135,30 +134,32 @@ namespace PlinkoGame
             InitializeSpriteArrays();
 
             // Start with horizontal layout
-            BindToLayout(null, null);
+            BindToLayout(true);
+
+            Debug.Log("[HistoryManager] Awake complete");
         }
 
         /// <summary>
         /// Called by UIManager when layout switches
-        /// Rebinds to active layout's UI elements
+        /// Rebinds to active layout's UI elements based on isHorizontal parameter
         /// </summary>
-        public void BindToLayout(Transform historyContainer, TextMeshProUGUI emptyText)
+        public void BindToLayout(bool isHorizontal)
         {
-            activeHistoryContainer = historyContainer;
-            activeEmptyText = emptyText;
+            isHorizontalLayout = isHorizontal;
 
-            // Determine which layout based on container
-            bool isHorizontal = (historyContainer != null && historyContainer.name.Contains("Horizontal")) || historyContainer == null;
+            Debug.Log($"[HistoryManager] BindToLayout called - isHorizontal: {isHorizontal}");
 
             if (isHorizontal)
             {
                 BindToHorizontalLayout();
                 activeBoardController = horizontalBoardController;
+                Debug.Log("[HistoryManager] Bound to HORIZONTAL layout");
             }
             else
             {
                 BindToVerticalLayout();
                 activeBoardController = verticalBoardController;
+                Debug.Log("[HistoryManager] Bound to VERTICAL layout");
             }
 
             StoreOriginalPositions();
@@ -167,7 +168,7 @@ namespace PlinkoGame
             // Rebuild visible cards with existing data
             RebuildHistoryDisplay();
 
-            Debug.Log($"[HistoryManager] Bound to {(isHorizontal ? "HORIZONTAL" : "VERTICAL")} layout");
+            Debug.Log($"[HistoryManager] Layout binding complete with {historyCards.Count} cards");
         }
 
         private void BindToHorizontalLayout()
@@ -186,6 +187,8 @@ namespace PlinkoGame
             {
                 h_historyText1, h_historyText2, h_historyText3, h_historyText4, h_historyText5
             };
+
+            Debug.Log("[HistoryManager] Horizontal objects bound");
         }
 
         private void BindToVerticalLayout()
@@ -204,6 +207,8 @@ namespace PlinkoGame
             {
                 v_historyText1, v_historyText2, v_historyText3, v_historyText4, v_historyText5
             };
+
+            Debug.Log("[HistoryManager] Vertical objects bound");
         }
 
         private void InitializeSpriteArrays()
@@ -219,176 +224,271 @@ namespace PlinkoGame
 
             position4TransitionSprites = new List<Sprite>
             {
-                pos3_centerSprite, pos3_nearCenter1Sprite, pos3_nearCenter2Sprite, pos3_midSprite,
-                pos3_nearEdge2Sprite, pos3_nearEdge1Sprite, pos3_edgeSprite
+                pos5_centerSprite, pos5_nearCenter1Sprite, pos5_nearCenter2Sprite, pos5_midSprite, pos5_nearEdge2Sprite, pos5_nearEdge1Sprite, pos5_edgeSprite
             };
         }
 
         private void StoreOriginalPositions()
         {
-            originalPositions = new List<Vector3>();
-            foreach (RectTransform card in historyCards)
-            {
-                originalPositions.Add(card != null ? card.localPosition : Vector3.zero);
-            }
-        }
+            if (historyCards == null || historyCards.Count == 0) return;
 
-        private void HideAllCards()
-        {
+            originalPositions = new List<Vector3>();
+
             foreach (RectTransform card in historyCards)
             {
                 if (card != null)
                 {
+                    originalPositions.Add(card.localPosition);
+                }
+                else
+                {
+                    originalPositions.Add(Vector3.zero);
+                }
+            }
+
+            Debug.Log($"[HistoryManager] Stored {originalPositions.Count} original positions");
+        }
+
+        private void HideAllCards()
+        {
+            if (historyCards == null) return;
+
+            foreach (RectTransform card in historyCards)
+            {
+                if (card != null)
+                {
+                    card.DOKill();
                     card.gameObject.SetActive(false);
                 }
             }
         }
 
-        /// <summary>
-        /// Rebuilds history display when switching layouts
-        /// Shows existing entries without animation
-        /// </summary>
         private void RebuildHistoryDisplay()
         {
-            for (int i = 0; i < 5; i++)
+            if (historyDataList.Count == 0) return;
+
+            int visibleCount = Mathf.Min(4, historyDataList.Count);
+
+            for (int i = 0; i < visibleCount; i++)
             {
-                if (i < historyDataList.Count && historyCards[i] != null)
+                HistoryData data = historyDataList[i];
+
+                if (i < historyCards.Count && historyCards[i] != null)
                 {
                     historyCards[i].gameObject.SetActive(true);
                     historyCards[i].localPosition = originalPositions[i];
 
-                    if (historyTexts[i] != null)
+                    if (i < historyTexts.Count && historyTexts[i] != null)
                     {
-                        historyTexts[i].text = historyDataList[i].text;
+                        historyTexts[i].text = data.text;
                     }
 
-                    UpdateCardSpriteForPosition(i, historyDataList[i].distanceFromCenter, false);
-                }
-                else if (historyCards[i] != null)
-                {
-                    historyCards[i].gameObject.SetActive(false);
+                    UpdateCardSpriteForPosition(i, data.distanceFromCenter);
                 }
             }
+
+            Debug.Log($"[HistoryManager] Rebuilt {visibleCount} visible cards");
         }
 
-        public void AddEntry(double multiplier, double winAmount, int catcherIndex)
+        internal void AddToHistory(double multiplier, double winAmount, int catcherIndex)
         {
-            // Store data
+            if (historyCards == null || historyCards.Count == 0)
+            {
+                Debug.LogWarning("[HistoryManager] History cards not initialized");
+                return;
+            }
+
+            int distanceFromCenter = GetCatcherDistanceFromCenter(catcherIndex);
+            string multiplierText = FormatMultiplierExact(multiplier);
+
             HistoryData newData = new HistoryData
             {
-                text = FormatMultiplier(multiplier),
-                distanceFromCenter = GetCatcherDistanceFromCenter(catcherIndex)
+                text = multiplierText,
+                distanceFromCenter = distanceFromCenter
             };
 
             historyDataList.Insert(0, newData);
 
-            // Keep only 4 entries (5th is overflow for animation)
-            if (historyDataList.Count > 4)
+            if (historyDataList.Count > 5)
             {
-                historyDataList.RemoveAt(4);
+                historyDataList.RemoveAt(5);
             }
 
-            AddHistoryEntry(multiplier, catcherIndex);
+            AnimateHistoryUpdate();
+
+            Debug.Log($"[HistoryManager] Added to history: {multiplierText}, Layout: {(isHorizontalLayout ? "HORIZONTAL" : "VERTICAL")}");
         }
 
-        private void AddHistoryEntry(double multiplier, int catcherIndex)
+        private void AnimateHistoryUpdate()
         {
-            // Kill any ongoing animations
-            foreach (RectTransform card in historyCards)
+            if (historyCards == null || historyCards.Count == 0 || originalPositions.Count == 0)
             {
-                if (card != null) card.DOKill();
+                Debug.LogWarning("[HistoryManager] Cannot animate - cards or positions not initialized");
+                return;
             }
 
-            int distanceFromCenter = GetCatcherDistanceFromCenter(catcherIndex);
+            int visibleCount = Mathf.Min(4, historyDataList.Count);
+            bool needsPosition4Restoration = historyDataList.Count > 4;
 
-            // Determine card height for offset
-            float cardHeight = historyCards[0] != null ? historyCards[0].rect.height + entryOffset : entryOffset;
-
-            // Track if position 4 needs restoration
-            bool needsPosition4Restoration = (historyDataList.Count == 5);
-
-            // STEP 1: Setup all cards at PREVIOUS positions (one up), including card 5 which will slide out
-            for (int i = 0; i < 5; i++)
-            {
-                if (i < historyDataList.Count && historyCards[i] != null)
-                {
-                    historyCards[i].gameObject.SetActive(true);
-
-                    // Set text
-                    if (historyTexts[i] != null)
-                    {
-                        historyTexts[i].text = historyDataList[i].text;
-                    }
-
-                    // SPECIAL: Use transition sprite for card 4 when it's about to slide to position 5
-                    if (i == 3 && needsPosition4Restoration)
-                    {
-                        // Card 4 will slide out, use transition sprite
-                        UpdateCardSpriteForPosition(i, historyDataList[i].distanceFromCenter, true);
-                    }
-                    else
-                    {
-                        // Normal sprite
-                        UpdateCardSpriteForPosition(i, historyDataList[i].distanceFromCenter, false);
-                    }
-
-                    if (i == 0)
-                    {
-                        // New card starts above position 1
-                        Vector3 startPos = originalPositions[0];
-                        startPos.y += cardHeight;
-                        historyCards[0].localPosition = startPos;
-                    }
-                    else
-                    {
-                        // Existing cards start at PREVIOUS position (one up)
-                        historyCards[i].localPosition = originalPositions[i - 1];
-                    }
-                }
-                else if (historyCards[i] != null)
-                {
-                    historyCards[i].gameObject.SetActive(false);
-                }
-            }
-
-            // STEP 2: Animate ALL cards sliding down to their final positions SIMULTANEOUSLY
+            int totalAnimations = visibleCount + (needsPosition4Restoration ? 1 : 0);
             int animationsCompleted = 0;
-            int totalAnimations = Mathf.Min(historyDataList.Count, 5);
 
-            for (int i = 0; i < 5; i++)
+            // Apply transition sprite to position 4 if it needs to slide out
+            if (needsPosition4Restoration && historyCards.Count > 3 && historyCards[3] != null)
             {
-                if (i < historyDataList.Count && historyCards[i] != null)
+                if (historyDataList.Count >= 5)
                 {
-                    int cardIndex = i; // Capture for closure
-                    historyCards[i].DOLocalMove(originalPositions[i], animationDuration)
+                    UpdateCardSpriteForPosition(3, historyDataList[4].distanceFromCenter, true);
+                }
+            }
+
+            // Animate positions 1-4
+            for (int i = 0; i < visibleCount; i++)
+            {
+                if (i >= historyCards.Count || historyCards[i] == null) continue;
+
+                RectTransform card = historyCards[i];
+                HistoryData data = historyDataList[i];
+
+                card.DOKill();
+
+                if (i == 0)
+                {
+                    // New card entry from side
+                    Vector3 startPos = originalPositions[0];
+                    startPos.x -= entryOffset;
+
+                    card.localPosition = startPos;
+                    card.gameObject.SetActive(true);
+
+                    if (i < historyTexts.Count && historyTexts[i] != null)
+                    {
+                        historyTexts[i].text = data.text;
+                    }
+
+                    UpdateCardSpriteForPosition(0, data.distanceFromCenter);
+
+                    card.DOLocalMove(originalPositions[0], animationDuration)
                         .SetEase(animationEase)
                         .OnComplete(() =>
                         {
                             animationsCompleted++;
+                            Debug.Log($"[HistoryManager] Animation {animationsCompleted}/{totalAnimations} completed");
 
-                            // When all animations complete
                             if (animationsCompleted >= totalAnimations)
                             {
-                                // Restore position 4's original sprite
-                                if (needsPosition4Restoration && historyCards[3] != null && historyDataList.Count >= 4)
+                                if (needsPosition4Restoration && historyCards.Count > 3 && historyCards[3] != null && historyDataList.Count >= 4)
                                 {
                                     UpdateCardSpriteForPosition(3, historyDataList[3].distanceFromCenter, false);
                                 }
+
+                                Debug.Log("[HistoryManager] All animations complete!");
                             }
                         });
                 }
+                else
+                {
+                    // Existing cards shift down
+                    if (!card.gameObject.activeSelf)
+                    {
+                        card.gameObject.SetActive(true);
+                    }
+
+                    if (i < historyTexts.Count && historyTexts[i] != null)
+                    {
+                        historyTexts[i].text = data.text;
+                    }
+
+                    UpdateCardSpriteForPosition(i, data.distanceFromCenter);
+
+                    card.DOLocalMove(originalPositions[i], animationDuration)
+                        .SetEase(animationEase)
+                        .OnComplete(() =>
+                        {
+                            animationsCompleted++;
+                            Debug.Log($"[HistoryManager] Animation {animationsCompleted}/{totalAnimations} completed");
+
+                            if (animationsCompleted >= totalAnimations)
+                            {
+                                if (needsPosition4Restoration && historyCards.Count > 3 && historyCards[3] != null && historyDataList.Count >= 4)
+                                {
+                                    UpdateCardSpriteForPosition(3, historyDataList[3].distanceFromCenter, false);
+                                    Debug.Log("[HistoryManager] Restored position 4 sprite");
+                                }
+
+                                Debug.Log("[HistoryManager] All animations complete!");
+                            }
+                        });
+                }
+            }
+
+            // Slide out overflow card (position 5)
+            if (historyDataList.Count > 4 && historyCards.Count > 4 && historyCards[4] != null)
+            {
+                RectTransform overflowCard = historyCards[4];
+                HistoryData overflowData = historyDataList[4];
+
+                if (!overflowCard.gameObject.activeSelf)
+                {
+                    overflowCard.gameObject.SetActive(true);
+                }
+
+                overflowCard.localPosition = originalPositions[3];
+
+                if (historyTexts.Count > 4 && historyTexts[4] != null)
+                {
+                    historyTexts[4].text = overflowData.text;
+                }
+
+                UpdateCardSpriteForPosition(4, overflowData.distanceFromCenter);
+
+                Vector3 exitPos = originalPositions[4];
+                exitPos.x += entryOffset;
+
+                overflowCard.DOLocalMove(exitPos, animationDuration)
+                    .SetEase(animationEase)
+                    .OnComplete(() =>
+                    {
+                        overflowCard.gameObject.SetActive(false);
+                        animationsCompleted++;
+                        Debug.Log($"[HistoryManager] Animation {animationsCompleted}/{totalAnimations} completed");
+
+                        if (animationsCompleted >= totalAnimations)
+                        {
+                            if (needsPosition4Restoration && historyCards.Count > 3 && historyCards[3] != null && historyDataList.Count >= 4)
+                            {
+                                UpdateCardSpriteForPosition(3, historyDataList[3].distanceFromCenter, false);
+                                Debug.Log("[HistoryManager] Restored position 4 sprite");
+                            }
+
+                            Debug.Log("[HistoryManager] All animations complete!");
+                        }
+                    });
             }
         }
 
         private void UpdateCardSpriteForPosition(int positionIndex, int distanceFromCenter, bool useTransitionSprite = false)
         {
-            if (historyBackgrounds[positionIndex] == null) return;
-            if (positionIndex < 0 || positionIndex >= positionSprites.Count) return;
-            if (distanceFromCenter < 0) return;
+            if (historyBackgrounds == null || positionIndex >= historyBackgrounds.Count || historyBackgrounds[positionIndex] == null)
+            {
+                Debug.LogWarning($"[HistoryManager] Cannot update sprite - background {positionIndex} is null");
+                return;
+            }
+
+            if (positionIndex < 0 || positionIndex >= positionSprites.Count)
+            {
+                Debug.LogWarning($"[HistoryManager] Invalid position index: {positionIndex}");
+                return;
+            }
+
+            if (distanceFromCenter < 0)
+            {
+                Debug.LogWarning($"[HistoryManager] Invalid distance from center: {distanceFromCenter}");
+                return;
+            }
 
             Sprite selectedSprite;
 
-            // Use transition sprite for position 4 when sliding out
             if (positionIndex == 3 && useTransitionSprite)
             {
                 selectedSprite = GetTransitionSpriteForDistance(distanceFromCenter);
@@ -402,11 +502,19 @@ namespace PlinkoGame
             {
                 historyBackgrounds[positionIndex].sprite = selectedSprite;
             }
+            else
+            {
+                Debug.LogWarning($"[HistoryManager] No sprite found for position {positionIndex}, distance {distanceFromCenter}");
+            }
         }
 
         private int GetCatcherDistanceFromCenter(int catcherIndex)
         {
-            if (activeBoardController == null) return 0;
+            if (activeBoardController == null)
+            {
+                Debug.LogWarning("[HistoryManager] activeBoardController is null, returning distance 0");
+                return 0;
+            }
 
             int totalCatchers = activeBoardController.GetCurrentRows() + 1;
 
@@ -467,28 +575,32 @@ namespace PlinkoGame
             }
         }
 
-        private string FormatMultiplier(double multiplier)
+        /// <summary>
+        /// FIXED: Format multiplier to show EXACT values from backend
+        /// Shows up to 2 decimal places (e.g., 0.48, 0.96, 1.06)
+        /// </summary>
+        private string FormatMultiplierExact(double multiplier)
         {
             if (multiplier >= 1000)
             {
-                return $"{(multiplier / 1000):F1}K";
-            }
-            else if (multiplier >= 100)
-            {
-                return $"{multiplier:F0}x";
-            }
-            else if (multiplier % 1 == 0)
-            {
-                return $"{multiplier:F0}x";
+                // Format as K (thousands)
+                double thousands = multiplier / 1000.0;
+                // Remove trailing zeros
+                string formatted = thousands.ToString("0.##");
+                return $"{formatted}K";
             }
             else
             {
-                return $"{multiplier:F1}x";
+                // Show up to 2 decimal places, removing trailing zeros
+                string formatted = multiplier.ToString("0.##");
+                return $"{formatted}x";
             }
         }
 
         public void ClearHistory()
         {
+            if (historyCards == null) return;
+
             foreach (RectTransform card in historyCards)
             {
                 if (card != null)
@@ -498,6 +610,8 @@ namespace PlinkoGame
                 }
             }
             historyDataList.Clear();
+
+            Debug.Log("[HistoryManager] History cleared");
         }
 
         private void OnDestroy()
@@ -517,4 +631,3 @@ namespace PlinkoGame
         }
     }
 }
-

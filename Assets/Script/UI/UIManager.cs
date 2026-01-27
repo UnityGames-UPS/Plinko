@@ -11,7 +11,7 @@ namespace PlinkoGame
     /// Manages all UI elements and popups with animations
     /// NOW HANDLES ORIENTATION SWITCHING - Horizontal vs Vertical layouts
     /// Controls which layout is active based on screen dimensions
-    /// FIXED: Hover popup dual-mode support and popup X position management
+    /// FIXED: Autoplay counter system and hover popup dual-mode support
     /// </summary>
     public class UIManager : MonoBehaviour
     {
@@ -59,7 +59,6 @@ namespace PlinkoGame
         [SerializeField] private Button h_increaseRoundsButton;
         [SerializeField] private Button h_decreaseRoundsButton;
         [SerializeField] private GameObject h_infinityIcon;
-        [SerializeField] private TextMeshProUGUI h_autoplayCountText;
         [SerializeField] private GameObject h_autoplayDisabledOverlay;
 
         [Header("Horizontal - Audio Toggles")]
@@ -119,7 +118,6 @@ namespace PlinkoGame
         [SerializeField] private Button v_increaseRoundsButton;
         [SerializeField] private Button v_decreaseRoundsButton;
         [SerializeField] private GameObject v_infinityIcon;
-        [SerializeField] private TextMeshProUGUI v_autoplayCountText;
         [SerializeField] private GameObject v_autoplayDisabledOverlay;
 
         [Header("Vertical - Audio Toggles")]
@@ -196,7 +194,9 @@ namespace PlinkoGame
         // State
         private bool isManualMode = true;
         private bool isAutoplayActive;
-        private int autoplayRounds = 0;
+        private int autoplayRounds = 0; // Start with 0
+        private int currentAutoplayCount = 0; // Track current countdown
+        private bool isInfiniteMode = true; // Start in infinite mode
         private bool isHoverPopupVisible = false;
         private Vector3 currentHoverPosition;
         private double currentHoverProfit;
@@ -207,6 +207,7 @@ namespace PlinkoGame
             SetupButtons();
             SetupDropdowns();
             SetupAudioToggles();
+            SetupInputFieldListeners();
             HideAllPopups();
             StoreInitialPopupXPositions();
         }
@@ -214,7 +215,7 @@ namespace PlinkoGame
         private void Start()
         {
             SetMode(true);
-            UpdateAutoplayRoundsDisplay();
+            UpdateAutoplayDisplay(); // Initialize display
             InitializeAudioToggles();
 
             // Start with horizontal layout by default
@@ -222,16 +223,63 @@ namespace PlinkoGame
         }
 
         // ============================================
+        // INPUT FIELD SETUP
+        // ============================================
+
+        private void SetupInputFieldListeners()
+        {
+            // Horizontal
+            if (h_autoplayRoundsInput != null)
+            {
+                h_autoplayRoundsInput.onValueChanged.AddListener(OnAutoplayInputChanged);
+                h_autoplayRoundsInput.onEndEdit.AddListener(OnAutoplayInputEndEdit);
+            }
+
+            // Vertical
+            if (v_autoplayRoundsInput != null)
+            {
+                v_autoplayRoundsInput.onValueChanged.AddListener(OnAutoplayInputChanged);
+                v_autoplayRoundsInput.onEndEdit.AddListener(OnAutoplayInputEndEdit);
+            }
+        }
+
+        private void OnAutoplayInputChanged(string value)
+        {
+            // Prevent user from typing infinity symbol
+            if (value.Contains("∞"))
+            {
+                UpdateAutoplayDisplay();
+            }
+        }
+
+        private void OnAutoplayInputEndEdit(string value)
+        {
+            // Parse user input
+            if (int.TryParse(value, out int rounds))
+            {
+                // Clamp between 0 and 999
+                autoplayRounds = Mathf.Clamp(rounds, 0, 999);
+                isInfiniteMode = (autoplayRounds == 0);
+            }
+            else
+            {
+                // Invalid input, reset
+                autoplayRounds = 0;
+                isInfiniteMode = true;
+            }
+
+            UpdateAutoplayDisplay();
+
+            // Sync other layout
+            SyncAutoplayInputs();
+        }
+
+        // ============================================
         // POPUP X POSITION MANAGEMENT
         // ============================================
 
-        /// <summary>
-        /// Store initial horizontal X positions of all popup areas
-        /// Called once during Awake
-        /// </summary>
         private void StoreInitialPopupXPositions()
         {
-            // Store all popup area X positions (children of mainPanel)
             StorePopupXPosition(winPopupArea);
             StorePopupXPosition(errorPopupArea);
             StorePopupXPosition(reconnectionPopupArea);
@@ -250,16 +298,10 @@ namespace PlinkoGame
                 if (rect != null && !storedHorizontalXPositions.ContainsKey(rect))
                 {
                     storedHorizontalXPositions[rect] = rect.localPosition.x;
-                    Debug.Log($"[UIManager] Stored X position for {popupArea.name}: {rect.localPosition.x}");
                 }
             }
         }
 
-        /// <summary>
-        /// Updates all popup X positions based on active layout
-        /// Vertical mode: X = 0
-        /// Horizontal mode: X = stored original value
-        /// </summary>
         private void UpdateAllPopupXPositions()
         {
             foreach (var kvp in storedHorizontalXPositions)
@@ -274,17 +316,12 @@ namespace PlinkoGame
                     rect.localPosition = pos;
                 }
             }
-
-            Debug.Log($"[UIManager] Updated all popup X positions to {(isHorizontalActive ? "HORIZONTAL" : "VERTICAL (0)")}");
         }
 
         // ============================================
         // ORIENTATION & LAYOUT CONTROL
         // ============================================
 
-        /// <summary>
-        /// Called by OrientationChange when screen dimensions change
-        /// </summary>
         public void OnOrientationChanged(int width, int height)
         {
             bool shouldBeHorizontal = width > height;
@@ -293,7 +330,6 @@ namespace PlinkoGame
             {
                 SwitchToLayout(shouldBeHorizontal);
 
-                // Notify GameManager to update active board reference
                 if (gameManager != null)
                 {
                     gameManager.OnLayoutSwitched(shouldBeHorizontal);
@@ -301,32 +337,25 @@ namespace PlinkoGame
             }
         }
 
-        /// <summary>
-        /// Switches between horizontal and vertical layouts
-        /// </summary>
         private void SwitchToLayout(bool horizontal)
         {
             isHorizontalActive = horizontal;
 
-            // Activate/deactivate layout GameObjects
             if (horizontalLayout != null)
                 horizontalLayout.SetActive(horizontal);
 
             if (verticalLayout != null)
                 verticalLayout.SetActive(!horizontal);
 
-            // Update all popup X positions
             UpdateAllPopupXPositions();
 
-            // Rebind history manager to active layout
             if (historyManager != null)
             {
                 Transform activeHistoryContainer = horizontal ? h_historyContainer : v_historyContainer;
                 TextMeshProUGUI activeEmptyText = horizontal ? h_historyEmptyText : v_historyEmptyText;
-                historyManager.BindToLayout(activeHistoryContainer, activeEmptyText);
+                historyManager.BindToLayout(isHorizontalActive); // Pass true/false directly
             }
-
-            // If hover popup is visible, refresh it for the new layout
+                
             if (isHoverPopupVisible)
             {
                 ShowHoverPopup(currentHoverPosition, currentHoverProfit, currentHoverProbability);
@@ -335,9 +364,6 @@ namespace PlinkoGame
             Debug.Log($"[UIManager] Switched to {(horizontal ? "HORIZONTAL" : "VERTICAL")} layout");
         }
 
-        /// <summary>
-        /// Returns active layout state
-        /// </summary>
         public bool IsHorizontalLayout()
         {
             return isHorizontalActive;
@@ -349,7 +375,6 @@ namespace PlinkoGame
 
         private void SetupAudioToggles()
         {
-            // Horizontal
             if (h_musicToggle != null)
             {
                 h_musicToggle.onValueChanged.RemoveAllListeners();
@@ -361,7 +386,6 @@ namespace PlinkoGame
                 h_sfxToggle.onValueChanged.AddListener(OnSFXToggleChanged);
             }
 
-            // Vertical
             if (v_musicToggle != null)
             {
                 v_musicToggle.onValueChanged.RemoveAllListeners();
@@ -381,7 +405,6 @@ namespace PlinkoGame
                 bool musicEnabled = AudioManager.Instance.IsMusicEnabled();
                 bool sfxEnabled = AudioManager.Instance.IsSFXEnabled();
 
-                // Sync both layouts
                 if (h_musicToggle != null)
                     h_musicToggle.SetIsOnWithoutNotify(musicEnabled);
                 if (v_musicToggle != null)
@@ -399,7 +422,6 @@ namespace PlinkoGame
             AudioManager.Instance?.ToggleMusic(isOn);
             AudioManager.Instance?.PlayButtonClick();
 
-            // Sync other layout toggle
             if (isHorizontalActive && v_musicToggle != null)
                 v_musicToggle.SetIsOnWithoutNotify(isOn);
             else if (!isHorizontalActive && h_musicToggle != null)
@@ -414,7 +436,6 @@ namespace PlinkoGame
                 AudioManager.Instance?.PlayButtonClick();
             }
 
-            // Sync other layout toggle
             if (isHorizontalActive && v_sfxToggle != null)
                 v_sfxToggle.SetIsOnWithoutNotify(isOn);
             else if (!isHorizontalActive && h_sfxToggle != null)
@@ -606,14 +627,12 @@ namespace PlinkoGame
 
         private void SetupDropdowns()
         {
-            // Horizontal
             if (h_riskDropdown != null)
             {
                 h_riskDropdown.onValueChanged.AddListener((index) => {
                     AudioManager.Instance?.PlayDropdownClick();
                     gameManager?.OnRiskChanged(index);
 
-                    // Sync other layout
                     if (v_riskDropdown != null)
                         v_riskDropdown.SetValueWithoutNotify(index);
                 });
@@ -625,20 +644,17 @@ namespace PlinkoGame
                     AudioManager.Instance?.PlayDropdownClick();
                     gameManager?.OnRowChanged(index);
 
-                    // Sync other layout
                     if (v_rowDropdown != null)
                         v_rowDropdown.SetValueWithoutNotify(index);
                 });
             }
 
-            // Vertical
             if (v_riskDropdown != null)
             {
                 v_riskDropdown.onValueChanged.AddListener((index) => {
                     AudioManager.Instance?.PlayDropdownClick();
                     gameManager?.OnRiskChanged(index);
 
-                    // Sync other layout
                     if (h_riskDropdown != null)
                         h_riskDropdown.SetValueWithoutNotify(index);
                 });
@@ -650,7 +666,6 @@ namespace PlinkoGame
                     AudioManager.Instance?.PlayDropdownClick();
                     gameManager?.OnRowChanged(index);
 
-                    // Sync other layout
                     if (h_rowDropdown != null)
                         h_rowDropdown.SetValueWithoutNotify(index);
                 });
@@ -677,7 +692,6 @@ namespace PlinkoGame
                 options.Add(new TMP_Dropdown.OptionData(risk.name));
             }
 
-            // Update both dropdowns
             if (h_riskDropdown != null)
             {
                 h_riskDropdown.ClearOptions();
@@ -701,7 +715,6 @@ namespace PlinkoGame
                 options.Add(new TMP_Dropdown.OptionData(row.id));
             }
 
-            // Update both dropdowns
             if (h_rowDropdown != null)
             {
                 h_rowDropdown.ClearOptions();
@@ -763,6 +776,8 @@ namespace PlinkoGame
             // Horizontal
             if (h_manualModeImage != null)
                 h_manualModeImage.SetActive(manual);
+            if (h_betButton != null)
+                h_betButton.gameObject.SetActive(manual);
             if (h_autoplayModeImage != null)
                 h_autoplayModeImage.SetActive(!manual);
             if (h_autoplayPanel != null)
@@ -771,6 +786,8 @@ namespace PlinkoGame
             // Vertical
             if (v_manualModeImage != null)
                 v_manualModeImage.SetActive(manual);
+            if (v_betButton != null)
+                v_betButton.gameObject.SetActive(manual);
             if (v_autoplayModeImage != null)
                 v_autoplayModeImage.SetActive(!manual);
             if (v_autoplayPanel != null)
@@ -797,7 +814,7 @@ namespace PlinkoGame
         }
 
         // ============================================
-        // AUTOPLAY CONTROLS
+        // AUTOPLAY CONTROLS - FIXED VERSION
         // ============================================
 
         private void OnAutoplayToggle()
@@ -808,6 +825,7 @@ namespace PlinkoGame
             }
             else
             {
+                // Pass the rounds (0 = infinite)
                 gameManager?.StartAutoplay(autoplayRounds);
             }
         }
@@ -815,14 +833,23 @@ namespace PlinkoGame
         internal void OnAutoplayStarted(bool isInfinite)
         {
             isAutoplayActive = true;
+            isInfiniteMode = isInfinite;
+
+            // Set current count
+            if (isInfinite)
+            {
+                currentAutoplayCount = 0; // Infinite mode
+            }
+            else
+            {
+                currentAutoplayCount = autoplayRounds;
+            }
 
             // Horizontal
             if (h_stopAutoplayImage != null)
                 h_stopAutoplayImage.gameObject.SetActive(true);
             if (h_infinityIcon != null)
                 h_infinityIcon.SetActive(isInfinite);
-            if (h_autoplayCountText != null)
-                h_autoplayCountText.gameObject.SetActive(!isInfinite);
             if (h_autoplayRoundsInput != null)
                 h_autoplayRoundsInput.interactable = false;
             if (h_autoplayDisabledOverlay != null)
@@ -833,13 +860,12 @@ namespace PlinkoGame
                 v_stopAutoplayImage.gameObject.SetActive(true);
             if (v_infinityIcon != null)
                 v_infinityIcon.SetActive(isInfinite);
-            if (v_autoplayCountText != null)
-                v_autoplayCountText.gameObject.SetActive(!isInfinite);
             if (v_autoplayRoundsInput != null)
                 v_autoplayRoundsInput.interactable = false;
             if (v_autoplayDisabledOverlay != null)
                 v_autoplayDisabledOverlay.SetActive(true);
 
+            UpdateAutoplayDisplay();
             UpdateControlStates();
         }
 
@@ -864,15 +890,19 @@ namespace PlinkoGame
                 v_autoplayDisabledOverlay.SetActive(false);
 
             UpdateControlStates();
-            UpdateAutoplayRoundsDisplay();
+            UpdateAutoplayDisplay();
         }
 
-        internal void UpdateAutoplayRounds(int rounds)
+        /// <summary>
+        /// Called by GameManager after each bet completes during autoplay
+        /// </summary>
+        internal void UpdateAutoplayRounds(int remainingRounds)
         {
-            if (h_autoplayCountText != null)
-                h_autoplayCountText.text = rounds.ToString();
-            if (v_autoplayCountText != null)
-                v_autoplayCountText.text = rounds.ToString();
+            if (isAutoplayActive && !isInfiniteMode)
+            {
+                currentAutoplayCount = remainingRounds;
+                UpdateAutoplayDisplay();
+            }
         }
 
         private void AdjustAutoplayRounds(bool increase)
@@ -880,21 +910,79 @@ namespace PlinkoGame
             if (increase)
             {
                 if (autoplayRounds == 0)
+                {
                     autoplayRounds = 10;
-                else
-                    autoplayRounds = Mathf.Min(autoplayRounds + 10, 1000);
+                    isInfiniteMode = false;
+                }
+                else if (autoplayRounds < 999)
+                {
+                    autoplayRounds = Mathf.Min(autoplayRounds + 1, 999);
+                    isInfiniteMode = false;
+                }
             }
             else
             {
-                autoplayRounds = Mathf.Max(autoplayRounds - 10, 0);
+                autoplayRounds = Mathf.Max(autoplayRounds - 1, 0);
+                isInfiniteMode = (autoplayRounds == 0);
             }
 
-            UpdateAutoplayRoundsDisplay();
+            UpdateAutoplayDisplay();
+            SyncAutoplayInputs();
         }
 
-        private void UpdateAutoplayRoundsDisplay()
+        /// <summary>
+        /// Updates the visual display based on current state
+        /// </summary>
+        private void UpdateAutoplayDisplay()
         {
-            string displayText = autoplayRounds == 0 ? "∞" : autoplayRounds.ToString();
+            string displayText;
+            bool showInfinity;
+
+            if (isAutoplayActive)
+            {
+                // During autoplay: show countdown or infinity
+                if (isInfiniteMode)
+                {
+                    displayText = "0";
+                    showInfinity = true;
+                }
+                else
+                {
+                    displayText = currentAutoplayCount.ToString();
+                    showInfinity = false;
+                }
+            }
+            else
+            {
+                // Before autoplay: show set value or 0
+                if (isInfiniteMode || autoplayRounds == 0)
+                {
+                    displayText = "0";
+                    showInfinity = true;
+                }
+                else
+                {
+                    displayText = autoplayRounds.ToString();
+                    showInfinity = false;
+                }
+            }
+
+            // Update both layouts
+            if (h_autoplayRoundsInput != null)
+                h_autoplayRoundsInput.text = displayText;
+            if (v_autoplayRoundsInput != null)
+                v_autoplayRoundsInput.text = displayText;
+
+            if (h_infinityIcon != null)
+                h_infinityIcon.SetActive(showInfinity);
+            if (v_infinityIcon != null)
+                v_infinityIcon.SetActive(showInfinity);
+        }
+
+        private void SyncAutoplayInputs()
+        {
+            // Sync both input fields
+            string displayText = isInfiniteMode ? "0" : autoplayRounds.ToString();
 
             if (h_autoplayRoundsInput != null)
                 h_autoplayRoundsInput.text = displayText;
@@ -908,7 +996,7 @@ namespace PlinkoGame
 
         internal void AddToHistory(double multiplier, double winAmount, int catcherIndex)
         {
-            historyManager?.AddEntry(multiplier, winAmount, catcherIndex);
+            historyManager?.AddToHistory(multiplier, winAmount, catcherIndex);
         }
 
         // ============================================
@@ -930,7 +1018,6 @@ namespace PlinkoGame
             if (gameInfoPopupMainPanel != null)
                 gameInfoPopupMainPanel.SetActive(false);
 
-            // Hide both hover popups
             if (h_hoverPopup != null)
                 h_hoverPopup.SetActive(false);
             if (v_hoverPopup != null)
@@ -1111,12 +1198,10 @@ namespace PlinkoGame
             currentHoverProfit = profit;
             currentHoverProbability = probability;
 
-            // Get active layout references
             GameObject activeHoverPopup = isHorizontalActive ? h_hoverPopup : v_hoverPopup;
             RectTransform activeHoverArrow = isHorizontalActive ? h_hoverArrow : v_hoverArrow;
             Button activeHoverCloseButton = isHorizontalActive ? h_hoverCloseButton : v_hoverCloseButton;
 
-            // Hide inactive hover popup
             GameObject inactiveHoverPopup = isHorizontalActive ? v_hoverPopup : h_hoverPopup;
             if (inactiveHoverPopup != null)
             {
@@ -1125,7 +1210,6 @@ namespace PlinkoGame
 
             if (activeHoverPopup == null) return;
 
-            // Show active popup and update
             activeHoverPopup.SetActive(true);
             UpdateHoverTexts();
 
@@ -1146,7 +1230,6 @@ namespace PlinkoGame
 
         internal void HideHoverPopup()
         {
-            // Hide both hover popups (ensures clean state)
             if (h_hoverPopup != null)
             {
                 h_hoverPopup.SetActive(false);
@@ -1180,7 +1263,6 @@ namespace PlinkoGame
 
         private void UpdateHoverTexts()
         {
-            // Update texts for active layout only
             TextMeshProUGUI activeProfitText = isHorizontalActive ? h_hoverProfitText : v_hoverProfitText;
             TextMeshProUGUI activeProbabilityText = isHorizontalActive ? h_hoverProbabilityText : v_hoverProbabilityText;
 
@@ -1239,6 +1321,8 @@ namespace PlinkoGame
             h_gameInfoButton?.onClick.RemoveAllListeners();
             h_gameInfoCloseButton?.onClick.RemoveAllListeners();
             h_hoverCloseButton?.onClick.RemoveAllListeners();
+            h_autoplayRoundsInput?.onValueChanged.RemoveAllListeners();
+            h_autoplayRoundsInput?.onEndEdit.RemoveAllListeners();
 
             // Vertical
             v_betButton?.onClick.RemoveAllListeners();
@@ -1255,6 +1339,8 @@ namespace PlinkoGame
             v_gameInfoButton?.onClick.RemoveAllListeners();
             v_gameInfoCloseButton?.onClick.RemoveAllListeners();
             v_hoverCloseButton?.onClick.RemoveAllListeners();
+            v_autoplayRoundsInput?.onValueChanged.RemoveAllListeners();
+            v_autoplayRoundsInput?.onEndEdit.RemoveAllListeners();
 
             // Shared
             exitYesButton?.onClick.RemoveAllListeners();

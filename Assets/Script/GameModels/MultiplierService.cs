@@ -5,8 +5,9 @@ using PlinkoGame.Data;
 namespace PlinkoGame.Services
 {
     /// <summary>
-    /// Handles multiplier mirroring logic as per specification:
-    /// Backend sends HALF multipliers, frontend must mirror them symmetrically
+    /// Handles multiplier mirroring logic as per specification
+    /// FIXED: Shows exact multiplier values (up to 2 decimals)
+    /// FIXED: Shows probability with 5 decimal places
     /// </summary>
     public class MultiplierService
     {
@@ -15,10 +16,6 @@ namespace PlinkoGame.Services
         /// <summary>
         /// Generates full multiplier array from backend's half multipliers
         /// </summary>
-        /// <param name="rowCount">Number of rows (8-16)</param>
-        /// <param name="riskLevel">LOW, MEDIUM, HIGH</param>
-        /// <param name="backendMultipliers">Half multipliers from backend</param>
-        /// <returns>Complete multiplier mapping for all catchers</returns>
         public MultiplierMapping GenerateMapping(int rowCount, string riskLevel, List<double> backendMultipliers)
         {
             string key = GetCacheKey(rowCount, riskLevel);
@@ -38,15 +35,12 @@ namespace PlinkoGame.Services
                 backendIndices = new List<int>()
             };
 
-            bool isOddCatcherCount = (catcherCount % 2 == 1); // 9, 11, 13, 15, 17 catchers
+            bool isOddCatcherCount = (catcherCount % 2 == 1);
 
             if (isOddCatcherCount)
             {
                 // ODD CATCHER COUNT (e.g., 9 catchers for row=8)
-                // Backend: [0, 1, 2, 3, 4]
-                // Result:  [4, 3, 2, 1, 0, 1, 2, 3, 4]
-                // Pattern: Mirror from edges to center
-                int center = catcherCount / 2; // Center index = 4 for 9 catchers
+                int center = catcherCount / 2;
 
                 for (int i = 0; i < catcherCount; i++)
                 {
@@ -61,7 +55,7 @@ namespace PlinkoGame.Services
                     else
                     {
                         Debug.LogError($"Backend multiplier index {backendIndex} out of range!");
-                        mapping.fullMultipliers.Add(1.0); // Fallback
+                        mapping.fullMultipliers.Add(1.0);
                         mapping.backendIndices.Add(0);
                     }
                 }
@@ -69,11 +63,8 @@ namespace PlinkoGame.Services
             else
             {
                 // EVEN CATCHER COUNT (e.g., 10 catchers for row=9)
-                // Backend: [0, 1, 2, 3, 4]
-                // Result:  [4, 3, 2, 1, 0, 0, 1, 2, 3, 4]
-                // Pattern: Mirror from edges, center has TWO catchers with same index
-                int leftCenter = catcherCount / 2 - 1;  // Index 4 for 10 catchers
-                int rightCenter = catcherCount / 2;     // Index 5 for 10 catchers
+                int leftCenter = catcherCount / 2 - 1;
+                int rightCenter = catcherCount / 2;
 
                 for (int i = 0; i < catcherCount; i++)
                 {
@@ -81,12 +72,10 @@ namespace PlinkoGame.Services
 
                     if (i <= leftCenter)
                     {
-                        // Left half (reversed): 4, 3, 2, 1, 0
                         backendIndex = leftCenter - i;
                     }
                     else
                     {
-                        // Right half (normal): 0, 1, 2, 3, 4
                         backendIndex = i - rightCenter;
                     }
 
@@ -104,7 +93,6 @@ namespace PlinkoGame.Services
                 }
             }
 
-            // Cache for future use
             cachedMappings[key] = mapping;
 
             Debug.Log($"Generated multiplier mapping: Row={rowCount}, Risk={riskLevel}, Catchers={catcherCount}");
@@ -113,7 +101,6 @@ namespace PlinkoGame.Services
 
         /// <summary>
         /// Resolves which catcher(s) match the backend multiplier index
-        /// Returns list of possible catcher indices
         /// </summary>
         public List<int> ResolveCatcherIndices(MultiplierMapping mapping, int backendMultiplierIndex)
         {
@@ -130,7 +117,7 @@ namespace PlinkoGame.Services
             if (possibleCatchers.Count == 0)
             {
                 Debug.LogError($"No catchers found for backend index {backendMultiplierIndex}!");
-                possibleCatchers.Add(0); // Fallback to first catcher
+                possibleCatchers.Add(0);
             }
 
             return possibleCatchers;
@@ -151,32 +138,45 @@ namespace PlinkoGame.Services
         }
 
         /// <summary>
-        /// Formats multiplier for display (2x, 2.5x, 1K, 1.5K)
+        /// FIXED: Format multiplier to show EXACT values from backend
+        /// Shows up to 2 decimal places (e.g., 0.48, 0.96, 1.06)
         /// </summary>
         public string FormatMultiplier(double multiplier)
         {
             if (multiplier >= 1000)
             {
-                return $"{(multiplier / 1000):F1}K";
-            }
-            else if (multiplier >= 100)
-            {
-                return $"{multiplier:F0}x";
-            }
-            else if (multiplier % 1 == 0)
-            {
-                return $"{multiplier:F0}x";
+                // Format as K (thousands)
+                double thousands = multiplier / 1000.0;
+                // Remove trailing zeros
+                string formatted = thousands.ToString("0.##");
+                return $"{formatted}K";
             }
             else
             {
-                return $"{multiplier:F1}x";
+                // Show up to 2 decimal places, removing trailing zeros
+                string formatted = multiplier.ToString("0.##");
+                return $"{formatted}x";
             }
+        }
+
+        /// <summary>
+        /// FIXED: Format probability with up to 5 decimal places
+        /// Examples: 0.27344%, 0.00391%, 24.60938%
+        /// </summary>
+        public string FormatProbability(double probability)
+        {
+            // Convert to percentage (multiply by 100)
+            double percentage = probability * 100.0;
+
+            // Show up to 5 decimal places, removing trailing zeros
+            string formatted = percentage.ToString("0.#####");
+            return $"{formatted}%";
         }
 
         /// <summary>
         /// Clears cached mappings (call on game exit or disconnection)
         /// </summary>
-        public void ClearCache()
+        internal void ClearCache()
         {
             cachedMappings.Clear();
             Debug.Log("Multiplier cache cleared");
