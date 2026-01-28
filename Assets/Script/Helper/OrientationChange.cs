@@ -86,14 +86,14 @@ namespace PlinkoGame
             activeLauncher = horizontalBallLauncher;
         }
 
-        public void DeviceCheck(string device)
+        void DeviceCheck(string device)
         {
             Debug.Log($"[OrientationChange] Device detected: {device}");
             currentDevice = device;
             ApplyDeviceSpecificSettings();
         }
 
-        public void SwitchDisplay(string dimensions)
+        void SwitchDisplay(string dimensions)
         {
             string[] parts = dimensions.Split(',');
             if (parts.Length != 2) return;

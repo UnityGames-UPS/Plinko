@@ -13,6 +13,7 @@ namespace PlinkoGame
     /// Main game controller
     /// NOW SUPPORTS DUAL LAYOUT SYSTEM
     /// References active BoardController and BallLauncher based on orientation
+    /// FIXED: Only shows popup on insufficient balance, overlay only active during autoplay
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -201,13 +202,18 @@ namespace PlinkoGame
             }
         }
 
+        /// <summary>
+        /// FIXED: Only shows popup when balance insufficient, never activates overlay in manual mode
+        /// </summary>
         internal void OnBetButtonClicked()
         {
+            // Check ball count and processing state
             if (activeBallCount >= maxParallelBalls || isProcessingBet || isWaitingForResult)
             {
                 return;
             }
 
+            // Check balance before placing bet - only show popup, don't disable controls
             if (!CanPlaceBet())
             {
                 uiManager.ShowErrorPopup("Insufficient balance");
@@ -217,9 +223,19 @@ namespace PlinkoGame
             PlaceBet();
         }
 
+        /// <summary>
+        /// FIXED: Check balance before placing bet but don't disable controls
+        /// </summary>
         private void PlaceBet()
         {
             if (isProcessingBet || isWaitingForResult) return;
+
+            // Double-check balance right before placing bet
+            if (!CanPlaceBet())
+            {
+                uiManager.ShowErrorPopup("Insufficient balance");
+                return;
+            }
 
             double betAmount = socketManager.InitialData.bets[currentBetIndex];
             double currentBalance = socketManager.PlayerData.balance;
@@ -236,13 +252,41 @@ namespace PlinkoGame
 
         private bool CanPlaceBet()
         {
+            if (socketManager == null || socketManager.InitialData == null || socketManager.PlayerData == null)
+            {
+                return false;
+            }
+
+            if (currentBetIndex < 0 || currentBetIndex >= socketManager.InitialData.bets.Count)
+            {
+                return false;
+            }
+
             double betAmount = socketManager.InitialData.bets[currentBetIndex];
             return socketManager.PlayerData.balance >= betAmount;
         }
 
+        internal bool CanBetNow()
+        {
+            return (activeBallCount < maxParallelBalls) &&
+                   CanPlaceBet() &&
+                   !isProcessingBet &&
+                   !isWaitingForResult;
+        }
+
+        /// <summary>
+        /// FIXED: Check balance before starting autoplay and show popup if insufficient
+        /// </summary>
         internal void StartAutoplay(int rounds)
         {
             if (isAutoplayActive) return;
+
+            // Check balance before starting autoplay - show popup if insufficient
+            if (!CanPlaceBet())
+            {
+                uiManager.ShowErrorPopup("Insufficient balance to start autoplay");
+                return;
+            }
 
             isAutoplayActive = true;
             isInfiniteAutoplay = (rounds == 0);
@@ -273,17 +317,23 @@ namespace PlinkoGame
             uiManager.OnAutoplayStopped();
         }
 
+        /// <summary>
+        /// FIXED: Check balance at every autoplay round start, show popup and stop if insufficient
+        /// </summary>
         private IEnumerator AutoplayLoop()
         {
             while (isAutoplayActive)
             {
+                // Wait for current bets to complete
                 while (isProcessingBet || isWaitingForResult || activeBallCount >= maxParallelBalls)
                 {
                     yield return null;
                 }
 
+                // Check balance before each autoplay bet
                 if (!CanPlaceBet())
                 {
+                    // Show popup and stop autoplay
                     uiManager.ShowErrorPopup("Insufficient balance - autoplay stopped");
                     StopAutoplay();
                     yield break;
@@ -293,6 +343,7 @@ namespace PlinkoGame
 
                 yield return new WaitForSeconds(autoplayDelay);
 
+                // Wait for balls to land before next bet
                 while (activeBallCount >= maxParallelBalls)
                 {
                     yield return null;
@@ -314,6 +365,8 @@ namespace PlinkoGame
             double newBet = socketManager.InitialData.bets[currentBetIndex];
             uiManager.UpdateBetDisplay(newBet);
             uiManager.RefreshHoverData(GetCurrentBetAmount());
+
+            UpdateBetButtonState();
         }
 
         internal void OnRiskChanged(int riskIndex)
@@ -514,10 +567,14 @@ namespace PlinkoGame
             return 0;
         }
 
+        /// <summary>
+        /// FIXED: Only disable bet button when balls are at max or bet is processing
+        /// Never disable based on balance check (that only shows popup)
+        /// </summary>
         private void UpdateBetButtonState()
         {
-            bool canBet = (activeBallCount < maxParallelBalls) && CanPlaceBet() && !isProcessingBet && !isWaitingForResult;
-            uiManager.UpdateBetButtonState(canBet);
+            bool canBet = (activeBallCount < maxParallelBalls) && !isProcessingBet && !isWaitingForResult;
+            uiManager.UpdateBetButtonState(canBet, isAutoplayActive);
         }
 
         internal void OnExitGame()

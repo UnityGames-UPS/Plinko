@@ -355,7 +355,7 @@ namespace PlinkoGame
                 TextMeshProUGUI activeEmptyText = horizontal ? h_historyEmptyText : v_historyEmptyText;
                 historyManager.BindToLayout(isHorizontalActive); // Pass true/false directly
             }
-                
+
             if (isHoverPopupVisible)
             {
                 ShowHoverPopup(currentHoverPosition, currentHoverProfit, currentHoverProbability);
@@ -752,17 +752,25 @@ namespace PlinkoGame
                 v_betAmountText.text = formatted;
         }
 
-        internal void UpdateBetButtonState(bool canBet)
+        /// <summary>
+        /// FIXED: Overlay only activates during autoplay, not on insufficient balance in manual mode
+        /// This allows users to always change their bet amount even when balance is insufficient
+        /// </summary>
+        internal void UpdateBetButtonState(bool canBet, bool isAutoplayActive)
         {
             if (h_betButton != null)
                 h_betButton.interactable = canBet;
             if (v_betButton != null)
                 v_betButton.interactable = canBet;
 
+            // Only show overlay during autoplay, never in manual mode
+            // This ensures users can always adjust bet amounts even with insufficient balance
+            bool showOverlay = isAutoplayActive && !canBet;
+
             if (h_betDisabledOverlay != null)
-                h_betDisabledOverlay.SetActive(!canBet);
+                h_betDisabledOverlay.SetActive(showOverlay);
             if (v_betDisabledOverlay != null)
-                v_betDisabledOverlay.SetActive(!canBet);
+                v_betDisabledOverlay.SetActive(showOverlay);
         }
 
         // ============================================
@@ -1119,28 +1127,42 @@ namespace PlinkoGame
                 .SetUpdate(true);
         }
 
-        private void ClosePopupWithAnimation(GameObject popupMainPanel, GameObject popupArea)
+        private void ClosePopupWithAnimation(GameObject mainPanel, GameObject area)
         {
-            if (popupArea == null || popupMainPanel == null) return;
-
-            RectTransform rectTransform = popupArea.GetComponent<RectTransform>();
-            if (rectTransform == null)
+            if (mainPanel != null && area != null)
             {
-                popupMainPanel.SetActive(false);
-                return;
-            }
-
-            rectTransform.DOKill();
-            rectTransform.DOScale(Vector3.zero, popupScaleOutDuration)
-                .SetEase(popupScaleOutEase)
-                .SetUpdate(true)
-                .OnComplete(() =>
+                RectTransform areaRect = area.GetComponent<RectTransform>();
+                if (areaRect != null)
                 {
-                    popupMainPanel.SetActive(false);
-                    rectTransform.localScale = Vector3.one;
-                });
+                    areaRect.DOScale(Vector3.zero, popupScaleOutDuration)
+                        .SetEase(popupScaleOutEase)
+                        .OnComplete(() =>
+                        {
+                            mainPanel.SetActive(false);
+
+                            // FIXED: Reset bet area state after popup closes
+                            ResetBetAreaAfterPopup();
+                        });
+                }
+                else
+                {
+                    mainPanel.SetActive(false);
+                    ResetBetAreaAfterPopup(); // FIXED: Also reset here
+                }
+            }
         }
 
+        private void ResetBetAreaAfterPopup()
+        {
+            // Re-enable bet controls if they should be enabled
+            if (gameManager != null)
+            {
+                // Trigger a state update to ensure button state is correct
+                UpdateBetButtonState(gameManager.CanBetNow(), isAutoplayActive);
+            }
+            // The overlay state is now handled by UpdateBetButtonState based on autoplay status
+            // No need to manually set overlay here
+        }
         private System.Collections.IEnumerator AutoClosePopup(GameObject popupMainPanel, GameObject popupArea, float delay)
         {
             yield return new WaitForSeconds(delay);
