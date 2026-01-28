@@ -1449,5 +1449,41 @@ namespace PlinkoGame
             disconnectionOkButton?.onClick.RemoveAllListeners();
             errorPopupbtn?.onClick.RemoveAllListeners();
         }
+
+
+        /// <summary>
+        /// Updates risk dropdown to show specific value (without triggering events)
+        /// Used during orientation change to reflect enforced settings
+        /// </summary>
+        internal void UpdateRiskDropdownValue(int riskIndex)
+        {
+            if (isHorizontalActive && h_riskDropdown != null)
+            {
+                h_riskDropdown.SetValueWithoutNotify(riskIndex);
+            }
+            else if (!isHorizontalActive && v_riskDropdown != null)
+            {
+                v_riskDropdown.SetValueWithoutNotify(riskIndex);
+            }
+        }
+
+        /// <summary>
+        /// Updates row dropdown to show specific value (without triggering events)
+        /// Used during orientation change to reflect enforced settings
+        /// </summary>
+        internal void UpdateRowDropdownValue(int rowIndex)
+        {
+            if (isHorizontalActive && h_rowDropdown != null)
+            {
+                h_rowDropdown.SetValueWithoutNotify(rowIndex);
+            }
+            else if (!isHorizontalActive && v_rowDropdown != null)
+            {
+                v_rowDropdown.SetValueWithoutNotify(rowIndex);
+            }
+        }
+
     }
+
+
 }

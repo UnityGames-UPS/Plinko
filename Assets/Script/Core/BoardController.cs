@@ -117,7 +117,24 @@ namespace PlinkoGame
         public float GetFirstPegRowLocalY() => firstPegRowLocalY;
         public List<Transform> GetCatchers() => catchers;
 
-        public void OnOrientationChanged()
+       /* public void OnOrientationChanged()
+        {
+            if (!isRebuilding)
+            {
+                if (rebuildCoroutine != null)
+                {
+                    StopCoroutine(rebuildCoroutine);
+                }
+
+                Debug.Log("[BoardController] === STARTING FRESH PYRAMID BUILD ===");
+                rebuildCoroutine = StartCoroutine(CompleteFreshRebuild());
+            }
+        }*/
+
+        /// <summary>
+        /// Complete fresh rebuild - destroys old pyramid completely
+        /// </summary>
+        internal void StartCompleteFreshRebuild()
         {
             if (!isRebuilding)
             {
@@ -130,10 +147,6 @@ namespace PlinkoGame
                 rebuildCoroutine = StartCoroutine(CompleteFreshRebuild());
             }
         }
-
-        /// <summary>
-        /// Complete fresh rebuild - destroys old pyramid completely
-        /// </summary>
         private IEnumerator CompleteFreshRebuild()
         {
             if (isRebuilding)
@@ -331,7 +344,7 @@ namespace PlinkoGame
         /// <summary>
         /// Clean up all catcher states
         /// </summary>
-        private void CleanupCatcherStates()
+        internal void CleanupCatcherStates()
         {
             foreach (var catcher in catchers)
             {

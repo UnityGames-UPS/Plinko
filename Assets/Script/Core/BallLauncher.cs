@@ -196,7 +196,7 @@ namespace PlinkoGame
             activeBallCount++;
         }
 
-        private void OnBallLanded(int catcherIndex, GameObject landedBall)
+        internal void OnBallLanded(int catcherIndex, GameObject landedBall)
         {
             if (gameManager != null)
             {

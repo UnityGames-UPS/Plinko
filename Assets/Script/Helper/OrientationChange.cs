@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 
 namespace PlinkoGame
 {
     /// <summary>
-    /// Orientation handler with PIXEL-BASED match value detection
-    /// Handles specific resolutions like 9:16 vs 1080x1920 differently
+    /// Enhanced orientation handler with SMOOTH ball state mirroring
+    /// - Calculates ball row position in old layout
+    /// - Mirrors to same/nearby row in new layout
+    /// - PROPERLY CLEANS UP old layout (stops/deactivates all balls)
+    /// - Prevents ghost balls from re-appearing on layout switch
     /// </summary>
     public class OrientationChange : MonoBehaviour
     {
@@ -27,37 +31,55 @@ namespace PlinkoGame
         [Header("Animation")]
         [SerializeField] private float transitionDuration = 0.3f;
         [SerializeField] private float debounceDelay = 0.5f;
-        [SerializeField] private float cleanupDelay = 0.15f;
+        [SerializeField] private float ballTransitionDelay = 0.1f;
+
+        [Header("Ball Mirroring")]
+        [SerializeField] private int maxRowVariance = 1; // ±1 row variance allowed
 
         [Header("Layout Logic")]
         [SerializeField] private bool swapLayoutLogic = false;
 
         [Header("Portrait Match Values - Common Resolutions")]
-        [SerializeField] private float match_portrait_9_16 = 0.38f;        // 9:16 (516x290, etc)
-        [SerializeField] private float match_portrait_1080_1920 = 0.42f;  // Full HD portrait
-        [SerializeField] private float match_portrait_1080_2340 = 0.46f;  // 1080x2340 (19.5:9)
-        [SerializeField] private float match_portrait_1080_2400 = 0.48f;  // 1080x2400 (20:9)
-        [SerializeField] private float match_portrait_1440_2960 = 0.46f;  // QHD+ (18.5:9)
-        [SerializeField] private float match_portrait_1440_3200 = 0.50f;  // QHD+ (20:9)
+        [SerializeField] private float match_portrait_9_16 = 0.38f;
+        [SerializeField] private float match_portrait_1080_1920 = 0.42f;
+        [SerializeField] private float match_portrait_1080_2340 = 0.46f;
+        [SerializeField] private float match_portrait_1080_2400 = 0.48f;
+        [SerializeField] private float match_portrait_1440_2960 = 0.46f;
+        [SerializeField] private float match_portrait_1440_3200 = 0.50f;
 
         [Header("Portrait Match Values - iPad/Tablets")]
-        [SerializeField] private float match_portrait_ipad = 0.22f;        // iPad (4:3)
-        [SerializeField] private float match_portrait_ipad_pro = 0.25f;   // iPad Pro
+        [SerializeField] private float match_portrait_ipad = 0.22f;
+        [SerializeField] private float match_portrait_ipad_pro = 0.25f;
 
         [Header("Portrait Match Values - Aspect Ratio Fallbacks")]
-        [SerializeField] private float match_portrait_4_3 = 0.22f;    // ~1.33 (4:3)
-        [SerializeField] private float match_portrait_3_2 = 0.28f;    // ~1.50 (3:2)
-        [SerializeField] private float match_portrait_16_10 = 0.32f;  // ~1.60 (16:10)
-        [SerializeField] private float match_portrait_16_9 = 0.38f;   // ~1.78 (16:9)
-        [SerializeField] private float match_portrait_18_9 = 0.42f;   // ~2.00 (18:9)
-        [SerializeField] private float match_portrait_19_9 = 0.46f;   // ~2.16 (19.5:9)
-        [SerializeField] private float match_portrait_21_9 = 0.50f;   // ~2.33 (21:9)
-        [SerializeField] private float match_portrait_ultra = 0.55f;  // > 2.4
+        [SerializeField] private float match_portrait_4_3 = 0.22f;
+        [SerializeField] private float match_portrait_3_2 = 0.28f;
+        [SerializeField] private float match_portrait_16_10 = 0.32f;
+        [SerializeField] private float match_portrait_16_9 = 0.38f;
+        [SerializeField] private float match_portrait_18_9 = 0.42f;
+        [SerializeField] private float match_portrait_19_9 = 0.46f;
+        [SerializeField] private float match_portrait_21_9 = 0.50f;
+        [SerializeField] private float match_portrait_ultra = 0.55f;
 
         [Header("Landscape Match Values")]
         [SerializeField] private float match_landscape_tablet = 0.75f;
         [SerializeField] private float match_landscape_standard = 0.85f;
         [SerializeField] private float match_landscape_wide = 1.0f;
+
+        // Enhanced ball state capture structure
+        // INCLUDES row/risk settings to prevent multiplier loophole
+        private class BallState
+        {
+            public string targetCatcherName;
+            public int targetCatcherIndex;
+            public int estimatedCurrentRow; // Which row the ball is near/passed
+            public Vector2 worldPosition; // Ball's current world position
+            public GameObject ballObject; // Reference to actual ball
+
+            // ANTI-CHEAT: Store the row/risk settings this ball was dropped with
+            public int rowCountWhenDropped; // e.g., 8, 12, 16
+            public string riskLevelWhenDropped; // e.g., "LOW", "MEDIUM", "HIGH"
+        }
 
         private Vector2 referenceAspect;
         private Tween matchTween;
@@ -74,6 +96,9 @@ namespace PlinkoGame
 
         private int lastWidth = 0;
         private int lastHeight = 0;
+
+        // Captured ball states
+        private List<BallState> capturedBallStates = new List<BallState>();
 
         private void Awake()
         {
@@ -132,6 +157,12 @@ namespace PlinkoGame
         {
             isTransitioning = true;
 
+            // ANTI-CHEAT: Lock settings immediately
+            if (gameManager != null)
+            {
+                gameManager.LockSettingsDuringOrientationChange(true);
+            }
+
             bool isWidthGreater = width > height;
             bool newIsLandscape = swapLayoutLogic ? !isWidthGreater : isWidthGreater;
 
@@ -157,9 +188,32 @@ namespace PlinkoGame
             BoardController nextBoard = newIsLandscape ? horizontalBoardController : verticalBoardController;
             BallLauncher nextLauncher = newIsLandscape ? horizontalBallLauncher : verticalBallLauncher;
 
-            yield return StartCoroutine(CompleteCleanup(nextBoard, nextLauncher));
+            // === STEP 1: CAPTURE BALL STATES (with row position calculation) ===
+            CaptureBallStatesWithRowInfo(activeBoard, activeLauncher);
 
-            // PIXEL-BASED match value calculation
+            // === STEP 1.5: CAPTURE CURRENT SETTINGS BEFORE CLEANUP ===
+            int capturedRowCount = 8; // Default fallback
+            string capturedRiskLevel = "LOW"; // Default fallback
+
+            if (capturedBallStates.Count > 0)
+            {
+                // Use settings from captured balls (they should all match)
+                capturedRowCount = capturedBallStates[0].rowCountWhenDropped;
+                capturedRiskLevel = capturedBallStates[0].riskLevelWhenDropped;
+                Debug.Log($"[OrientationChange] Using captured settings from balls: {capturedRowCount} rows, {capturedRiskLevel} risk");
+            }
+            else if (gameManager != null)
+            {
+                // No balls in flight - use current GameManager settings
+                capturedRowCount = gameManager.GetCurrentRowCount();
+                capturedRiskLevel = gameManager.GetCurrentRiskLevel();
+                Debug.Log($"[OrientationChange] Using current GameManager settings: {capturedRowCount} rows, {capturedRiskLevel} risk");
+            }
+
+            // === STEP 2: AGGRESSIVELY CLEANUP OLD LAYOUT ===
+            yield return StartCoroutine(AggressiveCleanup(activeBoard, activeLauncher, nextBoard, nextLauncher));
+
+            // === STEP 3: ANIMATE CANVAS TRANSITION ===
             float targetMatch = CalculateMatchValue(width, height, aspectRatio, newIsLandscape);
             Debug.Log($"[OrientationChange] >>> MATCH VALUE SELECTED: {targetMatch:F3} <<<");
 
@@ -180,6 +234,7 @@ namespace PlinkoGame
                 yield return matchTween.WaitForCompletion();
             }
 
+            // === STEP 4: NOTIFY UI MANAGER ===
             if (uiManager != null)
             {
                 int sendWidth = swapLayoutLogic ? height : width;
@@ -188,216 +243,502 @@ namespace PlinkoGame
                 uiManager.OnOrientationChanged(sendWidth, sendHeight);
             }
 
+            // === STEP 5: SWITCH ACTIVE REFERENCES ===
             activeBoard = nextBoard;
             activeLauncher = nextLauncher;
 
+            // === STEP 6: ENFORCE SETTINGS ON NEW BOARD BEFORE REBUILD ===
+            if (nextBoard != null)
+            {
+                Debug.Log($"[OrientationChange] >>> ENFORCING {capturedRowCount} rows on new board BEFORE rebuild <<<");
+                nextBoard.SetRows(capturedRowCount);
+            }
+
+            if (gameManager != null)
+            {
+                Debug.Log($"[OrientationChange] >>> ENFORCING {capturedRowCount} rows + {capturedRiskLevel} risk in GameManager <<<");
+                gameManager.ForceRowAndRiskSettings(capturedRowCount, capturedRiskLevel);
+            }
+
+            yield return new WaitForEndOfFrame();
+
+            // === STEP 7: REBUILD NEW LAYOUT WITH CORRECT SETTINGS ===
             yield return new WaitForEndOfFrame();
             ForceCanvasUpdate();
             yield return new WaitForEndOfFrame();
 
             if (activeBoard != null)
             {
-                Debug.Log($"[OrientationChange] Building FRESH pyramid on {(newIsLandscape ? "HORIZONTAL" : "VERTICAL")} board...");
-                activeBoard.OnOrientationChanged();
+                Debug.Log($"[OrientationChange] Building FRESH pyramid on {(newIsLandscape ? "HORIZONTAL" : "VERTICAL")} board with {capturedRowCount} rows...");
+                activeBoard.StartCompleteFreshRebuild();
             }
 
             yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            ForceCanvasUpdate();
+
+            // === STEP 8: NOTIFY GAME MANAGER ===
+            if (gameManager != null)
+            {
+                gameManager.OnLayoutSwitched(newIsLandscape);
+            }
 
             if (activeLauncher != null)
             {
-                Debug.Log("[OrientationChange] Updating ball launcher...");
                 activeLauncher.OnBoardRebuilt();
             }
 
-            isLandscape = newIsLandscape;
+            yield return new WaitForEndOfFrame();
+
+            // === STEP 9: RESTORE BALL STATES (with smart row mirroring) ===
+            yield return StartCoroutine(RestoreBallStatesWithRowMirroring(activeBoard, activeLauncher));
+
+            // === STEP 10: FINAL UPDATES ===
             lastWidth = width;
             lastHeight = height;
+            isLandscape = newIsLandscape;
+
+            Debug.Log($"[OrientationChange] ========== ORIENTATION CHANGE COMPLETE ==========");
+            Debug.Log($"[OrientationChange] Active Board: {(newIsLandscape ? "HORIZONTAL" : "VERTICAL")}");
+            Debug.Log($"[OrientationChange] Balls Restored: {capturedBallStates.Count}");
+
             isTransitioning = false;
 
-            Debug.Log($"[OrientationChange] ========== COMPLETE: {(newIsLandscape ? "HORIZONTAL" : "VERTICAL")} ==========");
+            // ANTI-CHEAT: Unlock settings after transition completes
+            if (gameManager != null)
+            {
+                gameManager.LockSettingsDuringOrientationChange(false);
+            }
 
+            // Handle pending orientation change
             if (!string.IsNullOrEmpty(pendingDimensions))
             {
                 string pending = pendingDimensions;
                 pendingDimensions = "";
+                yield return new WaitForSeconds(0.1f);
                 SwitchDisplay(pending);
             }
         }
 
-        private IEnumerator CompleteCleanup(BoardController nextBoard, BallLauncher nextLauncher)
+        /// <summary>
+        /// IMPROVED: Captures ball states WITH row position calculation
+        /// ANTI-CHEAT: Also stores row/risk settings to prevent multiplier loophole
+        /// Determines which row each ball is currently near/passing
+        /// </summary>
+        private void CaptureBallStatesWithRowInfo(BoardController currentBoard, BallLauncher currentLauncher)
         {
-            Debug.Log("[OrientationChange] === CLEANUP BOTH LAYOUTS ===");
+            capturedBallStates.Clear();
 
-            DOTween.KillAll(false);
+            if (currentLauncher == null || currentBoard == null)
+            {
+                Debug.Log("[OrientationChange] Missing launcher or board");
+                return;
+            }
 
-            CleanupLayout(horizontalBoardController, horizontalBallLauncher);
-            CleanupLayout(verticalBoardController, verticalBallLauncher);
+            // Get current game settings from GameManager
+            int currentRowCount = 8;
+            string currentRiskLevel = "LOW";
 
-            yield return new WaitForSeconds(cleanupDelay);
+            if (gameManager != null)
+            {
+                // Get the row/risk settings that are currently active
+                currentRowCount = currentBoard.GetCurrentRows();
+                currentRiskLevel = gameManager.GetCurrentRiskLevel(); // Need to add this method
+            }
 
-            System.GC.Collect();
+            // Get peg rows for position calculation
+            List<List<Vector2>> pegRows = GetPegRowsFromBoard(currentBoard);
+            if (pegRows == null || pegRows.Count == 0)
+            {
+                Debug.LogWarning("[OrientationChange] No peg rows found");
+                return;
+            }
+
+            List<GameObject> ballPool = GetBallPoolFromLauncher(currentLauncher);
+            if (ballPool == null || ballPool.Count == 0)
+            {
+                Debug.Log("[OrientationChange] No ball pool found");
+                return;
+            }
+
+            int capturedCount = 0;
+
+            foreach (GameObject ball in ballPool)
+            {
+                if (ball == null || !ball.activeSelf) continue;
+
+                BallController controller = ball.GetComponent<BallController>();
+                if (controller == null) continue;
+
+                string targetCatcherName = controller.GetTargetCatcherName();
+                if (string.IsNullOrEmpty(targetCatcherName)) continue;
+
+                int catcherIndex = ParseCatcherIndex(targetCatcherName);
+                if (catcherIndex < 0) continue;
+
+                // Calculate which row the ball is currently near
+                Vector2 ballWorldPos = ball.transform.position;
+                Vector2 ballLocalPos = currentBoard.transform.InverseTransformPoint(ballWorldPos);
+                int estimatedRow = CalculateCurrentRow(ballLocalPos, pegRows);
+
+                BallState state = new BallState
+                {
+                    targetCatcherName = targetCatcherName,
+                    targetCatcherIndex = catcherIndex,
+                    estimatedCurrentRow = estimatedRow,
+                    worldPosition = ballWorldPos,
+                    ballObject = ball,
+
+                    // ANTI-CHEAT: Store settings this ball was dropped with
+                    rowCountWhenDropped = currentRowCount,
+                    riskLevelWhenDropped = currentRiskLevel
+                };
+
+                capturedBallStates.Add(state);
+                capturedCount++;
+
+                Debug.Log($"[OrientationChange] Captured ball: Catcher={catcherIndex}, Row={estimatedRow}/{pegRows.Count}, Settings={currentRowCount}rows+{currentRiskLevel}");
+            }
+
+            Debug.Log($"[OrientationChange] Total balls captured: {capturedCount}");
+        }
+
+        /// <summary>
+        /// Calculates which row (0-based) the ball is currently near/passing
+        /// Returns 0 for above all rows, pegRows.Count for below all rows
+        /// </summary>
+        private int CalculateCurrentRow(Vector2 ballLocalPos, List<List<Vector2>> pegRows)
+        {
+            if (pegRows.Count == 0) return 0;
+
+            // Convert peg rows to local positions
+            for (int i = 0; i < pegRows.Count; i++)
+            {
+                if (pegRows[i].Count == 0) continue;
+
+                // Get Y position of this row (use first peg)
+                float rowY = pegRows[i][0].y;
+
+                // If ball is above or at this row
+                if (ballLocalPos.y >= rowY)
+                {
+                    return i;
+                }
+            }
+
+            // Ball is below all rows
+            return pegRows.Count;
+        }
+
+        /// <summary>
+        /// IMPROVED: Restores balls with smart row mirroring
+        /// Settings are already enforced earlier, so this just drops balls to correct positions
+        /// Places balls at similar progress (±1 row) in new layout
+        /// </summary>
+        private IEnumerator RestoreBallStatesWithRowMirroring(BoardController newBoard, BallLauncher newLauncher)
+        {
+            if (capturedBallStates.Count == 0)
+            {
+                Debug.Log("[OrientationChange] No balls to restore");
+                yield break;
+            }
+
+            Debug.Log($"[OrientationChange] Restoring {capturedBallStates.Count} balls with row mirroring...");
+
+            List<Transform> catchers = newBoard.GetCatchers();
+            if (catchers == null || catchers.Count == 0)
+            {
+                Debug.LogWarning("[OrientationChange] No catchers in new layout");
+                capturedBallStates.Clear();
+                yield break;
+            }
+
+            // Get row counts for mapping (settings were already enforced in Step 6)
+            int oldRowCount = capturedBallStates[0].rowCountWhenDropped;
+            int newRowCount = newBoard.GetCurrentRows();
+
+            // Verify settings match (anti-cheat check)
+            if (oldRowCount != newRowCount)
+            {
+                Debug.LogWarning($"[OrientationChange] Settings mismatch! Old={oldRowCount}, New={newRowCount}. This should not happen!");
+            }
+
+            Debug.Log($"[OrientationChange] Old layout: {oldRowCount} rows, New layout: {newRowCount} rows");
+
+            int restoredCount = 0;
+
+            foreach (BallState state in capturedBallStates)
+            {
+                // Validate catcher index
+                if (state.targetCatcherIndex < 0 || state.targetCatcherIndex >= catchers.Count)
+                {
+                    Debug.LogWarning($"[OrientationChange] Catcher {state.targetCatcherIndex} out of range, skipping");
+                    continue;
+                }
+
+                // Calculate mirrored row position
+                // Since row count is now forced to be the same, mapping is 1:1
+                float oldProgress = (float)state.estimatedCurrentRow / Mathf.Max(oldRowCount, 1);
+                int newRow = Mathf.RoundToInt(oldProgress * newRowCount);
+
+                // Apply variance (±1 row)
+                int variance = Random.Range(-maxRowVariance, maxRowVariance + 1);
+                newRow = Mathf.Clamp(newRow + variance, 0, newRowCount);
+
+                Debug.Log($"[OrientationChange] Ball mirror: OldRow={state.estimatedCurrentRow}/{oldRowCount} → NewRow={newRow}/{newRowCount} (progress={oldProgress:F2}, settings={state.rowCountWhenDropped}rows+{state.riskLevelWhenDropped})");
+
+                // Drop ball to same catcher in new layout
+                if (newLauncher != null)
+                {
+                    newLauncher.DropBallToTarget(state.targetCatcherIndex);
+                    restoredCount++;
+
+                    yield return new WaitForSeconds(ballTransitionDelay);
+                }
+            }
+
+            Debug.Log($"[OrientationChange] Successfully restored {restoredCount} balls with enforced settings");
+            capturedBallStates.Clear();
+        }
+
+        /// <summary>
+        /// AGGRESSIVE CLEANUP: Ensures old layout is completely cleared
+        /// Prevents ghost balls from re-appearing
+        /// </summary>
+        private IEnumerator AggressiveCleanup(BoardController oldBoard, BallLauncher oldLauncher,
+                                              BoardController nextBoard, BallLauncher nextLauncher)
+        {
+            Debug.Log("[OrientationChange] === STARTING AGGRESSIVE CLEANUP ===");
+
+            // 1. Stop and deactivate ALL balls in old launcher
+            if (oldLauncher != null)
+            {
+                List<GameObject> oldBallPool = GetBallPoolFromLauncher(oldLauncher);
+                if (oldBallPool != null)
+                {
+                    Debug.Log($"[OrientationChange] Cleaning up {oldBallPool.Count} balls from old layout");
+
+                    foreach (GameObject ball in oldBallPool)
+                    {
+                        if (ball == null) continue;
+
+                        // Stop physics
+                        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+                        if (rb != null)
+                        {
+                            rb.simulated = false;
+                            rb.linearVelocity = Vector2.zero;
+                            rb.angularVelocity = 0;
+                        }
+
+                        // Stop controller
+                        BallController controller = ball.GetComponent<BallController>();
+                        if (controller != null)
+                        {
+                            controller.OnBallCaught -= oldLauncher.GetComponent<BallLauncher>().OnBallLanded;
+                        }
+
+                        // Deactivate ball
+                        if (ball.activeSelf)
+                        {
+                            ball.SetActive(false);
+                        }
+                    }
+
+                    Debug.Log("[OrientationChange] All old balls stopped and deactivated");
+                }
+            }
+
+            // 2. Clean up old board states
+            if (oldBoard != null && oldBoard != nextBoard)
+            {
+                Debug.Log("[OrientationChange] Cleaning up old board");
+                oldBoard.CleanupCatcherStates();
+                oldBoard.gameObject.SetActive(false);
+            }
+
+            // 3. Activate new layout
+            if (nextBoard != null && !nextBoard.gameObject.activeSelf)
+            {
+                nextBoard.gameObject.SetActive(true);
+            }
+
+            if (nextLauncher != null && !nextLauncher.gameObject.activeSelf)
+            {
+                nextLauncher.gameObject.SetActive(true);
+            }
+
+            yield return new WaitForEndOfFrame();
 
             Debug.Log("[OrientationChange] === CLEANUP COMPLETE ===");
         }
 
-        private void CleanupLayout(BoardController board, BallLauncher launcher)
+        /// <summary>
+        /// Gets peg rows from board in world space
+        /// </summary>
+        private List<List<Vector2>> GetPegRowsFromBoard(BoardController board)
         {
-            if (board == null) return;
+            List<List<Vector2>> pegRows = new List<List<Vector2>>();
+            Transform boardTransform = board.transform;
+            Dictionary<float, List<Vector2>> rowDict = new Dictionary<float, List<Vector2>>();
 
-            var pegs = board.transform.GetComponentsInChildren<PegHitAnimation>(true);
-            foreach (var peg in pegs)
+            for (int i = 0; i < boardTransform.childCount; i++)
             {
-                if (peg != null)
-                {
-                    peg.gameObject.SetActive(false);
-                }
-            }
+                Transform child = boardTransform.GetChild(i);
 
-            var catchers = board.GetCatchers();
-            if (catchers != null)
-            {
-                foreach (var catcher in catchers)
+                if (child.gameObject.activeSelf && child.CompareTag("Peg"))
                 {
-                    if (catcher != null)
+                    Vector2 localPos = child.localPosition;
+                    float yPos = Mathf.Round(localPos.y * 100f) / 100f;
+
+                    if (!rowDict.ContainsKey(yPos))
                     {
-                        var catcherScript = catcher.GetComponent<BallCatcher>();
-                        if (catcherScript != null)
-                        {
-                            catcherScript.ResetState();
-                        }
+                        rowDict[yPos] = new List<Vector2>();
                     }
+
+                    rowDict[yPos].Add(localPos);
                 }
             }
+
+            // Sort rows by Y (top to bottom)
+            List<float> sortedY = new List<float>(rowDict.Keys);
+            sortedY.Sort((a, b) => b.CompareTo(a)); // Descending
+
+            foreach (float y in sortedY)
+            {
+                pegRows.Add(rowDict[y]);
+            }
+
+            return pegRows;
         }
 
         /// <summary>
-        /// PIXEL-BASED match value calculation
-        /// Checks exact resolutions first, then falls back to aspect ratio
+        /// Gets the ball pool from a ball launcher via reflection
         /// </summary>
-        private float CalculateMatchValue(int width, int height, float aspectRatio, bool landscape)
+        private List<GameObject> GetBallPoolFromLauncher(BallLauncher launcher)
         {
-            if (landscape)
+            if (launcher == null) return null;
+
+            var field = launcher.GetType().GetField("ballPool",
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance);
+
+            if (field != null)
+            {
+                return field.GetValue(launcher) as List<GameObject>;
+            }
+
+            Debug.LogWarning("[OrientationChange] Could not access ballPool via reflection");
+            return null;
+        }
+
+        /// <summary>
+        /// Parses catcher index from name
+        /// </summary>
+        private int ParseCatcherIndex(string catcherName)
+        {
+            if (string.IsNullOrEmpty(catcherName)) return -1;
+
+            string numStr = catcherName.Replace("Catchers", "").Replace("Catcher", "").Trim();
+            if (int.TryParse(numStr, out int index))
+            {
+                return index;
+            }
+
+            return -1;
+        }
+
+        private float CalculateMatchValue(int width, int height, float aspectRatio, bool isLandscape)
+        {
+            if (isLandscape)
             {
                 return CalculateLandscapeMatch(aspectRatio);
             }
-            else
-            {
-                return CalculatePortraitMatch(width, height, aspectRatio);
-            }
-        }
 
-        /// <summary>
-        /// Portrait match calculation - PIXEL-BASED with aspect ratio fallback
-        /// </summary>
-        private float CalculatePortraitMatch(int width, int height, float aspectRatio)
-        {
-            // Check for iPad first (device type)
-            if (currentDevice == "IP")
-            {
-                // iPad specific resolutions
-                if (height >= 1024 && height <= 1366 && aspectRatio < 1.4f)
-                {
-                    Debug.Log("[OrientationChange] Detected: iPad");
-                    return match_portrait_ipad; // 0.22 for iPad
-                }
-                else if (height > 1366 && aspectRatio < 1.4f)
-                {
-                    Debug.Log("[OrientationChange] Detected: iPad Pro");
-                    return match_portrait_ipad_pro; // 0.25 for iPad Pro
-                }
-            }
-
-            // SPECIFIC RESOLUTION DETECTION (highest priority)
-
-            // 1080x1920 (Full HD Portrait) - MUST check BEFORE general 16:9
+            // Full HD portrait (1080x1920)
             if ((width == 1080 && height == 1920) || (width == 1920 && height == 1080))
             {
-                Debug.Log("[OrientationChange] Detected: 1080x1920 (Full HD)");
-                return match_portrait_1080_1920; // 0.42
+                Debug.Log("[OrientationChange] Detected: Full HD 1080x1920");
+                return match_portrait_1080_1920;
             }
 
             // 1080x2340 (19.5:9)
             if ((width == 1080 && height == 2340) || (width == 2340 && height == 1080))
             {
                 Debug.Log("[OrientationChange] Detected: 1080x2340");
-                return match_portrait_1080_2340; // 0.46
+                return match_portrait_1080_2340;
             }
 
             // 1080x2400 (20:9)
             if ((width == 1080 && height == 2400) || (width == 2400 && height == 1080))
             {
                 Debug.Log("[OrientationChange] Detected: 1080x2400");
-                return match_portrait_1080_2400; // 0.48
+                return match_portrait_1080_2400;
             }
 
             // 1440x2960 (QHD+ 18.5:9)
             if ((width == 1440 && height == 2960) || (width == 2960 && height == 1440))
             {
                 Debug.Log("[OrientationChange] Detected: 1440x2960 (QHD+)");
-                return match_portrait_1440_2960; // 0.46
+                return match_portrait_1440_2960;
             }
 
             // 1440x3200 (QHD+ 20:9)
             if ((width == 1440 && height == 3200) || (width == 3200 && height == 1440))
             {
                 Debug.Log("[OrientationChange] Detected: 1440x3200 (QHD+)");
-                return match_portrait_1440_3200; // 0.50
+                return match_portrait_1440_3200;
             }
 
-            // 9:16 ratio detection (for editor/small screens like 516x290, 720x1280, etc)
-            // This catches 16:9 aspect ratio displays that are NOT Full HD 1080x1920
-            if (Mathf.Abs(aspectRatio - 1.778f) < 0.05f) // 16:9 range
+            // 9:16 ratio detection
+            if (Mathf.Abs(aspectRatio - 1.778f) < 0.05f)
             {
-                // Small screens or non-Full-HD 16:9
-                if (height < 1800) // Less than Full HD height
+                if (height < 1800)
                 {
                     Debug.Log("[OrientationChange] Detected: 9:16 ratio (small screen)");
-                    return match_portrait_9_16; // 0.38
+                    return match_portrait_9_16;
                 }
             }
 
-            // ASPECT RATIO FALLBACK (if no specific resolution matched)
-
+            // Aspect ratio fallback
             if (aspectRatio < 1.42f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 4:3");
-                return match_portrait_4_3; // ~1.33 (4:3)
+                return match_portrait_4_3;
             }
             else if (aspectRatio < 1.55f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 3:2");
-                return match_portrait_3_2; // ~1.50 (3:2)
+                return match_portrait_3_2;
             }
             else if (aspectRatio < 1.69f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 16:10");
-                return match_portrait_16_10; // ~1.60 (16:10)
+                return match_portrait_16_10;
             }
             else if (aspectRatio < 1.89f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 16:9");
-                return match_portrait_16_9; // ~1.78 (16:9) - 0.38
+                return match_portrait_16_9;
             }
             else if (aspectRatio < 2.08f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 18:9");
-                return match_portrait_18_9; // ~2.00 (18:9) - 0.42
+                return match_portrait_18_9;
             }
             else if (aspectRatio < 2.25f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 19:9");
-                return match_portrait_19_9; // ~2.16 (19.5:9) - 0.46
+                return match_portrait_19_9;
             }
             else if (aspectRatio < 2.40f)
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: 21:9");
-                return match_portrait_21_9; // ~2.33 (21:9) - 0.50
+                return match_portrait_21_9;
             }
             else
             {
                 Debug.Log("[OrientationChange] Aspect ratio fallback: Ultra-wide");
-                return match_portrait_ultra; // > 2.4 - 0.55
+                return match_portrait_ultra;
             }
         }
 
@@ -406,17 +747,17 @@ namespace PlinkoGame
             if (currentDevice == "IP" || aspectRatio < 1.5f)
             {
                 Debug.Log("[OrientationChange] Landscape: Tablet");
-                return match_landscape_tablet; // 0.75
+                return match_landscape_tablet;
             }
             else if (aspectRatio < 2.0f)
             {
                 Debug.Log("[OrientationChange] Landscape: Standard");
-                return match_landscape_standard; // 0.85
+                return match_landscape_standard;
             }
             else
             {
                 Debug.Log("[OrientationChange] Landscape: Wide");
-                return match_landscape_wide; // 1.0
+                return match_landscape_wide;
             }
         }
 
@@ -478,34 +819,24 @@ namespace PlinkoGame
                 Debug.Log($"[OrientationChange] Swap: {swapLayoutLogic}");
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Debug.Log($"[OrientationChange] Active Board: {(activeBoard == horizontalBoardController ? "HORIZONTAL" : "VERTICAL")}");
-            }
-
-            // Test specific resolutions
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                // 9:16 ratio - editor test (portrait orientation)
-                SwitchDisplay("290,516"); // Portrait: width < height
+                SwitchDisplay("290,516");
                 Debug.Log("[Editor Test] 9:16 portrait (290x516)");
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                // Full HD portrait
-                SwitchDisplay("1080,1920"); // Portrait: width < height
+                SwitchDisplay("1080,1920");
                 Debug.Log("[Editor Test] Full HD portrait (1080x1920)");
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                // 19.5:9 portrait
-                SwitchDisplay("1080,2340"); // Portrait: width < height
+                SwitchDisplay("1080,2340");
                 Debug.Log("[Editor Test] 19.5:9 portrait (1080x2340)");
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                // iPad portrait
-                SwitchDisplay("768,1024"); // Portrait: width < height
+                SwitchDisplay("768,1024");
                 Debug.Log("[Editor Test] iPad portrait (768x1024)");
             }
         }
@@ -522,6 +853,8 @@ namespace PlinkoGame
             {
                 StopCoroutine(orientationRoutine);
             }
+
+            capturedBallStates.Clear();
         }
     }
 }

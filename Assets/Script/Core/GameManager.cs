@@ -621,5 +621,108 @@ namespace PlinkoGame
 
             DOTween.KillAll();
         }
+
+
+
+        /// <summary>
+        /// Gets the current risk level name (for orientation change capture)
+        /// </summary>
+        internal string GetCurrentRiskLevel()
+        {
+            return currentRiskName;
+        }
+
+        /// <summary>
+        /// Gets the current row count (for orientation change capture)
+        /// </summary>
+        public int GetCurrentRowCount()
+        {
+            return GetRowCountFromIndex(currentRowIndex);
+        }
+
+        /// <summary>
+        /// ANTI-CHEAT: Forces specific row and risk settings
+        /// Used during orientation change to ensure balls dropped with settings X
+        /// continue with settings X in the new layout (prevents multiplier loophole)
+        /// </summary>
+        internal void ForceRowAndRiskSettings(int rowCount, string riskLevel)
+        {
+            Debug.Log($"[GameManager] FORCING settings: {rowCount} rows, {riskLevel} risk");
+
+            // Find matching row index
+            int targetRowIndex = -1;
+            if (socketManager.InitialData != null)
+            {
+                for (int i = 0; i < socketManager.InitialData.rows.Count; i++)
+                {
+                    if (int.Parse(socketManager.InitialData.rows[i].id) == rowCount)
+                    {
+                        targetRowIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (targetRowIndex < 0)
+            {
+                Debug.LogError($"[GameManager] Could not find row index for {rowCount} rows!");
+                return;
+            }
+
+            // Find matching risk index
+            int targetRiskIndex = -1;
+            if (socketManager.InitialData != null)
+            {
+                for (int i = 0; i < socketManager.InitialData.risks.Count; i++)
+                {
+                    if (socketManager.InitialData.risks[i].name == riskLevel)
+                    {
+                        targetRiskIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (targetRiskIndex < 0)
+            {
+                Debug.LogError($"[GameManager] Could not find risk index for {riskLevel}!");
+                return;
+            }
+
+            // Update internal state
+            currentRowIndex = targetRowIndex;
+            currentRiskIndex = targetRiskIndex;
+            currentRiskName = riskLevel;
+
+            // Update both boards with correct multipliers
+            UpdateCatcherMultipliers(rowCount, riskLevel);
+
+            // Update ball launcher sprites
+            if (activeBallLauncher != null)
+            {
+                activeBallLauncher.UpdateBallSprites(riskLevel);
+            }
+
+            // Update UI to reflect forced settings (but don't allow changes)
+            if (uiManager != null)
+            {
+                uiManager.UpdateRiskDropdownValue(targetRiskIndex);
+                uiManager.UpdateRowDropdownValue(targetRowIndex);
+            }
+
+            Debug.Log($"[GameManager] Settings enforced: rowIndex={currentRowIndex}, riskIndex={currentRiskIndex}");
+        }
+
+        /// <summary>
+        /// ANTI-CHEAT: Lock settings during orientation change with active balls
+        /// Prevents user from changing settings while balls are transferring
+        /// </summary>
+        internal void LockSettingsDuringOrientationChange(bool locked)
+        {
+            if (uiManager != null)
+            {
+                uiManager.UpdateRiskRowOverlays(locked);
+            }
+        }
     }
 }
