@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 namespace PlinkoGame
 {
     /// <summary>
-    /// FIXED: Catcher POSITION aligned in gaps starting from peg[0]-peg[1]
-    /// - Catchers positioned in gaps between pegs
-    /// - Count: currentRows + 1 (UNCHANGED)
-    /// - First catcher: gap between peg[0] and peg[1]
-    /// - Size logic: UNCHANGED
+    /// Enhanced BoardController with proper resource cleanup
+    /// - Cleans up pegs and tweens during layout changes
+    /// - Prevents memory leaks
+    /// - Handles rapid layout changes gracefully
     /// </summary>
     public class BoardController : MonoBehaviour
     {
@@ -58,6 +58,10 @@ namespace PlinkoGame
         private Services.MultiplierService multiplierService;
         private float firstPegRowLocalY = 0f;
 
+        // Cleanup tracking
+        private List<PegHitAnimation> activePegAnimations = new List<PegHitAnimation>();
+        private Coroutine rebuildCoroutine;
+
         private void Start()
         {
             multiplierService = new Services.MultiplierService();
@@ -80,11 +84,13 @@ namespace PlinkoGame
                 peg.SetActive(false);
                 pegPool.Add(peg);
             }
+
+            Debug.Log($"[BoardController] Initialized {totalPegsNeeded} pegs in pool");
         }
 
         public void UpdateCatcherMultipliers(List<double> multipliers)
         {
-            int catchersToUse = currentRows + 1; // Number of catchers = rows + 1
+            int catchersToUse = currentRows + 1;
             int startIndex = (catchers.Count - catchersToUse) / 2;
 
             for (int i = 0; i < catchersToUse; i++)
@@ -115,15 +121,128 @@ namespace PlinkoGame
         {
             if (!isRebuilding)
             {
-                StartCoroutine(RebuildWithCanvasRefresh());
+                if (rebuildCoroutine != null)
+                {
+                    StopCoroutine(rebuildCoroutine);
+                }
+
+                Debug.Log("[BoardController] === STARTING FRESH PYRAMID BUILD ===");
+                rebuildCoroutine = StartCoroutine(CompleteFreshRebuild());
             }
+        }
+
+        /// <summary>
+        /// Complete fresh rebuild - destroys old pyramid completely
+        /// </summary>
+        private IEnumerator CompleteFreshRebuild()
+        {
+            if (isRebuilding)
+            {
+                Debug.Log("[BoardController] Already rebuilding, skipping");
+                yield break;
+            }
+
+            isRebuilding = true;
+
+            // Step 1: DESTROY everything old
+            DestroyOldPyramid();
+            yield return new WaitForEndOfFrame();
+
+            // Step 2: Rebuild fresh
+            Rebuild();
+            yield return new WaitForEndOfFrame();
+
+            // Step 3: Force canvas update
+            if (mainCanvas != null)
+            {
+                Canvas.ForceUpdateCanvases();
+                mainCanvas.enabled = false;
+                yield return null;
+                mainCanvas.enabled = true;
+                LayoutRebuilder.ForceRebuildLayoutImmediate(mainCanvas.GetComponent<RectTransform>());
+            }
+
+            yield return new WaitForEndOfFrame();
+
+            // Step 4: Update peg animations with new positions
+            UpdateAllPegAnimationScales();
+
+            isRebuilding = false;
+            Debug.Log("[BoardController] === FRESH PYRAMID BUILD COMPLETE ===");
+        }
+
+        /// <summary>
+        /// Completely destroy old pyramid setup
+        /// </summary>
+        private void DestroyOldPyramid()
+        {
+            Debug.Log("[BoardController] Destroying old pyramid...");
+
+            // Kill all tweens
+            DOTween.Kill(transform);
+            foreach (var catcher in catchers)
+            {
+                if (catcher != null)
+                {
+                    DOTween.Kill(catcher);
+                }
+            }
+
+            // Disable all pegs and reset them
+            foreach (var peg in pegPool)
+            {
+                if (peg != null && peg.activeSelf)
+                {
+                    PegHitAnimation anim = peg.GetComponent<PegHitAnimation>();
+                    if (anim != null)
+                    {
+                        DOTween.Kill(anim.transform);
+                    }
+
+                    peg.SetActive(false);
+                }
+            }
+
+            // Reset all catchers completely
+            foreach (var catcher in catchers)
+            {
+                if (catcher == null) continue;
+
+                BallCatcher catcherScript = catcher.GetComponent<BallCatcher>();
+                if (catcherScript != null)
+                {
+                    catcherScript.ResetState();
+                }
+
+                catcher.gameObject.SetActive(false);
+            }
+
+            // Clear cached lists
+            activePegAnimations.Clear();
+
+            Debug.Log("[BoardController] Old pyramid destroyed");
         }
 
         private IEnumerator RebuildWithCanvasRefresh()
         {
+            if (isRebuilding)
+            {
+                Debug.Log("[BoardController] Already rebuilding, skipping");
+                yield break;
+            }
+
             isRebuilding = true;
 
+            // Step 1: Clean up all resources
+            CleanupAllResources();
+
+            // Wait a frame for cleanup
+            yield return new WaitForEndOfFrame();
+
+            // Step 2: Rebuild the board
             Rebuild();
+
+            // Step 3: Force canvas update
             yield return new WaitForEndOfFrame();
 
             if (mainCanvas != null)
@@ -134,27 +253,119 @@ namespace PlinkoGame
                 LayoutRebuilder.ForceRebuildLayoutImmediate(mainCanvas.GetComponent<RectTransform>());
             }
 
+            // Step 4: Notify ball launcher
             if (ballLauncher != null)
+            {
                 ballLauncher.OnBoardRebuilt();
+            }
 
+            // Step 5: Update peg animations
             UpdateAllPegAnimationScales();
+
             isRebuilding = false;
+
+            Debug.Log("[BoardController] Rebuild complete");
+        }
+
+        /// <summary>
+        /// Comprehensive cleanup of all board resources
+        /// </summary>
+        private void CleanupAllResources()
+        {
+            Debug.Log("[BoardController] Starting cleanup...");
+
+            // Kill all DOTween animations
+            DOTween.Kill(transform);
+
+            foreach (var catcher in catchers)
+            {
+                if (catcher != null)
+                {
+                    DOTween.Kill(catcher);
+                }
+            }
+
+            // Cleanup peg animations
+            CleanupPegAnimations();
+
+            // Cleanup catcher states
+            CleanupCatcherStates();
+
+            // Disable all pegs
+            DisableAllPegs();
+
+            // Clear cached lists
+            activePegAnimations.Clear();
+
+            Debug.Log("[BoardController] Cleanup complete");
+        }
+
+        /// <summary>
+        /// Clean up all peg animations and tweens
+        /// </summary>
+        private void CleanupPegAnimations()
+        {
+            foreach (var peg in pegPool)
+            {
+                if (peg == null || !peg.activeSelf) continue;
+
+                // Kill peg tweens
+                DOTween.Kill(peg.transform);
+
+                PegHitAnimation anim = peg.GetComponent<PegHitAnimation>();
+                if (anim != null)
+                {
+                    // Kill any active animations
+                    DOTween.Kill(anim.transform);
+
+                    // Reset peg position and scale
+                    RectTransform pegRect = peg.GetComponent<RectTransform>();
+                    if (pegRect != null)
+                    {
+                        pegRect.localScale = Vector3.one;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clean up all catcher states
+        /// </summary>
+        private void CleanupCatcherStates()
+        {
+            foreach (var catcher in catchers)
+            {
+                if (catcher == null) continue;
+
+                BallCatcher catcherScript = catcher.GetComponent<BallCatcher>();
+                if (catcherScript != null)
+                {
+                    catcherScript.ResetState();
+                }
+            }
         }
 
         private void Rebuild()
         {
             if (!pegPrefab || !topAnchor || !bottomAnchor || catchers.Count == 0)
+            {
+                Debug.LogError("[BoardController] Missing required references!");
                 return;
+            }
 
             DisableAllPegs();
             GeneratePyramidAndCatchers();
-            UpdateAllPegAnimationScales();
         }
 
         private void DisableAllPegs()
         {
             foreach (var peg in pegPool)
-                peg.SetActive(false);
+            {
+                if (peg != null && peg.activeSelf)
+                {
+                    peg.SetActive(false);
+                }
+            }
         }
 
         private void GeneratePyramidAndCatchers()
@@ -177,6 +388,7 @@ namespace PlinkoGame
             Vector2 center = new Vector2(topAnchor.localPosition.x, topY);
 
             int poolIndex = 0;
+            activePegAnimations.Clear();
 
             // Generate pegs
             for (int row = 0; row < currentRows; row++)
@@ -194,41 +406,53 @@ namespace PlinkoGame
                     if (poolIndex >= pegPool.Count) break;
 
                     GameObject peg = pegPool[poolIndex++];
-                    peg.transform.localPosition = new Vector2(startX + i * xSpacing, y);
-                    peg.transform.localScale = Vector3.one * pegSize;
+
+                    // Reset peg state completely
+                    RectTransform pegRect = peg.GetComponent<RectTransform>();
+                    if (pegRect != null)
+                    {
+                        pegRect.localPosition = new Vector2(startX + i * xSpacing, y);
+                        pegRect.localScale = Vector3.one * pegSize;
+                        pegRect.localRotation = Quaternion.identity;
+                    }
+
+                    // Track animation component
+                    PegHitAnimation anim = peg.GetComponent<PegHitAnimation>();
+                    if (anim != null)
+                    {
+                        activePegAnimations.Add(anim);
+                    }
+
                     peg.SetActive(true);
                 }
             }
 
-            // Position catchers BETWEEN pegs (within boundaries)
+            // Position catchers
             AlignCatchersInGaps(lastRowPegCount, center.x, xSpacing);
+
+            Debug.Log($"[BoardController] Generated {poolIndex} pegs, {activePegAnimations.Count} animations");
         }
 
-        /// <summary>
-        /// FIXED POSITION LOGIC: Catchers positioned in gaps starting from peg[0]-peg[1]
-        /// - Count: currentRows + 1 (UNCHANGED)
-        /// - First catcher: between peg[0] and peg[1]
-        /// - Size logic: UNCHANGED
-        /// </summary>
         private void AlignCatchersInGaps(int lastRowPegCount, float centerX, float xSpacing)
         {
-            int catchersToUse = currentRows + 1; // Keep original count
+            int catchersToUse = currentRows + 1;
             int totalCatchers = catchers.Count;
 
             // Disable all catchers first
             foreach (var c in catchers)
-                c.gameObject.SetActive(false);
+            {
+                if (c != null)
+                {
+                    c.gameObject.SetActive(false);
+                }
+            }
 
             int startIndex = (totalCatchers - catchersToUse) / 2;
 
-            // FIX: Calculate first peg position, then place first catcher in gap
             float lastRowWidth = (lastRowPegCount - 1) * xSpacing;
             float leftMostPegX = centerX - lastRowWidth / 2f;
-
-            // CORRECTED: Add spacing to start from gap between peg[0] and peg[1]
             float firstCatcherX = leftMostPegX + (xSpacing / 2f);
 
-            // Size calculations (UNCHANGED from original)
             float t = Mathf.InverseLerp(8, 16, currentRows);
             float catcherXScale = Mathf.Lerp(catcherXScaleAt8Rows, catcherXScaleAt16Rows, t);
             float catcherYScale = Mathf.Lerp(catcherYScaleAt8Rows, catcherYScaleAt16Rows, t);
@@ -236,23 +460,27 @@ namespace PlinkoGame
 
             float bottomY = bottomAnchor.localPosition.y;
 
-            // Position catchers in gaps BETWEEN pegs
             for (int i = 0; i < catchersToUse; i++)
             {
                 int index = startIndex + i;
                 if (index < 0 || index >= totalCatchers) continue;
 
                 Transform box = catchers[index];
+                if (box == null) continue;
+
                 box.gameObject.SetActive(true);
 
-                // POSITION: Starting from gap between peg[0] and peg[1]
                 float x = firstCatcherX + (i * xSpacing);
                 float y = bottomY + dynamicYOffset;
 
-                box.localPosition = new Vector2(x, y);
+                RectTransform catcherRect = box.GetComponent<RectTransform>();
+                if (catcherRect != null)
+                {
+                    catcherRect.localPosition = new Vector2(x, y);
+                    catcherRect.localScale = new Vector3(catcherXScale, catcherYScale, 1f);
+                    catcherRect.localRotation = Quaternion.identity;
+                }
 
-                // Size (UNCHANGED)
-                box.localScale = new Vector3(catcherXScale, catcherYScale, 1f);
                 box.name = $"Catcher{i}";
 
                 BallCatcher catcher = box.GetComponent<BallCatcher>();
@@ -262,36 +490,54 @@ namespace PlinkoGame
                     catcher.SetCatcherPositionIndex(i, catchersToUse);
                 }
             }
-
         }
 
         private void UpdateAllPegAnimationScales()
         {
-            foreach (var peg in pegPool)
+            foreach (var anim in activePegAnimations)
             {
-                if (peg.activeSelf)
+                if (anim != null)
                 {
-                    PegHitAnimation anim = peg.GetComponent<PegHitAnimation>();
-                    if (anim != null)
-                    {
-                        anim.UpdateOriginalPosition();
-                        anim.UpdateOriginalScale();
-                    }
+                    anim.UpdateOriginalPosition();
+                    anim.UpdateOriginalScale();
                 }
             }
         }
 
         private void OnDisable()
         {
-            DisableAllPegs();
+            CleanupAllResources();
         }
 
         private void OnDestroy()
         {
+            // Stop any ongoing rebuild
+            if (rebuildCoroutine != null)
+            {
+                StopCoroutine(rebuildCoroutine);
+            }
+
+            // Kill all tweens
+            DOTween.Kill(transform);
+            foreach (var catcher in catchers)
+            {
+                if (catcher != null)
+                {
+                    DOTween.Kill(catcher);
+                }
+            }
+
+            // Destroy all pegs
             foreach (var peg in pegPool)
-                if (peg) Destroy(peg);
+            {
+                if (peg != null)
+                {
+                    Destroy(peg);
+                }
+            }
 
             pegPool.Clear();
+            activePegAnimations.Clear();
         }
     }
 }

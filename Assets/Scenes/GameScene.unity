@@ -171,13 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -196,8 +196,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -480,13 +480,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -505,8 +505,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -645,13 +645,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -670,8 +670,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -948,8 +948,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1048,13 +1048,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -1462,12 +1462,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -1708,12 +1708,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -2303,12 +2303,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -2543,12 +2543,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -2672,7 +2672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &115558577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2680,7 +2680,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115558576}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2689,12 +2689,12 @@ RectTransform:
   - {fileID: 262613023}
   - {fileID: 1324378908}
   - {fileID: 481198334}
-  m_Father: {fileID: 1267090373}
+  m_Father: {fileID: 1121309151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: 1135, y: 165}
+  m_AnchoredPosition: {x: 0, y: -309.14}
+  m_SizeDelta: {x: 1166, y: 165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115558578
 MonoBehaviour:
@@ -2941,8 +2941,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3041,13 +3041,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -3106,8 +3106,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3206,13 +3206,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -3271,12 +3271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -3436,8 +3436,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3536,13 +3536,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -3720,13 +3720,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -3745,8 +3745,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4160,12 +4160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -4325,12 +4325,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -5085,13 +5085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -5110,8 +5110,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -5939,8 +5939,7 @@ MonoBehaviour:
   baseGravityScale: 1.5
   ballScaleAt8Rows: 0.8
   ballScaleAt16Rows: 0.6
-  startOffsetAt8Rows: 40
-  startOffsetAt16Rows: 40
+  startOffsetAbovePeg: 0.5
   maxActiveBalls: 50
   spawnDelay: 0.1
   lowDifficultySprite: {fileID: 4840735777579599281, guid: c697528fe30e8d147933ef6423de2a00, type: 3}
@@ -6573,13 +6572,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -6598,8 +6597,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -6738,13 +6737,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -6763,8 +6762,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -7113,13 +7112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -7138,8 +7137,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -7451,12 +7450,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -7615,13 +7614,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -7640,8 +7639,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8090,8 +8089,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8190,13 +8189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -8470,12 +8469,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -8635,7 +8634,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2340, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0.45
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -8869,12 +8868,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -9260,12 +9259,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -10111,13 +10110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -10136,8 +10135,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10277,8 +10276,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10377,13 +10376,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -10441,13 +10440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -10466,8 +10465,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10606,13 +10605,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -10631,8 +10630,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11023,13 +11022,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -11048,8 +11047,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11189,12 +11188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -11841,13 +11840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -11866,8 +11865,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -12082,13 +12081,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -12107,8 +12106,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -12682,13 +12681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -12707,8 +12706,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -13259,12 +13258,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -13453,12 +13452,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 219230577}
+  gameManager: {fileID: 22559460}
   canvasScaler: {fileID: 352649142}
-  matchWidth: 1
-  matchHeight: 1
-  portraitMatchHeight: 1
+  horizontalBoardController: {fileID: 756274959}
+  horizontalBallLauncher: {fileID: 238813834}
+  verticalBoardController: {fileID: 1377344435}
+  verticalBallLauncher: {fileID: 2113262719}
   transitionDuration: 0.2
-  waitForRotation: 0.2
+  debounceDelay: 0.5
+  cleanupDelay: 0.1
+  swapLayoutLogic: 1
+  match_portrait_9_16: 0.38
+  match_portrait_1080_1920: 0.42
+  match_portrait_1080_2340: 0.46
+  match_portrait_1080_2400: 0.48
+  match_portrait_1440_2960: 0.46
+  match_portrait_1440_3200: 0.5
+  match_portrait_ipad: 0.22
+  match_portrait_ipad_pro: 0.25
+  match_portrait_4_3: 0.22
+  match_portrait_3_2: 0.28
+  match_portrait_16_10: 0.32
+  match_portrait_16_9: 0.38
+  match_portrait_18_9: 0.42
+  match_portrait_19_9: 0.46
+  match_portrait_21_9: 0.5
+  match_portrait_ultra: 0.55
+  match_landscape_tablet: 0.5
+  match_landscape_standard: 0.5
+  match_landscape_wide: 1
+  enableEditorTesting: 1
 --- !u!4 &622577595
 Transform:
   m_ObjectHideFlags: 0
@@ -14471,12 +14494,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -14635,13 +14658,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -14660,8 +14683,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -14801,12 +14824,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -15209,12 +15232,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -15379,12 +15402,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -15664,13 +15687,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -15689,8 +15712,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -16749,12 +16772,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -16935,11 +16958,11 @@ MonoBehaviour:
   - {fileID: 1077134656}
   - {fileID: 1643472815}
   - {fileID: 1208787701}
-  catcherXScaleAt8Rows: 1
+  catcherXScaleAt8Rows: 0.85
   catcherXScaleAt16Rows: 0.55
   catcherYScaleAt8Rows: 1
   catcherYScaleAt16Rows: 0.7
-  baseYOffsetAt8Rows: 430
+  baseYOffsetAt8Rows: 425
   yOffsetAt16Rows: 440
   mainCanvas: {fileID: 352649143}
   minScale: 0.04
@@ -17328,13 +17351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -17353,8 +17376,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -17574,12 +17597,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -18138,12 +18161,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -18307,13 +18330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -18332,8 +18355,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -18944,12 +18967,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -19947,13 +19970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -19972,8 +19995,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -20113,12 +20136,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -20660,12 +20683,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -22157,13 +22180,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -22182,8 +22205,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -22845,13 +22868,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -22870,8 +22893,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -23123,12 +23146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -23287,13 +23310,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -23312,8 +23335,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -23868,12 +23891,13 @@ RectTransform:
   - {fileID: 742723081}
   - {fileID: 888444210}
   - {fileID: 1173068623}
+  - {fileID: 115558577}
   m_Father: {fileID: 1189393091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 893.5}
+  m_SizeDelta: {x: 0, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1121309152
 BoxCollider2D:
@@ -24562,13 +24586,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -24587,8 +24611,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -24948,8 +24972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.001953125, y: 500.90015}
-  m_SizeDelta: {x: -0.5999756, y: -1000.6}
+  m_AnchoredPosition: {x: 0, y: 532}
+  m_SizeDelta: {x: 0, y: -1064}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189393092
 MonoBehaviour:
@@ -25280,13 +25304,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -25305,8 +25329,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -25558,7 +25582,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 115558577}
   - {fileID: 1705347472}
   - {fileID: 204923833}
   - {fileID: 187988283}
@@ -25926,13 +25949,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -25951,8 +25974,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -26756,13 +26779,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -26781,8 +26804,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -26974,13 +26997,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -26999,8 +27022,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -27313,12 +27336,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -27478,12 +27501,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -27828,12 +27851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -28134,12 +28157,12 @@ MonoBehaviour:
   - {fileID: 1041891809}
   - {fileID: 409267530}
   - {fileID: 1117067200}
-  catcherXScaleAt8Rows: 1
+  catcherXScaleAt8Rows: 0.85
   catcherXScaleAt16Rows: 0.55
   catcherYScaleAt8Rows: 1
   catcherYScaleAt16Rows: 0.7
   baseYOffsetAt8Rows: 400
-  yOffsetAt16Rows: 440
+  yOffsetAt16Rows: 410
   mainCanvas: {fileID: 352649143}
   minScale: 0.04
   ballLauncher: {fileID: 2113262719}
@@ -28584,13 +28607,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -28609,8 +28632,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -28750,8 +28773,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -28850,13 +28873,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -29339,12 +29362,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -29580,12 +29603,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -29725,7 +29748,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: 6608b0ed269a4b36b16bbbe7762e18cf
+  testToken: 5e1fbe1ee8ac48c7a80e427764414f69
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
@@ -29808,12 +29831,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -30147,12 +30170,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -30524,12 +30547,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -31234,12 +31257,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -31664,10 +31687,10 @@ RectTransform:
   - {fileID: 1026262934}
   m_Father: {fileID: 386308781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 1220, y: 893.53}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -0.0025024414, y: 18.17}
+  m_SizeDelta: {x: -399.99, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1571835038
 BoxCollider2D:
@@ -31843,12 +31866,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -32286,13 +32309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -32311,8 +32334,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -32527,8 +32550,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -32627,13 +32650,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -32970,13 +32993,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -32995,8 +33018,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -33212,12 +33235,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -33503,12 +33526,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -33667,13 +33690,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -33692,8 +33715,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -33833,12 +33856,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -33997,13 +34020,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -34022,8 +34045,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -34976,12 +34999,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -35141,12 +35164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -35306,12 +35329,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -36097,12 +36120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -37243,8 +37266,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -37343,13 +37366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -37893,12 +37916,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -38422,13 +38445,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -38447,8 +38470,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -38588,12 +38611,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -39587,13 +39610,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -39612,8 +39635,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40631,13 +40654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -40656,8 +40679,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -41272,7 +41295,7 @@ MonoBehaviour:
   pegClearance: 0.65
   rowOffset: 0.7
   randomSpread: 0.25
-  targetApproach: 0.5
+  targetApproach: 0.75
   debugPath: 1
 --- !u!4 &1975413002
 Transform:
@@ -41451,12 +41474,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -41810,12 +41833,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -42068,13 +42091,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -42093,8 +42116,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -42687,8 +42710,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -42787,13 +42810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -42852,12 +42875,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -43169,12 +43192,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -43368,8 +43391,7 @@ MonoBehaviour:
   baseGravityScale: 1.5
   ballScaleAt8Rows: 0.8
   ballScaleAt16Rows: 0.6
-  startOffsetAt8Rows: 40
-  startOffsetAt16Rows: 40
+  startOffsetAbovePeg: 0.5
   maxActiveBalls: 50
   spawnDelay: 0.1
   lowDifficultySprite: {fileID: 4840735777579599281, guid: c697528fe30e8d147933ef6423de2a00, type: 3}
@@ -43442,13 +43464,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -43467,8 +43489,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -43684,12 +43706,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -43849,12 +43871,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -44014,12 +44036,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseGravity: 1.2
-  pathForce: 30
+  pathForce: 25
   maxVelocity: 1.5
   nextPointDist: 0.3
   downwardBias: 1.5
   finalApproachDistance: 1.5
-  finalApproachForce: 35
+  finalApproachForce: 30
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -44178,13 +44200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2871c2583b28c924d851408dc1933efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 1.8
-  pathForce: 35
-  maxVelocity: 3.5
+  baseGravity: 1.5
+  pathForce: 30
+  maxVelocity: 3
   nextPointDist: 0.4
   downwardBias: 1.5
   finalApproachDistance: 1.8
-  finalApproachForce: 45
+  finalApproachForce: 35
   stuckCheckTime: 0.1
   stuckThreshold: 0.08
   maxStuckChecks: 7
@@ -44203,8 +44225,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.3
+  m_AngularDamping: 0.8
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:

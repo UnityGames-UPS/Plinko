@@ -9,7 +9,7 @@ namespace PlinkoGame
 {
     /// <summary>
     /// Handles individual catcher behavior, animation, and hover interactions
-    /// FIXED: Animation cooldown prevents multiple simultaneous animations
+    /// Enhanced cleanup for layout changes
     /// </summary>
     public class BallCatcher : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
@@ -18,7 +18,7 @@ namespace PlinkoGame
         [SerializeField] private float impactDuration = 0.10f;
         [SerializeField] private float settleDuration = 0.16f;
         [SerializeField] private float reversePopScale = 0.92f;
-        [SerializeField] private float animationCooldown = 0.3f; // Cooldown between animations
+        [SerializeField] private float animationCooldown = 0.3f;
 
         [Header("Multiplier Display")]
         [SerializeField] private TextMeshProUGUI multiplierText;
@@ -40,8 +40,8 @@ namespace PlinkoGame
         private Image catcherImage;
         private float multiplierValue = 1f;
         private bool isAnimating = false;
-        private float lastAnimationTime = -999f; // Track last animation time
-        private int ballsInCooldown = 0; // Count balls caught during cooldown
+        private float lastAnimationTime = -999f;
+        private int ballsInCooldown = 0;
         private Vector3 originalPosition;
         private Vector3 originalScale;
         private int catcherIndexInRow = -1;
@@ -89,11 +89,10 @@ namespace PlinkoGame
             if (timeSinceLastAnimation >= animationCooldown && !isAnimating)
             {
                 PlayCatchAnimation();
-                ballsInCooldown = 0; // Reset counter
+                ballsInCooldown = 0;
             }
             else
             {
-                // Count balls caught during cooldown (for debugging)
                 ballsInCooldown++;
             }
         }
@@ -237,10 +236,6 @@ namespace PlinkoGame
             return multiplierValue;
         }
 
-        /// <summary>
-        /// Format multiplier to show exact values from backend
-        /// Shows up to 2 decimal places
-        /// </summary>
         private string FormatMultiplierExact(float value)
         {
             if (value >= 1000)
@@ -317,19 +312,32 @@ namespace PlinkoGame
             }
         }
 
+        /// <summary>
+        /// Enhanced reset for layout changes
+        /// </summary>
         internal void ResetState()
         {
-            rectTransform?.DOKill();
+            // Kill all tweens on this object with completion
+            if (rectTransform != null)
+            {
+                rectTransform.DOKill(true); // Complete immediately
+            }
 
+            // Reset transform to original state
             if (rectTransform != null)
             {
                 rectTransform.localPosition = originalPosition;
                 rectTransform.localScale = originalScale;
+                rectTransform.localRotation = Quaternion.identity;
             }
 
+            // Reset animation state
             isAnimating = false;
             ballsInCooldown = 0;
             lastAnimationTime = -999f;
+
+            // Hide hover popup if visible
+            HideHoverPopup();
         }
 
         internal void UpdateOriginalState()
@@ -343,7 +351,7 @@ namespace PlinkoGame
 
         private void OnDestroy()
         {
-            rectTransform?.DOKill();
+            rectTransform?.DOKill(true);
         }
     }
-}
+}       

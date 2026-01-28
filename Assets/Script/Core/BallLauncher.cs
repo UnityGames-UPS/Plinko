@@ -6,7 +6,8 @@ using UnityEngine.UI;
 namespace PlinkoGame
 {
     /// <summary>
-    /// Ball launcher with optimized spawning for high ball counts
+    /// Ball launcher with improved start position calculation
+    /// ALWAYS positions ball above first row's middle peg
     /// </summary>
     public class BallLauncher : MonoBehaviour
     {
@@ -25,8 +26,7 @@ namespace PlinkoGame
         [SerializeField] private float ballScaleAt16Rows = 0.6f;
 
         [Header("Ball Start Position")]
-        [SerializeField] private float startOffsetAt8Rows = 0.5f;
-        [SerializeField] private float startOffsetAt16Rows = 0.3f;
+        [SerializeField] private float startOffsetAbovePeg = 0.5f; // Distance above first peg row
 
         [Header("Multi-Ball Settings")]
         [SerializeField] private int maxActiveBalls = 50;
@@ -82,11 +82,8 @@ namespace PlinkoGame
 
                 if (rb == null || controller == null) continue;
 
-                // Configure for minimal ball-to-ball collision
                 rb.simulated = false;
                 ball.SetActive(false);
-
-                // Set collision layers to reduce ball-to-ball physics
                 ball.layer = LayerMask.NameToLayer("Default");
             }
         }
@@ -149,14 +146,13 @@ namespace PlinkoGame
 
             List<List<Vector2>> pegRows = pathCalculator.GetPegRowsFromBoard(boardController);
 
-            // Generate unique path for this ball
             List<Vector2> calculatedPath = pathCalculator.CalculatePath(
                 initialBallWorldPosition,
                 targetCatcher,
                 pegRows
             );
 
-            // Add small random spawn offset to prevent overlap
+            // Small random spawn offset
             Vector3 spawnPos = initialBallWorldPosition;
             spawnPos.x += Random.Range(-0.1f, 0.1f);
 
@@ -181,7 +177,7 @@ namespace PlinkoGame
                 {
                     PhysicsMaterial2D bouncyMaterial = new PhysicsMaterial2D
                     {
-                        bounciness = 0.08f, // Minimal bounce
+                        bounciness = 0.08f,
                         friction = 0.15f
                     };
                     ballRb.sharedMaterial = bouncyMaterial;
@@ -295,6 +291,9 @@ namespace PlinkoGame
             }
         }
 
+        /// <summary>
+        /// IMPROVED: Always position ball above first row's MIDDLE peg
+        /// </summary>
         private void UpdateBallStartPosition()
         {
             if (boardController == null)
@@ -304,13 +303,63 @@ namespace PlinkoGame
             }
 
             currentRows = boardController.GetCurrentRows();
+
+            // Get first peg row Y position
             float firstRowLocalY = boardController.GetFirstPegRowLocalY();
 
-            float t = Mathf.InverseLerp(8, 16, currentRows);
-            float offset = Mathf.Lerp(startOffsetAt8Rows, startOffsetAt16Rows, t);
+            // Find the middle peg of the first row
+            Transform boardTransform = boardController.transform;
+            List<Vector2> firstRowPegs = new List<Vector2>();
 
-            Vector3 localPosition = new Vector3(0, firstRowLocalY + offset, 0);
+            // Collect all pegs from first row
+            for (int i = 0; i < boardTransform.childCount; i++)
+            {
+                Transform child = boardTransform.GetChild(i);
+
+                if (child.gameObject.activeSelf && child.CompareTag("Peg"))
+                {
+                    float pegY = Mathf.Round(child.localPosition.y * 100f) / 100f;
+                    float firstRowY = Mathf.Round(firstRowLocalY * 100f) / 100f;
+
+                    // Check if peg is in first row
+                    if (Mathf.Abs(pegY - firstRowY) < 0.01f)
+                    {
+                        firstRowPegs.Add(child.localPosition);
+                    }
+                }
+            }
+
+            // Calculate middle peg position
+            Vector3 localPosition;
+            if (firstRowPegs.Count > 0)
+            {
+                // Sort by X position
+                firstRowPegs.Sort((a, b) => a.x.CompareTo(b.x));
+
+                // Get middle peg
+                int middleIndex = firstRowPegs.Count / 2;
+                Vector2 middlePeg = firstRowPegs[middleIndex];
+
+                // Position ball above middle peg
+                localPosition = new Vector3(
+                    middlePeg.x,
+                    firstRowLocalY + startOffsetAbovePeg,
+                    0
+                );
+
+                Debug.Log($"[BallLauncher] Ball positioned above middle peg: X={middlePeg.x:F2}, Y={firstRowLocalY + startOffsetAbovePeg:F2}");
+            }
+            else
+            {
+                // Fallback: center of board
+                localPosition = new Vector3(0, firstRowLocalY + startOffsetAbovePeg, 0);
+                Debug.LogWarning("[BallLauncher] No pegs found, using board center");
+            }
+
+            // Convert to world position
             initialBallWorldPosition = boardController.transform.TransformPoint(localPosition);
+
+            Debug.Log($"[BallLauncher] Ball start world position: {initialBallWorldPosition}");
         }
 
         internal void UpdateBallSprites(string difficulty)
@@ -342,9 +391,11 @@ namespace PlinkoGame
 
         internal void OnBoardRebuilt()
         {
+            Debug.Log("[BallLauncher] === Board rebuilt, updating launcher ===");
             UpdateActiveCatchers();
             UpdateBallScale();
-            UpdateBallStartPosition();
+            UpdateBallStartPosition(); // Recalculate based on new pyramid
+            Debug.Log("[BallLauncher] === Launcher update complete ===");
         }
 
         internal void OnOrientationChanged()
