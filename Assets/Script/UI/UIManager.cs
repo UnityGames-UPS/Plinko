@@ -805,6 +805,26 @@ namespace PlinkoGame
                 v_rowDropdown.interactable = !hasBallsActive;
         }
 
+        /// <summary>
+        /// Updates mode button interactability based on ball dropping state
+        /// Prevents switching between Manual/Auto modes while balls are dropping
+        /// FIXED: Separate control from autoplay state - buttons disabled only when balls are physically dropping
+        /// </summary>
+        internal void UpdateModeButtonsState(bool hasBallsDropping)
+        {
+            // Disable mode buttons when balls are physically dropping
+            // This prevents mode switching mid-round
+            if (h_manualModeButton != null)
+                h_manualModeButton.interactable = !hasBallsDropping;
+            if (h_autoplayModeButton != null)
+                h_autoplayModeButton.interactable = !hasBallsDropping;
+
+            if (v_manualModeButton != null)
+                v_manualModeButton.interactable = !hasBallsDropping;
+            if (v_autoplayModeButton != null)
+                v_autoplayModeButton.interactable = !hasBallsDropping;
+        }
+
         // ============================================
         // MODE SWITCHING (Manual/Autoplay)
         // ============================================
@@ -932,6 +952,9 @@ namespace PlinkoGame
                 h_autoplayRoundsInput.interactable = true;
             if (h_autoplayDisabledOverlay != null)
                 h_autoplayDisabledOverlay.SetActive(false);
+            // FIXED: Turn off bet overlay when autoplay stops
+            if (h_betDisabledOverlay != null)
+                h_betDisabledOverlay.SetActive(false);
 
             // Vertical
             if (v_stopAutoplayImage != null)
@@ -940,6 +963,9 @@ namespace PlinkoGame
                 v_autoplayRoundsInput.interactable = true;
             if (v_autoplayDisabledOverlay != null)
                 v_autoplayDisabledOverlay.SetActive(false);
+            // FIXED: Turn off bet overlay when autoplay stops
+            if (v_betDisabledOverlay != null)
+                v_betDisabledOverlay.SetActive(false);
 
             UpdateControlStates();
             UpdateAutoplayDisplay();

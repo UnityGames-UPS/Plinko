@@ -583,11 +583,17 @@ namespace PlinkoGame
         /// Updates risk and row overlays based on active ball count OR autoplay status
         /// Prevents players from changing settings while balls are dropping or during autoplay
         /// FIXED: Dropdowns stay disabled during entire autoplay session
+        /// FIXED: Mode buttons disabled only when balls are physically dropping (not just during autoplay)
         /// </summary>
         private void UpdateRiskRowOverlays()
         {
             bool hasBallsActive = activeBallCount > 0 || isAutoplayActive;
             uiManager.UpdateRiskRowOverlays(hasBallsActive);
+
+            // FIXED: Separately control mode buttons based only on physical ball count
+            // This allows stopping autoplay and switching modes even if balls are still dropping
+            bool hasBallsDropping = activeBallCount > 0;
+            uiManager.UpdateModeButtonsState(hasBallsDropping);
         }
 
         internal void OnExitGame()
