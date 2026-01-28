@@ -580,12 +580,13 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// Updates risk and row overlays based on active ball count
-        /// Prevents players from changing settings while balls are dropping
+        /// Updates risk and row overlays based on active ball count OR autoplay status
+        /// Prevents players from changing settings while balls are dropping or during autoplay
+        /// FIXED: Dropdowns stay disabled during entire autoplay session
         /// </summary>
         private void UpdateRiskRowOverlays()
         {
-            bool hasBallsActive = activeBallCount > 0;
+            bool hasBallsActive = activeBallCount > 0 || isAutoplayActive;
             uiManager.UpdateRiskRowOverlays(hasBallsActive);
         }
 

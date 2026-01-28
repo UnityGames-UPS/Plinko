@@ -12,6 +12,7 @@ namespace PlinkoGame
     /// NOW HANDLES ORIENTATION SWITCHING - Horizontal vs Vertical layouts
     /// Controls which layout is active based on screen dimensions
     /// FIXED: Autoplay counter system and hover popup dual-mode support
+    /// FIXED: Dropdown interactability synced with overlay state
     /// </summary>
     public class UIManager : MonoBehaviour
     {
@@ -776,6 +777,7 @@ namespace PlinkoGame
         /// <summary>
         /// Updates risk and row overlays based on active ball count
         /// Prevents players from changing risk/row while balls are dropping
+        /// FIXED: Now also controls dropdown interactability
         /// </summary>
         internal void UpdateRiskRowOverlays(bool hasBallsActive)
         {
@@ -789,6 +791,18 @@ namespace PlinkoGame
                 h_rowDisabledOverlay.SetActive(hasBallsActive);
             if (v_rowDisabledOverlay != null)
                 v_rowDisabledOverlay.SetActive(hasBallsActive);
+
+            // FIXED: Control dropdown interactability based on overlay state
+            // Dropdowns are non-interactable when overlays are active
+            if (h_riskDropdown != null)
+                h_riskDropdown.interactable = !hasBallsActive;
+            if (v_riskDropdown != null)
+                v_riskDropdown.interactable = !hasBallsActive;
+
+            if (h_rowDropdown != null)
+                h_rowDropdown.interactable = !hasBallsActive;
+            if (v_rowDropdown != null)
+                v_rowDropdown.interactable = !hasBallsActive;
         }
 
         // ============================================
@@ -832,11 +846,23 @@ namespace PlinkoGame
             if (h_rowDisabledOverlay != null)
                 h_rowDisabledOverlay.SetActive(!controlsEnabled);
 
+            // FIXED: Control dropdown interactability in UpdateControlStates too
+            if (h_riskDropdown != null)
+                h_riskDropdown.interactable = controlsEnabled;
+            if (h_rowDropdown != null)
+                h_rowDropdown.interactable = controlsEnabled;
+
             // Vertical
             if (v_riskDisabledOverlay != null)
                 v_riskDisabledOverlay.SetActive(!controlsEnabled);
             if (v_rowDisabledOverlay != null)
                 v_rowDisabledOverlay.SetActive(!controlsEnabled);
+
+            // FIXED: Control dropdown interactability in UpdateControlStates too
+            if (v_riskDropdown != null)
+                v_riskDropdown.interactable = controlsEnabled;
+            if (v_rowDropdown != null)
+                v_rowDropdown.interactable = controlsEnabled;
         }
 
         // ============================================
