@@ -186,6 +186,7 @@ namespace PlinkoGame
             socketManager.ConsumeResult();
 
             UpdateBetButtonState();
+            UpdateRiskRowOverlays();
 
             if (isAutoplayActive)
             {
@@ -406,6 +407,7 @@ namespace PlinkoGame
         {
             activeBallCount--;
             UpdateBetButtonState();
+            UpdateRiskRowOverlays();
 
             if (pendingResults.Count > 0)
             {
@@ -575,6 +577,16 @@ namespace PlinkoGame
         {
             bool canBet = (activeBallCount < maxParallelBalls) && !isProcessingBet && !isWaitingForResult;
             uiManager.UpdateBetButtonState(canBet, isAutoplayActive);
+        }
+
+        /// <summary>
+        /// Updates risk and row overlays based on active ball count
+        /// Prevents players from changing settings while balls are dropping
+        /// </summary>
+        private void UpdateRiskRowOverlays()
+        {
+            bool hasBallsActive = activeBallCount > 0;
+            uiManager.UpdateRiskRowOverlays(hasBallsActive);
         }
 
         internal void OnExitGame()

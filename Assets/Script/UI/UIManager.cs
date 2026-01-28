@@ -753,8 +753,8 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// FIXED: Overlay only activates during autoplay, not on insufficient balance in manual mode
-        /// This allows users to always change their bet amount even when balance is insufficient
+        /// FIXED: Overlay activates during autoplay to prevent bet changes
+        /// In manual mode, overlay never shows (users can always adjust bet amounts)
         /// </summary>
         internal void UpdateBetButtonState(bool canBet, bool isAutoplayActive)
         {
@@ -763,14 +763,32 @@ namespace PlinkoGame
             if (v_betButton != null)
                 v_betButton.interactable = canBet;
 
-            // Only show overlay during autoplay, never in manual mode
-            // This ensures users can always adjust bet amounts even with insufficient balance
-            bool showOverlay = isAutoplayActive && !canBet;
+            // Show overlay during autoplay to prevent bet amount changes
+            // Never show in manual mode (users can always adjust bet amounts)
+            bool showOverlay = isAutoplayActive;
 
             if (h_betDisabledOverlay != null)
                 h_betDisabledOverlay.SetActive(showOverlay);
             if (v_betDisabledOverlay != null)
                 v_betDisabledOverlay.SetActive(showOverlay);
+        }
+
+        /// <summary>
+        /// Updates risk and row overlays based on active ball count
+        /// Prevents players from changing risk/row while balls are dropping
+        /// </summary>
+        internal void UpdateRiskRowOverlays(bool hasBallsActive)
+        {
+            // Show overlays when balls are active to prevent path changes
+            if (h_riskDisabledOverlay != null)
+                h_riskDisabledOverlay.SetActive(hasBallsActive);
+            if (v_riskDisabledOverlay != null)
+                v_riskDisabledOverlay.SetActive(hasBallsActive);
+
+            if (h_rowDisabledOverlay != null)
+                h_rowDisabledOverlay.SetActive(hasBallsActive);
+            if (v_rowDisabledOverlay != null)
+                v_rowDisabledOverlay.SetActive(hasBallsActive);
         }
 
         // ============================================

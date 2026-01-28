@@ -140,22 +140,22 @@ namespace PlinkoGame
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!IsMobilePlatform() && gameObject.activeSelf)
-            {
+           // if (!IsMobilePlatform() && gameObject.activeSelf)
+           //{
                 AudioManager.Instance?.PlayHoverSound();
                 ShowHoverPopup();
-            }
+           // }
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (IsMobilePlatform() && gameObject.activeSelf)
-            {
+            //if (IsMobilePlatform() && gameObject.activeSelf)
+            //{
                 if (uiManager != null)
                 {
                     uiManager.ToggleHoverPopup(transform.position, GetProfit(), GetProbability());
                 }
-            }
+           // }
         }
 
         private void ShowHoverPopup()
@@ -173,10 +173,10 @@ namespace PlinkoGame
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (!IsMobilePlatform())
-            {
+           // if (!IsMobilePlatform())
+          //  {
                 HideHoverPopup();
-            }
+          //      }
         }
 
         private void HideHoverPopup()
