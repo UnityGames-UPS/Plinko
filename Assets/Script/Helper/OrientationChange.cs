@@ -74,8 +74,6 @@ namespace PlinkoGame
 
         private int lastWidth = 0;
         private int lastHeight = 0;
-        private float pendingCheckInterval = 0.5f;
-        private float lastPendingCheck = 0f;
 
         private void Awake()
         {
@@ -86,28 +84,6 @@ namespace PlinkoGame
 
             activeBoard = horizontalBoardController;
             activeLauncher = horizontalBallLauncher;
-        }
-
-        /// <summary>
-        /// Checks if orientation change is safe (no active balls or ongoing autoplay)
-        /// </summary>
-        private bool CanChangeOrientation()
-        {
-            if (gameManager == null) return true;
-
-            // Check both ball launchers for active balls
-            int horizontalBalls = horizontalBallLauncher != null ? horizontalBallLauncher.GetActiveBallCount() : 0;
-            int verticalBalls = verticalBallLauncher != null ? verticalBallLauncher.GetActiveBallCount() : 0;
-
-            bool hasBallsActive = (horizontalBalls > 0) || (verticalBalls > 0);
-
-            if (hasBallsActive)
-            {
-                Debug.Log($"[OrientationChange] Balls active - H:{horizontalBalls}, V:{verticalBalls}");
-                return false;
-            }
-
-            return true;
         }
 
         void DeviceCheck(string device)
@@ -128,14 +104,6 @@ namespace PlinkoGame
             if (width == lastWidth && height == lastHeight)
             {
                 Debug.Log("[OrientationChange] Ignoring duplicate dimension event");
-                return;
-            }
-
-            // FIXED: Prevent orientation change when balls are active or autoplay is running
-            if (gameManager != null && !CanChangeOrientation())
-            {
-                Debug.LogWarning("[OrientationChange] Cannot change orientation - balls are active or game in progress");
-                pendingDimensions = dimensions;
                 return;
             }
 
@@ -483,46 +451,12 @@ namespace PlinkoGame
         public BoardController GetActiveBoard() => activeBoard;
         public BallLauncher GetActiveLauncher() => activeLauncher;
 
-#if !UNITY_EDITOR
-        private void Update()
-        {
-            // Check for pending orientation changes when game becomes idle (runtime only)
-            if (!string.IsNullOrEmpty(pendingDimensions) && Time.time - lastPendingCheck > pendingCheckInterval)
-            {
-                lastPendingCheck = Time.time;
-                
-                if (CanChangeOrientation())
-                {
-                    Debug.Log("[OrientationChange] Processing pending orientation change");
-                    string pending = pendingDimensions;
-                    pendingDimensions = "";
-                    SwitchDisplay(pending);
-                }
-            }
-        }
-#endif
-
 #if UNITY_EDITOR
         [Header("Editor Testing")]
         [SerializeField] private bool enableEditorTesting = true;
 
         private void Update()
         {
-            // Check for pending orientation changes when game becomes idle
-            if (!string.IsNullOrEmpty(pendingDimensions) && Time.time - lastPendingCheck > pendingCheckInterval)
-            {
-                lastPendingCheck = Time.time;
-
-                if (CanChangeOrientation())
-                {
-                    Debug.Log("[OrientationChange] Processing pending orientation change");
-                    string pending = pendingDimensions;
-                    pendingDimensions = "";
-                    SwitchDisplay(pending);
-                }
-            }
-
-            // Editor testing controls
             if (!enableEditorTesting) return;
 
             if (Input.GetKeyDown(KeyCode.Space))
