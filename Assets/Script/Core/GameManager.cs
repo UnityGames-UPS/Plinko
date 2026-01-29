@@ -714,15 +714,18 @@ namespace PlinkoGame
         }
 
         /// <summary>
-        /// ANTI-CHEAT: Lock settings during orientation change with active balls
-        /// Prevents user from changing settings while balls are transferring
+        /// ANTI-CHEAT: Lock ALL controls during orientation change
+        /// Prevents user from changing settings, modes, or bets while layout is transitioning
+        /// Autoplay continues but new manual interactions are blocked
         /// </summary>
         internal void LockSettingsDuringOrientationChange(bool locked)
         {
             if (uiManager != null)
             {
-                uiManager.UpdateRiskRowOverlays(locked);
+                uiManager.LockControlsDuringOrientationChange(locked);
             }
+
+            Debug.Log($"[GameManager] Orientation change controls lock: {locked}");
         }
     }
 }

@@ -825,6 +825,144 @@ namespace PlinkoGame
                 v_autoplayModeButton.interactable = !hasBallsDropping;
         }
 
+        /// <summary>
+        /// ORIENTATION CHANGE: Lock all controls during orientation change
+        /// Prevents user from changing settings while layout is transitioning
+        /// Autoplay continues running but new interactions are blocked
+        /// </summary>
+        internal void LockControlsDuringOrientationChange(bool locked)
+        {
+            Debug.Log($"[UIManager] ========== LOCKING CONTROLS: {locked} ==========");
+
+            // STEP 1: Lock risk/row dropdowns with overlays
+            Debug.Log($"[UIManager] Setting risk/row overlays: {locked}");
+
+            // CRITICAL FIX: When unlocking, check if autoplay is active - if so, keep these locked
+            bool shouldLockRiskRow = locked || isAutoplayActive;
+
+            // Show/hide overlays
+            if (h_riskDisabledOverlay != null)
+            {
+                h_riskDisabledOverlay.SetActive(locked);
+                Debug.Log($"[UIManager] Horizontal risk overlay: {shouldLockRiskRow}");
+            }
+            if (v_riskDisabledOverlay != null)
+            {
+                v_riskDisabledOverlay.SetActive(shouldLockRiskRow);
+                Debug.Log($"[UIManager] Vertical risk overlay: {shouldLockRiskRow}");
+            }
+            if (h_rowDisabledOverlay != null)
+            {
+                h_rowDisabledOverlay.SetActive(shouldLockRiskRow);
+                Debug.Log($"[UIManager] Horizontal row overlay: {shouldLockRiskRow}");
+            }
+            if (v_rowDisabledOverlay != null)
+            {
+                v_rowDisabledOverlay.SetActive(shouldLockRiskRow);
+                Debug.Log($"[UIManager] Vertical row overlay: {shouldLockRiskRow}");
+            }
+
+            // Make dropdowns non-interactable
+            if (h_riskDropdown != null)
+            {
+                h_riskDropdown.interactable = !shouldLockRiskRow;
+                Debug.Log($"[UIManager] Horizontal risk dropdown interactable: {!shouldLockRiskRow}");
+            }
+            if (v_riskDropdown != null)
+            {
+                v_riskDropdown.interactable = !shouldLockRiskRow;
+                Debug.Log($"[UIManager] Vertical risk dropdown interactable: {!shouldLockRiskRow}");
+            }
+            if (h_rowDropdown != null)
+            {
+                h_rowDropdown.interactable = !shouldLockRiskRow;
+                Debug.Log($"[UIManager] Horizontal row dropdown interactable: {!shouldLockRiskRow}");
+            }
+            if (v_rowDropdown != null)
+            {
+                v_rowDropdown.interactable = !shouldLockRiskRow;
+                Debug.Log($"[UIManager] Vertical row dropdown interactable: {!shouldLockRiskRow}");
+            }
+
+            // STEP 2: Lock mode buttons
+            Debug.Log($"[UIManager] Setting mode buttons interactable: {!locked}");
+            if (h_manualModeButton != null)
+                h_manualModeButton.interactable = !locked;
+            if (h_autoplayModeButton != null)
+                h_autoplayModeButton.interactable = !locked;
+            if (v_manualModeButton != null)
+                v_manualModeButton.interactable = !locked;
+            if (v_autoplayModeButton != null)
+                v_autoplayModeButton.interactable = !locked;
+
+            // STEP 3: Lock bet buttons (manual mode)
+            // CRITICAL FIX: When unlocking, check if autoplay is active
+            bool shouldLockBet = locked || isAutoplayActive;
+
+            Debug.Log($"[UIManager] Setting bet buttons interactable: {!shouldLockBet}");
+            if (h_betButton != null)
+                h_betButton.interactable = !shouldLockBet;
+            if (v_betButton != null)
+                v_betButton.interactable = !shouldLockBet;
+
+            // Show bet overlay for visual feedback during orientation
+            if (h_betDisabledOverlay != null)
+            {
+                h_betDisabledOverlay.SetActive(shouldLockBet);
+                Debug.Log($"[UIManager] Horizontal bet overlay: {shouldLockBet}");
+            }
+            if (v_betDisabledOverlay != null)
+            {
+                v_betDisabledOverlay.SetActive(shouldLockBet);
+                Debug.Log($"[UIManager] Vertical bet overlay: {shouldLockBet}");
+            }
+
+            // STEP 4: Lock bet increase/decrease buttons
+            if (h_increaseBetButton != null)
+                h_increaseBetButton.interactable = !locked;
+            if (h_decreaseBetButton != null)
+                h_decreaseBetButton.interactable = !locked;
+            if (v_increaseBetButton != null)
+                v_increaseBetButton.interactable = !locked;
+            if (v_decreaseBetButton != null)
+                v_decreaseBetButton.interactable = !locked;
+
+            // CRITICAL FIX: When unlocking, check if autoplay is active
+            bool shouldLockAutoplayRounds = locked || isAutoplayActive;
+
+            // STEP 5: Lock autoplay rounds adjustment (but NOT autoplay toggle)
+            Debug.Log($"[UIManager] Setting autoplay round buttons interactable: {!shouldLockAutoplayRounds}");
+            if (h_increaseRoundsButton != null)
+                h_increaseRoundsButton.interactable = !shouldLockAutoplayRounds;
+            if (h_decreaseRoundsButton != null)
+                h_decreaseRoundsButton.interactable = !shouldLockAutoplayRounds;
+            if (v_increaseRoundsButton != null)
+                v_increaseRoundsButton.interactable = !shouldLockAutoplayRounds;
+            if (v_decreaseRoundsButton != null)
+                v_decreaseRoundsButton.interactable = !shouldLockAutoplayRounds;
+            // CRITICAL FIX: Keep overlay active if autoplay is running
+            bool shouldShowAutoplayOverlay = locked || isAutoplayActive;
+
+
+            // STEP 6: Show autoplay overlay during orientation (optional - only if autoplay is active)
+            // This provides visual feedback that controls are locked
+            if (h_autoplayDisabledOverlay != null)
+            {
+                // Only show if we're locking AND not already in autoplay mode
+                // Using shouldShowAutoplayOverlay defined above
+                h_autoplayDisabledOverlay.SetActive(shouldShowAutoplayOverlay);
+                Debug.Log($"[UIManager] Horizontal autoplay overlay: {shouldShowAutoplayOverlay}");
+            }
+            if (v_autoplayDisabledOverlay != null)
+            {
+                // Using shouldShowAutoplayOverlay defined above
+                v_autoplayDisabledOverlay.SetActive(shouldShowAutoplayOverlay);
+                Debug.Log($"[UIManager] Vertical autoplay overlay: {shouldShowAutoplayOverlay}");
+            }
+
+            Debug.Log($"[UIManager] ========== CONTROLS LOCK COMPLETE: {locked} ==========");
+        }
+
         // ============================================
         // MODE SWITCHING (Manual/Autoplay)
         // ============================================
@@ -935,7 +1073,17 @@ namespace PlinkoGame
             if (v_autoplayRoundsInput != null)
                 v_autoplayRoundsInput.interactable = false;
             if (v_autoplayDisabledOverlay != null)
-                v_autoplayDisabledOverlay.SetActive(true);
+
+                // Disable increase/decrease round buttons during autoplay
+                if (h_increaseRoundsButton != null)
+                    h_increaseRoundsButton.interactable = false;
+            if (h_decreaseRoundsButton != null)
+                h_decreaseRoundsButton.interactable = false;
+            if (v_increaseRoundsButton != null)
+                v_increaseRoundsButton.interactable = false;
+            if (v_decreaseRoundsButton != null)
+                v_decreaseRoundsButton.interactable = false;
+            v_autoplayDisabledOverlay.SetActive(true);
 
             UpdateAutoplayDisplay();
             UpdateControlStates();
@@ -943,6 +1091,11 @@ namespace PlinkoGame
 
         internal void OnAutoplayStopped()
         {
+
+            // FIXED: Reset autoplayRounds to 0 (show infinity mode)
+            autoplayRounds = 0;
+            isInfiniteMode = true;
+            currentAutoplayCount = 0;
             isAutoplayActive = false;
 
             // Horizontal
@@ -956,6 +1109,16 @@ namespace PlinkoGame
             if (h_betDisabledOverlay != null)
                 h_betDisabledOverlay.SetActive(false);
 
+
+            // Re-enable increase/decrease round buttons when autoplay stops
+            if (h_increaseRoundsButton != null)
+                h_increaseRoundsButton.interactable = true;
+            if (h_decreaseRoundsButton != null)
+                h_decreaseRoundsButton.interactable = true;
+            if (v_increaseRoundsButton != null)
+                v_increaseRoundsButton.interactable = true;
+            if (v_decreaseRoundsButton != null)
+                v_decreaseRoundsButton.interactable = true;
             // Vertical
             if (v_stopAutoplayImage != null)
                 v_stopAutoplayImage.gameObject.SetActive(false);
@@ -1481,6 +1644,101 @@ namespace PlinkoGame
             {
                 v_rowDropdown.SetValueWithoutNotify(rowIndex);
             }
+        }
+
+
+        /// <summary>
+        /// CRITICAL: Syncs autoplay state between layouts after orientation change
+        /// Ensures autoplay counter, overlays, and stop button are properly shown in new layout
+        /// </summary>
+        internal void SyncAutoplayStateAfterOrientationChange()
+        {
+            if (!isAutoplayActive)
+            {
+                // Not in autoplay, nothing to sync
+                return;
+            }
+
+            Debug.Log($"[UIManager] Syncing autoplay state after orientation change - Active: {isAutoplayActive}, Count: {currentAutoplayCount}, Infinite: {isInfiniteMode}");
+
+            // Determine which layout is now active
+            TMP_InputField activeInput = isHorizontalActive ? h_autoplayRoundsInput : v_autoplayRoundsInput;
+            Image activeStopImage = isHorizontalActive ? h_stopAutoplayImage : v_stopAutoplayImage;
+            GameObject activeInfinityIcon = isHorizontalActive ? h_infinityIcon : v_infinityIcon;
+            GameObject activeAutoplayOverlay = isHorizontalActive ? h_autoplayDisabledOverlay : v_autoplayDisabledOverlay;
+
+            // Update autoplay counter display
+            if (activeInput != null)
+            {
+                activeInput.interactable = false;
+                if (isInfiniteMode)
+                {
+                    activeInput.text = "0";
+                }
+                else
+                {
+                    activeInput.text = currentAutoplayCount.ToString();
+                }
+                Debug.Log($"[UIManager] Synced autoplay input: {activeInput.text}");
+            }
+
+            // Show stop button in new layout
+            if (activeStopImage != null)
+            {
+                activeStopImage.gameObject.SetActive(true);
+                Debug.Log($"[UIManager] Enabled stop autoplay button");
+            }
+
+            // Show/hide infinity icon
+            if (activeInfinityIcon != null)
+            {
+                activeInfinityIcon.SetActive(isInfiniteMode);
+                Debug.Log($"[UIManager] Infinity icon: {isInfiniteMode}");
+            }
+
+            // Enable autoplay overlay in new layout
+            if (activeAutoplayOverlay != null)
+            {
+                activeAutoplayOverlay.SetActive(true);
+                Debug.Log($"[UIManager] Enabled autoplay overlay");
+            }
+
+            // Disable increase/decrease round buttons during autoplay
+            if (h_increaseRoundsButton != null)
+                h_increaseRoundsButton.interactable = false;
+            if (h_decreaseRoundsButton != null)
+                h_decreaseRoundsButton.interactable = false;
+            if (v_increaseRoundsButton != null)
+                v_increaseRoundsButton.interactable = false;
+            if (v_decreaseRoundsButton != null)
+                v_decreaseRoundsButton.interactable = false;
+            Debug.Log($"[UIManager] Disabled round adjustment buttons");
+
+            // Also sync the inactive layout to keep both in sync
+            TMP_InputField inactiveInput = isHorizontalActive ? v_autoplayRoundsInput : h_autoplayRoundsInput;
+            Image inactiveStopImage = isHorizontalActive ? v_stopAutoplayImage : h_stopAutoplayImage;
+            GameObject inactiveInfinityIcon = isHorizontalActive ? v_infinityIcon : h_infinityIcon;
+            GameObject inactiveAutoplayOverlay = isHorizontalActive ? v_autoplayDisabledOverlay : h_autoplayDisabledOverlay;
+
+            if (inactiveInput != null)
+            {
+                inactiveInput.interactable = false;
+                inactiveInput.text = activeInput != null ? activeInput.text : (isInfiniteMode ? "0" : currentAutoplayCount.ToString());
+            }
+            if (inactiveStopImage != null)
+            {
+                inactiveStopImage.gameObject.SetActive(true);
+            }
+            if (inactiveInfinityIcon != null)
+            {
+                inactiveInfinityIcon.SetActive(isInfiniteMode);
+            }
+            if (inactiveAutoplayOverlay != null)
+            {
+                inactiveAutoplayOverlay.SetActive(true);
+            }
+
+            Debug.Log($"[UIManager] Autoplay state sync complete");
         }
 
     }

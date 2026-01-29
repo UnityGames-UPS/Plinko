@@ -13462,7 +13462,7 @@ MonoBehaviour:
   debounceDelay: 0.5
   ballTransitionDelay: 0.1
   maxRowVariance: 1
-  swapLayoutLogic: 1
+  swapLayoutLogic: 0
   match_portrait_9_16: 0.38
   match_portrait_1080_1920: 0.42
   match_portrait_1080_2340: 0.46
@@ -13482,7 +13482,7 @@ MonoBehaviour:
   match_landscape_tablet: 0.5
   match_landscape_standard: 0.5
   match_landscape_wide: 1
-  enableEditorTesting: 1
+  enableEditorTesting: 0
 --- !u!4 &622577595
 Transform:
   m_ObjectHideFlags: 0
@@ -29748,7 +29748,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: bab28b56650349f0b3c69286bbda54d6
+  testToken: 65573be8fbaf4535b912124ee34b16e3
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620
@@ -43390,8 +43390,8 @@ MonoBehaviour:
   pathCalculator: {fileID: 1975413001}
   gameManager: {fileID: 22559460}
   baseGravityScale: 1.5
-  ballScaleAt8Rows: 1.5
-  ballScaleAt16Rows: 0.8
+  ballScaleAt8Rows: 1
+  ballScaleAt16Rows: 0.65
   startOffsetAbovePeg: 100
   maxActiveBalls: 50
   spawnDelay: 0.1

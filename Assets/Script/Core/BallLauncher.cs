@@ -196,6 +196,124 @@ namespace PlinkoGame
             activeBallCount++;
         }
 
+        /// <summary>
+        /// ORIENTATION MIRRORING: Drop ball from specific row position
+        /// Used when restoring balls after orientation change
+        /// </summary>
+        internal void DropBallFromRow(int targetCatcherIndex, int startingRow, int totalRows)
+        {
+            UpdateActiveCatchers();
+
+            if (targetCatcherIndex < 0 || targetCatcherIndex >= activeCatchers.Count)
+            {
+                Debug.LogWarning($"[BallLauncher] Invalid target index: {targetCatcherIndex}");
+                return;
+            }
+
+            GameObject availableBall = GetAvailableBall();
+            if (availableBall == null)
+            {
+                Debug.LogWarning("[BallLauncher] No available balls for orientation mirroring");
+                return;
+            }
+
+            Transform targetCatcher = activeCatchers[targetCatcherIndex];
+            List<List<Vector2>> pegRows = pathCalculator.GetPegRowsFromBoard(boardController);
+
+            // Calculate full path
+            List<Vector2> fullPath = pathCalculator.CalculatePath(
+                initialBallWorldPosition,
+                targetCatcher,
+                pegRows
+            );
+
+            // Calculate which waypoint to start from based on row progress
+            int waypointsToSkip = CalculateWaypointsToSkip(startingRow, totalRows, fullPath.Count);
+
+            // Create shortened path (skip early waypoints)
+            List<Vector2> shortenedPath = new List<Vector2>();
+            Vector3 startPos = initialBallWorldPosition;
+
+            if (waypointsToSkip > 0 && waypointsToSkip < fullPath.Count)
+            {
+                // Start from the waypoint corresponding to the row
+                startPos = fullPath[waypointsToSkip];
+
+                // Add remaining waypoints
+                for (int i = waypointsToSkip; i < fullPath.Count; i++)
+                {
+                    shortenedPath.Add(fullPath[i]);
+                }
+            }
+            else
+            {
+                // Fallback: use full path
+                shortenedPath = fullPath;
+            }
+
+            // Add small random offset to start position
+            startPos.x += Random.Range(-0.15f, 0.15f);
+
+            // Setup ball
+            availableBall.transform.position = startPos;
+            availableBall.transform.rotation = Quaternion.identity;
+            availableBall.SetActive(true);
+
+            Rigidbody2D ballRb = availableBall.GetComponent<Rigidbody2D>();
+            if (ballRb != null)
+            {
+                ballRb.bodyType = RigidbodyType2D.Dynamic;
+                ballRb.constraints = RigidbodyConstraints2D.None;
+                ballRb.linearVelocity = Vector2.down * 1.5f; // Give initial downward velocity
+                ballRb.angularVelocity = 0;
+                ballRb.gravityScale = baseGravityScale;
+                ballRb.linearDamping = 0.5f;
+                ballRb.angularDamping = 0.8f;
+                ballRb.simulated = true;
+                ballRb.WakeUp();
+
+                if (ballRb.sharedMaterial == null)
+                {
+                    PhysicsMaterial2D bouncyMaterial = new PhysicsMaterial2D
+                    {
+                        bounciness = 0.08f,
+                        friction = 0.15f
+                    };
+                    ballRb.sharedMaterial = bouncyMaterial;
+                }
+            }
+
+            BallController ballController = availableBall.GetComponent<BallController>();
+            if (ballController != null)
+            {
+                ballController.OnBallCaught -= OnBallLanded;
+                ballController.OnBallCaught += OnBallLanded;
+                ballController.Initialize(targetCatcher.name, shortenedPath);
+            }
+
+            ballsInUse.Add(availableBall);
+            activeBallCount++;
+
+            Debug.Log($"[BallLauncher] Ball dropped from row {startingRow}/{totalRows}, skipped {waypointsToSkip} waypoints");
+        }
+
+        /// <summary>
+        /// Calculate how many waypoints to skip based on row progress
+        /// </summary>
+        private int CalculateWaypointsToSkip(int currentRow, int totalRows, int totalWaypoints)
+        {
+            if (totalRows <= 0 || totalWaypoints <= 0) return 0;
+
+            // Calculate progress as a percentage (0.0 to 1.0)
+            float progress = Mathf.Clamp01((float)currentRow / (float)totalRows);
+
+            // Calculate waypoints to skip (leave some margin)
+            int waypointsToSkip = Mathf.RoundToInt(progress * totalWaypoints * 0.7f); // Use 70% to be safe
+
+            // Clamp to valid range
+            return Mathf.Clamp(waypointsToSkip, 0, totalWaypoints - 3); // Keep at least 3 waypoints
+        }
+
         internal void OnBallLanded(int catcherIndex, GameObject landedBall)
         {
             if (gameManager != null)

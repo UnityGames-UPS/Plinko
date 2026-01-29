@@ -289,6 +289,17 @@ namespace PlinkoGame
 
             yield return new WaitForEndOfFrame();
 
+            // === STEP 8.5: SYNC AUTOPLAY STATE BETWEEN LAYOUTS ===
+            // CRITICAL: This ensures autoplay counter and overlays are properly synced
+            // after orientation change to maintain consistency in the new layout
+            if (uiManager != null)
+            {
+                Debug.Log("[OrientationChange] Syncing autoplay state after layout switch");
+                uiManager.SyncAutoplayStateAfterOrientationChange();
+            }
+
+            yield return new WaitForEndOfFrame();
+
             // === STEP 9: RESTORE BALL STATES (with smart row mirroring) ===
             yield return StartCoroutine(RestoreBallStatesWithRowMirroring(activeBoard, activeLauncher));
 
@@ -303,10 +314,16 @@ namespace PlinkoGame
 
             isTransitioning = false;
 
-            // ANTI-CHEAT: Unlock settings after transition completes
+            // === STEP 10.5: WAIT BEFORE UNLOCKING CONTROLS ===
+            // Add delay to ensure all balls have settled and UI is stable
+            Debug.Log("[OrientationChange] Waiting before unlocking controls...");
+            yield return new WaitForSeconds(0.8f); // Wait 0.8 seconds after orientation completes
+
+            // ANTI-CHEAT: Unlock settings after transition completes + delay
             if (gameManager != null)
             {
                 gameManager.LockSettingsDuringOrientationChange(false);
+                Debug.Log("[OrientationChange] Controls unlocked after delay");
             }
 
             // Handle pending orientation change
@@ -486,10 +503,11 @@ namespace PlinkoGame
 
                 Debug.Log($"[OrientationChange] Ball mirror: OldRow={state.estimatedCurrentRow}/{oldRowCount} → NewRow={newRow}/{newRowCount} (progress={oldProgress:F2}, settings={state.rowCountWhenDropped}rows+{state.riskLevelWhenDropped})");
 
-                // Drop ball to same catcher in new layout
+                // Drop ball FROM the calculated row (not from top!)
                 if (newLauncher != null)
                 {
-                    newLauncher.DropBallToTarget(state.targetCatcherIndex);
+                    // Use new method that drops ball from specific row
+                    newLauncher.DropBallFromRow(state.targetCatcherIndex, newRow, newRowCount);
                     restoredCount++;
 
                     yield return new WaitForSeconds(ballTransitionDelay);
