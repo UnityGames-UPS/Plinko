@@ -1,0 +1,16 @@
+name: Trigger S3 Upload
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:    
+
+jobs:
+  call-reusable:
+    uses: UnityGames-UPS/unity-build-pipeline/.github/workflows/main.yml@main
+    with:
+      s3_bucket: unity.build-prod
+      s3_folder: OT-PLINCO
+      cloudfront_distribution_id: EVFPZ9ROHP45P
+      invalidate_paths: "/OT-PLINCO/*"
