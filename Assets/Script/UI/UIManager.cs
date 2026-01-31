@@ -1543,7 +1543,7 @@ namespace PlinkoGame
             if (activeProbabilityText != null)
             {
                 // Convert to percentage and show exact value
-                double percentage = currentHoverProbability * 100.0;
+                double percentage = currentHoverProbability;
 
                 // Format to remove trailing zeros but keep precision
                 string percentageText = percentage.ToString("0.#################");

@@ -243,13 +243,8 @@ namespace PlinkoGame
         private string FormatProbabilityExact(double probability)
         {
             // Convert to percentage (multiply by 100)
-            double percentage = probability * 100.0;
-
-            // Show up to 5 decimal places, removing trailing zeros
-            // This matches the hover popup format: "0.#################"
-            // But we limit to 5 meaningful decimals for readability
-            string formatted = percentage.ToString("0.#####");
-            return $"{formatted}%";
+            double percentage = probability ;
+            return $"{percentage}%";
         }
 
         /// <summary>
