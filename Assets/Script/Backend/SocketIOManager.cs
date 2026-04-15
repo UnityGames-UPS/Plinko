@@ -351,11 +351,21 @@ namespace PlinkoGame.Network
         private void OnError(Error err)
         {
             if (isBeingDestroyed) return;
-
-            Debug.LogError($"[SOCKET] Error: {err}");
-#if UNITY_WEBGL && !UNITY_EDITOR
-            JSManager?.SendCustomMessage("error");
-#endif
+            Debug.LogError("[ERROR] Socket error: " + err);
+            if (!string.IsNullOrEmpty(err.message) && err.message.Contains("Session expired"))
+            {
+            Debug.LogWarning("Session expired detected");
+            OnDisconnected();
+        #if UNITY_WEBGL && !UNITY_EDITOR
+            JSManager.SendCustomMessage("session_expired");
+        #endif
+            }
+            else
+            {
+        #if UNITY_WEBGL && !UNITY_EDITOR
+            JSManager.SendCustomMessage("error");
+        #endif
+            }
             uiManager?.ShowErrorPopup("Connection error occurred");
         }
         #endregion
