@@ -38,10 +38,6 @@ mergeInto(LibraryManager.library, {
           window.ReactNativeWebView.postMessage(message);
         }
       } 
-      else if (typeof window !== "undefined" && window.parent) {
-        if (typeof window.parent.dispatchReactUnityEvent !== "undefined" && window.parent.dispatchReactUnityEvent) {
-          window.parent.dispatchReactUnityEvent(message);
-        }
       }
     } catch (e) {
       console.error("[CustomJsLib] SendPostMessage Error:", e);
