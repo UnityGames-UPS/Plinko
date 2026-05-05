@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -68,6 +68,25 @@ namespace PlinkoGame
         [SerializeField] private float match_landscape_standard = 0.85f;
         [SerializeField] private float match_landscape_wide = 1.0f;
 
+        [Header("Vertical Game Area Adjustment")]
+        [SerializeField] private bool enableDynamicBoardAdjustment = true;
+        [SerializeField] private RectTransform verticalBoardLayoutRoot;
+        [SerializeField] private Vector2 verticalBoardPadding = new Vector2(40f, 60f);
+        [SerializeField] private Vector2 verticalBoardAnchorMin = new Vector2(0f, 0.45f);
+        [SerializeField] private Vector2 verticalBoardAnchorMax = new Vector2(1f, 1f);
+
+        [Header("Vertical Bottom Panel Adjustment")]
+        [SerializeField] private RectTransform verticalBottomPanelRoot;
+        [SerializeField] private Vector2 verticalBottomPadding = new Vector2(0f, 0f);
+        [SerializeField] private Vector2 verticalBottomAnchorMin = new Vector2(0f, 0f);
+        [SerializeField] private Vector2 verticalBottomAnchorMax = new Vector2(1f, 0.45f);
+
+        [Header("General Vertical Settings")]
+        [SerializeField] private float maxVerticalBoardWidth = 1000f;
+        [SerializeField] private float verticalBoardYOffset = -50f;
+        [SerializeField] private float tabletVerticalPaddingMultiplier = 0.6f;
+        [SerializeField] private float tallnessPaddingSensitivity = 1.0f;
+
         // Enhanced ball state capture structure
         private class BallState
         {
@@ -110,6 +129,15 @@ namespace PlinkoGame
 
             activeBoard = horizontalBoardController;
             activeLauncher = horizontalBallLauncher;
+        }
+
+        private void Start()
+        {
+            // Trigger initial orientation setup
+            // We force a refresh even if dimensions match initial values
+            lastWidth = -1;
+            lastHeight = -1;
+            SwitchDisplay($"{Screen.width},{Screen.height}");
         }
 
         void DeviceCheck(string device)
@@ -190,7 +218,10 @@ namespace PlinkoGame
             BallLauncher nextLauncher = newIsLandscape ? horizontalBallLauncher : verticalBallLauncher;
 
             // === STEP 1: CAPTURE BALL STATES (with row position calculation) ===
-            CaptureBallStatesWithRowInfo(activeBoard, activeLauncher);
+            if (Application.isPlaying)
+            {
+                CaptureBallStatesWithRowInfo(activeBoard, activeLauncher);
+            }
 
             // === STEP 1.5: CAPTURE CURRENT SETTINGS BEFORE CLEANUP ===
             int capturedRowCount = 8; // Default fallback
@@ -212,7 +243,16 @@ namespace PlinkoGame
             }
 
             // === STEP 2: AGGRESSIVELY CLEANUP OLD LAYOUT ===
-            yield return StartCoroutine(AggressiveCleanup(activeBoard, activeLauncher, nextBoard, nextLauncher));
+            if (Application.isPlaying)
+            {
+                yield return StartCoroutine(AggressiveCleanup(activeBoard, activeLauncher, nextBoard, nextLauncher));
+            }
+            else
+            {
+                // In Editor mode, just switch visibility
+                if (activeBoard != null) activeBoard.gameObject.SetActive(false);
+                if (nextBoard != null) nextBoard.gameObject.SetActive(true);
+            }
 
             // === STEP 3: ANIMATE CANVAS TRANSITION ===
             float targetMatch = CalculateMatchValue(width, height, aspectRatio, newIsLandscape);
@@ -233,6 +273,12 @@ namespace PlinkoGame
                 ).SetEase(Ease.InOutQuad);
 
                 yield return matchTween.WaitForCompletion();
+            }
+
+            // === STEP 3.5: ADJUST GAME AREA & BOTTOM PANEL LAYOUT ===
+            if (enableDynamicBoardAdjustment)
+            {
+                AdjustVerticalLayout(newIsLandscape, aspectRatio);
             }
 
             // === STEP 4: NOTIFY UI MANAGER ===
@@ -300,7 +346,10 @@ namespace PlinkoGame
             yield return new WaitForEndOfFrame();
 
             // === STEP 9: RESTORE BALL STATES (with smart row mirroring) ===
-            yield return StartCoroutine(RestoreBallStatesWithRowMirroring(activeBoard, activeLauncher));
+            if (Application.isPlaying)
+            {
+                yield return StartCoroutine(RestoreBallStatesWithRowMirroring(activeBoard, activeLauncher));
+            }
 
             // === STEP 10: FINAL UPDATES ===
             lastWidth = width;
@@ -562,24 +611,29 @@ namespace PlinkoGame
                 }
             }
 
-            // 2. Clean up old board states
+            // 2. Clean up old board states (if different from next)
             if (oldBoard != null && oldBoard != nextBoard)
             {
-                Debug.Log("[OrientationChange] Cleaning up old board");
-                oldBoard.CleanupCatcherStates();
+                oldBoard.CleanupAllResources();
                 oldBoard.gameObject.SetActive(false);
             }
 
-            // 3. Activate new layout
-            if (nextBoard != null && !nextBoard.gameObject.activeSelf)
+            if (oldLauncher != null && oldLauncher != nextLauncher)
             {
-                nextBoard.gameObject.SetActive(true);
+                oldLauncher.gameObject.SetActive(false);
             }
 
-            if (nextLauncher != null && !nextLauncher.gameObject.activeSelf)
+            // 3. Activate new layout
+            if (nextBoard != null)
             {
-                nextLauncher.gameObject.SetActive(true);
+                nextBoard.gameObject.SetActive(true);
+                // Ensure it's active for coroutines
+                if (!nextBoard.gameObject.activeInHierarchy)
+                {
+                    Debug.LogWarning("[OrientationChange] Board GameObject is active but parent is inactive!");
+                }
             }
+            if (nextLauncher != null) nextLauncher.gameObject.SetActive(true);
 
             yield return new WaitForEndOfFrame();
 
@@ -806,6 +860,108 @@ namespace PlinkoGame
             Debug.Log($"[OrientationChange] Device: {currentDevice}, Initial Match: {initialMatch}");
         }
 
+        /// <summary>
+        /// Dynamically adjusts the game area (BoardController) and Bottom Panel 
+        /// to split the screen correctly in vertical mode.
+        /// </summary>
+        private void AdjustVerticalLayout(bool isLandscape, float aspectRatio)
+        {
+            if (verticalBoardController == null) return;
+
+            // 1. ADJUST TOP BOARD AREA
+            RectTransform boardRect = verticalBoardLayoutRoot;
+            if (boardRect == null) boardRect = verticalBoardController.FitAreaParent;
+            if (boardRect == null) boardRect = verticalBoardController.GetComponent<RectTransform>();
+
+            if (boardRect != null)
+            {
+                if (isLandscape)
+                {
+                    ResetRectTransform(boardRect);
+                }
+                else
+                {
+                    ApplyLayoutToRect(boardRect, verticalBoardAnchorMin, verticalBoardAnchorMax, verticalBoardPadding, verticalBoardYOffset, aspectRatio);
+                }
+            }
+
+            // 2. ADJUST BOTTOM PANEL AREA
+            if (verticalBottomPanelRoot != null)
+            {
+                if (isLandscape)
+                {
+                    ResetRectTransform(verticalBottomPanelRoot);
+                }
+                else
+                {
+                    ApplyLayoutToRect(verticalBottomPanelRoot, verticalBottomAnchorMin, verticalBottomAnchorMax, verticalBottomPadding, 0f, aspectRatio);
+                }
+            }
+
+            Debug.Log($"[OrientationChange] Adjusted Vertical Layout: Board in {verticalBoardAnchorMin.y}-{verticalBoardAnchorMax.y}, Bottom in {verticalBottomAnchorMin.y}-{verticalBottomAnchorMax.y}");
+        }
+
+        private void ApplyLayoutToRect(RectTransform rect, Vector2 anchorMin, Vector2 anchorMax, Vector2 padding, float yOffset, float aspectRatio)
+        {
+            if (referenceAspect.x <= 0 || referenceAspect.y <= 0) referenceAspect = new Vector2(1080, 1920);
+
+            rect.anchorMin = anchorMin;
+            rect.anchorMax = anchorMax;
+            rect.pivot = new Vector2(0.5f, 0.5f);
+
+            float paddingX = padding.x;
+            float paddingY = padding.y;
+
+            // Tablet specific padding adjustment
+            if (currentDevice == "IP" || aspectRatio < 1.5f)
+            {
+                paddingX *= tabletVerticalPaddingMultiplier;
+                paddingY *= tabletVerticalPaddingMultiplier;
+            }
+
+            // Dynamic Y padding for tall phones (Aspect Ratio > 16:9)
+            // Goal: Keep the board height consistent with a 16:9 reference resolution
+            float refAspectVal = 1.777f; // 9:16
+            if (aspectRatio > refAspectVal)
+            {
+                // Calculate what the height of this area WOULD be on a 16:9 screen
+                float refWidth = Mathf.Min(referenceAspect.x, referenceAspect.y);
+                float refCanvasHeight = refWidth * refAspectVal;
+                float currentCanvasHeight = refWidth * aspectRatio;
+                
+                float areaHeightRange = (anchorMax.y - anchorMin.y);
+                float refAreaHeight = refCanvasHeight * areaHeightRange;
+                float currentAreaHeight = currentCanvasHeight * areaHeightRange;
+                
+                // Add padding to consume the extra height, modulated by sensitivity
+                float extraHeight = currentAreaHeight - refAreaHeight;
+                paddingY += (extraHeight / 2f) * tallnessPaddingSensitivity;
+            }
+            
+            // Explicitly set Top and Bottom values via offsetMin/offsetMax
+            float left = paddingX;
+            float right = paddingX;
+            
+            // If the panel is snapped to the bottom (anchorMin.y == 0), keep bottom offset at 0 or use fixed padding
+            // Otherwise, apply dynamic padding to help center/squish the content
+            float bottom = (anchorMin.y <= 0.01f) ? padding.y : paddingY + yOffset;
+            float top = (anchorMax.y >= 0.99f) ? padding.y : paddingY - yOffset;
+
+            rect.offsetMin = new Vector2(left, bottom);
+            rect.offsetMax = new Vector2(-right, -top);
+
+            Debug.Log($"[OrientationChange] {rect.name} Layout: Top={top:F1}, Bottom={bottom:F1}, Aspect={aspectRatio:F3}");
+        }
+
+        private void ResetRectTransform(RectTransform rect)
+        {
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.sizeDelta = Vector2.zero;
+            rect.anchoredPosition = Vector2.zero;
+            rect.pivot = new Vector2(0.5f, 0.5f);
+        }
+
         private void ForceCanvasUpdate()
         {
             if (canvasScaler != null)
@@ -833,11 +989,25 @@ namespace PlinkoGame
 
         private void Update()
         {
+            // Auto-detect resolution changes in Editor or Play mode
+            if (Screen.width != lastWidth || Screen.height != lastHeight)
+            {
+                if (lastWidth != 0 && lastHeight != 0) // Avoid initial jump
+                {
+                    SwitchDisplay($"{Screen.width},{Screen.height}");
+                }
+                else
+                {
+                    lastWidth = Screen.width;
+                    lastHeight = Screen.height;
+                }
+            }
+
             if (!enableEditorTesting) return;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SwitchDisplay($"{Screen.height},{Screen.width}");
+                SwitchDisplay($"{Screen.width},{Screen.height}");
             }
 
             if (Input.GetKeyDown(KeyCode.D))

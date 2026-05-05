@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -108,6 +108,7 @@ namespace PlinkoGame
 
         public void SetRows(int rows)
         {
+            if (!gameObject.activeInHierarchy) gameObject.SetActive(true);
             if (isRebuilding) return;
             currentRows = Mathf.Clamp(rows, 8, MAX_ROWS);
             StartCoroutine(RebuildWithCanvasRefresh());
@@ -116,6 +117,9 @@ namespace PlinkoGame
         public int GetCurrentRows() => currentRows;
         public float GetFirstPegRowLocalY() => firstPegRowLocalY;
         public List<Transform> GetCatchers() => catchers;
+
+        public RectTransform FitAreaParent => fitArea != null ? fitArea.transform.parent as RectTransform : null;
+        public RectTransform FitAreaRect => fitArea != null ? fitArea.GetComponent<RectTransform>() : null;
 
        /* public void OnOrientationChanged()
         {
@@ -283,7 +287,7 @@ namespace PlinkoGame
         /// <summary>
         /// Comprehensive cleanup of all board resources
         /// </summary>
-        private void CleanupAllResources()
+        internal void CleanupAllResources()
         {
             Debug.Log("[BoardController] Starting cleanup...");
 

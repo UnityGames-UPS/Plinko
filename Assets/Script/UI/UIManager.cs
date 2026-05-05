@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -219,8 +219,9 @@ namespace PlinkoGame
             UpdateAutoplayDisplay(); // Initialize display
             InitializeAudioToggles();
 
-            // Start with horizontal layout by default
-            SwitchToLayout(true);
+            // Start with correct layout based on screen
+            bool isLandscape = Screen.width > Screen.height;
+            SwitchToLayout(isLandscape);
         }
 
         // ============================================
