@@ -2048,7 +2048,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -2056,7 +2056,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -2064,23 +2064,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -3844,7 +3844,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -3852,7 +3852,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -3860,23 +3860,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -4661,7 +4661,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -4669,7 +4669,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -4677,23 +4677,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -5432,7 +5432,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -5440,7 +5440,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -5448,23 +5448,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -5569,7 +5569,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -5577,7 +5577,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -5585,23 +5585,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -9382,7 +9382,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -9390,7 +9390,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -9398,23 +9398,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -10717,6 +10717,113 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451288772}
+  m_CullTransparentMesh: 1
+--- !u!1 &476513644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476513645}
+  - component: {fileID: 476513649}
+  - component: {fileID: 476513648}
+  - component: {fileID: 476513647}
+  - component: {fileID: 476513646}
+  m_Layer: 5
+  m_Name: Procedural Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &476513645
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476513644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1175747406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 581.51, y: 112.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &476513646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476513644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &476513647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476513644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68356c3764ad390429ddad9e48ce8c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Procedural::FreeModifier
+  radius: {x: 65, y: 65, z: 65, w: 65}
+--- !u!114 &476513648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476513644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1c5417c9d7ab4b84e531f83f60a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Procedural::UnityEngine.UI.ProceduralImage.ProceduralImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.014359535, b: 0.03773582, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3f91331724a9da84197e9b6d94f0483c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+  borderWidth: 0
+  falloffDistance: 1
+--- !u!222 &476513649
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476513644}
   m_CullTransparentMesh: 1
 --- !u!1 &481198333
 GameObject:
@@ -13484,8 +13591,8 @@ MonoBehaviour:
   match_landscape_wide: 1
   enableDynamicBoardAdjustment: 1
   verticalBoardLayoutRoot: {fileID: 1189393091}
-  verticalBoardPadding: {x: 40, y: 120}
-  verticalBoardAnchorMin: {x: 0, y: 0.5}
+  verticalBoardPadding: {x: 60, y: 110}
+  verticalBoardAnchorMin: {x: 0, y: 0.45}
   verticalBoardAnchorMax: {x: 1, y: 1}
   verticalBottomPanelRoot: {fileID: 327129012}
   verticalBottomPadding: {x: 0, y: 0}
@@ -13873,7 +13980,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -13881,7 +13988,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -13889,23 +13996,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -17734,7 +17841,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -17742,7 +17849,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -17750,23 +17857,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -17996,7 +18103,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -18004,7 +18111,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -18012,23 +18119,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -19215,7 +19322,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -19223,7 +19330,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -19231,23 +19338,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -19478,7 +19585,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -19486,7 +19593,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -19494,23 +19601,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -21642,7 +21749,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -21650,7 +21757,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -21658,23 +21765,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -22010,6 +22117,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1430661830}
   - {fileID: 1647279619}
   - {fileID: 1828222668}
   m_Father: {fileID: 327129012}
@@ -22318,7 +22426,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -22326,7 +22434,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -22334,23 +22442,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -22592,7 +22700,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -22600,7 +22708,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -22608,23 +22716,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -23598,7 +23706,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -23606,7 +23714,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -23614,23 +23722,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -23740,7 +23848,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -23748,7 +23856,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -23756,23 +23864,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -24322,7 +24430,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -24330,7 +24438,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -24338,23 +24446,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -24828,6 +24936,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 476513645}
   - {fileID: 713253392}
   - {fileID: 1806371095}
   m_Father: {fileID: 1967405345}
@@ -26087,7 +26196,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -26095,7 +26204,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -26103,23 +26212,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -28402,7 +28511,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -28410,7 +28519,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -28418,23 +28527,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -29121,7 +29230,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -29129,7 +29238,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -29137,23 +29246,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -29563,6 +29672,113 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422764331}
   m_CullTransparentMesh: 1
+--- !u!1 &1430661829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430661830}
+  - component: {fileID: 1430661834}
+  - component: {fileID: 1430661833}
+  - component: {fileID: 1430661832}
+  - component: {fileID: 1430661831}
+  m_Layer: 5
+  m_Name: Procedural Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1430661830
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430661829}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1017045190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 580, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1430661831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430661829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1430661832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430661829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68356c3764ad390429ddad9e48ce8c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Procedural::FreeModifier
+  radius: {x: 65, y: 65, z: 65, w: 65}
+--- !u!114 &1430661833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430661829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1c5417c9d7ab4b84e531f83f60a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Procedural::UnityEngine.UI.ProceduralImage.ProceduralImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.014359535, b: 0.03773582, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3f91331724a9da84197e9b6d94f0483c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+  borderWidth: 0
+  falloffDistance: 1
+--- !u!222 &1430661834
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430661829}
+  m_CullTransparentMesh: 1
 --- !u!1 &1460336786
 GameObject:
   m_ObjectHideFlags: 0
@@ -29967,7 +30183,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -29975,7 +30191,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -29983,23 +30199,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -31016,7 +31232,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -31024,7 +31240,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -31032,23 +31248,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -32003,7 +32219,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -32011,7 +32227,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -32019,23 +32235,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -32145,7 +32361,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -32153,7 +32369,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -32161,23 +32377,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -32687,7 +32903,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -32695,7 +32911,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -32703,23 +32919,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -32824,7 +33040,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -32832,7 +33048,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -32840,23 +33056,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -34470,7 +34686,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: -3126962300235273932, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -34478,7 +34694,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -34486,23 +34702,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6270889672863566800, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -34834,7 +35050,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -34842,7 +35058,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -34850,23 +35066,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -36906,7 +37122,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -36914,7 +37130,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -36922,23 +37138,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -37524,7 +37740,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -37532,7 +37748,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -37540,23 +37756,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -38748,7 +38964,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -38756,7 +38972,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -38764,23 +38980,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -39208,7 +39424,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -39216,7 +39432,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -39224,23 +39440,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -41146,7 +41362,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -41154,7 +41370,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -41162,23 +41378,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: -4138378251554478745, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6860154723220884450, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -44723,7 +44939,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: midSprite
       value: 
-      objectReference: {fileID: -3126962300235273932, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -229677290728943836, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: uiManager
       value: 
@@ -44731,7 +44947,7 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: edgeSprite
       value: 
-      objectReference: {fileID: 234746169365936326, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 1024438884754302661, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: gameManager
       value: 
@@ -44739,23 +44955,23 @@ PrefabInstance:
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: centerSprite
       value: 
-      objectReference: {fileID: -5084788268888319003, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: 6571635669624277405, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge1Sprite
       value: 
-      objectReference: {fileID: -4283273639957091391, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7496925002779819082, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearEdge2Sprite
       value: 
-      objectReference: {fileID: -7751987400235880065, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -3290422927171252144, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter1Sprite
       value: 
-      objectReference: {fileID: -6635986522025980415, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -7396950692649900587, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6262640695725691398, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: nearCenter2Sprite
       value: 
-      objectReference: {fileID: 7608822363288271876, guid: 3ee4e2d35cffcea409e77cc69dad73ad, type: 3}
+      objectReference: {fileID: -6873105110846166575, guid: 7e51d77999c6f744eb11309345997c24, type: 3}
     - target: {fileID: 6270889672863566800, guid: 63b9b89c16de40e4cbc129b110dabc99, type: 3}
       propertyPath: m_IsActive
       value: 1
