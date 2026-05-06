@@ -247,7 +247,7 @@ namespace PlinkoGame
             else
             {
                 string formatted = value.ToString("0.##");
-                return $"{formatted}x";
+                return $"{formatted}";
             }
         }
 
