@@ -171,7 +171,8 @@ namespace PlinkoGame.Network
             };
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-            JSManager.SendCustomMessage("authToken");
+            JSManager?.RegisterAuthTokenListener(gameObject.name);
+            JSManager?.SendCustomMessage("authToken");
             if (gameObject.activeInHierarchy)
             {
                 StartCoroutine(WaitForAuthToken(options));
