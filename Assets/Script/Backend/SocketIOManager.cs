@@ -509,8 +509,8 @@ namespace PlinkoGame.Network
                 BalanceSyncPayload syncPayload = Newtonsoft.Json.JsonConvert.DeserializeObject<BalanceSyncPayload>(data);
                 if (syncPayload == null) return;
 
-                if (playerdata == null) playerdata = new PlinkoPlayer();
-                playerdata.balance = syncPayload.balance;
+                if (PlayerData == null) PlayerData = new PlinkoPlayer();
+                PlayerData.balance = syncPayload.balance;
 
                 uiManager?.UpdateBalance(syncPayload.balance);
             }
