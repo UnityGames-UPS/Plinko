@@ -5325,6 +5325,8 @@ MonoBehaviour:
   popupScaleOutEase: 26
   gameManager: {fileID: 22559460}
   historyManager: {fileID: 219230579}
+  jsFunctCalls: {fileID: 1460689620}
+  socketManager: {fileID: 1460689619}
 --- !u!4 &219230578
 Transform:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ namespace PlinkoGame.Network
 
         private bool hasFocus = true;
         private float focusLostTime = 0f;
-        private const float maxBackgroundTime = 120f;
+        private const float maxBackgroundTime = 60f;
 
         private Coroutine PingRoutine;
         private Coroutine initTimeoutRoutine;
@@ -74,6 +74,11 @@ namespace PlinkoGame.Network
             IsInitialized = false;
             IsResultReady = false;
             isBeingDestroyed = false;
+
+            if (uiManager == null)
+            {
+                uiManager = FindObjectOfType<UIManager>();
+            }
         }
 
         private void Start()
@@ -115,7 +120,7 @@ namespace PlinkoGame.Network
 
             if (!focus)
             {
-                focusLostTime = Time.time;
+                focusLostTime = Time.realtimeSinceStartup;
 
                 if (focusCheckRoutine == null && !isExiting && gameObject.activeInHierarchy)
                 {
@@ -469,11 +474,11 @@ namespace PlinkoGame.Network
         {
             while (!hasFocus && !isExiting && !isBeingDestroyed)
             {
-                float timeInBackground = Time.time - focusLostTime;
+                float timeInBackground = Time.realtimeSinceStartup - focusLostTime;
 
                 if (timeInBackground >= maxBackgroundTime)
                 {
-                    Debug.LogError("[FOCUS] Background timeout");
+                    Debug.LogWarning("[SOCKET] Background timeout — closing connection");
 
                     isConnected = false;
                     ResetPingRoutine();
@@ -486,11 +491,16 @@ namespace PlinkoGame.Network
                         }
                         catch (Exception e)
                         {
-                            Debug.LogWarning($"[FOCUS] Error: {e.Message}");
+                            Debug.LogWarning($"[SOCKET] Focus close error: {e.Message}");
                         }
                     }
 
-                    ShowErrorAndBlock("Game timed out due to inactivity. Please refresh.");
+                    if (uiManager == null)
+                    {
+                        uiManager = FindObjectOfType<UIManager>();
+                    }
+
+                    uiManager?.ShowDisconnectionPopup();
                     focusCheckRoutine = null;
                     yield break;
                 }

@@ -207,9 +207,20 @@ namespace PlinkoGame
 
         private void Awake()
         {
+            if (jsFunctCalls == null)
+            {
+                jsFunctCalls = GetComponent<JSFunctCalls>();
+                if (jsFunctCalls == null) jsFunctCalls = FindObjectOfType<JSFunctCalls>();
+            }
+
             if (jsFunctCalls != null)
             {
                 jsFunctCalls.RegisterVisibilityListener(gameObject.name);
+            }
+
+            if (socketManager == null)
+            {
+                socketManager = FindObjectOfType<PlinkoGame.Network.SocketIOManager>();
             }
 
             SetupButtons();
@@ -228,6 +239,11 @@ namespace PlinkoGame
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.SetMuteAll(!focused);
+            }
+
+            if (socketManager == null)
+            {
+                socketManager = FindObjectOfType<PlinkoGame.Network.SocketIOManager>();
             }
 
             if (socketManager != null)
