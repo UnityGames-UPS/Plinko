@@ -185,6 +185,8 @@ namespace PlinkoGame
         [Header("References")]
         [SerializeField] private GameManager gameManager;
         [SerializeField] private HistoryManager historyManager;
+        [SerializeField] private JSFunctCalls jsFunctCalls;
+        [SerializeField] private PlinkoGame.Network.SocketIOManager socketManager;
 
         // ============================================
         // POPUP X POSITION STORAGE
@@ -205,12 +207,33 @@ namespace PlinkoGame
 
         private void Awake()
         {
+            if (jsFunctCalls != null)
+            {
+                jsFunctCalls.RegisterVisibilityListener(gameObject.name);
+            }
+
             SetupButtons();
             SetupDropdowns();
             SetupAudioToggles();
             SetupInputFieldListeners();
             HideAllPopups();
             StoreInitialPopupXPositions();
+        }
+
+        public void OnFocusChanged(string value)
+        {
+            bool focused = value == "1";
+            Debug.Log($"UNITY FOCUS CHANGED: {value} (focused: {focused})");
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.SetMuteAll(!focused);
+            }
+
+            if (socketManager != null)
+            {
+                socketManager.HandleFocusChange(focused);
+            }
         }
 
         private void Start()

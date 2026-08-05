@@ -338,7 +338,7 @@ namespace PlinkoGame
 
             // === STEP 10.5: WAIT BEFORE UNLOCKING CONTROLS ===
             Debug.Log("[OrientationChange] Waiting before unlocking controls...");
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSecondsRealtime(0.8f);
 
             // ANTI-CHEAT: Unlock settings after transition completes + delay
             if (gameManager != null)
@@ -352,7 +352,7 @@ namespace PlinkoGame
             {
                 string pending = pendingDimensions;
                 pendingDimensions = "";
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSecondsRealtime(0.1f);
                 SwitchDisplay(pending);
             }
         }
@@ -515,7 +515,7 @@ namespace PlinkoGame
                     newLauncher.DropBallFromRow(state.targetCatcherIndex, newRow, newRowCount);
                     restoredCount++;
 
-                    yield return new WaitForSeconds(ballTransitionDelay);
+                    yield return new WaitForSecondsRealtime(ballTransitionDelay);
                 }
             }
 

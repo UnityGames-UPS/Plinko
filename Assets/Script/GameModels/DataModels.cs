@@ -105,4 +105,10 @@ namespace PlinkoGame.Data
         public string socketURL;
         public string nameSpace;
     }
+
+    [Serializable]
+    public class BalanceSyncPayload
+    {
+        public double balance;
+    }
 }

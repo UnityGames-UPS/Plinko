@@ -1,4 +1,4 @@
-﻿using Best.SocketIO;
+using Best.SocketIO;
 using Best.SocketIO.Events;
 using Newtonsoft.Json;
 using PlinkoGame.Data;
@@ -107,7 +107,7 @@ namespace PlinkoGame.Network
             gameSocket = null;
         }
 
-        private void OnApplicationFocus(bool focus)
+        internal void HandleFocusChange(bool focus)
         {
             if (isBeingDestroyed) return;
 
@@ -117,7 +117,7 @@ namespace PlinkoGame.Network
             {
                 focusLostTime = Time.time;
 
-                if (focusCheckRoutine == null && gameObject.activeInHierarchy)
+                if (focusCheckRoutine == null && !isExiting && gameObject.activeInHierarchy)
                 {
                     focusCheckRoutine = StartCoroutine(FocusTimeoutCheck());
                 }
@@ -252,6 +252,7 @@ namespace PlinkoGame.Network
             gameSocket.On<string>("internalError", OnInternalError);
             gameSocket.On<string>("alert", OnAlert);
             gameSocket.On<string>("AnotherDevice", OnAnotherDevice);
+            gameSocket.On<string>("balance:sync", OnBalanceSync);
         }
 
         private IEnumerator ConnectionAndInitTimeout()
@@ -494,10 +495,29 @@ namespace PlinkoGame.Network
                     yield break;
                 }
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSecondsRealtime(1f);
             }
 
             focusCheckRoutine = null;
+        }
+
+        private void OnBalanceSync(string data)
+        {
+            if (isBeingDestroyed) return;
+            try
+            {
+                BalanceSyncPayload syncPayload = Newtonsoft.Json.JsonConvert.DeserializeObject<BalanceSyncPayload>(data);
+                if (syncPayload == null) return;
+
+                if (playerdata == null) playerdata = new PlinkoPlayer();
+                playerdata.balance = syncPayload.balance;
+
+                uiManager?.UpdateBalance(syncPayload.balance);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[SOCKET] Error processing balance:sync: {e.Message}");
+            }
         }
         #endregion
 

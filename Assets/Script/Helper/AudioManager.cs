@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 namespace PlinkoGame
 {
     /// <summary>
@@ -45,6 +45,31 @@ namespace PlinkoGame
         private bool wasMusicPlayingBeforePause;
         private bool isApplicationFocused = true;
         private bool isBeingDestroyed = false;
+
+        private bool isForceMuted = false;
+        private readonly Dictionary<AudioSource, bool> preFocusMuteState = new Dictionary<AudioSource, bool>();
+
+        // Focus-driven — called from BOTH OnFocusChanged (via UIManager) and OnApplicationFocus.
+        internal void SetMuteAll(bool forceMute)
+        {
+            if (forceMute == isForceMuted) return;
+            isForceMuted = forceMute;
+
+            AudioSource[] sources = new AudioSource[] { musicSource, sfxSource };
+            foreach (var source in sources)
+            {
+                if (source == null) continue;
+                if (forceMute)
+                {
+                    preFocusMuteState[source] = source.mute;
+                    source.mute = true;
+                }
+                else
+                {
+                    source.mute = preFocusMuteState.TryGetValue(source, out bool prevMuted) ? prevMuted : source.mute;
+                }
+            }
+        }
 
         private void Awake()
         {
@@ -108,6 +133,9 @@ namespace PlinkoGame
             isMusicEnabled = musicEnabledByDefault;
             isSFXEnabled = sfxEnabledByDefault;
 
+            if (musicSource != null) musicSource.mute = !isMusicEnabled;
+            if (sfxSource != null) sfxSource.mute = !isSFXEnabled;
+
             Debug.Log($"[AudioManager] Fresh start - Music: {isMusicEnabled}, SFX: {isSFXEnabled}");
         }
 
@@ -120,67 +148,13 @@ namespace PlinkoGame
             if (isBeingDestroyed) return;
 
             isApplicationFocused = hasFocus;
-
-            if (hasFocus)
-            {
-                // Application gained focus
-                Debug.Log("[AudioManager] Application gained focus");
-
-                if (wasMusicPlayingBeforePause && isMusicEnabled)
-                {
-                    PlayBackgroundMusic();
-                }
-            }
-            else
-            {
-                // Application lost focus - STOP ALL AUDIO
-                Debug.Log("[AudioManager] Application lost focus - stopping audio");
-
-                if (musicSource != null && musicSource.isPlaying)
-                {
-                    wasMusicPlayingBeforePause = true;
-                    musicSource.Pause();
-                }
-                else
-                {
-                    wasMusicPlayingBeforePause = false;
-                }
-
-                StopAllSFX();
-            }
+            SetMuteAll(!hasFocus);
         }
 
         private void OnApplicationPause(bool pauseStatus)
         {
             if (isBeingDestroyed) return;
-
-            if (pauseStatus)
-            {
-                // Application is pausing (mobile/background)
-                Debug.Log("[AudioManager] Application paused - stopping audio");
-
-                if (musicSource != null && musicSource.isPlaying)
-                {
-                    wasMusicPlayingBeforePause = true;
-                    musicSource.Pause();
-                }
-                else
-                {
-                    wasMusicPlayingBeforePause = false;
-                }
-
-                StopAllSFX();
-            }
-            else
-            {
-                // Application is resuming
-                Debug.Log("[AudioManager] Application resumed");
-
-                if (wasMusicPlayingBeforePause && isMusicEnabled)
-                {
-                    PlayBackgroundMusic();
-                }
-            }
+            SetMuteAll(pauseStatus);
         }
 
         private void StopAllSFX()
@@ -227,6 +201,13 @@ namespace PlinkoGame
         public void ToggleMusic(bool enabled)
         {
             isMusicEnabled = enabled;
+            isForceMuted = false;
+
+            if (musicSource != null)
+            {
+                preFocusMuteState[musicSource] = !enabled;
+                musicSource.mute = !enabled;
+            }
 
             if (enabled)
             {
@@ -257,6 +238,14 @@ namespace PlinkoGame
         public void ToggleSFX(bool enabled)
         {
             isSFXEnabled = enabled;
+            isForceMuted = false;
+
+            if (sfxSource != null)
+            {
+                preFocusMuteState[sfxSource] = !enabled;
+                sfxSource.mute = !enabled;
+            }
+
             Debug.Log($"[AudioManager] SFX toggled: {enabled}");
         }
 
