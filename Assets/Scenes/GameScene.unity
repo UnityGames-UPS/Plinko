@@ -13570,25 +13570,6 @@ MonoBehaviour:
   ballTransitionDelay: 0.1
   maxRowVariance: 1
   swapLayoutLogic: 0
-  match_portrait_9_16: 0.38
-  match_portrait_1080_1920: 0.42
-  match_portrait_1080_2340: 0.46
-  match_portrait_1080_2400: 0.48
-  match_portrait_1440_2960: 0.46
-  match_portrait_1440_3200: 0.5
-  match_portrait_ipad: 0.22
-  match_portrait_ipad_pro: 0.25
-  match_portrait_4_3: 0.22
-  match_portrait_3_2: 0.28
-  match_portrait_16_10: 0.32
-  match_portrait_16_9: 0.38
-  match_portrait_18_9: 0.42
-  match_portrait_19_9: 0.46
-  match_portrait_21_9: 0.5
-  match_portrait_ultra: 0.55
-  match_landscape_tablet: 0.5
-  match_landscape_standard: 0.5
-  match_landscape_wide: 1
   enableDynamicBoardAdjustment: 1
   verticalBoardLayoutRoot: {fileID: 1189393091}
   verticalBoardPadding: {x: 60, y: 110}
@@ -29977,7 +29958,7 @@ MonoBehaviour:
   gameManager: {fileID: 22559460}
   uiManager: {fileID: 219230577}
   JSManager: {fileID: 1460689620}
-  testToken: c77c9b25f7d3402e838b2bf2cb09e404
+  testToken: 7345c9dd1a044221b15d9608ae70f94d
   RaycastBlocker: {fileID: 419093565}
   disconnectDelay: 60
 --- !u!114 &1460689620

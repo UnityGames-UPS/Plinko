@@ -41,32 +41,6 @@ namespace PlinkoGame
         [Header("Layout Logic")]
         [SerializeField] private bool swapLayoutLogic = false;
 
-        [Header("Portrait Match Values - Common Resolutions")]
-        [SerializeField] private float match_portrait_9_16 = 0.38f;
-        [SerializeField] private float match_portrait_1080_1920 = 0.42f;
-        [SerializeField] private float match_portrait_1080_2340 = 0.46f;
-        [SerializeField] private float match_portrait_1080_2400 = 0.48f;
-        [SerializeField] private float match_portrait_1440_2960 = 0.46f;
-        [SerializeField] private float match_portrait_1440_3200 = 0.50f;
-
-        [Header("Portrait Match Values - iPad/Tablets")]
-        [SerializeField] private float match_portrait_ipad = 0.22f;
-        [SerializeField] private float match_portrait_ipad_pro = 0.25f;
-
-        [Header("Portrait Match Values - Aspect Ratio Fallbacks")]
-        [SerializeField] private float match_portrait_4_3 = 0.22f;
-        [SerializeField] private float match_portrait_3_2 = 0.28f;
-        [SerializeField] private float match_portrait_16_10 = 0.32f;
-        [SerializeField] private float match_portrait_16_9 = 0.38f;
-        [SerializeField] private float match_portrait_18_9 = 0.42f;
-        [SerializeField] private float match_portrait_19_9 = 0.46f;
-        [SerializeField] private float match_portrait_21_9 = 0.50f;
-        [SerializeField] private float match_portrait_ultra = 0.55f;
-
-        [Header("Landscape Match Values")]
-        [SerializeField] private float match_landscape_tablet = 0.75f;
-        [SerializeField] private float match_landscape_standard = 0.85f;
-        [SerializeField] private float match_landscape_wide = 1.0f;
 
         [Header("Vertical Game Area Adjustment")]
         [SerializeField] private bool enableDynamicBoardAdjustment = true;
@@ -716,148 +690,66 @@ namespace PlinkoGame
 
         private float CalculateMatchValue(int width, int height, float aspectRatio, bool isLandscape)
         {
+            if (width <= 0 || height <= 0) return 0.5f;
+
+            Vector2 refRes = (canvasScaler != null) ? canvasScaler.referenceResolution : referenceAspect;
+            if (refRes.x <= 0 || refRes.y <= 0)
+            {
+                refRes = new Vector2(2340f, 1080f);
+            }
+
+            float refW = refRes.x;
+            float refH = refRes.y;
+
+            float widthScale = (float)width / refW;
+            float heightScale = (float)height / refH;
+
+            float targetScale;
             if (isLandscape)
             {
-                return CalculateLandscapeMatch(aspectRatio);
+                targetScale = Mathf.Min(widthScale, heightScale);
             }
             else
             {
-                return CalculatePortraitMatch(width, height, aspectRatio);
-            }
-        }
-
-        private float CalculatePortraitMatch(int width, int height, float aspectRatio)
-        {
-            // iPad detection
-            if (currentDevice == "IP" || aspectRatio < 1.42f)
-            {
-                if (aspectRatio < 1.38f)
-                {
-                    Debug.Log("[OrientationChange] Detected: iPad 4:3");
-                    return match_portrait_ipad;
-                }
-                else
-                {
-                    Debug.Log("[OrientationChange] Detected: iPad Pro");
-                    return match_portrait_ipad_pro;
-                }
+                float maxRef = Mathf.Max(refW, refH);
+                float minRef = Mathf.Min(refW, refH);
+                float portraitWidthScale = (float)height / maxRef;
+                float portraitHeightScale = (float)width / minRef;
+                targetScale = Mathf.Min(portraitWidthScale, portraitHeightScale);
             }
 
-            // Full HD portrait
-            if ((width == 1080 && height == 1920) || (width == 1920 && height == 1080))
+            if (Mathf.Abs(heightScale - widthScale) < 0.0001f)
             {
-                Debug.Log("[OrientationChange] Detected: Full HD 1080x1920");
-                return match_portrait_1080_1920;
+                return 0.5f;
             }
 
-            // 1080x2340
-            if ((width == 1080 && height == 2340) || (width == 2340 && height == 1080))
+            float logRatio = Mathf.Log(heightScale / widthScale);
+            if (Mathf.Abs(logRatio) < 0.0001f)
             {
-                Debug.Log("[OrientationChange] Detected: 1080x2340");
-                return match_portrait_1080_2340;
+                return 0.5f;
             }
 
-            // 1080x2400
-            if ((width == 1080 && height == 2400) || (width == 2400 && height == 1080))
-            {
-                Debug.Log("[OrientationChange] Detected: 1080x2400");
-                return match_portrait_1080_2400;
-            }
+            float targetMatch = Mathf.Log(targetScale / widthScale) / logRatio;
+            targetMatch = Mathf.Clamp01(targetMatch);
 
-            // 1440x2960
-            if ((width == 1440 && height == 2960) || (width == 2960 && height == 1440))
-            {
-                Debug.Log("[OrientationChange] Detected: 1440x2960 (QHD+)");
-                return match_portrait_1440_2960;
-            }
+            Debug.Log($"[OrientationChange] Dynamic target match calculated: {targetMatch:F3} for viewport {width}x{height} (isLandscape: {isLandscape})");
 
-            // 1440x3200
-            if ((width == 1440 && height == 3200) || (width == 3200 && height == 1440))
-            {
-                Debug.Log("[OrientationChange] Detected: 1440x3200 (QHD+)");
-                return match_portrait_1440_3200;
-            }
-
-            // 9:16 ratio
-            if (Mathf.Abs(aspectRatio - 1.778f) < 0.05f)
-            {
-                if (height < 1800)
-                {
-                    Debug.Log("[OrientationChange] Detected: 9:16 ratio (small screen)");
-                    return match_portrait_9_16;
-                }
-            }
-
-            // Aspect ratio fallback
-            if (aspectRatio < 1.42f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 4:3");
-                return match_portrait_4_3;
-            }
-            else if (aspectRatio < 1.55f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 3:2");
-                return match_portrait_3_2;
-            }
-            else if (aspectRatio < 1.69f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 16:10");
-                return match_portrait_16_10;
-            }
-            else if (aspectRatio < 1.89f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 16:9");
-                return match_portrait_16_9;
-            }
-            else if (aspectRatio < 2.08f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 18:9");
-                return match_portrait_18_9;
-            }
-            else if (aspectRatio < 2.25f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 19:9");
-                return match_portrait_19_9;
-            }
-            else if (aspectRatio < 2.40f)
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: 21:9");
-                return match_portrait_21_9;
-            }
-            else
-            {
-                Debug.Log("[OrientationChange] Aspect ratio fallback: Ultra-wide");
-                return match_portrait_ultra;
-            }
-        }
-
-        private float CalculateLandscapeMatch(float aspectRatio)
-        {
-            if (currentDevice == "IP" || aspectRatio < 1.5f)
-            {
-                Debug.Log("[OrientationChange] Landscape: Tablet");
-                return match_landscape_tablet;
-            }
-            else if (aspectRatio < 2.0f)
-            {
-                Debug.Log("[OrientationChange] Landscape: Standard");
-                return match_landscape_standard;
-            }
-            else
-            {
-                Debug.Log("[OrientationChange] Landscape: Wide");
-                return match_landscape_wide;
-            }
+            return targetMatch;
         }
 
         private void ApplyDeviceSpecificSettings()
         {
             if (canvasScaler == null) return;
 
-            float initialMatch = currentDevice == "IP" ? match_portrait_ipad : match_portrait_16_9;
+            int w = lastWidth > 0 ? lastWidth : Screen.width;
+            int h = lastHeight > 0 ? lastHeight : Screen.height;
+            float aspect = w > h ? (float)w / h : (float)h / w;
+            bool isLand = w > h;
+
+            float initialMatch = CalculateMatchValue(w, h, aspect, isLand);
             canvasScaler.matchWidthOrHeight = initialMatch;
 
-            Debug.Log($"[OrientationChange] Device: {currentDevice}, Initial Match: {initialMatch}");
+            Debug.Log($"[OrientationChange] Device: {currentDevice}, Dynamic Initial Match: {initialMatch:F3}");
         }
 
         /// <summary>
